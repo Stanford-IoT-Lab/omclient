@@ -1,6 +1,2 @@
 *~
-home-android/
-home-server/
-home-cloud/
-sftp-config.json
-.DS_Store
+node_modules/
