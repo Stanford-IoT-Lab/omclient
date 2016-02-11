@@ -9,7 +9,8 @@
   "dependencies": {
     "async": ">= 1.4.0",
     "lokijs": ">=1.3.4",
-    "ecma-nacl": "~2.2.0"
+    "ecma-nacl": "~2.2.0",
+    "ws": "~1.0.1"
   },
   "contributors": [
     {
