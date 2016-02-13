@@ -1,0 +1,30 @@
+{
+  "name": "omclient",
+  "version": "0.0.1",
+  "description": "Javascript client for Omlet messaging service",
+  "main": "./lib/om.js",
+  "engines": {
+    "node": "*"
+  },
+  "devDependencies": {
+    "browserify": ">=2.34.3",
+    "websocket": ">=1.0.14"
+  },
+  "dependencies": {
+    "nedb": ">=1.1.2",
+    "node-localstorage": ">=0.3.6",
+    "partial-nacl": "1.4.0",
+    "async": ">= 1.4.0",
+  	"lokijs": ">=1.3.4"
+  },
+  "scripts": {
+    "test": "node ./test/test.js",
+    "pretest": "node make-browserified.js"
+  },
+  "contributors": [
+    {
+      "name": "Omlet",
+      "email": "dev@omlet.me"
+    }
+  ]
+}
