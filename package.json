@@ -12,6 +12,14 @@
     "ecma-nacl": "2.2.0",
     "ws": "~1.0.1"
   },
+  "devDependencies": {
+    "browserify": ">=2.34.3",
+    "websocket": ">=1.0.14"
+  },
+  "scripts": {
+    "test": "node ./test/test.js",
+    "pretest": "node make-browserified.js"
+  },
   "contributors": [
     {
       "name": "Omlet",
