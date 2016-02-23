@@ -1,1 +1,2 @@
-Omlib Javascript library. Build using: `node make_browserify.js`
+Omlib Javascript library. Build using: 
+`node make_browserify.js`
