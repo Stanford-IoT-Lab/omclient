@@ -1,22 +1,23 @@
-var om;
+var assert = require('assert')
+var omlib;
 if (typeof window === 'undefined') {
-    om = require('../lib/om');
+    omlib = require('../lib/omlib');
 } else {
-    om = require('omclient');
+    omlib = require('omlib');
 }
-
-assert = om.assert;
 
 function abort(cause) {
     console.log("aborting because connection was severed");
     throw cause;
 }
 
-var client = new om.client.Client({reset:true});
+omlib.init();
+var client = omlib._ldClient;
+//var client = new om.client.Client({reset:true});
 client.onInterrupted = abort;
 
 function subscribe() {
-    client.msgCall(new om.proto.LDSubscribeForAccountInboxRequest(), onsubscribe);
+    client.msgCall(new omlib._proto.LDSubscribeForAccountInboxRequest(), onsubscribe);
 }
 function onsubscribe(error, resp, req) {
     assert.ifError(error);
@@ -25,11 +26,11 @@ function onsubscribe(error, resp, req) {
 }
 client.onSignedUp = subscribe;
 
-var identity = new om.proto.LDIdentity();
+var identity = new omlib._proto.LDIdentity();
 identity.Principal = "tj+cn@mobisocial.us";
-identity.Type = om.proto.LDIdentityType.Email;
+identity.Type = omlib._proto.LDIdentityType.Email;
 
-var register = new om.proto.LDRegisterWithTokenRequest();
+var register = new omlib._proto.LDRegisterWithTokenRequest();
 register.Identity = identity;
 register.Locale = "en_US";
 register.RequestedCluster = "TWO";
