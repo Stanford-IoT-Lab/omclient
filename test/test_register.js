@@ -28,7 +28,7 @@ function onsubscribe(error, resp, req) {
 client.onSignedUp = subscribe;
 
 var identity = new omlib._proto.LDIdentity();
-identity.Principal = "ben@mobisocial.us";
+identity.Principal = "tj+ch@mobisocial.us";
 identity.Type = omlib._proto.LDIdentityType.Email;
 
 var register = new omlib._proto.LDRegisterWithTokenRequest();
