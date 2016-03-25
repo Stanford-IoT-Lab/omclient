@@ -1,26 +1,28 @@
-var om;
+var assert = require('assert')
+var omlib;
 if (typeof window === 'undefined') {
-    om = require('../lib/om');
+    omlib = require('../lib/omlib');
 } else {
-    om = require('omclient');
+    omlib = require('omlib');
 }
-
-assert = om.assert;
 
 function abort(cause) {
     console.log("aborting because connection was severed");
     throw cause;
 }
 
+omlib.init();
+var client = omlib._ldClient;
+
 var validated = null;
 function deviceNotFound() {
     console.log("good device not found");
     clearTimeout(validated);
-    var nc = new om.client.Client();
-    assert.notEqual(nc.publicKey, client.publicKey);
+    // TODO
+    //var nc = new om.client.Client();
+    //assert.notEqual(nc.publicKey, client.publicKey);
 }
 
-var client = new om.client.Client();
 assert.ok(client.account);
 client.onInterrupted = abort;
 client.onDeviceInvalid = deviceNotFound;
@@ -36,7 +38,7 @@ client.onPush = onpush;
 client.enable();
 
 function deleteDevice() {
-    var req = new om.proto.LDDeleteDeviceRequest();
+    var req = new omlib._proto.LDDeleteDeviceRequest();
     req.PublicKey = client.publicKey;
     client.msgCall(req, onDeleteDevice)
 }
@@ -54,7 +56,7 @@ function subscribe() {
         assert.fail("should have been cancelled");
     }, 3000);
     client.enable();
-    client.msgCall(new om.proto.LDSubscribeAccountRequest(), onsubscribe);
+    client.msgCall(new omlib._proto.LDSubscribeAccountRequest(), onsubscribe);
 }
 function onsubscribe(error, resp, req) {
     assert.ok(error);
