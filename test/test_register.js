@@ -23,11 +23,12 @@ function onsubscribe(error, resp, req) {
     assert.ifError(error);
     console.log("account works on message server " + client.account);
     client.disable();
+    process.exit();
 }
 client.onSignedUp = subscribe;
 
 var identity = new omlib._proto.LDIdentity();
-identity.Principal = "tj+cn@mobisocial.us";
+identity.Principal = "ben@mobisocial.us";
 identity.Type = omlib._proto.LDIdentityType.Email;
 
 var register = new omlib._proto.LDRegisterWithTokenRequest();
@@ -40,5 +41,4 @@ function onregister(error, resp) {
 }
 console.log("enqueued confirm");
 client.idpCall(register, onregister);
-client.enable();
-
+//client.enable();
