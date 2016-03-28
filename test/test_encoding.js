@@ -5,7 +5,7 @@ if (typeof window === 'undefined') {
 } else {
     omlib = require('omlib');
 }
-var crypto = require ('../lib/crypto');
+var crypto = require ('../lib/util/crypto');
 
 var a = new omlib._proto.LDAccountDetails();
 a.Account = "acc";

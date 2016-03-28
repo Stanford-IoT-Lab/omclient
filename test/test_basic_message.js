@@ -6,7 +6,7 @@ if (typeof window === 'undefined') {
     omlib = require('omlib');
 }
 
-var ourcrypto = require('../lib/crypto');
+var ourcrypto = require('../lib/util/crypto');
 
 function abort(cause) {
     console.log("aborting because connection was severed");
