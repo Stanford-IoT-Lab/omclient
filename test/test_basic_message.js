@@ -15,7 +15,7 @@ function abort(cause) {
 
 omlib.init();
 var client = omlib._ldClient;
-assert.ok(client.account);
+assert.ok(omlib.auth.getAccount());
 client.onInterrupted = abort;
 
 var push_received = 0;
@@ -39,12 +39,7 @@ function onsubscribe(error, resp, req) {
 
 var test_feed = null;
 function createfeed() {
-    test_feed = new omlib._proto.LDFeed();
-    test_feed.Account = client.account;
-    test_feed.Key = ourcrypto.createNonce();
-    var req = new omlib._proto.LDCreateFeedRequest();
-    req.Feed = test_feed;
-    client.msgCall(req, oncreatedfeed);
+    omlib.feeds.createFeed(oncreatedfeed);
 }
 
 function oncreatedfeed(error, resp, req) {

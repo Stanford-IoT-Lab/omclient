@@ -21,7 +21,7 @@ function subscribe() {
 }
 function onsubscribe(error, resp, req) {
     assert.ifError(error);
-    console.log("account works on message server " + client.account);
+    console.log("account works on message server " + omlib.auth.getAccount());
     client.disable();
     process.exit();
 }
