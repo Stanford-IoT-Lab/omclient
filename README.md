@@ -9,3 +9,6 @@ Build the browser-friendly library using:
 
 Or build a node package as:
 `npm pack`
+
+Code cleanup:
+`js-beautify -r -t [file.js]`
