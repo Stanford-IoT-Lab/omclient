@@ -1,10 +1,5 @@
 var assert = require('assert')
-var omlib;
-if (typeof window === 'undefined') {
-    omlib = require('../lib/omlib');
-} else {
-    omlib = require('omlib');
-}
+var omlib = (typeof window === 'undefined') ? require('../lib/omlib') : require('omlib');
 var crypto = require ('../lib/util/crypto');
 
 var a = new omlib._proto.LDAccountDetails();

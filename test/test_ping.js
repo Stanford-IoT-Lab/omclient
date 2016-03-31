@@ -3,7 +3,7 @@ var connection = require('../lib/longdan/connection');
 
 var assert = require('assert')
 
-var private_key = ourcrypto.createPrivateKey();;
+var private_key = ourcrypto.createPrivateKey();
 var connection = new connection.Connection("THREE", "/device", om.client.DefaultConfiguration, private_key);
 connection._monitoring = true;
 connection.enable();
