@@ -8,13 +8,11 @@
   },
   "dependencies": {
     "async": ">= 1.4.0",
-    "lokijs": ">=1.3.16",
     "mongodb": "~2.1",
     "node-localstorage": "1.1.2",
     "ecma-nacl": "2.2.0",
-    "bufferutil": "~1.2.1",
-    "utf-8-validate": "~1.2.1",
-    "websocket": ">=1.0.22"
+    "lokijs": ">=1.3.16",
+    "ws": "^1.1.0"
   },
   "devDependencies": {
     "browserify": ">=2.34.3"
