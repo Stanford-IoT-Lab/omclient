@@ -7,7 +7,7 @@ var watchify = require('watchify');
 var babelify = require('babelify');
 var babel = require("gulp-babel");
 
-function pack(watch) {
+function pack() {
   return gulp.src("src/**")
     .pipe(babel())
     .pipe(gulp.dest("lib"));
@@ -40,8 +40,10 @@ function compile(watch) {
   rebundle();
 }
 
-gulp.task('npm', function() { return pack(false); });
-gulp.task('npm-watch', function() { return pack(false); });
+gulp.task('npm', function() { return pack(); });
+gulp.task('npm-watch', function() { 
+  gulp.watch("src/**", ["npm"]);
+});
 gulp.task('browserify', function() { return compile(false); });
 gulp.task('browserify-watch', function() { return compile(true); });
 
