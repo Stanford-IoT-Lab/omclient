@@ -5,3 +5,5 @@ js-client.njsproj
 js-client.sln
 scratch-localstorage
 build/
+
+lib/

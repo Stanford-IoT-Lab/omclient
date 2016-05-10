@@ -1,7 +1,7 @@
 /**
  * A simple QueryResult implementation backed by an array.
  */
-OmQueryResult = function(res) {
+var OmQueryResult = function(res) {
 	this.results = res;
 }
 

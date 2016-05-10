@@ -1,0 +1,8 @@
+{
+  "presets": ["es2015"],
+  "compact": false,
+  "ignore": ["src/longdan/ldproto.js",
+  	     "src/ldproto.js",
+	     "src/client/store/loki-indexed-adapter.js"
+	    ],
+}
