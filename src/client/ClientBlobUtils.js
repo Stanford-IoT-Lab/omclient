@@ -108,11 +108,12 @@ class BlobUtils {
 					var req = new proto.LDGetDownloadTicketRequest();
 					req.BlobLinkString = brl;
 
-					this._client.msgCall(req, this._gotDownloadTicket.bind(this, (err, url) => {
+					var me = this;
+					this._client.msgCall(req, this._gotDownloadTicket.bind(this, function(err, url) {
 						if (url) {
 							var TEN_MINUTES = 1000 * 60 * 10;
 							var expires = new Date().getTime() + TEN_MINUTES;
-							this._blobUrlCache[hash] = {
+							me._blobUrlCache[hash] = {
 								url: url,
 								expires: expires
 							};

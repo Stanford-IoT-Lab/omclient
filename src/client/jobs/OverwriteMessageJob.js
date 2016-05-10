@@ -99,7 +99,7 @@ class OverwriteMessageJob {
 			attachments = this.request._attachments;
 			this._sendObjAndAttachments(type, msgKey, body, attachments, jobCallback);
 		} else {
-			msgId = new proto.LDTypedId();
+			var msgId = new proto.LDTypedId();
 			msgId.Type = type;
 			msgId.Id = new Buffer(msgKey, "base64");
 			var req = this._makeRequest(msgId, body);
