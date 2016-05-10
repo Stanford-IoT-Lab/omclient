@@ -1,72 +1,69 @@
 var async = require("async");
 
-function OmEvent(client) {
-	this._client = client;
-}
+class OmEvent {
 
-OmEvent.prototype.FEEDS = "feeds";
-OmEvent.prototype.ACCOUNTS = "accounts";
-OmEvent.prototype.DB_LOADED = "dbloaded";
+	constructor(client) {
+		this._client = client;
 
-OmEvent.prototype._events = {};
-OmEvent.prototype._eventKey = 0;
-OmEvent.prototype._pendingEvents = {};
-OmEvent.prototype._pushReceivers = {};
+		this.FEEDS = "feeds";
+		this.ACCOUNTS = "accounts";
+		this.DB_LOADED = "dbloaded";
 
-OmEvent.prototype.register = function(label, fn) {
-	if (!(label in this._events)) {
-		this._events[label] = {};
+		this._events = {};
+		this._eventKey = 0;
+		this._pendingEvents = {};
+		this._pushReceivers = {};
 	}
 
-	var key = "" + (++(this._eventKey));
-	this._events[label][key] = fn;
-	var me = this;
+	register(label, fn) {
+		if (!(label in this._events)) {
+			this._events[label] = {};
+		}
 
-	return function() {
-		delete this._events[label][key];
-	}.bind(this);
-}
+		var key = "" + (++(this._eventKey));
+		this._events[label][key] = fn;
 
-OmEvent.prototype._notify = function(label) {
-	this._pendingEvents[label] = true;
-	async.nextTick(this._releaseNotifications.bind(this));
-}
+		return () => delete this._events[label][key];
+	}
 
-OmEvent.prototype._releaseNotifications = function() {
-	var pending = this._pendingEvents;
-	this._pendingEvents = {};
-	for (var label in pending) {
-		var listeners = this._events[label];
-		if (listeners !== undefined) {
-			for (var f in listeners) {
-				try {
-					listeners[f](label);
-				} catch (e) {
-					console.error("failed to deliver event, removing callback", e);
-					delete listeners[f];
+	_notify(label) {
+		this._pendingEvents[label] = true;
+		async.nextTick(this._releaseNotifications.bind(this));
+	}
+
+	_releaseNotifications() {
+		var pending = this._pendingEvents;
+		this._pendingEvents = {};
+		for (var label in pending) {
+			var listeners = this._events[label];
+			if (listeners !== undefined) {
+				for (var f in listeners) {
+					try {
+						listeners[f](label);
+					} catch (e) {
+						console.error("failed to deliver event, removing callback", e);
+						delete listeners[f];
+					}
 				}
 			}
 		}
 	}
-}
 
-OmEvent.prototype.registerMessagePushReceiver = function(fn) {
-	var key = "" + (++(this._eventKey));
-	this._pushReceivers[key] = fn;
-	var me = this;
+	registerMessagePushReceiver(fn) {
+		var key = "" + (++(this._eventKey));
+		this._pushReceivers[key] = fn;
 
-	return function() {
-		delete this._pushReceivers[key];
-	}.bind(this);
-}
+		return () => delete this._pushReceivers[key];
+	}
 
-OmEvent.prototype._notifyMessagePushed = function(msg) {
-	for (var i in this._pushReceivers) {
-		try {
-			this._pushReceivers[i](msg);
-		} catch (e) {
-			console.error("failed to deliver push event, removing callback", e);
-			delete this._pushReceivers[i];
+	_notifyMessagePushed(msg) {
+		for (var i in this._pushReceivers) {
+			try {
+				this._pushReceivers[i](msg);
+			} catch (e) {
+				console.error("failed to deliver push event, removing callback", e);
+				delete this._pushReceivers[i];
+			}
 		}
 	}
 }

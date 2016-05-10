@@ -1,17 +1,20 @@
-var AuthApi = function(client) {
-	this._ldClient = client;
-}
+class AuthApi {
 
-AuthApi.prototype.getAccount = function() {
-	return this._ldClient.account;
-}
+	constructor(client) {
+		this._ldClient = client;
+	}
 
-AuthApi.prototype.isAuthenticated = function() {
-	return this._ldClient.account != null;
-}
+	getAccount() {
+		return this._ldClient.account;
+	}
 
-AuthApi.prototype.logout = function(cb) {
-	this._ldClient.auth.logout(cb);
+	isAuthenticated() {
+		return this._ldClient.account != null;
+	}
+
+	logout(cb) {
+		this._ldClient.auth.logout(cb);
+	}
 }
 
 module.exports = AuthApi;

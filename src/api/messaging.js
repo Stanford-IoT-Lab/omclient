@@ -1,9 +1,9 @@
-var ObjTypes = require('../client/model/ObjTypes');
+class MessagingApi {
 
-var MessagingApi = function(client) {
-	this._ldClient = client;
+	constructor(client) {
+		this._ldClient = client;
+		this.types = require('../client/model/ObjTypes');
+	}
 }
-
-MessagingApi.prototype.types = ObjTypes;
 
 module.exports = MessagingApi;

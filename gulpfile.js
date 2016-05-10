@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
@@ -10,6 +11,7 @@ var babel = require("gulp-babel");
 function pack() {
   return gulp.src("src/**")
     .pipe(babel())
+    .on("error", function(e) { gutil.log(gutil.colors.red(e.message)); this.emit("end"); })
     .pipe(gulp.dest("lib"));
 }
 
@@ -43,6 +45,7 @@ function compile(watch) {
 gulp.task('npm', function() { return pack(); });
 gulp.task('npm-watch', function() { 
   gulp.watch("src/**", ["npm"]);
+  pack();
 });
 gulp.task('browserify', function() { return compile(false); });
 gulp.task('browserify-watch', function() { return compile(true); });
