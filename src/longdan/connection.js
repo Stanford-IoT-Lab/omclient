@@ -159,7 +159,7 @@ Connection.prototype._warn = function(m, o) {
 Connection.prototype.enable = function() {
 	if (!this._endpoint)
 		throw new Error("Must register with IDP!");
-	if (this.enabled)
+	if (this._enabled)
 		return;
 	this._enabled = true;
 	this._connect();
