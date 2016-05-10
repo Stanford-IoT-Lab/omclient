@@ -1,6 +1,4 @@
-var nacl = require('ecma-nacl');
-var sm = require('ecma-nacl/dist/lib/boxes/scalarmult');
-var arrays = require('ecma-nacl/dist/lib/util/arrays');
+var nacl = require('./nacl/partial-nacl');
 var crypto = require('crypto');
 var FE_SIZE = 32;
 
@@ -13,12 +11,12 @@ function createNonce(s) {
 }
 
 function generatePublicKey(priv) {
-	return new Buffer(nacl.box.generate_pubkey(new Uint8Array(priv)));
+	return new Buffer(nacl.generate_pubkey(new Uint8Array(priv)));
 }
 
 function computeShared(priv, pub2) {
 	var q = new Uint8Array(FE_SIZE);
-	sm.curve25519(q, new Uint8Array(priv), new Uint8Array(pub2), arrays.makeFactory());
+	nacl.curve25519(q, new Uint8Array(priv), new Uint8Array(pub2));
 	return new Buffer(q);
 }
 
