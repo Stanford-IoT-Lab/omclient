@@ -213,7 +213,17 @@ class FeedUtils {
 		var details = {
 			kind: ld.Kind
 		};
-		feedsDb.getOrCreateObject(identifier, cb, details);
+
+		var cb2 = (f, existing) => {
+	        if (!existing) {
+	            this._client.longdanMessageConsumer._enqueueFeedForFetch(identifier);
+	        }
+	        if (typeof(cb) == 'function') {
+	            cb(f, existing);
+	        }
+	    }
+
+		feedsDb.getOrCreateObject(identifier, cb2, details);
 	}
 
 	_ensureFeedMember(feed, member) {
