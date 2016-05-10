@@ -1,4 +1,8 @@
-var MongoClient = require('mongodb').MongoClient;
+var codependency = require('codependency');
+var requirePeer = codependency.get('omlib');
+
+var MongoClient = requirePeer('mongodb').MongoClient;
+
 var async = require('async');
 var assert = require('assert');
 

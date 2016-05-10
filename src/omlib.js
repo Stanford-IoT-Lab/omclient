@@ -1,3 +1,8 @@
+if (typeof window === 'undefined') {
+	var codependency = require('codependency');
+	var requirePeer = codependency.register(module);
+}
+
 var proto = require('./longdan/ldproto');
 var OMFeed = require('./client/model/OMFeed');
 var LongdanClient = require('./client/LongdanClient');

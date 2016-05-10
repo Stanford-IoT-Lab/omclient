@@ -16,7 +16,8 @@ function pack() {
 }
 
 function compile(watch) {
-  var bundler = browserify().require('./lib/omlib.js', { expose: 'omlib' }).transform(babelify);
+  pack();
+  var bundler = browserify().require('./lib/omlib.js', { expose: 'omlib' });
   if (watch) {
     bundler = watchify(bundler);
   }
