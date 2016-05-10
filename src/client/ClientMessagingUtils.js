@@ -44,17 +44,17 @@ class MessagingUtils {
 	// 'msg' is from the messageReceiptsDb
 	_sendLikeForMessage(msg) {
 		var msgKey = JSON.parse(msg.key); // f, i
-		omlib.store.getFeeds((feedsDb) => {
+		this._client.store.getFeeds((feedsDb) => {
 			feedsDb.getObjectById(msgKey.f, (feed) => {
-				omlib.store.getFeedObjects(omlib.store.getObjectId(feed), (objectsDb) => {
-					objectsDb.getObjectByKey(omlib.store.getObjectId(msg), (obj) => {
+				this._client.store.getFeedObjects(this._client.store.getObjectId(feed), (objectsDb) => {
+					objectsDb.getObjectByKey(this._client.store.getObjectId(msg), (obj) => {
 						var referenceKey = this._referenceKeyForMessageId(msg.key);
 						var body = {
 							Tally: 1 + ((obj.selfLikeCount) ? obj.selfLikeCount : 0),
 							Aggregate: (obj.selfAggregateLikeCount) ? obj.selfAggregateLikeCount : 0,
 							_messageId: new Buffer(referenceKey).toString("base64")
 						}
-						omlib.messaging._sendObjToFeed(feed.identifier, 'like', body);
+						this._sendObjToFeed(feed.identifier, 'like', body);
 					});
 				});
 			});
@@ -69,26 +69,6 @@ class MessagingUtils {
 		refKey.Id.Id = new Buffer(msgKey.i.i, "base64");
 		refKey.Owner = this._client.account;
 		return JSON.stringify(refKey.encode());
-	}
-
-	_sendLikeForMessage(msg) {
-		var msgKey = JSON.parse(msg.key); // f, i
-		omlib.store.getFeeds((feedsDb) => {
-			feedsDb.getObjectById(msgKey.f, (feed) => {
-				omlib.store.getFeedObjects(omlib.store.getObjectId(feed), (objectsDb) => {
-					objectsDb.getObjectByKey(omlib.store.getObjectId(msg), (obj) => {
-						// TODO: make referenceId from sender,msgId
-						var body = {
-							Tally: 1
-
-						}
-						omlib.messaging._sendObjToFeed(feed.identifier, 'like', body);
-
-					});
-				});
-			});
-		});
-
 	}
 
 	_urlToObj(url, cb) {
