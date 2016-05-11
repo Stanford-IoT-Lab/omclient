@@ -385,10 +385,10 @@ class BlobUtils {
 
 	resizeImage(buf, sizes, cb) {
 		if (typeof document !== 'undefined') {
-			resizeImageCanvas(buf, sizes, cb);
+			this.resizeImageCanvas(buf, sizes, cb);
 		} else if (typeof platform !== 'undefined' &&
 			platform.hasCapability('graphics-api')) {
-			resizeImageThingPediaPlatform(buf, sizes, cb);
+			this.resizeImageThingPediaPlatform(buf, sizes, cb);
 		} else {
 			cb(new Error('Resizing is not available outside of a browser'));
 		}
