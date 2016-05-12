@@ -4,6 +4,12 @@
   "description": "Javascript client for Omlet messaging service",
   "private": true,
   "main": "./lib/omlib.js",
+  "files":[
+    "LICENSE.md",
+    "lib/",
+    "src/",
+    "utils/"
+  ],
   "engines": {
     "node": "*"
   },
