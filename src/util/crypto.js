@@ -1,13 +1,14 @@
 var nacl = require('./nacl/partial-nacl');
-var crypto = require('crypto');
+var createHash = require('create-hash');
+var randomBytes = require('randombytes');
 var FE_SIZE = 32;
 
 function createPrivateKey() {
-	return crypto.randomBytes(FE_SIZE);
+	return randomBytes(FE_SIZE);
 }
 
 function createNonce(s) {
-	return crypto.randomBytes(s || FE_SIZE);
+	return randomBytes(s || FE_SIZE);
 }
 
 function generatePublicKey(priv) {
@@ -21,11 +22,15 @@ function computeShared(priv, pub2) {
 }
 
 function createSHA256() {
-	return crypto.createHash('sha256');
+	return createHash('sha256');
 }
 
 function createMD5() {
-	return crypto.createHash('md5');
+	return createHash('md5');
+}
+
+function pseudoRandomBytes(count) {
+	return randomBytes(count);
 }
 
 module.exports = {
@@ -35,5 +40,6 @@ module.exports = {
 	computeShared: computeShared,
 	createSHA256: createSHA256,
 	createMD5: createMD5,
+	pseudoRandomBytes: pseudoRandomBytes
 };
 Object.freeze(module.exports);
