@@ -1,5 +1,10 @@
-var proto = require("../longdan/ldproto");
 var crypto = require("../util/crypto");
+
+var LDCreateFeedRequest = require('../longdan/ldproto/LDCreateFeedRequest');
+var LDFeed = require('../longdan/ldproto/LDFeed');
+var LDAddMemberRequest = require('../longdan/ldproto/LDAddMemberRequest');
+var LDAddPendingInvitationRequest = require('../longdan/ldproto/LDAddPendingInvitationRequest');
+var LDIdentityHash = require('../longdan/ldproto/LDIdentityHash');
 
 class FeedUtils {
 
@@ -8,8 +13,8 @@ class FeedUtils {
 	}
 
 	_createFeed(feedKind, cb) {
-		var req = new proto.LDCreateFeedRequest();
-		req.Feed = new proto.LDFeed();
+		var req = new LDCreateFeedRequest();
+		req.Feed = new LDFeed();
 		req.Feed.Kind = feedKind;
 		req.Feed.Account = this._client.account;
 		req.Feed.Key = crypto.pseudoRandomBytes(32);
@@ -169,7 +174,7 @@ class FeedUtils {
 		} else {
 			var ldFeed = this.getLDFeed(feed);
 			var account = accounts.shift();
-			var req = new proto.LDAddMemberRequest();
+			var req = new LDAddMemberRequest();
 			req.Feed = ldFeed;
 			req.Member = account.account;
 			this._client.msgCall(req, (err, resp, req) => {
@@ -190,9 +195,9 @@ class FeedUtils {
 		} else {
 			var ldFeed = this.getLDFeed(feed);
 			var identity = identityHashes.shift();
-			var req = new proto.LDAddPendingInvitationRequest();
+			var req = new LDAddPendingInvitationRequest();
 			req.Feed = ldFeed;
-			req.IdentityHash = new proto.LDIdentityHash(JSON.parse(identity));
+			req.IdentityHash = new LDIdentityHash(JSON.parse(identity));
 			this._client.msgCall(req, (err, resp, req) => {
 				if (err) {
 					if (typeof cb == 'function')
@@ -205,11 +210,11 @@ class FeedUtils {
 	}
 
 	getLDFeed(feed) {
-		return new proto.LDFeed(JSON.parse(feed.identifier));
+		return new LDFeed(JSON.parse(feed.identifier));
 	}
 
 	_ensureFeed(feedsDb, identifier, cb) {
-		var ld = new proto.LDFeed(JSON.parse(identifier));
+		var ld = new LDFeed(JSON.parse(identifier));
 		var details = {
 			kind: ld.Kind
 		};

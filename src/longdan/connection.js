@@ -1,7 +1,14 @@
 var async = require("async");
-var proto = require("./ldproto");
 var websocket = require('websocket');
 var ourcrypto = require('../util/crypto');
+
+//var LDDeviceToIdpRpcWrapper = require('./ldproto/LDDeviceToIdpRpcWrapper');
+//var LDDeviceToIdpResponseContainer = require('./ldproto/LDDeviceToIdpResponseContainer');
+//var LDDeviceToClusterRpcWrapper = require('./ldproto/LDDeviceToClusterRpcWrapper');
+//var LDDeviceToClusterResponseContainer = require('./ldproto/LDDeviceToClusterResponseContainer');
+var LDHelloChallengeRequest = require('./ldproto/LDHelloChallengeRequest');
+var LDCompleteChallengeRequest = require('./ldproto/LDCompleteChallengeRequest');
+var LDPingRequest = require('./ldproto/LDPingRequest');
 
 var IDP_CLUSTER = "idp";
 var BASE_BACKOFF = 3 * 1000;
@@ -101,14 +108,14 @@ function Connection(cluster, target, configuration, privateKey, apiKey) {
 		this._serverPublicKey = this._configuration.IdpKey;
 		this._endpoint = makeWsPath(this._configuration.IdpEndpoints[rand(this._configuration.IdpEndpoints.length)], target);
 		this._requestWrapper = 'makeIdpRpc';
-		this._wrapperConstructor = proto.LDDeviceToIdpRpcWrapper;
-		this._responseConstructor = proto.LDDeviceToIdpResponseContainer;
+		//this._wrapperConstructor = LDDeviceToIdpRpcWrapper;
+		//this._responseConstructor = LDDeviceToIdpResponseContainer;
 	} else {
 		if (cluster)
 			this._setCluster(cluster, target);
 		this._requestWrapper = 'makeClusterRpc';
-		this._wrapperConstructor = proto.LDDeviceToClusterRpcWrapper;
-		this._responseConstructor = proto.LDDeviceToClusterResponseContainer;
+		//this._wrapperConstructor = LDDeviceToClusterRpcWrapper;
+		//this._responseConstructor = LDDeviceToClusterResponseContainer;
 	}
 
 	if (apiKey) {
@@ -130,7 +137,7 @@ Connection.prototype.onInterrupted = null; //function(cause);
 Connection.prototype.onDeviceInvalid = null; //function();
 Connection.prototype.connected = false;
 Connection.prototype.connectionId = 0;
-Connection.prototype.debug = false;
+Connection.prototype.debug = true;
 Connection.prototype._sessionListenerId = 0;
 Connection.prototype._sessionListeners = {};
 
@@ -262,14 +269,6 @@ Connection.prototype.disable = function() {
 };
 
 
-Connection.prototype._sendRequest = function(req) {
-	var wrapped = req[this._requestWrapper]();
-	wrapped.Request.SequenceNumber = this._nextRequestId++;
-	var body = JSON.stringify(wrapped.encode());
-	this._verbose(body);
-	this._client.send(body);
-	return wrapped;
-};
 Connection.prototype._sendResponse = function(wrapped) {
 	var body = JSON.stringify(wrapped.encode());
 	this._verbose(body);
@@ -277,9 +276,15 @@ Connection.prototype._sendResponse = function(wrapped) {
 };
 
 Connection.prototype._call = function(req, callback) {
-	var wrapped = this._sendRequest(req);
+	var reqId = this._nextRequestId++;
+	var wrapped = req[this._requestWrapper](reqId);
+	
 	var rcb = new PendingRequest(wrapped, req, callback);
-	this._pending[wrapped.Request.SequenceNumber] = rcb;
+	this._pending[reqId] = rcb;
+
+	var body = JSON.stringify(wrapped);
+	this._verbose(body);
+	this._client.send(body);
 }
 
 Connection.prototype._enqueue = function(req, callback) {
@@ -297,7 +302,7 @@ Connection.prototype.call = function(req, callback) {
 }
 
 Connection.prototype._sendHello = function() {
-	var req = new proto.LDHelloChallengeRequest();
+	var req = new LDHelloChallengeRequest();
 	req.SourceKey = this._publicKey;
 	req.ApiKey = this._apiKey;
 	req.DestinationChallenge = this._challengeForServer = ourcrypto.createNonce();
@@ -346,7 +351,7 @@ Connection.prototype._ackHello = function(error, resp, req) {
 		sha.update(new Buffer(challenge));
 		appResponse = new Buffer(sha.digest('base64'), 'base64');
 	}
-	var req = new proto.LDCompleteChallengeRequest();
+	var req = new LDCompleteChallengeRequest();
 	req.Type = "JS-Omlib";
 	req.OmlibVersion = OMLIB_VERSION;
 	if (typeof window === 'undefined') {
@@ -365,7 +370,7 @@ Connection.prototype.sendPing = function(delay, lastRtt, cb) {
 		cb(new TemporaryFailure("NotConnected"));
 		return;
 	}
-	var req = new proto.LDPingRequest();
+	var req = new LDPingRequest();
 	req.NextPingDelayMs = delay;
 	req.LastRtt = lastRtt;
 	var start = new Date().getTime();
@@ -523,16 +528,17 @@ Connection.prototype._onmessage = function(e) {
 		return;
 
 	this._verbose("Received: '" + e.data + "'");
-	var resp = new this._wrapperConstructor(JSON.parse(e.data));
-	if (resp.Response) {
-		var rcb = this._pending[resp.Response.SequenceNumber];
+	var jsonResponse = JSON.parse(e.data);
+	if (jsonResponse['r']) {
+		var seqNum = jsonResponse['r']['#'];
+		var rcb = this._pending[seqNum];
 		if (!rcb) {
-			this._warn("unknown request id " + resp.Response.SequenceNumber);
+			this._warn("unknown request id " + seqNum);
 			this._verbose(resp);
 			this._backoff(new Abort());
 			return;
 		}
-		delete this._pending[resp.Response.SequenceNumber];
+		delete this._pending[seqNum];
 		if (resp.Response.ErrorCode || resp.Response.ErrorDetail) {
 			if (!rcb.callback) {
 				this._warn("failure in callback for response " + e);

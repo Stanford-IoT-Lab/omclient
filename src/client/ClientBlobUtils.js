@@ -1,9 +1,13 @@
-var proto = require("../longdan/ldproto");
 var crypto = require('../util/crypto');
 var http = require('http');
 var https = require('https');
 var Url = require('url');
 var async = require('async');
+
+var LDGetUploadTicketRequest = require('../longdan/ldproto/LDGetUploadTicketRequest');
+var LDBlobMetadata = require('../longdan/ldproto/LDBlobMetadata');
+var LDGetDownloadTicketRequest = require('../longdan/ldproto/LDGetDownloadTicketRequest');
+var LDVerifyUploadCompletedRequest = require('../longdan/ldproto/LDVerifyUploadCompletedRequest');
 
 class BlobUtils {
 
@@ -55,9 +59,9 @@ class BlobUtils {
 	}
 
 	uploadBlob(data, mime, cb) {
-		var req = new proto.LDGetUploadTicketRequest();
+		var req = new LDGetUploadTicketRequest();
 		req.Account = this._client.account;
-		req.Metadata = new proto.LDBlobMetadata();
+		req.Metadata = new LDBlobMetadata();
 		req.Metadata.MimeType = mime;
 		req.Metadata.Size = data.length;
 
@@ -105,7 +109,7 @@ class BlobUtils {
 						return;
 					}
 
-					var req = new proto.LDGetDownloadTicketRequest();
+					var req = new LDGetDownloadTicketRequest();
 					req.BlobLinkString = brl;
 
 					var me = this;
@@ -151,7 +155,7 @@ class BlobUtils {
 
 
 	getDownloadLinkForBrl(blobLinkString, cb) {
-		var req = new proto.LDGetDownloadTicketRequest();
+		var req = new LDGetDownloadTicketRequest();
 		req.BlobLinkString = blobLinkString;
 
 		this._client.msgCall(req, this._gotDownloadTicket.bind(this, cb));
@@ -196,7 +200,7 @@ class BlobUtils {
 			cb(resp.statusCode);
 			return;
 		}
-		var req = new proto.LDVerifyUploadCompletedRequest();
+		var req = new LDVerifyUploadCompletedRequest();
 		req.BlobUploadTicket = uploadTicket;
 		this._client.msgCall(req, this._gotBlobLinkString.bind(this, cb));
 
@@ -232,7 +236,7 @@ class BlobUtils {
 	}
 
 	download(blobLinkString, cb) {
-		var req = new proto.LDGetDownloadTicketRequest();
+		var req = new LDGetDownloadTicketRequest();
 		req.BlobLinkString = blobLinkString;
 
 		this._client.msgCall(req, this._doDownload.bind(this, cb));

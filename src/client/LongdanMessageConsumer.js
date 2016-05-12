@@ -1,7 +1,16 @@
-var proto = require("../longdan/ldproto");
 var OMFeed = require("./model/OMFeed");
 var ObjTypes = require("./model/ObjTypes");
 var async = require('async');
+
+var LDSubscribeForAccountInboxRequest = require('../longdan/ldproto/LDSubscribeForAccountInboxRequest');
+var LDGetDirtyFeedsRequest = require('../longdan/ldproto/LDGetDirtyFeedsRequest');
+var LDTypedId = require('../longdan/ldproto/LDTypedId');
+var LDGetMessagesByTypeRequest = require('../longdan/ldproto/LDGetMessagesByTypeRequest');
+var LDGetMessagesSinceRequest = require('../longdan/ldproto/LDGetMessagesSinceRequest');
+var LDGetMessagesBeforeRequest = require('../longdan/ldproto/LDGetMessagesBeforeRequest');
+var LDGetFeedStateRequest = require('../longdan/ldproto/LDGetFeedStateRequest');
+var LDGetMessageByIdRequest = require('../longdan/ldproto/LDGetMessageByIdRequest');
+var LDFeed = require('../longdan/ldproto/LDFeed');
 
 var CONCURRENT_FETCHES = 4;
 
@@ -53,7 +62,7 @@ class LongdanMessageConsumer {
 
 	_onSessionEstablished() {
 		this.caughtUp = false;
-		this._client.msgCall(new proto.LDSubscribeForAccountInboxRequest(), this._onSubscribe.bind(this));
+		this._client.msgCall(new LDSubscribeForAccountInboxRequest(), this._onSubscribe.bind(this));
 	}
 
 	_onPush(push) {
@@ -112,7 +121,7 @@ class LongdanMessageConsumer {
 		}
 
 		console.log("Requesting dirty feeds since " + lastSyncedTime + "...");
-		var feedsReq = new proto.LDGetDirtyFeedsRequest();
+		var feedsReq = new LDGetDirtyFeedsRequest();
 		feedsReq.Since = lastSyncedTime;
 		this._client.msgCall(feedsReq, this._onReceivedDirtyFeeds.bind(this));
 	}
@@ -212,13 +221,13 @@ class FeedFetchWorker {
 			tasks.push(this._fetchFeedState.bind(this, feed));
 		}
 		if ((feed._syncMask & OMFeed.MASK_DETAILS) != 0) {
-			var typedId = new proto.LDTypedId();
+			var typedId = new LDTypedId();
 			typedId.Type = ObjTypes.FEED_DETAILS;
 			typedId.Id = [];
 			tasks.push(this._syncMessages.bind(this, feed, typedId, OMFeed.MASK_DETAILS));
 		}
 		if ((feed._syncMask & OMFeed.MASK_LAST_READ) != 0) {
-			var typedId = new proto.LDTypedId();
+			var typedId = new LDTypedId();
 			typedId.Type = ObjTypes.LAST_READ;
 			typedId.Id = new Buffer(this._consumer._client.account);
 			tasks.push(this._syncMessages.bind(this, feed, typedId, OMFeed.MASK_LAST_READ));
@@ -243,7 +252,7 @@ class FeedFetchWorker {
 
 
 	_fetchFeedMembers(feed, last, cb) {
-		var req = new proto.LDGetMessagesByTypeRequest();
+		var req = new LDGetMessagesByTypeRequest();
 		req.Feed = new OMFeed(feed).getLdFeed();
 		req.Type = ObjTypes.FEED_MEMBERSHIP;
 		req.NextResult = (typeof(last) != 'undefined') ? last : null;
@@ -270,7 +279,7 @@ class FeedFetchWorker {
 	}
 
 	_fetchFeedMessages(feed, cb) {
-		var req = new proto.LDGetMessagesSinceRequest();
+		var req = new LDGetMessagesSinceRequest();
 		req.Timestamp = feed.newestFromService;
 		req.Feed = new OMFeed(feed).getLdFeed();
 		this._consumer._client.msgCall(req, this._fetchFeedMessagesCallback.bind(this, cb));
@@ -373,7 +382,7 @@ class FeedFetchWorker {
 	_fetchOlderFeedMessages(feed, concurrent, opt_fetchAll, opt_fromNow, cb) {
 		concurrent.fetching = true;
 
-		var req = new proto.LDGetMessagesBeforeRequest();
+		var req = new LDGetMessagesBeforeRequest();
 		if (opt_fromNow || !feed.oldestFromService) {
 			req.Timestamp = new Date().getTime() * 1000;
 		} else {
@@ -431,7 +440,7 @@ class FeedFetchWorker {
 	}
 
 	_fetchFeedState(feed, cb) {
-		var req = new proto.LDGetFeedStateRequest();
+		var req = new LDGetFeedStateRequest();
 		req.Feed = new OMFeed(feed).getLdFeed();
 		this._consumer._client.msgCall(req, this._fetchFeedStateCallback.bind(this, cb));
 	}
@@ -455,8 +464,8 @@ class FeedFetchWorker {
 	}
 
 	_syncMessages(feed, id, maskToRemove, cb) {
-		var req = new proto.LDGetMessageByIdRequest();
-		req.Feed = new proto.LDFeed(JSON.parse(feed.identifier));
+		var req = new LDGetMessageByIdRequest();
+		req.Feed = new LDFeed(JSON.parse(feed.identifier));
 		req.Id = id;
 		this._consumer._client.msgCall(req, (error, resp) => {
 			feed._syncMask &= ~maskToRemove;

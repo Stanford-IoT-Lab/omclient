@@ -1,8 +1,12 @@
-var proto = require("../../longdan/ldproto");
 var OMFeed = require("../model/OMFeed");
 var ObjTypes = require("../model/ObjTypes");
 var async = require('async');
 var crypto = require("../../util/crypto");
+
+var LDFeed = require('../../longdan/ldproto/LDFeed');
+var LDTypedId = require('../../longdan/ldproto/LDTypedId');
+var LDMessage = require('../../longdan/ldproto/LDMessage');
+var LDOverwriteMessageRequest = require('../../longdan/ldproto/LDOverwriteMessageRequest');
 
 class OverwriteMessageJob {
 
@@ -11,9 +15,9 @@ class OverwriteMessageJob {
 		this._callback = callback;
 
 		if (typeof feed == 'string') {
-			feed = new proto.LDFeed(JSON.parse(feed));
+			feed = new LDFeed(JSON.parse(feed));
 		} else if (typeof feed.identifier == 'string') {
-			feed = new proto.LDFeed(JSON.parse(feed.identifier));
+			feed = new LDFeed(JSON.parse(feed.identifier));
 		}
 
 		if (!feed)
@@ -46,7 +50,7 @@ class OverwriteMessageJob {
 		this.request = request;
 		this.slice = request.feed;
 
-		var ldId = new proto.LDTypedId();
+		var ldId = new LDTypedId();
 		ldId.Type = request.type;
 		ldId.Id = new Buffer(request._messageId, "base64");
 		this._messageRequest = this._makeRequest(ldId, request.body);
@@ -57,7 +61,7 @@ class OverwriteMessageJob {
 	}
 
 	requestCommitted(client) {
-		var message = new proto.LDMessage();
+		var message = new LDMessage();
 		message.Id = this._messageRequest.Id;
 		message.Body = this._messageRequest.Body;
 		message.Feed = this._messageRequest.Feed;
@@ -68,11 +72,11 @@ class OverwriteMessageJob {
 	}
 
 	_makeRequest(msgId, msgBody) {
-		var req = new proto.LDOverwriteMessageRequest();
+		var req = new LDOverwriteMessageRequest();
 		req.Owner = this.request.account;
 		req.Id = msgId;
 		req.Body = new Buffer(JSON.stringify(msgBody));
-		req.Feed = new proto.LDFeed(JSON.parse(this.request.feed));
+		req.Feed = new LDFeed(JSON.parse(this.request.feed));
 		req.AnyMemberWritable = false;
 		req.Version = 0;
 		req.Deleted = false;
@@ -99,7 +103,7 @@ class OverwriteMessageJob {
 			attachments = this.request._attachments;
 			this._sendObjAndAttachments(type, msgKey, body, attachments, jobCallback);
 		} else {
-			var msgId = new proto.LDTypedId();
+			var msgId = new LDTypedId();
 			msgId.Type = type;
 			msgId.Id = new Buffer(msgKey, "base64");
 			var req = this._makeRequest(msgId, body);

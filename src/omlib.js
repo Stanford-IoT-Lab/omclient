@@ -3,7 +3,6 @@ if (typeof window === 'undefined') {
 	var requirePeer = codependency.register(module);
 }
 
-var proto = require('./longdan/ldproto');
 var OMFeed = require('./client/model/OMFeed');
 var LongdanClient = require('./client/LongdanClient');
 var OmlibAuthApi = require('./api/auth');
@@ -16,7 +15,6 @@ function Omlib(config) {
 	init(this, config);
 }
 
-Omlib._proto = proto;
 Omlib.prototype._omInit = false;
 Omlib.prototype._ldClient = null;
 
@@ -45,7 +43,6 @@ function init(instance, config) {
 
 	var client = new LongdanClient(config);
 	instance._omInit = true;
-	instance._proto = proto;
 	instance._ldClient = client;
 	instance.auth = new OmlibAuthApi(client);
 	instance.messaging = new OmlibMessagingApi(client);

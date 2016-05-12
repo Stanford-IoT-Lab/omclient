@@ -1,0 +1,32 @@
+var LDGetJoinFeedLinkResponse = require('./LDGetJoinFeedLinkResponse');
+var LDJSONLoggable = require('./LDJSONLoggable');
+var LDFeed = require('./LDFeed');
+
+function LDGetJoinFeedLinkRequest(e){
+	LDJSONLoggable.call(this,e);
+	if(!e)return;
+	var $=this;
+	if(e['f']!=null)$.Feed=new LDFeed(e['f']);
+}
+LDGetJoinFeedLinkRequest.prototype=new LDJSONLoggable();
+LDGetJoinFeedLinkRequest.prototype.constructor = LDGetJoinFeedLinkRequest;
+var _=LDGetJoinFeedLinkRequest.prototype;
+_.__type="LDGetJoinFeedLinkRequest";
+_.__rt=LDGetJoinFeedLinkResponse;
+_.encode=function(o){
+	if(o===undefined)o={};
+	var $=this;
+	LDJSONLoggable.prototype.encode.call($,o);
+	if($.Feed!=null)o['f']=$.Feed.encode();
+	return o;
+}
+_.Feed=null;
+LDGetJoinFeedLinkRequest.prototype.makeClusterRpc=function(id){
+	var o=this.encode(),t=null;
+	t={"j":o};o=t;
+	t={"#":id,"m":o};o=t;
+	t={"q":o};o=t;
+	return o;
+}
+
+module.exports=LDGetJoinFeedLinkRequest;
