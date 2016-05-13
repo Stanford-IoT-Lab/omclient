@@ -36,4 +36,4 @@ function onregister(error, resp) {
 }
 console.log("enqueued confirm");
 client.idpCall(register, onregister);
-//client.enable();
+client.enable();

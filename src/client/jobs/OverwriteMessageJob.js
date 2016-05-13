@@ -2,7 +2,7 @@ var proto = require("../../longdan/ldproto");
 var OMFeed = require("../model/OMFeed");
 var ObjTypes = require("../model/ObjTypes");
 var async = require('async');
-var crypto = require("crypto");
+var crypto = require("../../util/crypto");
 
 class OverwriteMessageJob {
 

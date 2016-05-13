@@ -1,5 +1,5 @@
 var proto = require("../longdan/ldproto");
-var crypto = require('crypto');
+var crypto = require('../util/crypto');
 var http = require('http');
 var https = require('https');
 var Url = require('url');
@@ -61,7 +61,7 @@ class BlobUtils {
 		req.Metadata.MimeType = mime;
 		req.Metadata.Size = data.length;
 
-		var md5 = crypto.createHash('md5');
+		var md5 = crypto.createMD5();
 		md5.update(data);
 		req.Metadata.Hash = md5.digest("base64");
 

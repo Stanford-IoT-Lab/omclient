@@ -1,5 +1,5 @@
 var proto = require("../longdan/ldproto");
-var crypto = require("crypto");
+var crypto = require("../util/crypto");
 
 class FeedUtils {
 
