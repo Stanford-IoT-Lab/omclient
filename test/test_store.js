@@ -1,6 +1,11 @@
 var assert = require('assert')
 var omlib = (typeof window === 'undefined') ? require('../lib/omlib') : require('omlib');
 
+var LDCreateItemInfoRequest = require('../src/longdan/ldproto/LDCreateItemInfoRequest');
+var LDStoreItemType = require('../src/longdan/ldproto/LDStoreItemType');
+var LDListItemsForAccountRequest = require('../src/longdan/ldproto/LDListItemsForAccountRequest');
+var LDDeleteItemRequest = require('../src/longdan/ldproto/LDDeleteItemRequest');
+
 function abort(cause) {
     console.log("aborting because connection was severed");
     throw cause;
@@ -14,8 +19,8 @@ client.onInterrupted = abort;
 client.enable();
 
 function createiteminfo() {
-    var req = new omlib._proto.LDCreateItemInfoRequest();
-    req.ItemType = omlib._proto.LDStoreItemType.App;
+    var req = new LDCreateItemInfoRequest();
+    req.ItemType = LDStoreItemType.App;
     req.Account = client.account;
     req.ItemId = "appId1";
     client.msgCall(req, oncreateiteminfo);
@@ -28,7 +33,7 @@ function oncreateiteminfo(error, resp, req) {
 }
 
 function listiteminfo() {
-    var req = new omlib._proto.LDListItemsForAccountRequest();
+    var req = new LDListItemsForAccountRequest();
     req.ItemType = "App";
     req.Account = client.account;
     client.msgCall(req, onlistiteminfo);
@@ -45,8 +50,8 @@ function onlistiteminfo(error, resp, req) {
 }
 
 function deleteiteminfo(next, noassert) {
-    var req = new omlib._proto.LDDeleteItemRequest();
-    req.ItemType = omlib._proto.LDStoreItemType.App;
+    var req = new LDDeleteItemRequest();
+    req.ItemType = LDStoreItemType.App;
     req.Account = client.account;
     req.ItemId = "appId1";
     client.msgCall(req, ondeleteiteminfo.bind(undefined, next, noassert));

@@ -1,10 +1,10 @@
 var assert = require('assert')
-var omlib;
-if (typeof window === 'undefined') {
-    omlib = require('../lib/omlib');
-} else {
-    omlib = require('omlib');
-}
+var omlib = (typeof window === 'undefined') ? require('../lib/omlib') : require('omlib');
+
+var LDSubscribeForAccountInboxRequest = require('../src/longdan/ldproto/LDSubscribeForAccountInboxRequest');
+var LDOverwriteMessageRequest = require('../src/longdan/ldproto/LDOverwriteMessageRequest');
+var LDAddMessageRequest = require('../src/longdan/ldproto/LDAddMessageRequest');
+var LDTypedId = require('../src/longdan/ldproto/LDTypedId');
 
 var ourcrypto = require('../lib/util/crypto');
 
@@ -29,7 +29,7 @@ client._msg.onPush = onpush;
 client.enable();
 
 function subscribe() {
-    client.msgCall(new omlib._proto.LDSubscribeForAccountInboxRequest(), onsubscribe);
+    client.msgCall(new LDSubscribeForAccountInboxRequest(), onsubscribe);
 }
 function onsubscribe(error, resp, req) {
     assert.ifError(error);
@@ -49,11 +49,11 @@ function oncreatedfeed(error, resp, req) {
 }
 
 function sendmessage() {
-    var req = new omlib._proto.LDOverwriteMessageRequest();
+    var req = new LDOverwriteMessageRequest();
     req.Feed = test_feed;
     req.AnyMemberWritable = false;
     req.Body = ourcrypto.createNonce();
-    req.Id = new omlib._proto.LDTypedId();
+    req.Id = new LDTypedId();
     req.Id.Type = "test";
     req.Id.Id = new Buffer("123");
     req.Version = 0;
@@ -67,11 +67,11 @@ function onsentmessage(error, resp, req) {
 }
 
 function sendfailmessage() {
-    var req = new omlib._proto.LDAddMessageRequest();
+    var req = new LDAddMessageRequest();
     req.Feed = test_feed;
     req.AnyMemberWritable = false;
     req.Body = new Buffer("bar");
-    req.Id = new omlib._proto.LDTypedId();
+    req.Id = new LDTypedId();
     req.Id.Type = "test";
     req.Id.Id = new Buffer("123");
     req.Version = 0;

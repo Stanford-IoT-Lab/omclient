@@ -1,6 +1,9 @@
 var assert = require('assert')
 var omlib = (typeof window === 'undefined') ? require('../lib/omlib') : require('omlib');
 
+var LDSubscribeAccountRequest = require('../src/longdan/ldproto/LDSubscribeAccountRequest');
+var LDDeleteDeviceRequest = require('../src/longdan/ldproto/LDDeleteDeviceRequest');
+
 function abort(cause) {
     console.log("aborting because connection was severed");
     throw cause;
@@ -33,7 +36,7 @@ client.onPush = onpush;
 client.enable();
 
 function deleteDevice() {
-    var req = new omlib._proto.LDDeleteDeviceRequest();
+    var req = new LDDeleteDeviceRequest();
     req.PublicKey = client.publicKey;
     client.msgCall(req, onDeleteDevice)
 }
@@ -51,7 +54,7 @@ function subscribe() {
         assert.fail("should have been cancelled");
     }, 3000);
     client.enable();
-    client.msgCall(new omlib._proto.LDSubscribeAccountRequest(), onsubscribe);
+    client.msgCall(new LDSubscribeAccountRequest(), onsubscribe);
 }
 function onsubscribe(error, resp, req) {
     assert.ok(error);
