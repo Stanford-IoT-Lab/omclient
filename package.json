@@ -5,10 +5,7 @@
   "private": true,
   "main": "./lib/omlib.js",
   "files":[
-    "LICENSE.md",
-    "lib/",
-    "src/",
-    "utils/"
+    "lib/"
   ],
   "engines": {
     "node": "*"
