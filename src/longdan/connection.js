@@ -2,10 +2,6 @@ var async = require("async");
 var websocket = require('websocket');
 var ourcrypto = require('../util/crypto');
 
-//var LDDeviceToIdpRpcWrapper = require('./ldproto/LDDeviceToIdpRpcWrapper');
-//var LDDeviceToIdpResponseContainer = require('./ldproto/LDDeviceToIdpResponseContainer');
-//var LDDeviceToClusterRpcWrapper = require('./ldproto/LDDeviceToClusterRpcWrapper');
-//var LDDeviceToClusterResponseContainer = require('./ldproto/LDDeviceToClusterResponseContainer');
 var LDResponseContainerBase = require('./ldproto/LDResponseContainerBase');
 var LDHelloChallengeRequest = require('./ldproto/LDHelloChallengeRequest');
 var LDCompleteChallengeRequest = require('./ldproto/LDCompleteChallengeRequest');
@@ -109,14 +105,10 @@ function Connection(cluster, target, configuration, privateKey, apiKey) {
 		this._serverPublicKey = this._configuration.IdpKey;
 		this._endpoint = makeWsPath(this._configuration.IdpEndpoints[rand(this._configuration.IdpEndpoints.length)], target);
 		this._requestWrapper = 'makeIdpRpc';
-		//this._wrapperConstructor = LDDeviceToIdpRpcWrapper;
-		//this._responseConstructor = LDDeviceToIdpResponseContainer;
 	} else {
 		if (cluster)
 			this._setCluster(cluster, target);
 		this._requestWrapper = 'makeClusterRpc';
-		//this._wrapperConstructor = LDDeviceToClusterRpcWrapper;
-		//this._responseConstructor = LDDeviceToClusterResponseContainer;
 	}
 
 	if (apiKey) {
@@ -138,7 +130,7 @@ Connection.prototype.onInterrupted = null; //function(cause);
 Connection.prototype.onDeviceInvalid = null; //function();
 Connection.prototype.connected = false;
 Connection.prototype.connectionId = 0;
-Connection.prototype.debug = true;
+Connection.prototype.debug = false;
 Connection.prototype._sessionListenerId = 0;
 Connection.prototype._sessionListeners = {};
 
