@@ -1,6 +1,11 @@
 var assert = require('assert')
 var omlib = (typeof window === 'undefined') ? require('../lib/omlib') : require('omlib');
 
+var LDSubscribeForAccountInboxRequest = require('../src/longdan/ldproto/LDSubscribeForAccountInboxRequest');
+var LDRegisterWithTokenRequest = require('../src/longdan/ldproto/LDRegisterWithTokenRequest');
+var LDIdentity = require('../src/longdan/ldproto/LDIdentity');
+var LDIdentityType = require('../src/longdan/ldproto/LDIdentityType');
+
 function abort(cause) {
     console.log("aborting because connection was severed");
     throw cause;
@@ -12,7 +17,7 @@ var client = omlib._ldClient;
 client.onInterrupted = abort;
 
 function subscribe() {
-    client.msgCall(new omlib._proto.LDSubscribeForAccountInboxRequest(), onsubscribe);
+    client.msgCall(new LDSubscribeForAccountInboxRequest(), onsubscribe);
 }
 function onsubscribe(error, resp, req) {
     assert.ifError(error);
@@ -22,11 +27,11 @@ function onsubscribe(error, resp, req) {
 }
 client.onSignedUp = subscribe;
 
-var identity = new omlib._proto.LDIdentity();
+var identity = new LDIdentity();
 identity.Principal = "tj+ch@mobisocial.us";
-identity.Type = omlib._proto.LDIdentityType.Email;
+identity.Type = LDIdentityType.Email;
 
-var register = new omlib._proto.LDRegisterWithTokenRequest();
+var register = new LDRegisterWithTokenRequest();
 register.Identity = identity;
 register.Locale = "en_US";
 register.RequestedCluster = "TWO";
