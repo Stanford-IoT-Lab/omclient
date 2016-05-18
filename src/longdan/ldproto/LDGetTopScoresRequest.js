@@ -2,7 +2,7 @@ var LDScoresResponse = require('./LDScoresResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDItemId = require('./LDItemId');
 
-function LDGetTopScoresRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -13,9 +13,9 @@ function LDGetTopScoresRequest(e){
 	$.NumScores=e['n'];
 	$.LocationType=e['l'];
 }
-LDGetTopScoresRequest.prototype=new LDJSONLoggable();
-LDGetTopScoresRequest.prototype.constructor = LDGetTopScoresRequest;
-var _=LDGetTopScoresRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetTopScoresRequest";
 _.__rt=LDScoresResponse;
 _.encode=function(o){
@@ -36,7 +36,7 @@ _.Latitude=null;
 _.Longitude=null;
 _.NumScores=null;
 _.LocationType=null;
-LDGetTopScoresRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"ts":o};o=t;
 	t={"#":id,"h":o};o=t;
@@ -44,4 +44,4 @@ LDGetTopScoresRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetTopScoresRequest;
+module.exports=O;

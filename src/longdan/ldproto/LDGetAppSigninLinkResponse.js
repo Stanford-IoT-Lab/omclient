@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDAccountDetailsResponse = require('./LDAccountDetailsResponse');
 
-function LDGetAppSigninLinkResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDGetAppSigninLinkResponse(e){
 	$.RegisterAuthCode=e['r'];
 	if(e['a']!=null)$.AccountDetailsResponse=new LDAccountDetailsResponse(e['a']);
 }
-LDGetAppSigninLinkResponse.prototype=new LDJSONLoggable();
-LDGetAppSigninLinkResponse.prototype.constructor = LDGetAppSigninLinkResponse;
-var _=LDGetAppSigninLinkResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetAppSigninLinkResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -29,4 +29,4 @@ _.Status=null;
 _.RegisterAuthCode=null;
 _.AccountDetailsResponse=null;
 
-module.exports=LDGetAppSigninLinkResponse;
+module.exports=O;

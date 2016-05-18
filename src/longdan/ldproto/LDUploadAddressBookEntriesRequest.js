@@ -2,7 +2,7 @@ var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDIdentityHash = require('./LDIdentityHash');
 
-function LDUploadAddressBookEntriesRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDUploadAddressBookEntriesRequest(e){
 		for(var k=0; k<d.length;++k)$.IdentityHashes.push(new LDIdentityHash(d[k]));
 	}
 }
-LDUploadAddressBookEntriesRequest.prototype=new LDJSONLoggable();
-LDUploadAddressBookEntriesRequest.prototype.constructor = LDUploadAddressBookEntriesRequest;
-var _=LDUploadAddressBookEntriesRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDUploadAddressBookEntriesRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -29,7 +29,7 @@ _.encode=function(o){
 	return o;
 }
 _.IdentityHashes=null;
-LDUploadAddressBookEntriesRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"u":o};o=t;
 	t={"#":id,"a":o};o=t;
@@ -37,4 +37,4 @@ LDUploadAddressBookEntriesRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDUploadAddressBookEntriesRequest;
+module.exports=O;

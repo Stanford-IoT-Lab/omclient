@@ -2,7 +2,7 @@ var LDGetUploadTicketResponse = require('./LDGetUploadTicketResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDBlobMetadata = require('./LDBlobMetadata');
 
-function LDGetUploadTicketRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -14,9 +14,9 @@ function LDGetUploadTicketRequest(e){
 	$.PreferInsecure=e['e'];
 	$.AllowLarge=e['l'];
 }
-LDGetUploadTicketRequest.prototype=new LDJSONLoggable();
-LDGetUploadTicketRequest.prototype.constructor = LDGetUploadTicketRequest;
-var _=LDGetUploadTicketRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetUploadTicketRequest";
 _.__rt=LDGetUploadTicketResponse;
 _.encode=function(o){
@@ -39,7 +39,7 @@ _.IsPermanent=null;
 _.PermanenceRefTag=null;
 _.PreferInsecure=null;
 _.AllowLarge=null;
-LDGetUploadTicketRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"ut":o};o=t;
 	t={"#":id,"b":o};o=t;
@@ -47,4 +47,4 @@ LDGetUploadTicketRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetUploadTicketRequest;
+module.exports=O;

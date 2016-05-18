@@ -4,7 +4,7 @@ var LDGetRecentMessagesResponse = require('./LDGetRecentMessagesResponse');
 var LDGetPublicChatMembersResponse = require('./LDGetPublicChatMembersResponse');
 var LDGetPublicChatResponse = require('./LDGetPublicChatResponse');
 
-function LDDeviceToClusterPublicChatResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -13,9 +13,9 @@ function LDDeviceToClusterPublicChatResponseProtocol(e){
 	if(e['gr']!=null)$.GetRecentMessagesResponse=new LDGetRecentMessagesResponse(e['gr']);
 	if(e['lc']!=null)$.ListLiveChatsResponse=new LDListChatsResponse(e['lc']);
 }
-LDDeviceToClusterPublicChatResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterPublicChatResponseProtocol.prototype.constructor = LDDeviceToClusterPublicChatResponseProtocol;
-var _=LDDeviceToClusterPublicChatResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterPublicChatResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -32,4 +32,4 @@ _.GetPublicChatMembersResponse=null;
 _.GetRecentMessagesResponse=null;
 _.ListLiveChatsResponse=null;
 
-module.exports=LDDeviceToClusterPublicChatResponseProtocol;
+module.exports=O;

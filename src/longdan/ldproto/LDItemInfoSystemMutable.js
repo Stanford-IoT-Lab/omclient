@@ -1,6 +1,6 @@
 var LDPrice = require('./LDPrice');
 
-function LDItemInfoSystemMutable(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.PublishedState=e['p'];
@@ -9,7 +9,7 @@ function LDItemInfoSystemMutable(e){
 	$.CreationTimestamp=e['c'];
 	$.LastModifiedTimestamp=e['m'];
 }
-var _=LDItemInfoSystemMutable.prototype;
+var _=O.prototype;
 _.__type="LDItemInfoSystemMutable";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -27,4 +27,4 @@ _.Price=null;
 _.CreationTimestamp=null;
 _.LastModifiedTimestamp=null;
 
-module.exports=LDItemInfoSystemMutable;
+module.exports=O;

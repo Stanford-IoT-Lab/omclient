@@ -1,11 +1,11 @@
-function LDFlaggedRecord(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Flagger=e['w'];
 	$.Reason=e['r'];
 	$.Timestamp=e['t'];
 }
-var _=LDFlaggedRecord.prototype;
+var _=O.prototype;
 _.__type="LDFlaggedRecord";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -19,4 +19,4 @@ _.Flagger=null;
 _.Reason=null;
 _.Timestamp=null;
 
-module.exports=LDFlaggedRecord;
+module.exports=O;

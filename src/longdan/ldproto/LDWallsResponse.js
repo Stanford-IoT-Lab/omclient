@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDWall = require('./LDWall');
 
-function LDWallsResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDWallsResponse(e){
 	}
 	if(e['c']!=null)$.ContinuationKey=new Buffer(e['c'],'base64');
 }
-LDWallsResponse.prototype=new LDJSONLoggable();
-LDWallsResponse.prototype.constructor = LDWallsResponse;
-var _=LDWallsResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDWallsResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -31,4 +31,4 @@ _.encode=function(o){
 _.Walls=null;
 _.ContinuationKey=null;
 
-module.exports=LDWallsResponse;
+module.exports=O;

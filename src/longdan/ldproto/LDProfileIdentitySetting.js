@@ -1,11 +1,11 @@
 var LDIdentity = require('./LDIdentity');
 
-function LDProfileIdentitySetting(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['i']!=null)$.Identity=new LDIdentity(e['i']);
 }
-var _=LDProfileIdentitySetting.prototype;
+var _=O.prototype;
 _.__type="LDProfileIdentitySetting";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -15,4 +15,4 @@ _.encode=function(o){
 }
 _.Identity=null;
 
-module.exports=LDProfileIdentitySetting;
+module.exports=O;

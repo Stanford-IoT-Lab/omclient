@@ -1,7 +1,7 @@
 var LDItemInfoUserMutable = require('./LDItemInfoUserMutable');
 var LDSticker = require('./LDSticker');
 
-function LDStickerPackInfoUserMutable(e){
+function O(e){
 	LDItemInfoUserMutable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -34,9 +34,9 @@ function LDStickerPackInfoUserMutable(e){
 	}
 	$.OriginalPublisher=e['op'];
 }
-LDStickerPackInfoUserMutable.prototype=new LDItemInfoUserMutable();
-LDStickerPackInfoUserMutable.prototype.constructor = LDStickerPackInfoUserMutable;
-var _=LDStickerPackInfoUserMutable.prototype;
+O.prototype=new LDItemInfoUserMutable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDStickerPackInfoUserMutable";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -85,4 +85,4 @@ _.LandscapeEncryptedPreviewHash=null;
 _.Stickers=null;
 _.OriginalPublisher=null;
 
-module.exports=LDStickerPackInfoUserMutable;
+module.exports=O;

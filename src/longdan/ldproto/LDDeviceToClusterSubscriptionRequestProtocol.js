@@ -1,15 +1,15 @@
 var LDRequestProtocolBase = require('./LDRequestProtocolBase');
 var LDCreateSubscriptionRequest = require('./LDCreateSubscriptionRequest');
 
-function LDDeviceToClusterSubscriptionRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['u']!=null)$.GetSubscriptionUrl=new LDCreateSubscriptionRequest(e['u']);
 }
-LDDeviceToClusterSubscriptionRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterSubscriptionRequestProtocol.prototype.constructor = LDDeviceToClusterSubscriptionRequestProtocol;
-var _=LDDeviceToClusterSubscriptionRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterSubscriptionRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.GetSubscriptionUrl=null;
 
-module.exports=LDDeviceToClusterSubscriptionRequestProtocol;
+module.exports=O;

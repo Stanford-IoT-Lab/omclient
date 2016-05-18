@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGameChallengeId(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Account=e['a'];
 	if(e['i']!=null)$.Id=new Buffer(e['i'],'base64');
 }
-LDGameChallengeId.prototype=new LDJSONLoggable();
-LDGameChallengeId.prototype.constructor = LDGameChallengeId;
-var _=LDGameChallengeId.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGameChallengeId";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -22,4 +22,4 @@ _.encode=function(o){
 _.Account=null;
 _.Id=null;
 
-module.exports=LDGameChallengeId;
+module.exports=O;

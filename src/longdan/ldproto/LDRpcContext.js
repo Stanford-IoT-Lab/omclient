@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDRpcContext(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -20,9 +20,9 @@ function LDRpcContext(e){
 	}
 	$.PackageId=e['P'];
 }
-LDRpcContext.prototype=new LDJSONLoggable();
-LDRpcContext.prototype.constructor = LDRpcContext;
-var _=LDRpcContext.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDRpcContext";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -57,4 +57,4 @@ _.AppId=null;
 _.Scopes=null;
 _.PackageId=null;
 
-module.exports=LDRpcContext;
+module.exports=O;

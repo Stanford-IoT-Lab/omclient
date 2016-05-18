@@ -1,4 +1,4 @@
-function LDAppRestletDetails(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Name=e['n'];
@@ -15,7 +15,7 @@ function LDAppRestletDetails(e){
 		for(var k=0;k<d.length;++k)$.ScreenShotLinks.push(d[k]);
 	}
 }
-var _=LDAppRestletDetails.prototype;
+var _=O.prototype;
 _.__type="LDAppRestletDetails";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -45,4 +45,4 @@ _.AndroidPackageName=null;
 _.IconBlobLinkString=null;
 _.ScreenShotLinks=null;
 
-module.exports=LDAppRestletDetails;
+module.exports=O;

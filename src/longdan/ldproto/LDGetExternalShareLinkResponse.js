@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetExternalShareLinkResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDGetExternalShareLinkResponse(e){
 	}
 	if(e['c']!=null)$.ContinuationKey=new Buffer(e['c'],'base64');
 }
-LDGetExternalShareLinkResponse.prototype=new LDJSONLoggable();
-LDGetExternalShareLinkResponse.prototype.constructor = LDGetExternalShareLinkResponse;
-var _=LDGetExternalShareLinkResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetExternalShareLinkResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -30,4 +30,4 @@ _.encode=function(o){
 _.Links=null;
 _.ContinuationKey=null;
 
-module.exports=LDGetExternalShareLinkResponse;
+module.exports=O;

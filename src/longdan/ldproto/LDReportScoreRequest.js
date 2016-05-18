@@ -2,7 +2,7 @@ var LDScoreResponse = require('./LDScoreResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDItemId = require('./LDItemId');
 
-function LDReportScoreRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -18,9 +18,9 @@ function LDReportScoreRequest(e){
 	$.SimilarScoresLocal=e['sl'];
 	$.Account=e['a'];
 }
-LDReportScoreRequest.prototype=new LDJSONLoggable();
-LDReportScoreRequest.prototype.constructor = LDReportScoreRequest;
-var _=LDReportScoreRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDReportScoreRequest";
 _.__rt=LDScoreResponse;
 _.encode=function(o){
@@ -51,7 +51,7 @@ _.SimilarScoresInContinent=null;
 _.SimilarScoresGlobal=null;
 _.SimilarScoresLocal=null;
 _.Account=null;
-LDReportScoreRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"rs":o};o=t;
 	t={"#":id,"h":o};o=t;
@@ -59,4 +59,4 @@ LDReportScoreRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDReportScoreRequest;
+module.exports=O;

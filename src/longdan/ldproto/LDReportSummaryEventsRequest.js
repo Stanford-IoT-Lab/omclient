@@ -2,7 +2,7 @@ var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDClientEvent = require('./LDClientEvent');
 
-function LDReportSummaryEventsRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDReportSummaryEventsRequest(e){
 		for(var k=0; k<d.length;++k)$.Events.push(new LDClientEvent(d[k]));
 	}
 }
-LDReportSummaryEventsRequest.prototype=new LDJSONLoggable();
-LDReportSummaryEventsRequest.prototype.constructor = LDReportSummaryEventsRequest;
-var _=LDReportSummaryEventsRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDReportSummaryEventsRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -29,7 +29,7 @@ _.encode=function(o){
 	return o;
 }
 _.Events=null;
-LDReportSummaryEventsRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"r":o};o=t;
 	t={"#":id,"es":o};o=t;
@@ -37,4 +37,4 @@ LDReportSummaryEventsRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDReportSummaryEventsRequest;
+module.exports=O;

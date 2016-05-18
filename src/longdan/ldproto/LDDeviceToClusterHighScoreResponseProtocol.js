@@ -2,16 +2,16 @@ var LDResponseProtocolBase = require('./LDResponseProtocolBase');
 var LDScoresResponse = require('./LDScoresResponse');
 var LDScoreResponse = require('./LDScoreResponse');
 
-function LDDeviceToClusterHighScoreResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['s']!=null)$.ScoreResponse=new LDScoreResponse(e['s']);
 	if(e['ss']!=null)$.ScoresResponse=new LDScoresResponse(e['ss']);
 }
-LDDeviceToClusterHighScoreResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterHighScoreResponseProtocol.prototype.constructor = LDDeviceToClusterHighScoreResponseProtocol;
-var _=LDDeviceToClusterHighScoreResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterHighScoreResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -24,4 +24,4 @@ _.encode=function(o){
 _.ScoreResponse=null;
 _.ScoresResponse=null;
 
-module.exports=LDDeviceToClusterHighScoreResponseProtocol;
+module.exports=O;

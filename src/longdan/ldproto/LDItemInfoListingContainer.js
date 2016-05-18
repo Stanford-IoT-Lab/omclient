@@ -1,13 +1,13 @@
 var LDStickerPackInfoListingWrapper = require('./LDStickerPackInfoListingWrapper');
 var LDAppInfoListingWrapper = require('./LDAppInfoListingWrapper');
 
-function LDItemInfoListingContainer(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['ai']!=null)$.AppInfoList=new LDAppInfoListingWrapper(e['ai']);
 	if(e['si']!=null)$.StickerPackInfoList=new LDStickerPackInfoListingWrapper(e['si']);
 }
-var _=LDItemInfoListingContainer.prototype;
+var _=O.prototype;
 _.__type="LDItemInfoListingContainer";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -19,4 +19,4 @@ _.encode=function(o){
 _.AppInfoList=null;
 _.StickerPackInfoList=null;
 
-module.exports=LDItemInfoListingContainer;
+module.exports=O;

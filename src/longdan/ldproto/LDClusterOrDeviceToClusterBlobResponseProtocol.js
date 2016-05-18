@@ -3,7 +3,7 @@ var LDGetDownloadTicketResponse = require('./LDGetDownloadTicketResponse');
 var LDGetMultipartUploadTicketResponse = require('./LDGetMultipartUploadTicketResponse');
 var LDGetUploadTicketResponse = require('./LDGetUploadTicketResponse');
 
-function LDClusterOrDeviceToClusterBlobResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDClusterOrDeviceToClusterBlobResponseProtocol(e){
 	if(e['mut']!=null)$.GetMultipartUploadTicketResponse=new LDGetMultipartUploadTicketResponse(e['mut']);
 	if(e['dt']!=null)$.GetDownloadTicketResponse=new LDGetDownloadTicketResponse(e['dt']);
 }
-LDClusterOrDeviceToClusterBlobResponseProtocol.prototype=new LDResponseProtocolBase();
-LDClusterOrDeviceToClusterBlobResponseProtocol.prototype.constructor = LDClusterOrDeviceToClusterBlobResponseProtocol;
-var _=LDClusterOrDeviceToClusterBlobResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDClusterOrDeviceToClusterBlobResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -28,4 +28,4 @@ _.GetUploadTicketResponse=null;
 _.GetMultipartUploadTicketResponse=null;
 _.GetDownloadTicketResponse=null;
 
-module.exports=LDClusterOrDeviceToClusterBlobResponseProtocol;
+module.exports=O;

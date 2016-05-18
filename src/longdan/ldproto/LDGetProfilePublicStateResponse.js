@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDProfilePublicState = require('./LDProfilePublicState');
 
-function LDGetProfilePublicStateResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['p']!=null)$.ProfilePublicState=new LDProfilePublicState(e['p']);
 }
-LDGetProfilePublicStateResponse.prototype=new LDJSONLoggable();
-LDGetProfilePublicStateResponse.prototype.constructor = LDGetProfilePublicStateResponse;
-var _=LDGetProfilePublicStateResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetProfilePublicStateResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.ProfilePublicState=null;
 
-module.exports=LDGetProfilePublicStateResponse;
+module.exports=O;

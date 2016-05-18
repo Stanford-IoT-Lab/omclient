@@ -5,7 +5,7 @@ var LDGenerateGrantForItemResponse = require('./LDGenerateGrantForItemResponse')
 var LDListItemsResponse = require('./LDListItemsResponse');
 var LDGetItemInfoResponse = require('./LDGetItemInfoResponse');
 
-function LDDeviceToClusterOmletItemStoreResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -15,9 +15,9 @@ function LDDeviceToClusterOmletItemStoreResponseProtocol(e){
 	if(e['gk']!=null)$.GenerateApiKeyResponse=new LDGenerateApiKeyResponse(e['gk']);
 	if(e['lk']!=null)$.ListApiKeysResponse=new LDListApiKeysResponse(e['lk']);
 }
-LDDeviceToClusterOmletItemStoreResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterOmletItemStoreResponseProtocol.prototype.constructor = LDDeviceToClusterOmletItemStoreResponseProtocol;
-var _=LDDeviceToClusterOmletItemStoreResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterOmletItemStoreResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -36,4 +36,4 @@ _.GenerateGrantForItemResponse=null;
 _.GenerateApiKeyResponse=null;
 _.ListApiKeysResponse=null;
 
-module.exports=LDDeviceToClusterOmletItemStoreResponseProtocol;
+module.exports=O;

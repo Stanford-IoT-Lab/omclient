@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDApiKey(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDApiKey(e){
 	$.CreationTime=e['t'];
 	$.Deactivated=e['d'];
 }
-LDApiKey.prototype=new LDJSONLoggable();
-LDApiKey.prototype.constructor = LDApiKey;
-var _=LDApiKey.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDApiKey";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -31,4 +31,4 @@ _.ServerApiKeySecret=null;
 _.CreationTime=null;
 _.Deactivated=null;
 
-module.exports=LDApiKey;
+module.exports=O;

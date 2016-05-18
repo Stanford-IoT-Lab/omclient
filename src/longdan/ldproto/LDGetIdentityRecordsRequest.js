@@ -2,16 +2,16 @@ var LDGetIdentityRecordsResponse = require('./LDGetIdentityRecordsResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDIdentity = require('./LDIdentity');
 
-function LDGetIdentityRecordsRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['i']!=null)$.Identity=new LDIdentity(e['i']);
 	$.AdminAccount=e['a'];
 }
-LDGetIdentityRecordsRequest.prototype=new LDJSONLoggable();
-LDGetIdentityRecordsRequest.prototype.constructor = LDGetIdentityRecordsRequest;
-var _=LDGetIdentityRecordsRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetIdentityRecordsRequest";
 _.__rt=LDGetIdentityRecordsResponse;
 _.encode=function(o){
@@ -24,7 +24,7 @@ _.encode=function(o){
 }
 _.Identity=null;
 _.AdminAccount=null;
-LDGetIdentityRecordsRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"I":o};o=t;
 	t={"#":id,"A":o};o=t;
@@ -32,4 +32,4 @@ LDGetIdentityRecordsRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetIdentityRecordsRequest;
+module.exports=O;

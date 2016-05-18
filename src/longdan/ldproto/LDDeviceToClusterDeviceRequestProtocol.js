@@ -3,7 +3,7 @@ var LDSetDingTimeoutRequest = require('./LDSetDingTimeoutRequest');
 var LDAddDeviceRequest = require('./LDAddDeviceRequest');
 var LDDeleteDeviceRequest = require('./LDDeleteDeviceRequest');
 
-function LDDeviceToClusterDeviceRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDDeviceToClusterDeviceRequestProtocol(e){
 	if(e['c']!=null)$.AddDeviceRequest=new LDAddDeviceRequest(e['c']);
 	if(e['t']!=null)$.SetDingTimeoutRequest=new LDSetDingTimeoutRequest(e['t']);
 }
-LDDeviceToClusterDeviceRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterDeviceRequestProtocol.prototype.constructor = LDDeviceToClusterDeviceRequestProtocol;
-var _=LDDeviceToClusterDeviceRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterDeviceRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -28,4 +28,4 @@ _.DeleteDeviceRequest=null;
 _.AddDeviceRequest=null;
 _.SetDingTimeoutRequest=null;
 
-module.exports=LDDeviceToClusterDeviceRequestProtocol;
+module.exports=O;

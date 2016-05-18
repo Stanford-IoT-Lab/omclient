@@ -3,7 +3,7 @@ var LDGetStreamingLinkRequest = require('./LDGetStreamingLinkRequest');
 var LDSetOnlineStatusRequest = require('./LDSetOnlineStatusRequest');
 var LDGetPresencesRequest = require('./LDGetPresencesRequest');
 
-function LDDeviceToClusterPresenceRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDDeviceToClusterPresenceRequestProtocol(e){
 	if(e['o']!=null)$.SetOnlineStatusRequest=new LDSetOnlineStatusRequest(e['o']);
 	if(e['s']!=null)$.GetStreamingLinkRequest=new LDGetStreamingLinkRequest(e['s']);
 }
-LDDeviceToClusterPresenceRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterPresenceRequestProtocol.prototype.constructor = LDDeviceToClusterPresenceRequestProtocol;
-var _=LDDeviceToClusterPresenceRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterPresenceRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -28,4 +28,4 @@ _.GetPresencesRequest=null;
 _.SetOnlineStatusRequest=null;
 _.GetStreamingLinkRequest=null;
 
-module.exports=LDDeviceToClusterPresenceRequestProtocol;
+module.exports=O;

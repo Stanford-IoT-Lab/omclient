@@ -1,13 +1,13 @@
 var LDRequestProtocolBase = require('./LDRequestProtocolBase');
 
-function LDDeviceToClusterProfileCardRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDDeviceToClusterProfileCardRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterProfileCardRequestProtocol.prototype.constructor = LDDeviceToClusterProfileCardRequestProtocol;
-var _=LDDeviceToClusterProfileCardRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterProfileCardRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDDeviceToClusterProfileCardRequestProtocol;
+module.exports=O;

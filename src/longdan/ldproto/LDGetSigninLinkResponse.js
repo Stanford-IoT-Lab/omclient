@@ -1,14 +1,14 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetSigninLinkResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Link=e['l'];
 }
-LDGetSigninLinkResponse.prototype=new LDJSONLoggable();
-LDGetSigninLinkResponse.prototype.constructor = LDGetSigninLinkResponse;
-var _=LDGetSigninLinkResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetSigninLinkResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -19,4 +19,4 @@ _.encode=function(o){
 }
 _.Link=null;
 
-module.exports=LDGetSigninLinkResponse;
+module.exports=O;

@@ -8,7 +8,7 @@ var LDFailureReportRequest = require('./LDFailureReportRequest');
 var LDImageSearchRequest = require('./LDImageSearchRequest');
 var LDUrlToStoryRequest = require('./LDUrlToStoryRequest');
 
-function LDDeviceToClusterMiscellaneousRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -21,9 +21,9 @@ function LDDeviceToClusterMiscellaneousRequestProtocol(e){
 	if(e['gf']!=null)$.GetFeedbackAccount=new LDGetFeedbackAccountRequest(e['gf']);
 	if(e['e']!=null)$.GetExtraVersions=new LDGetExtraVersionsRequest(e['e']);
 }
-LDDeviceToClusterMiscellaneousRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterMiscellaneousRequestProtocol.prototype.constructor = LDDeviceToClusterMiscellaneousRequestProtocol;
-var _=LDDeviceToClusterMiscellaneousRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterMiscellaneousRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -48,4 +48,4 @@ _.CreatePlaygroundRequest=null;
 _.GetFeedbackAccount=null;
 _.GetExtraVersions=null;
 
-module.exports=LDDeviceToClusterMiscellaneousRequestProtocol;
+module.exports=O;

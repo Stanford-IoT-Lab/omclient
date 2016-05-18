@@ -2,7 +2,7 @@ var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDFeed = require('./LDFeed');
 
-function LDSendRealtimeRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDSendRealtimeRequest(e){
 	$.Type=e['t'];
 	if(e['b']!=null)$.Body=new Buffer(e['b'],'base64');
 }
-LDSendRealtimeRequest.prototype=new LDJSONLoggable();
-LDSendRealtimeRequest.prototype.constructor = LDSendRealtimeRequest;
-var _=LDSendRealtimeRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDSendRealtimeRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -27,7 +27,7 @@ _.encode=function(o){
 _.Feed=null;
 _.Type=null;
 _.Body=null;
-LDSendRealtimeRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"L":o};o=t;
 	t={"#":id,"m":o};o=t;
@@ -35,4 +35,4 @@ LDSendRealtimeRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDSendRealtimeRequest;
+module.exports=O;

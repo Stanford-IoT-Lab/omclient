@@ -9,7 +9,7 @@ var LDGetPostResponse = require('./LDGetPostResponse');
 var LDWallsResponse = require('./LDWallsResponse');
 var LDWallResponse = require('./LDWallResponse');
 
-function LDDeviceToClusterWallPostResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -23,9 +23,9 @@ function LDDeviceToClusterWallPostResponseProtocol(e){
 	if(e['ges']!=null)$.GetExternalShareLink=new LDGetExternalShareLinkResponse(e['ges']);
 	if(e['gppi']!=null)$.GetPackagesResponse=new LDGetPackagesResponse(e['gppi']);
 }
-LDDeviceToClusterWallPostResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterWallPostResponseProtocol.prototype.constructor = LDDeviceToClusterWallPostResponseProtocol;
-var _=LDDeviceToClusterWallPostResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterWallPostResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -52,4 +52,4 @@ _.GetFollowersResponse=null;
 _.GetExternalShareLink=null;
 _.GetPackagesResponse=null;
 
-module.exports=LDDeviceToClusterWallPostResponseProtocol;
+module.exports=O;

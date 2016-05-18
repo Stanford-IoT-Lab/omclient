@@ -1,13 +1,13 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDUnsubscribeForAccountInboxRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDUnsubscribeForAccountInboxRequest.prototype=new LDJSONLoggable();
-LDUnsubscribeForAccountInboxRequest.prototype.constructor = LDUnsubscribeForAccountInboxRequest;
-var _=LDUnsubscribeForAccountInboxRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDUnsubscribeForAccountInboxRequest";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -15,7 +15,7 @@ _.encode=function(o){
 	LDJSONLoggable.prototype.encode.call($,o);
 	return o;
 }
-LDUnsubscribeForAccountInboxRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"U":o};o=t;
 	t={"#":id,"i":o};o=t;
@@ -23,4 +23,4 @@ LDUnsubscribeForAccountInboxRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDUnsubscribeForAccountInboxRequest;
+module.exports=O;

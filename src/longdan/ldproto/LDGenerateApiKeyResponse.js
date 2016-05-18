@@ -1,11 +1,11 @@
 var LDApiKey = require('./LDApiKey');
 
-function LDGenerateApiKeyResponse(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['ak']!=null)$.ApiKey=new LDApiKey(e['ak']);
 }
-var _=LDGenerateApiKeyResponse.prototype;
+var _=O.prototype;
 _.__type="LDGenerateApiKeyResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -15,4 +15,4 @@ _.encode=function(o){
 }
 _.ApiKey=null;
 
-module.exports=LDGenerateApiKeyResponse;
+module.exports=O;

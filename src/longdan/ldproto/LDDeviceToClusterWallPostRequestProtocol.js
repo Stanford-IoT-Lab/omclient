@@ -24,7 +24,7 @@ var LDPostScreenShotRequest = require('./LDPostScreenShotRequest');
 var LDPostMessageRequest = require('./LDPostMessageRequest');
 var LDPostVideoRequest = require('./LDPostVideoRequest');
 
-function LDDeviceToClusterWallPostRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -53,9 +53,9 @@ function LDDeviceToClusterWallPostRequestProtocol(e){
 	if(e['grw']!=null)$.GetRecommendedWallRequest=new LDGetRecommendedWallRequest(e['grw']);
 	if(e['sr']!=null)$.SendRealtimeMessageToAllFollowersRequest=new LDSendRealtimeMessageToAllFollowersRequest(e['sr']);
 }
-LDDeviceToClusterWallPostRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterWallPostRequestProtocol.prototype.constructor = LDDeviceToClusterWallPostRequestProtocol;
-var _=LDDeviceToClusterWallPostRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterWallPostRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -112,4 +112,4 @@ _.GetPackagesRequest=null;
 _.GetRecommendedWallRequest=null;
 _.SendRealtimeMessageToAllFollowersRequest=null;
 
-module.exports=LDDeviceToClusterWallPostRequestProtocol;
+module.exports=O;

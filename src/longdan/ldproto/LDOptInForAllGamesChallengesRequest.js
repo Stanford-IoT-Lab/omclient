@@ -1,7 +1,7 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDOptInForAllGamesChallengesRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -9,9 +9,9 @@ function LDOptInForAllGamesChallengesRequest(e){
 	$.ServerKicked=e['k'];
 	$.Account=e['a'];
 }
-LDOptInForAllGamesChallengesRequest.prototype=new LDJSONLoggable();
-LDOptInForAllGamesChallengesRequest.prototype.constructor = LDOptInForAllGamesChallengesRequest;
-var _=LDOptInForAllGamesChallengesRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDOptInForAllGamesChallengesRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -26,7 +26,7 @@ _.encode=function(o){
 _.OptIn=null;
 _.ServerKicked=null;
 _.Account=null;
-LDOptInForAllGamesChallengesRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"o":o};o=t;
 	t={"#":id,"g":o};o=t;
@@ -34,4 +34,4 @@ LDOptInForAllGamesChallengesRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDOptInForAllGamesChallengesRequest;
+module.exports=O;

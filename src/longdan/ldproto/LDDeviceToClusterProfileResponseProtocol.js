@@ -4,7 +4,7 @@ var LDGetProfilePublicStateResponse = require('./LDGetProfilePublicStateResponse
 var LDGetOmletContactProfileResponse = require('./LDGetOmletContactProfileResponse');
 var LDGetProfileDetailsResponse = require('./LDGetProfileDetailsResponse');
 
-function LDDeviceToClusterProfileResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -13,9 +13,9 @@ function LDDeviceToClusterProfileResponseProtocol(e){
 	if(e['pps']!=null)$.GetProfilePublicStateResponse=new LDGetProfilePublicStateResponse(e['pps']);
 	if(e['ppp']!=null)$.GetProfileDetailsAndPublicStateResponse=new LDGetContactProfileAndPublicStateResponse(e['ppp']);
 }
-LDDeviceToClusterProfileResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterProfileResponseProtocol.prototype.constructor = LDDeviceToClusterProfileResponseProtocol;
-var _=LDDeviceToClusterProfileResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterProfileResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -32,4 +32,4 @@ _.ContactProfileResponse=null;
 _.GetProfilePublicStateResponse=null;
 _.GetProfileDetailsAndPublicStateResponse=null;
 
-module.exports=LDDeviceToClusterProfileResponseProtocol;
+module.exports=O;

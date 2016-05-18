@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDScoreBoardEntry = require('./LDScoreBoardEntry');
 
-function LDScoreResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -52,9 +52,9 @@ function LDScoreResponse(e){
 	}
 	$.DistanceBestFor=e['dbf'];
 }
-LDScoreResponse.prototype=new LDJSONLoggable();
-LDScoreResponse.prototype.constructor = LDScoreResponse;
-var _=LDScoreResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDScoreResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -135,4 +135,4 @@ _.LocalPercentile=null;
 _.LocalSimilarScores=null;
 _.DistanceBestFor=null;
 
-module.exports=LDScoreResponse;
+module.exports=O;

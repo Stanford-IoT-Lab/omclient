@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDImageSearchResult = require('./LDImageSearchResult');
 
-function LDImageSearchResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDImageSearchResponse(e){
 	}
 	$.ClientSearchVersion=e['v'];
 }
-LDImageSearchResponse.prototype=new LDJSONLoggable();
-LDImageSearchResponse.prototype.constructor = LDImageSearchResponse;
-var _=LDImageSearchResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDImageSearchResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -31,4 +31,4 @@ _.encode=function(o){
 _.Hits=null;
 _.ClientSearchVersion=null;
 
-module.exports=LDImageSearchResponse;
+module.exports=O;

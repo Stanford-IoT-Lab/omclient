@@ -1,10 +1,10 @@
-function LDAppStore(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.PackageName=e['e'];
 	$.Url=e['d'];
 }
-var _=LDAppStore.prototype;
+var _=O.prototype;
 _.__type="LDAppStore";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 _.PackageName=null;
 _.Url=null;
 
-module.exports=LDAppStore;
+module.exports=O;

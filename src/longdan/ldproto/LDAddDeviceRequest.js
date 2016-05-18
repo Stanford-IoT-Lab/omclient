@@ -1,7 +1,7 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDAddDeviceRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -9,9 +9,9 @@ function LDAddDeviceRequest(e){
 	$.Version=e['v'];
 	$.Description=e['d'];
 }
-LDAddDeviceRequest.prototype=new LDJSONLoggable();
-LDAddDeviceRequest.prototype.constructor = LDAddDeviceRequest;
-var _=LDAddDeviceRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDAddDeviceRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -26,7 +26,7 @@ _.encode=function(o){
 _.PublicKey=null;
 _.Version=null;
 _.Description=null;
-LDAddDeviceRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"c":o};o=t;
 	t={"#":id,"d":o};o=t;
@@ -34,4 +34,4 @@ LDAddDeviceRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDAddDeviceRequest;
+module.exports=O;

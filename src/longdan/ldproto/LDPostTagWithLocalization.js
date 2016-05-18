@@ -1,12 +1,12 @@
 var LDPostTag = require('./LDPostTag');
 
-function LDPostTagWithLocalization(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['pt']!=null)$.PostTag=new LDPostTag(e['pt']);
 	$.Localization=e['l'];
 }
-var _=LDPostTagWithLocalization.prototype;
+var _=O.prototype;
 _.__type="LDPostTagWithLocalization";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -18,4 +18,4 @@ _.encode=function(o){
 _.PostTag=null;
 _.Localization=null;
 
-module.exports=LDPostTagWithLocalization;
+module.exports=O;

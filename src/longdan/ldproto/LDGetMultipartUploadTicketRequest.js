@@ -2,7 +2,7 @@ var LDGetMultipartUploadTicketResponse = require('./LDGetMultipartUploadTicketRe
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDBlobMetadata = require('./LDBlobMetadata');
 
-function LDGetMultipartUploadTicketRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -18,9 +18,9 @@ function LDGetMultipartUploadTicketRequest(e){
 	if(e['prt']!=null)$.PermanenceRefTag=new Buffer(e['prt'],'base64');
 	$.PreferInsecure=e['e'];
 }
-LDGetMultipartUploadTicketRequest.prototype=new LDJSONLoggable();
-LDGetMultipartUploadTicketRequest.prototype.constructor = LDGetMultipartUploadTicketRequest;
-var _=LDGetMultipartUploadTicketRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetMultipartUploadTicketRequest";
 _.__rt=LDGetMultipartUploadTicketResponse;
 _.encode=function(o){
@@ -47,7 +47,7 @@ _.PartMetadataList=null;
 _.IsPermanent=null;
 _.PermanenceRefTag=null;
 _.PreferInsecure=null;
-LDGetMultipartUploadTicketRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"mut":o};o=t;
 	t={"#":id,"b":o};o=t;
@@ -55,4 +55,4 @@ LDGetMultipartUploadTicketRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetMultipartUploadTicketRequest;
+module.exports=O;

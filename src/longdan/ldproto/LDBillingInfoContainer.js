@@ -1,11 +1,11 @@
 var LDMockBillingInfo = require('./LDMockBillingInfo');
 
-function LDBillingInfoContainer(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['m']!=null)$.MockBillingInfo=new LDMockBillingInfo(e['m']);
 }
-var _=LDBillingInfoContainer.prototype;
+var _=O.prototype;
 _.__type="LDBillingInfoContainer";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -15,4 +15,4 @@ _.encode=function(o){
 }
 _.MockBillingInfo=null;
 
-module.exports=LDBillingInfoContainer;
+module.exports=O;

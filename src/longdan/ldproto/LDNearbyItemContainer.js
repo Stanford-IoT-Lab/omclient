@@ -2,7 +2,7 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDNearbyItemFeedMetadata = require('./LDNearbyItemFeedMetadata');
 var LDFeed = require('./LDFeed');
 
-function LDNearbyItemContainer(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDNearbyItemContainer(e){
 	if(e['f']!=null)$.Feed=new LDFeed(e['f']);
 	if(e['fm']!=null)$.FeedMetadata=new LDNearbyItemFeedMetadata(e['fm']);
 }
-LDNearbyItemContainer.prototype=new LDJSONLoggable();
-LDNearbyItemContainer.prototype.constructor = LDNearbyItemContainer;
-var _=LDNearbyItemContainer.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDNearbyItemContainer";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -33,4 +33,4 @@ _.ItemType=null;
 _.Feed=null;
 _.FeedMetadata=null;
 
-module.exports=LDNearbyItemContainer;
+module.exports=O;

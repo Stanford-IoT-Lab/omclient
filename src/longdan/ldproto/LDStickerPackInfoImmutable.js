@@ -1,13 +1,13 @@
 var LDItemInfoImmutable = require('./LDItemInfoImmutable');
 
-function LDStickerPackInfoImmutable(e){
+function O(e){
 	LDItemInfoImmutable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDStickerPackInfoImmutable.prototype=new LDItemInfoImmutable();
-LDStickerPackInfoImmutable.prototype.constructor = LDStickerPackInfoImmutable;
-var _=LDStickerPackInfoImmutable.prototype;
+O.prototype=new LDItemInfoImmutable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDStickerPackInfoImmutable";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDStickerPackInfoImmutable;
+module.exports=O;

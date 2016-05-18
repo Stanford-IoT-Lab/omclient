@@ -1,4 +1,4 @@
-function LDCloudConfig(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Provider=e['p'];
@@ -11,7 +11,7 @@ function LDCloudConfig(e){
 	$.Expiration=e['e'];
 	$.BlobsFolder=e['f'];
 }
-var _=LDCloudConfig.prototype;
+var _=O.prototype;
 _.__type="LDCloudConfig";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -37,4 +37,4 @@ _.RefreshToken=null;
 _.Expiration=null;
 _.BlobsFolder=null;
 
-module.exports=LDCloudConfig;
+module.exports=O;

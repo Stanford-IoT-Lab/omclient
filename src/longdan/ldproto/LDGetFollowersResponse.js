@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDUser = require('./LDUser');
 
-function LDGetFollowersResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDGetFollowersResponse(e){
 	}
 	if(e['c']!=null)$.ContinuationKey=new Buffer(e['c'],'base64');
 }
-LDGetFollowersResponse.prototype=new LDJSONLoggable();
-LDGetFollowersResponse.prototype.constructor = LDGetFollowersResponse;
-var _=LDGetFollowersResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetFollowersResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -31,4 +31,4 @@ _.encode=function(o){
 _.Followers=null;
 _.ContinuationKey=null;
 
-module.exports=LDGetFollowersResponse;
+module.exports=O;

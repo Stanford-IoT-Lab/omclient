@@ -31,7 +31,7 @@ var LDGetMessagesBeforeRequest = require('./LDGetMessagesBeforeRequest');
 var LDGetMessagesSinceRequest = require('./LDGetMessagesSinceRequest');
 var LDCreateFeedRequest = require('./LDCreateFeedRequest');
 
-function LDDeviceToClusterMessageRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -67,9 +67,9 @@ function LDDeviceToClusterMessageRequestProtocol(e){
 	if(e['P']!=null)$.RealtimeMessageDeliveryPush=new LDRealtimeMessageDeliveryPush(e['P']);
 	if(e['t']!=null)$.TerminatedPush=new LDMessageTerminatedPush(e['t']);
 }
-LDDeviceToClusterMessageRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterMessageRequestProtocol.prototype.constructor = LDDeviceToClusterMessageRequestProtocol;
-var _=LDDeviceToClusterMessageRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterMessageRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -140,4 +140,4 @@ _.MessageDeliveryPush=null;
 _.RealtimeMessageDeliveryPush=null;
 _.TerminatedPush=null;
 
-module.exports=LDDeviceToClusterMessageRequestProtocol;
+module.exports=O;

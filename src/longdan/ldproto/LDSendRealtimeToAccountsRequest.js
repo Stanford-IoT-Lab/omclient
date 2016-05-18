@@ -1,7 +1,7 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDClusterPartitionableRpcRequest = require('./LDClusterPartitionableRpcRequest');
 
-function LDSendRealtimeToAccountsRequest(e){
+function O(e){
 	LDClusterPartitionableRpcRequest.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -13,9 +13,9 @@ function LDSendRealtimeToAccountsRequest(e){
 	$.Type=e['t'];
 	if(e['b']!=null)$.Body=new Buffer(e['b'],'base64');
 }
-LDSendRealtimeToAccountsRequest.prototype=new LDClusterPartitionableRpcRequest();
-LDSendRealtimeToAccountsRequest.prototype.constructor = LDSendRealtimeToAccountsRequest;
-var _=LDSendRealtimeToAccountsRequest.prototype;
+O.prototype=new LDClusterPartitionableRpcRequest();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDSendRealtimeToAccountsRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -34,7 +34,7 @@ _.encode=function(o){
 _.Accounts=null;
 _.Type=null;
 _.Body=null;
-LDSendRealtimeToAccountsRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"LA":o};o=t;
 	t={"#":id,"m":o};o=t;
@@ -42,4 +42,4 @@ LDSendRealtimeToAccountsRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDSendRealtimeToAccountsRequest;
+module.exports=O;

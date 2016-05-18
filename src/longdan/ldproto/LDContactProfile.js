@@ -1,6 +1,6 @@
 var LDIdentity = require('./LDIdentity');
 
-function LDContactProfile(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Name=e['n'];
@@ -16,7 +16,7 @@ function LDContactProfile(e){
 	$.ProfileVideoLink=e['pv'];
 	if(e['dv']!=null)$.ProfileVideoDecryptedHash=new Buffer(e['dv'],'base64');
 }
-var _=LDContactProfile.prototype;
+var _=O.prototype;
 _.__type="LDContactProfile";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -44,4 +44,4 @@ _.HasAppTime=null;
 _.ProfileVideoLink=null;
 _.ProfileVideoDecryptedHash=null;
 
-module.exports=LDContactProfile;
+module.exports=O;

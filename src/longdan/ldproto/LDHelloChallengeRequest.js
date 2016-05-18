@@ -1,7 +1,7 @@
 var LDHelloChallengeResponse = require('./LDHelloChallengeResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDHelloChallengeRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDHelloChallengeRequest(e){
 	if(e['c']!=null)$.DestinationChallenge=new Buffer(e['c'],'base64');
 	if(e['a']!=null)$.ApiKey=new Buffer(e['a'],'base64');
 }
-LDHelloChallengeRequest.prototype=new LDJSONLoggable();
-LDHelloChallengeRequest.prototype.constructor = LDHelloChallengeRequest;
-var _=LDHelloChallengeRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDHelloChallengeRequest";
 _.__rt=LDHelloChallengeResponse;
 _.encode=function(o){
@@ -29,17 +29,17 @@ _.EphmeralKey=null;
 _.SourceKey=null;
 _.DestinationChallenge=null;
 _.ApiKey=null;
-LDHelloChallengeRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"#":id,"*":o};o=t;
 	t={"q":o};o=t;
 	return o;
 }
-LDHelloChallengeRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"#":id,"*":o};o=t;
 	t={"q":o};o=t;
 	return o;
 }
 
-module.exports=LDHelloChallengeRequest;
+module.exports=O;

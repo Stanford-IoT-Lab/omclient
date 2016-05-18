@@ -1,13 +1,13 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDDeviceRegistrationStateChangedPush(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDDeviceRegistrationStateChangedPush.prototype=new LDJSONLoggable();
-LDDeviceRegistrationStateChangedPush.prototype.constructor = LDDeviceRegistrationStateChangedPush;
-var _=LDDeviceRegistrationStateChangedPush.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceRegistrationStateChangedPush";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDDeviceRegistrationStateChangedPush;
+module.exports=O;

@@ -7,7 +7,7 @@ var LDSubscribeForNearbyItemsRequest = require('./LDSubscribeForNearbyItemsReque
 var LDUnbroadcastItemRequest = require('./LDUnbroadcastItemRequest');
 var LDBroadcastItemRequest = require('./LDBroadcastItemRequest');
 
-function LDDeviceToClusterNearbyItemRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -19,9 +19,9 @@ function LDDeviceToClusterNearbyItemRequestProtocol(e){
 	if(e['bp']!=null)$.ItemBroadcastStateChangedPush=new LDItemBroadcastStateChangedPush(e['bp']);
 	if(e['st']!=null)$.SubscriptionTerminatedPush=new LDSubscriptionTerminatedPush(e['st']);
 }
-LDDeviceToClusterNearbyItemRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterNearbyItemRequestProtocol.prototype.constructor = LDDeviceToClusterNearbyItemRequestProtocol;
-var _=LDDeviceToClusterNearbyItemRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterNearbyItemRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -44,4 +44,4 @@ _.FetchNearbyItemsRequest=null;
 _.ItemBroadcastStateChangedPush=null;
 _.SubscriptionTerminatedPush=null;
 
-module.exports=LDDeviceToClusterNearbyItemRequestProtocol;
+module.exports=O;

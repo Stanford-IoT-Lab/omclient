@@ -1,6 +1,6 @@
 var LDPost = require('./LDPost');
 
-function LDScreenShotPost(e){
+function O(e){
 	LDPost.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDScreenShotPost(e){
 	$.Height=e['H'];
 	$.Width=e['W'];
 }
-LDScreenShotPost.prototype=new LDPost();
-LDScreenShotPost.prototype.constructor = LDScreenShotPost;
-var _=LDScreenShotPost.prototype;
+O.prototype=new LDPost();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDScreenShotPost";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -34,4 +34,4 @@ _.LinkUrl=null;
 _.Height=null;
 _.Width=null;
 
-module.exports=LDScreenShotPost;
+module.exports=O;

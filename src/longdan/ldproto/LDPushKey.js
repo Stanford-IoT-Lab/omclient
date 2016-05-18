@@ -1,10 +1,10 @@
-function LDPushKey(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Type=e['t'];
 	$.Key=e['k'];
 }
-var _=LDPushKey.prototype;
+var _=O.prototype;
 _.__type="LDPushKey";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 _.Type=null;
 _.Key=null;
 
-module.exports=LDPushKey;
+module.exports=O;

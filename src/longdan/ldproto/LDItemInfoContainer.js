@@ -1,13 +1,13 @@
 var LDStickerPackInfo = require('./LDStickerPackInfo');
 var LDAppInfo = require('./LDAppInfo');
 
-function LDItemInfoContainer(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['ai']!=null)$.AppInfo=new LDAppInfo(e['ai']);
 	if(e['si']!=null)$.StickerPackInfo=new LDStickerPackInfo(e['si']);
 }
-var _=LDItemInfoContainer.prototype;
+var _=O.prototype;
 _.__type="LDItemInfoContainer";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -19,4 +19,4 @@ _.encode=function(o){
 _.AppInfo=null;
 _.StickerPackInfo=null;
 
-module.exports=LDItemInfoContainer;
+module.exports=O;

@@ -1,6 +1,6 @@
 var LDFlaggedRecord = require('./LDFlaggedRecord');
 
-function LDFlaggedDetails(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Account=e['a'];
@@ -10,7 +10,7 @@ function LDFlaggedDetails(e){
 		for(var k=0; k<d.length;++k)$.Records.push(new LDFlaggedRecord(d[k]));
 	}
 }
-var _=LDFlaggedDetails.prototype;
+var _=O.prototype;
 _.__type="LDFlaggedDetails";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -26,4 +26,4 @@ _.encode=function(o){
 _.Account=null;
 _.Records=null;
 
-module.exports=LDFlaggedDetails;
+module.exports=O;

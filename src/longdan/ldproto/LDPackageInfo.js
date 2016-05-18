@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDPackageInfo(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -9,9 +9,9 @@ function LDPackageInfo(e){
 	$.IconBlobLink=e['i'];
 	$.WallPostCount=e['c'];
 }
-LDPackageInfo.prototype=new LDJSONLoggable();
-LDPackageInfo.prototype.constructor = LDPackageInfo;
-var _=LDPackageInfo.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDPackageInfo";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -28,4 +28,4 @@ _.AppName=null;
 _.IconBlobLink=null;
 _.WallPostCount=null;
 
-module.exports=LDPackageInfo;
+module.exports=O;

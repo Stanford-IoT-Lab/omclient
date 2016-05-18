@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDAcl(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Type=e['t'];
 	if(e['a']!=null)$.AppId=new Buffer(e['a'],'base64');
 }
-LDAcl.prototype=new LDJSONLoggable();
-LDAcl.prototype.constructor = LDAcl;
-var _=LDAcl.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDAcl";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -22,4 +22,4 @@ _.encode=function(o){
 _.Type=null;
 _.AppId=null;
 
-module.exports=LDAcl;
+module.exports=O;

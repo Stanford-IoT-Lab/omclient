@@ -2,16 +2,16 @@ var LDResponseProtocolBase = require('./LDResponseProtocolBase');
 var LDFeedStateResponse = require('./LDFeedStateResponse');
 var LDDirtyFeedsResponse = require('./LDDirtyFeedsResponse');
 
-function LDDeviceToClusterInboxResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['d']!=null)$.DirtyFeeds=new LDDirtyFeedsResponse(e['d']);
 	if(e['s']!=null)$.FeedState=new LDFeedStateResponse(e['s']);
 }
-LDDeviceToClusterInboxResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterInboxResponseProtocol.prototype.constructor = LDDeviceToClusterInboxResponseProtocol;
-var _=LDDeviceToClusterInboxResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterInboxResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -24,4 +24,4 @@ _.encode=function(o){
 _.DirtyFeeds=null;
 _.FeedState=null;
 
-module.exports=LDDeviceToClusterInboxResponseProtocol;
+module.exports=O;

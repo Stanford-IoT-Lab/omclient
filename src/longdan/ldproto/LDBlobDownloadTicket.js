@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDBlobDownloadTicket(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDBlobDownloadTicket(e){
 		for(var k in d) $.Headers[k]=d[k];
 	}
 }
-LDBlobDownloadTicket.prototype=new LDJSONLoggable();
-LDBlobDownloadTicket.prototype.constructor = LDBlobDownloadTicket;
-var _=LDBlobDownloadTicket.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDBlobDownloadTicket";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -30,4 +30,4 @@ _.encode=function(o){
 _.Url=null;
 _.Headers=null;
 
-module.exports=LDBlobDownloadTicket;
+module.exports=O;

@@ -1,7 +1,7 @@
 var LDGetFollowersResponse = require('./LDGetFollowersResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetFollowersRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -9,9 +9,9 @@ function LDGetFollowersRequest(e){
 	$.NumToGet=e['n'];
 	if(e['c']!=null)$.ContinuationKey=new Buffer(e['c'],'base64');
 }
-LDGetFollowersRequest.prototype=new LDJSONLoggable();
-LDGetFollowersRequest.prototype.constructor = LDGetFollowersRequest;
-var _=LDGetFollowersRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetFollowersRequest";
 _.__rt=LDGetFollowersResponse;
 _.encode=function(o){
@@ -26,7 +26,7 @@ _.encode=function(o){
 _.Account=null;
 _.NumToGet=null;
 _.ContinuationKey=null;
-LDGetFollowersRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"gf":o};o=t;
 	t={"#":id,"w":o};o=t;
@@ -34,4 +34,4 @@ LDGetFollowersRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetFollowersRequest;
+module.exports=O;

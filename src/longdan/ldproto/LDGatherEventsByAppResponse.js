@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGatherEventsByAppResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDGatherEventsByAppResponse(e){
 		for(var k in d) $.Counts[k]=d[k];
 	}
 }
-LDGatherEventsByAppResponse.prototype=new LDJSONLoggable();
-LDGatherEventsByAppResponse.prototype.constructor = LDGatherEventsByAppResponse;
-var _=LDGatherEventsByAppResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGatherEventsByAppResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -30,4 +30,4 @@ _.encode=function(o){
 _.Buckets=null;
 _.Counts=null;
 
-module.exports=LDGatherEventsByAppResponse;
+module.exports=O;

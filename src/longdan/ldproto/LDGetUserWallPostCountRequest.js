@@ -1,15 +1,15 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetUserWallPostCountRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Account=e['a'];
 }
-LDGetUserWallPostCountRequest.prototype=new LDJSONLoggable();
-LDGetUserWallPostCountRequest.prototype.constructor = LDGetUserWallPostCountRequest;
-var _=LDGetUserWallPostCountRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetUserWallPostCountRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -20,7 +20,7 @@ _.encode=function(o){
 	return o;
 }
 _.Account=null;
-LDGetUserWallPostCountRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"guwc":o};o=t;
 	t={"#":id,"w":o};o=t;
@@ -28,4 +28,4 @@ LDGetUserWallPostCountRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetUserWallPostCountRequest;
+module.exports=O;

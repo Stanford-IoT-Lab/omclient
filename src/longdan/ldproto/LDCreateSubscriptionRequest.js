@@ -2,7 +2,7 @@ var LDCreateSubscriptionResponse = require('./LDCreateSubscriptionResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDFeed = require('./LDFeed');
 
-function LDCreateSubscriptionRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -13,9 +13,9 @@ function LDCreateSubscriptionRequest(e){
 	$.CanRead=e['r'];
 	if(e['f']!=null)$.Feed=new LDFeed(e['f']);
 }
-LDCreateSubscriptionRequest.prototype=new LDJSONLoggable();
-LDCreateSubscriptionRequest.prototype.constructor = LDCreateSubscriptionRequest;
-var _=LDCreateSubscriptionRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDCreateSubscriptionRequest";
 _.__rt=LDCreateSubscriptionResponse;
 _.encode=function(o){
@@ -36,7 +36,7 @@ _.ProfileDecryptedHash=null;
 _.Type=null;
 _.CanRead=null;
 _.Feed=null;
-LDCreateSubscriptionRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"u":o};o=t;
 	t={"#":id,"s":o};o=t;
@@ -44,4 +44,4 @@ LDCreateSubscriptionRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDCreateSubscriptionRequest;
+module.exports=O;

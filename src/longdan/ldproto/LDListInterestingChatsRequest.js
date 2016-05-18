@@ -1,7 +1,7 @@
 var LDListChatsResponse = require('./LDListChatsResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDListInterestingChatsRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -14,9 +14,9 @@ function LDListInterestingChatsRequest(e){
 	$.ForCountry=e['fc'];
 	$.ForCity=e['fy'];
 }
-LDListInterestingChatsRequest.prototype=new LDJSONLoggable();
-LDListInterestingChatsRequest.prototype.constructor = LDListInterestingChatsRequest;
-var _=LDListInterestingChatsRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDListInterestingChatsRequest";
 _.__rt=LDListChatsResponse;
 _.encode=function(o){
@@ -41,7 +41,7 @@ _.ForwardingStage=null;
 _.ForAppScopeId=null;
 _.ForCountry=null;
 _.ForCity=null;
-LDListInterestingChatsRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"li":o};o=t;
 	t={"#":id,"pc":o};o=t;
@@ -49,4 +49,4 @@ LDListInterestingChatsRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDListInterestingChatsRequest;
+module.exports=O;

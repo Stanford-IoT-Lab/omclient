@@ -1,6 +1,6 @@
 var LDApiKey = require('./LDApiKey');
 
-function LDListApiKeysResponse(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['ak']!=null){
@@ -9,7 +9,7 @@ function LDListApiKeysResponse(e){
 		for(var k=0; k<d.length;++k)$.ApiKeys.push(new LDApiKey(d[k]));
 	}
 }
-var _=LDListApiKeysResponse.prototype;
+var _=O.prototype;
 _.__type="LDListApiKeysResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -23,4 +23,4 @@ _.encode=function(o){
 }
 _.ApiKeys=null;
 
-module.exports=LDListApiKeysResponse;
+module.exports=O;

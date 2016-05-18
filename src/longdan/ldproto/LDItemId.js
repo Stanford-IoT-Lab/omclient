@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDItemId(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -8,9 +8,9 @@ function LDItemId(e){
 	$.Creator=e['c'];
 	$.GivenId=e['a'];
 }
-LDItemId.prototype=new LDJSONLoggable();
-LDItemId.prototype.constructor = LDItemId;
-var _=LDItemId.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDItemId";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -25,4 +25,4 @@ _.ItemType=null;
 _.Creator=null;
 _.GivenId=null;
 
-module.exports=LDItemId;
+module.exports=O;

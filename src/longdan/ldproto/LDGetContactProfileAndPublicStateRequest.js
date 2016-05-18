@@ -1,15 +1,15 @@
 var LDGetContactProfileAndPublicStateResponse = require('./LDGetContactProfileAndPublicStateResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetContactProfileAndPublicStateRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.RequestedAccount=e['c'];
 }
-LDGetContactProfileAndPublicStateRequest.prototype=new LDJSONLoggable();
-LDGetContactProfileAndPublicStateRequest.prototype.constructor = LDGetContactProfileAndPublicStateRequest;
-var _=LDGetContactProfileAndPublicStateRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetContactProfileAndPublicStateRequest";
 _.__rt=LDGetContactProfileAndPublicStateResponse;
 _.encode=function(o){
@@ -20,7 +20,7 @@ _.encode=function(o){
 	return o;
 }
 _.RequestedAccount=null;
-LDGetContactProfileAndPublicStateRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"ppp":o};o=t;
 	t={"#":id,"p":o};o=t;
@@ -28,4 +28,4 @@ LDGetContactProfileAndPublicStateRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetContactProfileAndPublicStateRequest;
+module.exports=O;

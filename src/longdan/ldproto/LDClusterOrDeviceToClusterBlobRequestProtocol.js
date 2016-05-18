@@ -5,7 +5,7 @@ var LDVerifyUploadCompletedRequest = require('./LDVerifyUploadCompletedRequest')
 var LDGetMultipartUploadTicketRequest = require('./LDGetMultipartUploadTicketRequest');
 var LDGetUploadTicketRequest = require('./LDGetUploadTicketRequest');
 
-function LDClusterOrDeviceToClusterBlobRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -15,9 +15,9 @@ function LDClusterOrDeviceToClusterBlobRequestProtocol(e){
 	if(e['dt']!=null)$.GetDownloadTicket=new LDGetDownloadTicketRequest(e['dt']);
 	if(e['ve']!=null)$.VerifyExistsAndPermanence=new LDVerifyExistsAndPermanenceRequest(e['ve']);
 }
-LDClusterOrDeviceToClusterBlobRequestProtocol.prototype=new LDRequestProtocolBase();
-LDClusterOrDeviceToClusterBlobRequestProtocol.prototype.constructor = LDClusterOrDeviceToClusterBlobRequestProtocol;
-var _=LDClusterOrDeviceToClusterBlobRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDClusterOrDeviceToClusterBlobRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -36,4 +36,4 @@ _.VerifyUploadCompleted=null;
 _.GetDownloadTicket=null;
 _.VerifyExistsAndPermanence=null;
 
-module.exports=LDClusterOrDeviceToClusterBlobRequestProtocol;
+module.exports=O;

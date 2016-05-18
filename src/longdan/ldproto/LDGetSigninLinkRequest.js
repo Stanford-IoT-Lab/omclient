@@ -1,7 +1,7 @@
 var LDGetSigninLinkResponse = require('./LDGetSigninLinkResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetSigninLinkRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -15,9 +15,9 @@ function LDGetSigninLinkRequest(e){
 	$.RequestedCluster=e['c'];
 	$.Jwt=e['j'];
 }
-LDGetSigninLinkRequest.prototype=new LDJSONLoggable();
-LDGetSigninLinkRequest.prototype.constructor = LDGetSigninLinkRequest;
-var _=LDGetSigninLinkRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetSigninLinkRequest";
 _.__rt=LDGetSigninLinkResponse;
 _.encode=function(o){
@@ -40,7 +40,7 @@ _.Scopes=null;
 _.IpAddress=null;
 _.RequestedCluster=null;
 _.Jwt=null;
-LDGetSigninLinkRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"S":o};o=t;
 	t={"#":id,"a":o};o=t;
@@ -48,4 +48,4 @@ LDGetSigninLinkRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetSigninLinkRequest;
+module.exports=O;

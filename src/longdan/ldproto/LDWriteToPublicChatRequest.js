@@ -3,7 +3,7 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDTypedId = require('./LDTypedId');
 var LDFeed = require('./LDFeed');
 
-function LDWriteToPublicChatRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDWriteToPublicChatRequest(e){
 	if(e['b']!=null)$.Body=new Buffer(e['b'],'base64');
 	$.Delete=e['d'];
 }
-LDWriteToPublicChatRequest.prototype=new LDJSONLoggable();
-LDWriteToPublicChatRequest.prototype.constructor = LDWriteToPublicChatRequest;
-var _=LDWriteToPublicChatRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDWriteToPublicChatRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -31,7 +31,7 @@ _.Feed=null;
 _.TypedId=null;
 _.Body=null;
 _.Delete=null;
-LDWriteToPublicChatRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"w":o};o=t;
 	t={"#":id,"pc":o};o=t;
@@ -39,4 +39,4 @@ LDWriteToPublicChatRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDWriteToPublicChatRequest;
+module.exports=O;

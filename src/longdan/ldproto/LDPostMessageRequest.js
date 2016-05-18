@@ -2,7 +2,7 @@ var LDAddPostResponse = require('./LDAddPostResponse');
 var LDPostBaseRequest = require('./LDPostBaseRequest');
 var LDPostTag = require('./LDPostTag');
 
-function LDPostMessageRequest(e){
+function O(e){
 	LDPostBaseRequest.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -15,9 +15,9 @@ function LDPostMessageRequest(e){
 		for(var k=0; k<d.length;++k)$.SecondaryTags.push(new LDPostTag(d[k]));
 	}
 }
-LDPostMessageRequest.prototype=new LDPostBaseRequest();
-LDPostMessageRequest.prototype.constructor = LDPostMessageRequest;
-var _=LDPostMessageRequest.prototype;
+O.prototype=new LDPostBaseRequest();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDPostMessageRequest";
 _.__rt=LDAddPostResponse;
 _.encode=function(o){
@@ -38,7 +38,7 @@ _.Title=null;
 _.Message=null;
 _.PrimaryTag=null;
 _.SecondaryTags=null;
-LDPostMessageRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"pm":o};o=t;
 	t={"#":id,"w":o};o=t;
@@ -46,4 +46,4 @@ LDPostMessageRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDPostMessageRequest;
+module.exports=O;

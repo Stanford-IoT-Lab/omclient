@@ -1,10 +1,10 @@
-function LDComment(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Commenter=e['ct'];
 	if(e['c']!=null)$.Comment=new Buffer(e['c'],'base64');
 }
-var _=LDComment.prototype;
+var _=O.prototype;
 _.__type="LDComment";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 _.Commenter=null;
 _.Comment=null;
 
-module.exports=LDComment;
+module.exports=O;

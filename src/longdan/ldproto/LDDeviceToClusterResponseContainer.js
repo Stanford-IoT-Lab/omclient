@@ -22,7 +22,7 @@ var LDClusterOrDeviceToClusterBlobResponseProtocol = require('./LDClusterOrDevic
 var LDDeviceToClusterInboxResponseProtocol = require('./LDDeviceToClusterInboxResponseProtocol');
 var LDDeviceToClusterMessageResponseProtocol = require('./LDDeviceToClusterMessageResponseProtocol');
 
-function LDDeviceToClusterResponseContainer(e){
+function O(e){
 	LDResponseContainerBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -49,9 +49,9 @@ function LDDeviceToClusterResponseContainer(e){
 	if(e['um']!=null)$.UserModeration=new LDDeviceToClusterUserModerationResponseProtocol(e['um']);
 	if(e['ps']!=null)$.Presence=new LDDeviceToClusterPresenceResponseProtocol(e['ps']);
 }
-LDDeviceToClusterResponseContainer.prototype=new LDResponseContainerBase();
-LDDeviceToClusterResponseContainer.prototype.constructor = LDDeviceToClusterResponseContainer;
-var _=LDDeviceToClusterResponseContainer.prototype;
+O.prototype=new LDResponseContainerBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterResponseContainer";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -104,4 +104,4 @@ _.EventSummary=null;
 _.UserModeration=null;
 _.Presence=null;
 
-module.exports=LDDeviceToClusterResponseContainer;
+module.exports=O;

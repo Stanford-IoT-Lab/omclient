@@ -2,7 +2,7 @@ var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDItemId = require('./LDItemId');
 
-function LDOptInForGSChallengesRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDOptInForGSChallengesRequest(e){
 	$.Account=e['a'];
 	$.All=e['l'];
 }
-LDOptInForGSChallengesRequest.prototype=new LDJSONLoggable();
-LDOptInForGSChallengesRequest.prototype.constructor = LDOptInForGSChallengesRequest;
-var _=LDOptInForGSChallengesRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDOptInForGSChallengesRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -33,7 +33,7 @@ _.ServerKicked=null;
 _.Game=null;
 _.Account=null;
 _.All=null;
-LDOptInForGSChallengesRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"ogs":o};o=t;
 	t={"#":id,"g":o};o=t;
@@ -41,4 +41,4 @@ LDOptInForGSChallengesRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDOptInForGSChallengesRequest;
+module.exports=O;

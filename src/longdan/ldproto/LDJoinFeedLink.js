@@ -1,11 +1,11 @@
-function LDJoinFeedLink(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Timestamp=e['t'];
 	$.Pin=e['p'];
 	$.Url=e['l'];
 }
-var _=LDJoinFeedLink.prototype;
+var _=O.prototype;
 _.__type="LDJoinFeedLink";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -19,4 +19,4 @@ _.Timestamp=null;
 _.Pin=null;
 _.Url=null;
 
-module.exports=LDJoinFeedLink;
+module.exports=O;

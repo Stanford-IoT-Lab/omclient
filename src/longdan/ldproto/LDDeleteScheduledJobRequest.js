@@ -1,7 +1,7 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDDeleteScheduledJobRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDDeleteScheduledJobRequest(e){
 	if(e['id']!=null)$.JobId=new Buffer(e['id'],'base64');
 	$.JobIdAsRedisString=e['s'];
 }
-LDDeleteScheduledJobRequest.prototype=new LDJSONLoggable();
-LDDeleteScheduledJobRequest.prototype.constructor = LDDeleteScheduledJobRequest;
-var _=LDDeleteScheduledJobRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeleteScheduledJobRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -29,7 +29,7 @@ _.AdminAccount=null;
 _.Cluster=null;
 _.JobId=null;
 _.JobIdAsRedisString=null;
-LDDeleteScheduledJobRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"ds":o};o=t;
 	t={"#":id,"A":o};o=t;
@@ -37,4 +37,4 @@ LDDeleteScheduledJobRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDDeleteScheduledJobRequest;
+module.exports=O;

@@ -1,7 +1,7 @@
 var LDGetPermissionsResponse = require('./LDGetPermissionsResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetPermissionsRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -9,9 +9,9 @@ function LDGetPermissionsRequest(e){
 	$.UserKey=e['k'];
 	$.Cluster=e['c'];
 }
-LDGetPermissionsRequest.prototype=new LDJSONLoggable();
-LDGetPermissionsRequest.prototype.constructor = LDGetPermissionsRequest;
-var _=LDGetPermissionsRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetPermissionsRequest";
 _.__rt=LDGetPermissionsResponse;
 _.encode=function(o){
@@ -26,7 +26,7 @@ _.encode=function(o){
 _.AdminAccount=null;
 _.UserKey=null;
 _.Cluster=null;
-LDGetPermissionsRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"gp":o};o=t;
 	t={"#":id,"A":o};o=t;
@@ -34,4 +34,4 @@ LDGetPermissionsRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetPermissionsRequest;
+module.exports=O;

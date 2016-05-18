@@ -1,14 +1,14 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDBroadcastItemResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Pin=e['p'];
 }
-LDBroadcastItemResponse.prototype=new LDJSONLoggable();
-LDBroadcastItemResponse.prototype.constructor = LDBroadcastItemResponse;
-var _=LDBroadcastItemResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDBroadcastItemResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -19,4 +19,4 @@ _.encode=function(o){
 }
 _.Pin=null;
 
-module.exports=LDBroadcastItemResponse;
+module.exports=O;

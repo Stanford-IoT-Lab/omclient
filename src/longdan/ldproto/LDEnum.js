@@ -1,8 +1,8 @@
-function LDEnum(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 }
-var _=LDEnum.prototype;
+var _=O.prototype;
 _.__type="LDEnum";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -10,4 +10,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDEnum;
+module.exports=O;

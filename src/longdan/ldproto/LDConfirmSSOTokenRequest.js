@@ -1,16 +1,16 @@
 var LDAccountDetailsResponse = require('./LDAccountDetailsResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDConfirmSSOTokenRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Account=e['a'];
 	$.Token=e['t'];
 }
-LDConfirmSSOTokenRequest.prototype=new LDJSONLoggable();
-LDConfirmSSOTokenRequest.prototype.constructor = LDConfirmSSOTokenRequest;
-var _=LDConfirmSSOTokenRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDConfirmSSOTokenRequest";
 _.__rt=LDAccountDetailsResponse;
 _.encode=function(o){
@@ -23,7 +23,7 @@ _.encode=function(o){
 }
 _.Account=null;
 _.Token=null;
-LDConfirmSSOTokenRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"ao":o};o=t;
 	t={"#":id,"a":o};o=t;
@@ -31,4 +31,4 @@ LDConfirmSSOTokenRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDConfirmSSOTokenRequest;
+module.exports=O;

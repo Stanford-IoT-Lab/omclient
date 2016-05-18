@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDPublicChatInfo = require('./LDPublicChatInfo');
 
-function LDListChatsResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDListChatsResponse(e){
 		for(var k=0; k<d.length;++k)$.Chats.push(new LDPublicChatInfo(d[k]));
 	}
 }
-LDListChatsResponse.prototype=new LDJSONLoggable();
-LDListChatsResponse.prototype.constructor = LDListChatsResponse;
-var _=LDListChatsResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDListChatsResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -28,4 +28,4 @@ _.encode=function(o){
 }
 _.Chats=null;
 
-module.exports=LDListChatsResponse;
+module.exports=O;

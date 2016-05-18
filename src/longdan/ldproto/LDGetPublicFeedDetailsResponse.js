@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetPublicFeedDetailsResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Name=e['n'];
 	$.ThumbnailLink=e['td'];
 }
-LDGetPublicFeedDetailsResponse.prototype=new LDJSONLoggable();
-LDGetPublicFeedDetailsResponse.prototype.constructor = LDGetPublicFeedDetailsResponse;
-var _=LDGetPublicFeedDetailsResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetPublicFeedDetailsResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -22,4 +22,4 @@ _.encode=function(o){
 _.Name=null;
 _.ThumbnailLink=null;
 
-module.exports=LDGetPublicFeedDetailsResponse;
+module.exports=O;

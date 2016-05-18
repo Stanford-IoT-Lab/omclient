@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDFlaggedDetails = require('./LDFlaggedDetails');
 
-function LDListFlaggedUsersResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDListFlaggedUsersResponse(e){
 	}
 	if(e['k']!=null)$.ContinuationKey=new Buffer(e['k'],'base64');
 }
-LDListFlaggedUsersResponse.prototype=new LDJSONLoggable();
-LDListFlaggedUsersResponse.prototype.constructor = LDListFlaggedUsersResponse;
-var _=LDListFlaggedUsersResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDListFlaggedUsersResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -31,4 +31,4 @@ _.encode=function(o){
 _.Details=null;
 _.ContinuationKey=null;
 
-module.exports=LDListFlaggedUsersResponse;
+module.exports=O;

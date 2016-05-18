@@ -3,7 +3,7 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDPurchaseData = require('./LDPurchaseData');
 var LDItemId = require('./LDItemId');
 
-function LDAddItemsToProfileRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -15,9 +15,9 @@ function LDAddItemsToProfileRequest(e){
 	}
 	if(e['pd']!=null)$.PurchaseData=new LDPurchaseData(e['pd']);
 }
-LDAddItemsToProfileRequest.prototype=new LDJSONLoggable();
-LDAddItemsToProfileRequest.prototype.constructor = LDAddItemsToProfileRequest;
-var _=LDAddItemsToProfileRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDAddItemsToProfileRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -36,7 +36,7 @@ _.encode=function(o){
 _.ItemType=null;
 _.Items=null;
 _.PurchaseData=null;
-LDAddItemsToProfileRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"aip":o};o=t;
 	t={"#":id,"p":o};o=t;
@@ -44,4 +44,4 @@ LDAddItemsToProfileRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDAddItemsToProfileRequest;
+module.exports=O;

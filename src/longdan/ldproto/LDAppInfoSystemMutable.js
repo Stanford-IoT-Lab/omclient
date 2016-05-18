@@ -1,13 +1,13 @@
 var LDItemInfoSystemMutable = require('./LDItemInfoSystemMutable');
 
-function LDAppInfoSystemMutable(e){
+function O(e){
 	LDItemInfoSystemMutable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDAppInfoSystemMutable.prototype=new LDItemInfoSystemMutable();
-LDAppInfoSystemMutable.prototype.constructor = LDAppInfoSystemMutable;
-var _=LDAppInfoSystemMutable.prototype;
+O.prototype=new LDItemInfoSystemMutable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDAppInfoSystemMutable";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDAppInfoSystemMutable;
+module.exports=O;

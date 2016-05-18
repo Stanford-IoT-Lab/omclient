@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDPackageInfo = require('./LDPackageInfo');
 
-function LDGetPackagesResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDGetPackagesResponse(e){
 		for(var k=0; k<d.length;++k)$.PackageInfos.push(new LDPackageInfo(d[k]));
 	}
 }
-LDGetPackagesResponse.prototype=new LDJSONLoggable();
-LDGetPackagesResponse.prototype.constructor = LDGetPackagesResponse;
-var _=LDGetPackagesResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetPackagesResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -28,4 +28,4 @@ _.encode=function(o){
 }
 _.PackageInfos=null;
 
-module.exports=LDGetPackagesResponse;
+module.exports=O;

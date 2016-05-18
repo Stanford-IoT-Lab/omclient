@@ -1,10 +1,10 @@
-function LDAppScreenshot(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.ThumbnailBlobLinkString=e['tb'];
 	$.FullsizeBlobLinkString=e['fb'];
 }
-var _=LDAppScreenshot.prototype;
+var _=O.prototype;
 _.__type="LDAppScreenshot";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 _.ThumbnailBlobLinkString=null;
 _.FullsizeBlobLinkString=null;
 
-module.exports=LDAppScreenshot;
+module.exports=O;

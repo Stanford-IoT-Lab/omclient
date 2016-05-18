@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGPSLocation(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Latitude=e['x'];
 	$.Longitude=e['y'];
 }
-LDGPSLocation.prototype=new LDJSONLoggable();
-LDGPSLocation.prototype.constructor = LDGPSLocation;
-var _=LDGPSLocation.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGPSLocation";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -22,4 +22,4 @@ _.encode=function(o){
 _.Latitude=null;
 _.Longitude=null;
 
-module.exports=LDGPSLocation;
+module.exports=O;

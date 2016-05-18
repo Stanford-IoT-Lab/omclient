@@ -4,7 +4,7 @@ var LDGPSLocation = require('./LDGPSLocation');
 var LDItemId = require('./LDItemId');
 var LDGameChallengeId = require('./LDGameChallengeId');
 
-function LDExtendChallengeRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -15,9 +15,9 @@ function LDExtendChallengeRequest(e){
 	$.GameState=e['t'];
 	if(e['l']!=null)$.Location=new LDGPSLocation(e['l']);
 }
-LDExtendChallengeRequest.prototype=new LDJSONLoggable();
-LDExtendChallengeRequest.prototype.constructor = LDExtendChallengeRequest;
-var _=LDExtendChallengeRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDExtendChallengeRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -38,7 +38,7 @@ _.GameId=null;
 _.Score=null;
 _.GameState=null;
 _.Location=null;
-LDExtendChallengeRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"c":o};o=t;
 	t={"#":id,"g":o};o=t;
@@ -46,4 +46,4 @@ LDExtendChallengeRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDExtendChallengeRequest;
+module.exports=O;

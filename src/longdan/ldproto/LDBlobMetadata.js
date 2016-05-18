@@ -1,11 +1,11 @@
-function LDBlobMetadata(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['h']!=null)$.Hash=new Buffer(e['h'],'base64');
 	$.Size=e['s'];
 	$.MimeType=e['m'];
 }
-var _=LDBlobMetadata.prototype;
+var _=O.prototype;
 _.__type="LDBlobMetadata";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -19,4 +19,4 @@ _.Hash=null;
 _.Size=null;
 _.MimeType=null;
 
-module.exports=LDBlobMetadata;
+module.exports=O;

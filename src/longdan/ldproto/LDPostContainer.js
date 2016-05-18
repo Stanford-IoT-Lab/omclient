@@ -3,7 +3,7 @@ var LDScreenShotPost = require('./LDScreenShotPost');
 var LDMessagePost = require('./LDMessagePost');
 var LDVideoPost = require('./LDVideoPost');
 
-function LDPostContainer(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDPostContainer(e){
 	if(e['m']!=null)$.MessagePost=new LDMessagePost(e['m']);
 	if(e['s']!=null)$.ScreenShotPost=new LDScreenShotPost(e['s']);
 }
-LDPostContainer.prototype=new LDJSONLoggable();
-LDPostContainer.prototype.constructor = LDPostContainer;
-var _=LDPostContainer.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDPostContainer";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -28,4 +28,4 @@ _.VideoPost=null;
 _.MessagePost=null;
 _.ScreenShotPost=null;
 
-module.exports=LDPostContainer;
+module.exports=O;

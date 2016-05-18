@@ -1,7 +1,7 @@
 var LDGetPublicChatResponse = require('./LDGetPublicChatResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetPublicChatRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -13,9 +13,9 @@ function LDGetPublicChatRequest(e){
 	$.Longitude=e['gt'];
 	$.Latitude=e['gp'];
 }
-LDGetPublicChatRequest.prototype=new LDJSONLoggable();
-LDGetPublicChatRequest.prototype.constructor = LDGetPublicChatRequest;
-var _=LDGetPublicChatRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetPublicChatRequest";
 _.__rt=LDGetPublicChatResponse;
 _.encode=function(o){
@@ -38,7 +38,7 @@ _.Cluster=null;
 _.Stripe=null;
 _.Longitude=null;
 _.Latitude=null;
-LDGetPublicChatRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"g":o};o=t;
 	t={"#":id,"pc":o};o=t;
@@ -46,4 +46,4 @@ LDGetPublicChatRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetPublicChatRequest;
+module.exports=O;

@@ -4,7 +4,7 @@ var LDIdentity = require('./LDIdentity');
 var LDIdentityHash = require('./LDIdentityHash');
 var LDFeed = require('./LDFeed');
 
-function LDAddPendingInvitationRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDAddPendingInvitationRequest(e){
 	if(e['i']!=null)$.IdentityHash=new LDIdentityHash(e['i']);
 	if(e['I']!=null)$.Identity=new LDIdentity(e['I']);
 }
-LDAddPendingInvitationRequest.prototype=new LDJSONLoggable();
-LDAddPendingInvitationRequest.prototype.constructor = LDAddPendingInvitationRequest;
-var _=LDAddPendingInvitationRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDAddPendingInvitationRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -29,7 +29,7 @@ _.encode=function(o){
 _.Feed=null;
 _.IdentityHash=null;
 _.Identity=null;
-LDAddPendingInvitationRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"f":o};o=t;
 	t={"#":id,"m":o};o=t;
@@ -37,4 +37,4 @@ LDAddPendingInvitationRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDAddPendingInvitationRequest;
+module.exports=O;

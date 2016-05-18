@@ -1,4 +1,4 @@
-function LDImageSearchResult(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Title=e['t'];
@@ -9,7 +9,7 @@ function LDImageSearchResult(e){
 	$.FileSize=e['S'];
 	$.ContentType=e['c'];
 }
-var _=LDImageSearchResult.prototype;
+var _=O.prototype;
 _.__type="LDImageSearchResult";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -31,4 +31,4 @@ _.FullsizeUrl=null;
 _.FileSize=null;
 _.ContentType=null;
 
-module.exports=LDImageSearchResult;
+module.exports=O;

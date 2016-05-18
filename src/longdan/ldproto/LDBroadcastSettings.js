@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDBroadcastSettings(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDBroadcastSettings(e){
 	$.Country=e['c'];
 	$.BroadcasterAccount=e['b'];
 }
-LDBroadcastSettings.prototype=new LDJSONLoggable();
-LDBroadcastSettings.prototype.constructor = LDBroadcastSettings;
-var _=LDBroadcastSettings.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDBroadcastSettings";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -37,4 +37,4 @@ _.Radius=null;
 _.Country=null;
 _.BroadcasterAccount=null;
 
-module.exports=LDBroadcastSettings;
+module.exports=O;

@@ -1,7 +1,7 @@
 var LDAccountDetailsResponse = require('./LDAccountDetailsResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDConfirmAuthCodeRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -9,9 +9,9 @@ function LDConfirmAuthCodeRequest(e){
 	$.QueryKey=e['k'];
 	$.IpAddress=e['p'];
 }
-LDConfirmAuthCodeRequest.prototype=new LDJSONLoggable();
-LDConfirmAuthCodeRequest.prototype.constructor = LDConfirmAuthCodeRequest;
-var _=LDConfirmAuthCodeRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDConfirmAuthCodeRequest";
 _.__rt=LDAccountDetailsResponse;
 _.encode=function(o){
@@ -26,7 +26,7 @@ _.encode=function(o){
 _.AuthCode=null;
 _.QueryKey=null;
 _.IpAddress=null;
-LDConfirmAuthCodeRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"C":o};o=t;
 	t={"#":id,"a":o};o=t;
@@ -34,4 +34,4 @@ LDConfirmAuthCodeRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDConfirmAuthCodeRequest;
+module.exports=O;

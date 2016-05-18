@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDPostContainer = require('./LDPostContainer');
 
-function LDGetPostResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['p']!=null)$.Post=new LDPostContainer(e['p']);
 }
-LDGetPostResponse.prototype=new LDJSONLoggable();
-LDGetPostResponse.prototype.constructor = LDGetPostResponse;
-var _=LDGetPostResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetPostResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.Post=null;
 
-module.exports=LDGetPostResponse;
+module.exports=O;

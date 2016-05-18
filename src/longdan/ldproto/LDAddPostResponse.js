@@ -1,16 +1,16 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDPostId = require('./LDPostId');
 
-function LDAddPostResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['id']!=null)$.PostId=new LDPostId(e['id']);
 	$.ExternalShareLink=e['e'];
 }
-LDAddPostResponse.prototype=new LDJSONLoggable();
-LDAddPostResponse.prototype.constructor = LDAddPostResponse;
-var _=LDAddPostResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDAddPostResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -23,4 +23,4 @@ _.encode=function(o){
 _.PostId=null;
 _.ExternalShareLink=null;
 
-module.exports=LDAddPostResponse;
+module.exports=O;

@@ -19,7 +19,7 @@ var LDGetAccountDetailsByAccountRequest = require('./LDGetAccountDetailsByAccoun
 var LDGetEmailLoginLinkRequest = require('./LDGetEmailLoginLinkRequest');
 var LDUnblockIdentityRequest = require('./LDUnblockIdentityRequest');
 
-function LDDeviceToIdpAdministrativeRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -43,9 +43,9 @@ function LDDeviceToIdpAdministrativeRequestProtocol(e){
 	if(e['blu']!=null)$.BlockUserRequest=new LDAdminBlockUserRequest(e['blu']);
 	if(e['gp']!=null)$.GetPermissionsRequest=new LDGetPermissionsRequest(e['gp']);
 }
-LDDeviceToIdpAdministrativeRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToIdpAdministrativeRequestProtocol.prototype.constructor = LDDeviceToIdpAdministrativeRequestProtocol;
-var _=LDDeviceToIdpAdministrativeRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToIdpAdministrativeRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -92,4 +92,4 @@ _.UnbanUserFromAppRequest=null;
 _.BlockUserRequest=null;
 _.GetPermissionsRequest=null;
 
-module.exports=LDDeviceToIdpAdministrativeRequestProtocol;
+module.exports=O;

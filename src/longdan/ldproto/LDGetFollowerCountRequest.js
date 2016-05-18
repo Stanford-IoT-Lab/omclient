@@ -1,15 +1,15 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetFollowerCountRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Account=e['a'];
 }
-LDGetFollowerCountRequest.prototype=new LDJSONLoggable();
-LDGetFollowerCountRequest.prototype.constructor = LDGetFollowerCountRequest;
-var _=LDGetFollowerCountRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetFollowerCountRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -20,7 +20,7 @@ _.encode=function(o){
 	return o;
 }
 _.Account=null;
-LDGetFollowerCountRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"gfc":o};o=t;
 	t={"#":id,"w":o};o=t;
@@ -28,4 +28,4 @@ LDGetFollowerCountRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetFollowerCountRequest;
+module.exports=O;

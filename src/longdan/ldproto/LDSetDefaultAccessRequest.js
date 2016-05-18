@@ -2,7 +2,7 @@ var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDFeed = require('./LDFeed');
 
-function LDSetDefaultAccessRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -15,9 +15,9 @@ function LDSetDefaultAccessRequest(e){
 	$.MemberMembersAddable=e['mma'];
 	$.MemberMembersRemovable=e['mmr'];
 }
-LDSetDefaultAccessRequest.prototype=new LDJSONLoggable();
-LDSetDefaultAccessRequest.prototype.constructor = LDSetDefaultAccessRequest;
-var _=LDSetDefaultAccessRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDSetDefaultAccessRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -42,7 +42,7 @@ _.MemberWritable=null;
 _.MemberFeedSettingsModifiable=null;
 _.MemberMembersAddable=null;
 _.MemberMembersRemovable=null;
-LDSetDefaultAccessRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"x":o};o=t;
 	t={"#":id,"m":o};o=t;
@@ -50,4 +50,4 @@ LDSetDefaultAccessRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDSetDefaultAccessRequest;
+module.exports=O;

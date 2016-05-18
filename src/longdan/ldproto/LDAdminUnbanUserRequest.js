@@ -1,7 +1,7 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDAdminUnbanUserRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -9,9 +9,9 @@ function LDAdminUnbanUserRequest(e){
 	$.UserKey=e['k'];
 	$.Cluster=e['c'];
 }
-LDAdminUnbanUserRequest.prototype=new LDJSONLoggable();
-LDAdminUnbanUserRequest.prototype.constructor = LDAdminUnbanUserRequest;
-var _=LDAdminUnbanUserRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDAdminUnbanUserRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -26,7 +26,7 @@ _.encode=function(o){
 _.AdminAccount=null;
 _.UserKey=null;
 _.Cluster=null;
-LDAdminUnbanUserRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"uu":o};o=t;
 	t={"#":id,"A":o};o=t;
@@ -34,4 +34,4 @@ LDAdminUnbanUserRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDAdminUnbanUserRequest;
+module.exports=O;

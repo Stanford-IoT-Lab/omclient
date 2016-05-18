@@ -1,7 +1,7 @@
 var LDFetchNearbyItemsResponse = require('./LDFetchNearbyItemsResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDFetchNearbyItemsRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDFetchNearbyItemsRequest(e){
 	$.Longitude=e['g'];
 	$.Radius=e['r'];
 }
-LDFetchNearbyItemsRequest.prototype=new LDJSONLoggable();
-LDFetchNearbyItemsRequest.prototype.constructor = LDFetchNearbyItemsRequest;
-var _=LDFetchNearbyItemsRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDFetchNearbyItemsRequest";
 _.__rt=LDFetchNearbyItemsResponse;
 _.encode=function(o){
@@ -29,7 +29,7 @@ _.ItemType=null;
 _.Latitude=null;
 _.Longitude=null;
 _.Radius=null;
-LDFetchNearbyItemsRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"f":o};o=t;
 	t={"#":id,"n":o};o=t;
@@ -37,4 +37,4 @@ LDFetchNearbyItemsRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDFetchNearbyItemsRequest;
+module.exports=O;

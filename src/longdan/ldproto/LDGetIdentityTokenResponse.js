@@ -1,14 +1,14 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetIdentityTokenResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Token=e['t'];
 }
-LDGetIdentityTokenResponse.prototype=new LDJSONLoggable();
-LDGetIdentityTokenResponse.prototype.constructor = LDGetIdentityTokenResponse;
-var _=LDGetIdentityTokenResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetIdentityTokenResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -19,4 +19,4 @@ _.encode=function(o){
 }
 _.Token=null;
 
-module.exports=LDGetIdentityTokenResponse;
+module.exports=O;

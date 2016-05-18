@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetDeviceRecordsResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDGetDeviceRecordsResponse(e){
 		for(var k=0;k<d.length;++k)$.Records.push(d[k]);
 	}
 }
-LDGetDeviceRecordsResponse.prototype=new LDJSONLoggable();
-LDGetDeviceRecordsResponse.prototype.constructor = LDGetDeviceRecordsResponse;
-var _=LDGetDeviceRecordsResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetDeviceRecordsResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -27,4 +27,4 @@ _.encode=function(o){
 }
 _.Records=null;
 
-module.exports=LDGetDeviceRecordsResponse;
+module.exports=O;

@@ -4,7 +4,7 @@ var LDSimpleResponse = require('./LDSimpleResponse');
 var LDCompleteChallengeResponse = require('./LDCompleteChallengeResponse');
 var LDHelloChallengeResponse = require('./LDHelloChallengeResponse');
 
-function LDResponseContainerBase(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -16,9 +16,9 @@ function LDResponseContainerBase(e){
 	if(e['=']!=null)$.Simple=new LDSimpleResponse(e['=']);
 	if(e['-']!=null)$.Ping=new LDPingResponse(e['-']);
 }
-LDResponseContainerBase.prototype=new LDJSONLoggable();
-LDResponseContainerBase.prototype.constructor = LDResponseContainerBase;
-var _=LDResponseContainerBase.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDResponseContainerBase";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -41,4 +41,4 @@ _.CompleteChallenge=null;
 _.Simple=null;
 _.Ping=null;
 
-module.exports=LDResponseContainerBase;
+module.exports=O;

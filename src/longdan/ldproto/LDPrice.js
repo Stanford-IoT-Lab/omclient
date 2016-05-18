@@ -1,10 +1,10 @@
-function LDPrice(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Free=e['f'];
 	$.Usd=e['usd'];
 }
-var _=LDPrice.prototype;
+var _=O.prototype;
 _.__type="LDPrice";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 _.Free=null;
 _.Usd=null;
 
-module.exports=LDPrice;
+module.exports=O;

@@ -11,7 +11,7 @@ var LDSetProfilePictureRequest = require('./LDSetProfilePictureRequest');
 var LDSetProfileNameRequest = require('./LDSetProfileNameRequest');
 var LDGetProfileDetailsRequest = require('./LDGetProfileDetailsRequest');
 
-function LDDeviceToClusterProfileRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -27,9 +27,9 @@ function LDDeviceToClusterProfileRequestProtocol(e){
 	if(e['pps']!=null)$.GetProfilePublicStateRequest=new LDGetProfilePublicStateRequest(e['pps']);
 	if(e['ppp']!=null)$.GetProfileDetailsAndPublicStateRequest=new LDGetContactProfileAndPublicStateRequest(e['ppp']);
 }
-LDDeviceToClusterProfileRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterProfileRequestProtocol.prototype.constructor = LDDeviceToClusterProfileRequestProtocol;
-var _=LDDeviceToClusterProfileRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterProfileRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -60,4 +60,4 @@ _.RemoveFeaturesFromProfileRequest=null;
 _.GetProfilePublicStateRequest=null;
 _.GetProfileDetailsAndPublicStateRequest=null;
 
-module.exports=LDDeviceToClusterProfileRequestProtocol;
+module.exports=O;

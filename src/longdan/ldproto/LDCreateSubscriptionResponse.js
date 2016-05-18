@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDCreateSubscriptionResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -8,9 +8,9 @@ function LDCreateSubscriptionResponse(e){
 	$.Account=e['a'];
 	if(e['k']!=null)$.DevicePrivateKey=new Buffer(e['k'],'base64');
 }
-LDCreateSubscriptionResponse.prototype=new LDJSONLoggable();
-LDCreateSubscriptionResponse.prototype.constructor = LDCreateSubscriptionResponse;
-var _=LDCreateSubscriptionResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDCreateSubscriptionResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -25,4 +25,4 @@ _.PublishingUrl=null;
 _.Account=null;
 _.DevicePrivateKey=null;
 
-module.exports=LDCreateSubscriptionResponse;
+module.exports=O;

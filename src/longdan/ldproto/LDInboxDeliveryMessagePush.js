@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDMessage = require('./LDMessage');
 
-function LDInboxDeliveryMessagePush(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['m']!=null)$.Message=new LDMessage(e['m']);
 }
-LDInboxDeliveryMessagePush.prototype=new LDJSONLoggable();
-LDInboxDeliveryMessagePush.prototype.constructor = LDInboxDeliveryMessagePush;
-var _=LDInboxDeliveryMessagePush.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDInboxDeliveryMessagePush";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.Message=null;
 
-module.exports=LDInboxDeliveryMessagePush;
+module.exports=O;

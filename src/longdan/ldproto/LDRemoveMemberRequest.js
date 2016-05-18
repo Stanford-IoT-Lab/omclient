@@ -3,7 +3,7 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDAcl = require('./LDAcl');
 var LDFeed = require('./LDFeed');
 
-function LDRemoveMemberRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDRemoveMemberRequest(e){
 	$.Member=e['m'];
 	if(e['A']!=null)$.Acl=new LDAcl(e['A']);
 }
-LDRemoveMemberRequest.prototype=new LDJSONLoggable();
-LDRemoveMemberRequest.prototype.constructor = LDRemoveMemberRequest;
-var _=LDRemoveMemberRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDRemoveMemberRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -28,7 +28,7 @@ _.encode=function(o){
 _.Feed=null;
 _.Member=null;
 _.Acl=null;
-LDRemoveMemberRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"r":o};o=t;
 	t={"#":id,"m":o};o=t;
@@ -36,4 +36,4 @@ LDRemoveMemberRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDRemoveMemberRequest;
+module.exports=O;

@@ -2,7 +2,7 @@ var LDWallResponse = require('./LDWallResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDPostTag = require('./LDPostTag');
 
-function LDGetGameWallRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDGetGameWallRequest(e){
 	if(e['c']!=null)$.ContinuationKey=new Buffer(e['c'],'base64');
 	$.PostsToGet=e['n'];
 }
-LDGetGameWallRequest.prototype=new LDJSONLoggable();
-LDGetGameWallRequest.prototype.constructor = LDGetGameWallRequest;
-var _=LDGetGameWallRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetGameWallRequest";
 _.__rt=LDWallResponse;
 _.encode=function(o){
@@ -30,7 +30,7 @@ _.GameTag=null;
 _.SecondTag=null;
 _.ContinuationKey=null;
 _.PostsToGet=null;
-LDGetGameWallRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"ggw":o};o=t;
 	t={"#":id,"w":o};o=t;
@@ -38,4 +38,4 @@ LDGetGameWallRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetGameWallRequest;
+module.exports=O;

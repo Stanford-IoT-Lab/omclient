@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDContactDetails = require('./LDContactDetails');
 
-function LDGetContactDetailsResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['c']!=null)$.ContactDetails=new LDContactDetails(e['c']);
 }
-LDGetContactDetailsResponse.prototype=new LDJSONLoggable();
-LDGetContactDetailsResponse.prototype.constructor = LDGetContactDetailsResponse;
-var _=LDGetContactDetailsResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetContactDetailsResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.ContactDetails=null;
 
-module.exports=LDGetContactDetailsResponse;
+module.exports=O;

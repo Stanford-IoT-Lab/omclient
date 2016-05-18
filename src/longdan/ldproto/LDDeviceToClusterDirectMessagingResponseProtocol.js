@@ -2,16 +2,16 @@ var LDResponseProtocolBase = require('./LDResponseProtocolBase');
 var LDSendDirectMessageResponse = require('./LDSendDirectMessageResponse');
 var LDGetDirectFeedResponse = require('./LDGetDirectFeedResponse');
 
-function LDDeviceToClusterDirectMessagingResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['gs']!=null)$.GetSmsFeedResponse=new LDGetDirectFeedResponse(e['gs']);
 	if(e['sm']!=null)$.SendSmsMessageResponse=new LDSendDirectMessageResponse(e['sm']);
 }
-LDDeviceToClusterDirectMessagingResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterDirectMessagingResponseProtocol.prototype.constructor = LDDeviceToClusterDirectMessagingResponseProtocol;
-var _=LDDeviceToClusterDirectMessagingResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterDirectMessagingResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -24,4 +24,4 @@ _.encode=function(o){
 _.GetSmsFeedResponse=null;
 _.SendSmsMessageResponse=null;
 
-module.exports=LDDeviceToClusterDirectMessagingResponseProtocol;
+module.exports=O;

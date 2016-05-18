@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDPresenceState = require('./LDPresenceState');
 
-function LDGetPresencesResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDGetPresencesResponse(e){
 		for(var k=0; k<d.length;++k)$.States.push(new LDPresenceState(d[k]));
 	}
 }
-LDGetPresencesResponse.prototype=new LDJSONLoggable();
-LDGetPresencesResponse.prototype.constructor = LDGetPresencesResponse;
-var _=LDGetPresencesResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetPresencesResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -28,4 +28,4 @@ _.encode=function(o){
 }
 _.States=null;
 
-module.exports=LDGetPresencesResponse;
+module.exports=O;

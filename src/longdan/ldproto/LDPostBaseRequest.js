@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDPostBaseRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDPostBaseRequest(e){
 		for(var k in d) $.ReportMeta[k]=d[k];
 	}
 }
-LDPostBaseRequest.prototype=new LDJSONLoggable();
-LDPostBaseRequest.prototype.constructor = LDPostBaseRequest;
-var _=LDPostBaseRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDPostBaseRequest";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -33,4 +33,4 @@ _.AppName=null;
 _.AppIconBlobLink=null;
 _.ReportMeta=null;
 
-module.exports=LDPostBaseRequest;
+module.exports=O;

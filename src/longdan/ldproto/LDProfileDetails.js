@@ -1,6 +1,6 @@
 var LDProfileIdentitySetting = require('./LDProfileIdentitySetting');
 
-function LDProfileDetails(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Name=e['n'];
@@ -16,7 +16,7 @@ function LDProfileDetails(e){
 	}
 	$.HasAppTime=e['t'];
 }
-var _=LDProfileDetails.prototype;
+var _=O.prototype;
 _.__type="LDProfileDetails";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -44,4 +44,4 @@ _.Version=null;
 _.IdentitySettings=null;
 _.HasAppTime=null;
 
-module.exports=LDProfileDetails;
+module.exports=O;

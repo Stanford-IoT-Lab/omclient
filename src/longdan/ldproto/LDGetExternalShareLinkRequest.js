@@ -2,7 +2,7 @@ var LDGetExternalShareLinkResponse = require('./LDGetExternalShareLinkResponse')
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDPostId = require('./LDPostId');
 
-function LDGetExternalShareLinkRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDGetExternalShareLinkRequest(e){
 	if(e['c']!=null)$.ContinuationKey=new Buffer(e['c'],'base64');
 	$.NumToGet=e['n'];
 }
-LDGetExternalShareLinkRequest.prototype=new LDJSONLoggable();
-LDGetExternalShareLinkRequest.prototype.constructor = LDGetExternalShareLinkRequest;
-var _=LDGetExternalShareLinkRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetExternalShareLinkRequest";
 _.__rt=LDGetExternalShareLinkResponse;
 _.encode=function(o){
@@ -27,7 +27,7 @@ _.encode=function(o){
 _.PostId=null;
 _.ContinuationKey=null;
 _.NumToGet=null;
-LDGetExternalShareLinkRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"ges":o};o=t;
 	t={"#":id,"w":o};o=t;
@@ -35,4 +35,4 @@ LDGetExternalShareLinkRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetExternalShareLinkRequest;
+module.exports=O;

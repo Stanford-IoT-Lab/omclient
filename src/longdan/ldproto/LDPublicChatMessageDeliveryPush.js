@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDMessage = require('./LDMessage');
 
-function LDPublicChatMessageDeliveryPush(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['m']!=null)$.Message=new LDMessage(e['m']);
 }
-LDPublicChatMessageDeliveryPush.prototype=new LDJSONLoggable();
-LDPublicChatMessageDeliveryPush.prototype.constructor = LDPublicChatMessageDeliveryPush;
-var _=LDPublicChatMessageDeliveryPush.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDPublicChatMessageDeliveryPush";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.Message=null;
 
-module.exports=LDPublicChatMessageDeliveryPush;
+module.exports=O;

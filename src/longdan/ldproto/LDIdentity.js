@@ -1,10 +1,10 @@
-function LDIdentity(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Type=e['t'];
 	$.Principal=e['p'];
 }
-var _=LDIdentity.prototype;
+var _=O.prototype;
 _.__type="LDIdentity";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 _.Type=null;
 _.Principal=null;
 
-module.exports=LDIdentity;
+module.exports=O;

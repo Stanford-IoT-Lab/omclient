@@ -1,14 +1,14 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDListBlockedUsersRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDListBlockedUsersRequest.prototype=new LDJSONLoggable();
-LDListBlockedUsersRequest.prototype.constructor = LDListBlockedUsersRequest;
-var _=LDListBlockedUsersRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDListBlockedUsersRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -17,7 +17,7 @@ _.encode=function(o){
 	LDJSONLoggable.prototype.encode.call($,o);
 	return o;
 }
-LDListBlockedUsersRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"l":o};o=t;
 	t={"#":id,"um":o};o=t;
@@ -25,4 +25,4 @@ LDListBlockedUsersRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDListBlockedUsersRequest;
+module.exports=O;

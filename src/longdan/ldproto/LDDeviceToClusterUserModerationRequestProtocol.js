@@ -4,7 +4,7 @@ var LDBlockUserRequest = require('./LDBlockUserRequest');
 var LDUnblockUserRequest = require('./LDUnblockUserRequest');
 var LDListBlockedUsersRequest = require('./LDListBlockedUsersRequest');
 
-function LDDeviceToClusterUserModerationRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -13,9 +13,9 @@ function LDDeviceToClusterUserModerationRequestProtocol(e){
 	if(e['b']!=null)$.BlockUserRequest=new LDBlockUserRequest(e['b']);
 	if(e['r']!=null)$.ReportUserRequest=new LDReportUserRequest(e['r']);
 }
-LDDeviceToClusterUserModerationRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterUserModerationRequestProtocol.prototype.constructor = LDDeviceToClusterUserModerationRequestProtocol;
-var _=LDDeviceToClusterUserModerationRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterUserModerationRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -32,4 +32,4 @@ _.UnblockUserRequest=null;
 _.BlockUserRequest=null;
 _.ReportUserRequest=null;
 
-module.exports=LDDeviceToClusterUserModerationRequestProtocol;
+module.exports=O;

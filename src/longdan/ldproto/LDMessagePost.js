@@ -1,14 +1,14 @@
 var LDPost = require('./LDPost');
 
-function LDMessagePost(e){
+function O(e){
 	LDPost.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Message=e['d'];
 }
-LDMessagePost.prototype=new LDPost();
-LDMessagePost.prototype.constructor = LDMessagePost;
-var _=LDMessagePost.prototype;
+O.prototype=new LDPost();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDMessagePost";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -19,4 +19,4 @@ _.encode=function(o){
 }
 _.Message=null;
 
-module.exports=LDMessagePost;
+module.exports=O;

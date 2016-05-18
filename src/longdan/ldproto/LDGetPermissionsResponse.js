@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDPrettyPermissions = require('./LDPrettyPermissions');
 
-function LDGetPermissionsResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['pp']!=null)$.PrettyPermissions=new LDPrettyPermissions(e['pp']);
 }
-LDGetPermissionsResponse.prototype=new LDJSONLoggable();
-LDGetPermissionsResponse.prototype.constructor = LDGetPermissionsResponse;
-var _=LDGetPermissionsResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetPermissionsResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.PrettyPermissions=null;
 
-module.exports=LDGetPermissionsResponse;
+module.exports=O;

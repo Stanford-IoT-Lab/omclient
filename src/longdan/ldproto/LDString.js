@@ -1,8 +1,8 @@
-function LDString(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 }
-var _=LDString.prototype;
+var _=O.prototype;
 _.__type="LDString";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -10,4 +10,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDString;
+module.exports=O;

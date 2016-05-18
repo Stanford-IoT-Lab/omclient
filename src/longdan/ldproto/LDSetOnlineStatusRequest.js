@@ -1,17 +1,18 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDSetOnlineStatusRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Online=e['o'];
 	$.AppName=e['n'];
 	$.AppIconBlobLink=e['b'];
+	$.PackageId=e['p'];
 }
-LDSetOnlineStatusRequest.prototype=new LDJSONLoggable();
-LDSetOnlineStatusRequest.prototype.constructor = LDSetOnlineStatusRequest;
-var _=LDSetOnlineStatusRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDSetOnlineStatusRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -21,12 +22,14 @@ _.encode=function(o){
 	if($.Online!=null)o['o']=$.Online;
 	if($.AppName!=null)o['n']=$.AppName;
 	if($.AppIconBlobLink!=null)o['b']=$.AppIconBlobLink;
+	if($.PackageId!=null)o['p']=$.PackageId;
 	return o;
 }
 _.Online=null;
 _.AppName=null;
 _.AppIconBlobLink=null;
-LDSetOnlineStatusRequest.prototype.makeClusterRpc=function(id){
+_.PackageId=null;
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"o":o};o=t;
 	t={"#":id,"ps":o};o=t;
@@ -34,4 +37,4 @@ LDSetOnlineStatusRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDSetOnlineStatusRequest;
+module.exports=O;

@@ -1,8 +1,8 @@
-function LDItemInfoUserMutable(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 }
-var _=LDItemInfoUserMutable.prototype;
+var _=O.prototype;
 _.__type="LDItemInfoUserMutable";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -10,4 +10,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDItemInfoUserMutable;
+module.exports=O;

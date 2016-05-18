@@ -1,6 +1,6 @@
 var LDAppInfo = require('./LDAppInfo');
 
-function LDAppInfoListingWrapper(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['i']!=null){
@@ -10,7 +10,7 @@ function LDAppInfoListingWrapper(e){
 	}
 	if(e['nt']!=null)$.NextToken=new Buffer(e['nt'],'base64');
 }
-var _=LDAppInfoListingWrapper.prototype;
+var _=O.prototype;
 _.__type="LDAppInfoListingWrapper";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -26,4 +26,4 @@ _.encode=function(o){
 _.Items=null;
 _.NextToken=null;
 
-module.exports=LDAppInfoListingWrapper;
+module.exports=O;

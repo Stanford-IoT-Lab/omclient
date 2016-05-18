@@ -3,7 +3,7 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDItemId = require('./LDItemId');
 var LDAppScopeId = require('./LDAppScopeId');
 
-function LDAdminUnbanUserFromAppRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -15,9 +15,9 @@ function LDAdminUnbanUserFromAppRequest(e){
 	$.Pub=e['p'];
 	$.Cluster=e['c'];
 }
-LDAdminUnbanUserFromAppRequest.prototype=new LDJSONLoggable();
-LDAdminUnbanUserFromAppRequest.prototype.constructor = LDAdminUnbanUserFromAppRequest;
-var _=LDAdminUnbanUserFromAppRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDAdminUnbanUserFromAppRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -40,7 +40,7 @@ _.ItemId=null;
 _.PackageId=null;
 _.Pub=null;
 _.Cluster=null;
-LDAdminUnbanUserFromAppRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"uua":o};o=t;
 	t={"#":id,"A":o};o=t;
@@ -48,4 +48,4 @@ LDAdminUnbanUserFromAppRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDAdminUnbanUserFromAppRequest;
+module.exports=O;

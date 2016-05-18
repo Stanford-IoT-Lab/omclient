@@ -1,16 +1,16 @@
 var LDAccountDetailsResponse = require('./LDAccountDetailsResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetAccountDetailsByAccountRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.AdminAccount=e['a'];
 	$.AccountToLookup=e['A'];
 }
-LDGetAccountDetailsByAccountRequest.prototype=new LDJSONLoggable();
-LDGetAccountDetailsByAccountRequest.prototype.constructor = LDGetAccountDetailsByAccountRequest;
-var _=LDGetAccountDetailsByAccountRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetAccountDetailsByAccountRequest";
 _.__rt=LDAccountDetailsResponse;
 _.encode=function(o){
@@ -23,7 +23,7 @@ _.encode=function(o){
 }
 _.AdminAccount=null;
 _.AccountToLookup=null;
-LDGetAccountDetailsByAccountRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"a":o};o=t;
 	t={"#":id,"A":o};o=t;
@@ -31,4 +31,4 @@ LDGetAccountDetailsByAccountRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetAccountDetailsByAccountRequest;
+module.exports=O;

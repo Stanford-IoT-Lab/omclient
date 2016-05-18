@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDCloudConfig = require('./LDCloudConfig');
 
-function LDGetCloudConfigResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['c']!=null)$.Config=new LDCloudConfig(e['c']);
 }
-LDGetCloudConfigResponse.prototype=new LDJSONLoggable();
-LDGetCloudConfigResponse.prototype.constructor = LDGetCloudConfigResponse;
-var _=LDGetCloudConfigResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetCloudConfigResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.Config=null;
 
-module.exports=LDGetCloudConfigResponse;
+module.exports=O;

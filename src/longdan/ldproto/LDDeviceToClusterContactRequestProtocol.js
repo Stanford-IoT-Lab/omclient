@@ -4,7 +4,7 @@ var LDBlockContactRequest = require('./LDBlockContactRequest');
 var LDRemoveContactRequest = require('./LDRemoveContactRequest');
 var LDOverwriteContactRequest = require('./LDOverwriteContactRequest');
 
-function LDDeviceToClusterContactRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -13,9 +13,9 @@ function LDDeviceToClusterContactRequestProtocol(e){
 	if(e['b']!=null)$.BlockContactRequest=new LDBlockContactRequest(e['b']);
 	if(e['u']!=null)$.UnblockContactRequest=new LDUnblockContactRequest(e['u']);
 }
-LDDeviceToClusterContactRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterContactRequestProtocol.prototype.constructor = LDDeviceToClusterContactRequestProtocol;
-var _=LDDeviceToClusterContactRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterContactRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -32,4 +32,4 @@ _.RemoveContactRequest=null;
 _.BlockContactRequest=null;
 _.UnblockContactRequest=null;
 
-module.exports=LDDeviceToClusterContactRequestProtocol;
+module.exports=O;

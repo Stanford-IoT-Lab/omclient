@@ -1,11 +1,11 @@
-function LDFeed(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Account=e['a'];
 	$.Kind=e['t'];
 	if(e['k']!=null)$.Key=new Buffer(e['k'],'base64');
 }
-var _=LDFeed.prototype;
+var _=O.prototype;
 _.__type="LDFeed";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -19,4 +19,4 @@ _.Account=null;
 _.Kind=null;
 _.Key=null;
 
-module.exports=LDFeed;
+module.exports=O;

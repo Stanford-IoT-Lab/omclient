@@ -2,16 +2,16 @@ var LDAccountDetailsResponse = require('./LDAccountDetailsResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDIdentity = require('./LDIdentity');
 
-function LDGetAccountDetailsByIdentityRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['i']!=null)$.Identity=new LDIdentity(e['i']);
 	$.AdminAccount=e['a'];
 }
-LDGetAccountDetailsByIdentityRequest.prototype=new LDJSONLoggable();
-LDGetAccountDetailsByIdentityRequest.prototype.constructor = LDGetAccountDetailsByIdentityRequest;
-var _=LDGetAccountDetailsByIdentityRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetAccountDetailsByIdentityRequest";
 _.__rt=LDAccountDetailsResponse;
 _.encode=function(o){
@@ -24,7 +24,7 @@ _.encode=function(o){
 }
 _.Identity=null;
 _.AdminAccount=null;
-LDGetAccountDetailsByIdentityRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"i":o};o=t;
 	t={"#":id,"A":o};o=t;
@@ -32,4 +32,4 @@ LDGetAccountDetailsByIdentityRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetAccountDetailsByIdentityRequest;
+module.exports=O;

@@ -1,15 +1,15 @@
 var LDResponseProtocolBase = require('./LDResponseProtocolBase');
 var LDGetContactProfileResponse = require('./LDGetContactProfileResponse');
 
-function LDDeviceToClusterAddressBookResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['c']!=null)$.ContactProfileResponse=new LDGetContactProfileResponse(e['c']);
 }
-LDDeviceToClusterAddressBookResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterAddressBookResponseProtocol.prototype.constructor = LDDeviceToClusterAddressBookResponseProtocol;
-var _=LDDeviceToClusterAddressBookResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterAddressBookResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.ContactProfileResponse=null;
 
-module.exports=LDDeviceToClusterAddressBookResponseProtocol;
+module.exports=O;

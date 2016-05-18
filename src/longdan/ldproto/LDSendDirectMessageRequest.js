@@ -4,7 +4,7 @@ var LDTypedId = require('./LDTypedId');
 var LDIdentity = require('./LDIdentity');
 var LDFeed = require('./LDFeed');
 
-function LDSendDirectMessageRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -27,9 +27,9 @@ function LDSendDirectMessageRequest(e){
 	$.AnyMemberWritable=e['w'];
 	$.SmsId=e['d'];
 }
-LDSendDirectMessageRequest.prototype=new LDJSONLoggable();
-LDSendDirectMessageRequest.prototype.constructor = LDSendDirectMessageRequest;
-var _=LDSendDirectMessageRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDSendDirectMessageRequest";
 _.__rt=LDSendDirectMessageResponse;
 _.encode=function(o){
@@ -66,7 +66,7 @@ _.Body=null;
 _.Version=null;
 _.AnyMemberWritable=null;
 _.SmsId=null;
-LDSendDirectMessageRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"sm":o};o=t;
 	t={"#":id,"o":o};o=t;
@@ -74,4 +74,4 @@ LDSendDirectMessageRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDSendDirectMessageRequest;
+module.exports=O;

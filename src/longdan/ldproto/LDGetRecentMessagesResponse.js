@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDMessage = require('./LDMessage');
 
-function LDGetRecentMessagesResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDGetRecentMessagesResponse(e){
 		for(var k=0; k<d.length;++k)$.Messages.push(new LDMessage(d[k]));
 	}
 }
-LDGetRecentMessagesResponse.prototype=new LDJSONLoggable();
-LDGetRecentMessagesResponse.prototype.constructor = LDGetRecentMessagesResponse;
-var _=LDGetRecentMessagesResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetRecentMessagesResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -28,4 +28,4 @@ _.encode=function(o){
 }
 _.Messages=null;
 
-module.exports=LDGetRecentMessagesResponse;
+module.exports=O;

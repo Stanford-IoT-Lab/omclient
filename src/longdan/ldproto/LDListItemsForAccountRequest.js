@@ -1,12 +1,12 @@
 var LDListItemsResponse = require('./LDListItemsResponse');
 
-function LDListItemsForAccountRequest(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.ItemType=e['it'];
 	$.Account=e['ac'];
 }
-var _=LDListItemsForAccountRequest.prototype;
+var _=O.prototype;
 _.__type="LDListItemsForAccountRequest";
 _.__rt=LDListItemsResponse;
 _.encode=function(o){
@@ -18,7 +18,7 @@ _.encode=function(o){
 }
 _.ItemType=null;
 _.Account=null;
-LDListItemsForAccountRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"lc":o};o=t;
 	t={"#":id,"oas":o};o=t;
@@ -26,4 +26,4 @@ LDListItemsForAccountRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDListItemsForAccountRequest;
+module.exports=O;

@@ -4,7 +4,7 @@ var LDCreatePlaygroundResponse = require('./LDCreatePlaygroundResponse');
 var LDImageSearchResponse = require('./LDImageSearchResponse');
 var LDUrlToStoryResponse = require('./LDUrlToStoryResponse');
 
-function LDDeviceToClusterMiscellaneousResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -13,9 +13,9 @@ function LDDeviceToClusterMiscellaneousResponseProtocol(e){
 	if(e['p']!=null)$.CreatePlaygroundResponse=new LDCreatePlaygroundResponse(e['p']);
 	if(e['e']!=null)$.GetExtraVersions=new LDGetExtraVersionsResponse(e['e']);
 }
-LDDeviceToClusterMiscellaneousResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterMiscellaneousResponseProtocol.prototype.constructor = LDDeviceToClusterMiscellaneousResponseProtocol;
-var _=LDDeviceToClusterMiscellaneousResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterMiscellaneousResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -32,4 +32,4 @@ _.ImageSearchResponse=null;
 _.CreatePlaygroundResponse=null;
 _.GetExtraVersions=null;
 
-module.exports=LDDeviceToClusterMiscellaneousResponseProtocol;
+module.exports=O;

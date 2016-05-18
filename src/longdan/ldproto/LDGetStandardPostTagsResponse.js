@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDPostTagWithLocalization = require('./LDPostTagWithLocalization');
 
-function LDGetStandardPostTagsResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDGetStandardPostTagsResponse(e){
 	}
 	$.MaxVideoLength=e['l'];
 }
-LDGetStandardPostTagsResponse.prototype=new LDJSONLoggable();
-LDGetStandardPostTagsResponse.prototype.constructor = LDGetStandardPostTagsResponse;
-var _=LDGetStandardPostTagsResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetStandardPostTagsResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -31,4 +31,4 @@ _.encode=function(o){
 _.PostTags=null;
 _.MaxVideoLength=null;
 
-module.exports=LDGetStandardPostTagsResponse;
+module.exports=O;

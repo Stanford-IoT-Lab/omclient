@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDRealtimeMessage = require('./LDRealtimeMessage');
 
-function LDRealtimeMessageDeliveryPush(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['m']!=null)$.Message=new LDRealtimeMessage(e['m']);
 }
-LDRealtimeMessageDeliveryPush.prototype=new LDJSONLoggable();
-LDRealtimeMessageDeliveryPush.prototype.constructor = LDRealtimeMessageDeliveryPush;
-var _=LDRealtimeMessageDeliveryPush.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDRealtimeMessageDeliveryPush";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.Message=null;
 
-module.exports=LDRealtimeMessageDeliveryPush;
+module.exports=O;

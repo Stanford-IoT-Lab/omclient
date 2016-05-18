@@ -1,16 +1,16 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDFollowUserRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.AccountToFollow=e['a'];
 	$.Follow=e['f'];
 }
-LDFollowUserRequest.prototype=new LDJSONLoggable();
-LDFollowUserRequest.prototype.constructor = LDFollowUserRequest;
-var _=LDFollowUserRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDFollowUserRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -23,7 +23,7 @@ _.encode=function(o){
 }
 _.AccountToFollow=null;
 _.Follow=null;
-LDFollowUserRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"f":o};o=t;
 	t={"#":id,"w":o};o=t;
@@ -31,4 +31,4 @@ LDFollowUserRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDFollowUserRequest;
+module.exports=O;

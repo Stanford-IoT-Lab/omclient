@@ -1,13 +1,13 @@
 var LDEnum = require('./LDEnum');
 
-function LDAccessScope(e){
+function O(e){
 	LDEnum.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDAccessScope.prototype=new LDEnum();
-LDAccessScope.prototype.constructor = LDAccessScope;
-var _=LDAccessScope.prototype;
+O.prototype=new LDEnum();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDAccessScope";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDAccessScope;
+module.exports=O;

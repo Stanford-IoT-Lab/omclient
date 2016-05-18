@@ -1,7 +1,7 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetSSOTokenRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDGetSSOTokenRequest(e){
 		for(var k=0;k<d.length;++k)$.Scopes.push(d[k]);
 	}
 }
-LDGetSSOTokenRequest.prototype=new LDJSONLoggable();
-LDGetSSOTokenRequest.prototype.constructor = LDGetSSOTokenRequest;
-var _=LDGetSSOTokenRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetSSOTokenRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -28,7 +28,7 @@ _.encode=function(o){
 	return o;
 }
 _.Scopes=null;
-LDGetSSOTokenRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"so":o};o=t;
 	t={"#":id,"a":o};o=t;
@@ -36,4 +36,4 @@ LDGetSSOTokenRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetSSOTokenRequest;
+module.exports=O;

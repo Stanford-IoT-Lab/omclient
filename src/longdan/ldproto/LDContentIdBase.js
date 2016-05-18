@@ -2,7 +2,7 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDTypedId = require('./LDTypedId');
 var LDFeed = require('./LDFeed');
 
-function LDContentIdBase(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDContentIdBase(e){
 	$.Account=e['ca'];
 	$.ProfileVersion=e['cpv'];
 }
-LDContentIdBase.prototype=new LDJSONLoggable();
-LDContentIdBase.prototype.constructor = LDContentIdBase;
-var _=LDContentIdBase.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDContentIdBase";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -33,4 +33,4 @@ _.TypedId=null;
 _.Account=null;
 _.ProfileVersion=null;
 
-module.exports=LDContentIdBase;
+module.exports=O;

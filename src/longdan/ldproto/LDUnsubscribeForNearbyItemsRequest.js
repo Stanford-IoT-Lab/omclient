@@ -1,13 +1,13 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDUnsubscribeForNearbyItemsRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDUnsubscribeForNearbyItemsRequest.prototype=new LDJSONLoggable();
-LDUnsubscribeForNearbyItemsRequest.prototype.constructor = LDUnsubscribeForNearbyItemsRequest;
-var _=LDUnsubscribeForNearbyItemsRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDUnsubscribeForNearbyItemsRequest";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -15,7 +15,7 @@ _.encode=function(o){
 	LDJSONLoggable.prototype.encode.call($,o);
 	return o;
 }
-LDUnsubscribeForNearbyItemsRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"us":o};o=t;
 	t={"#":id,"n":o};o=t;
@@ -23,4 +23,4 @@ LDUnsubscribeForNearbyItemsRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDUnsubscribeForNearbyItemsRequest;
+module.exports=O;

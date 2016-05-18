@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDIdentity = require('./LDIdentity');
 
-function LDCheckSSOTokenResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -15,9 +15,9 @@ function LDCheckSSOTokenResponse(e){
 	if(e['i']!=null)$.Identity=new LDIdentity(e['i']);
 	$.AuthCode=e['c'];
 }
-LDCheckSSOTokenResponse.prototype=new LDJSONLoggable();
-LDCheckSSOTokenResponse.prototype.constructor = LDCheckSSOTokenResponse;
-var _=LDCheckSSOTokenResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDCheckSSOTokenResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -40,4 +40,4 @@ _.Scopes=null;
 _.Identity=null;
 _.AuthCode=null;
 
-module.exports=LDCheckSSOTokenResponse;
+module.exports=O;

@@ -5,7 +5,7 @@ var LDGetMessagesWithContinuationResponse = require('./LDGetMessagesWithContinua
 var LDGetMessagesResponse = require('./LDGetMessagesResponse');
 var LDGetMessageResponse = require('./LDGetMessageResponse');
 
-function LDDeviceToClusterMessageResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -15,9 +15,9 @@ function LDDeviceToClusterMessageResponseProtocol(e){
 	if(e['l']!=null)$.GetJoinFeedLinkResponse=new LDGetJoinFeedLinkResponse(e['l']);
 	if(e['gf']!=null)$.GetFeedDetails=new LDGetPublicFeedDetailsResponse(e['gf']);
 }
-LDDeviceToClusterMessageResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterMessageResponseProtocol.prototype.constructor = LDDeviceToClusterMessageResponseProtocol;
-var _=LDDeviceToClusterMessageResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterMessageResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -36,4 +36,4 @@ _.GetMessagesWithContinuationResponse=null;
 _.GetJoinFeedLinkResponse=null;
 _.GetFeedDetails=null;
 
-module.exports=LDDeviceToClusterMessageResponseProtocol;
+module.exports=O;

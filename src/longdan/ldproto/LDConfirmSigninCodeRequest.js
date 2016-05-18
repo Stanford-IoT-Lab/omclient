@@ -1,7 +1,7 @@
 var LDAccountDetailsResponse = require('./LDAccountDetailsResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDConfirmSigninCodeRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -9,9 +9,9 @@ function LDConfirmSigninCodeRequest(e){
 	$.QueryKey=e['k'];
 	$.IpAddress=e['p'];
 }
-LDConfirmSigninCodeRequest.prototype=new LDJSONLoggable();
-LDConfirmSigninCodeRequest.prototype.constructor = LDConfirmSigninCodeRequest;
-var _=LDConfirmSigninCodeRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDConfirmSigninCodeRequest";
 _.__rt=LDAccountDetailsResponse;
 _.encode=function(o){
@@ -26,7 +26,7 @@ _.encode=function(o){
 _.AuthCode=null;
 _.QueryKey=null;
 _.IpAddress=null;
-LDConfirmSigninCodeRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"cc":o};o=t;
 	t={"#":id,"a":o};o=t;
@@ -34,4 +34,4 @@ LDConfirmSigninCodeRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDConfirmSigninCodeRequest;
+module.exports=O;

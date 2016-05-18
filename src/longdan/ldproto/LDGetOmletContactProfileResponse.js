@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDContactProfile = require('./LDContactProfile');
 
-function LDGetOmletContactProfileResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['p']!=null)$.ContactProfile=new LDContactProfile(e['p']);
 }
-LDGetOmletContactProfileResponse.prototype=new LDJSONLoggable();
-LDGetOmletContactProfileResponse.prototype.constructor = LDGetOmletContactProfileResponse;
-var _=LDGetOmletContactProfileResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetOmletContactProfileResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.ContactProfile=null;
 
-module.exports=LDGetOmletContactProfileResponse;
+module.exports=O;

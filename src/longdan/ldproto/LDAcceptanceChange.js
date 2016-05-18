@@ -1,14 +1,14 @@
 var LDSynchronizedMessageBody = require('./LDSynchronizedMessageBody');
 
-function LDAcceptanceChange(e){
+function O(e){
 	LDSynchronizedMessageBody.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Acceptance=e['a'];
 }
-LDAcceptanceChange.prototype=new LDSynchronizedMessageBody();
-LDAcceptanceChange.prototype.constructor = LDAcceptanceChange;
-var _=LDAcceptanceChange.prototype;
+O.prototype=new LDSynchronizedMessageBody();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDAcceptanceChange";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -19,4 +19,4 @@ _.encode=function(o){
 }
 _.Acceptance=null;
 
-module.exports=LDAcceptanceChange;
+module.exports=O;

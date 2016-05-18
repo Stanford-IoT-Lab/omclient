@@ -1,6 +1,6 @@
 var LDFeed = require('./LDFeed');
 
-function LDDirtyFeed(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['f']!=null)$.Feed=new LDFeed(e['f']);
@@ -8,7 +8,7 @@ function LDDirtyFeed(e){
 	$.LastWriteTime=e['t'];
 	$.LastRenderableTime=e['r'];
 }
-var _=LDDirtyFeed.prototype;
+var _=O.prototype;
 _.__type="LDDirtyFeed";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -24,4 +24,4 @@ _.Acceptance=null;
 _.LastWriteTime=null;
 _.LastRenderableTime=null;
 
-module.exports=LDDirtyFeed;
+module.exports=O;

@@ -2,7 +2,7 @@ var LDGetMessagesWithContinuationResponse = require('./LDGetMessagesWithContinua
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDFeed = require('./LDFeed');
 
-function LDGetMessagesByTypeRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDGetMessagesByTypeRequest(e){
 	$.Type=e['t'];
 	if(e['n']!=null)$.NextResult=new Buffer(e['n'],'base64');
 }
-LDGetMessagesByTypeRequest.prototype=new LDJSONLoggable();
-LDGetMessagesByTypeRequest.prototype.constructor = LDGetMessagesByTypeRequest;
-var _=LDGetMessagesByTypeRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetMessagesByTypeRequest";
 _.__rt=LDGetMessagesWithContinuationResponse;
 _.encode=function(o){
@@ -27,7 +27,7 @@ _.encode=function(o){
 _.Feed=null;
 _.Type=null;
 _.NextResult=null;
-LDGetMessagesByTypeRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"T":o};o=t;
 	t={"#":id,"m":o};o=t;
@@ -35,4 +35,4 @@ LDGetMessagesByTypeRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetMessagesByTypeRequest;
+module.exports=O;

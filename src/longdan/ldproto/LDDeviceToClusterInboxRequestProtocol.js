@@ -9,7 +9,7 @@ var LDGetDirtyFeedsRequest = require('./LDGetDirtyFeedsRequest');
 var LDSetFeedAcceptanceRequest = require('./LDSetFeedAcceptanceRequest');
 var LDGetFeedStateRequest = require('./LDGetFeedStateRequest');
 
-function LDDeviceToClusterInboxRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -23,9 +23,9 @@ function LDDeviceToClusterInboxRequestProtocol(e){
 	if(e['t']!=null)$.TerminatedPush=new LDInboxDeliveryTerminatedPush(e['t']);
 	if(e['b']!=null)$.SetAppleBadgeCount=new LDSetAppleBadgeCountRequest(e['b']);
 }
-LDDeviceToClusterInboxRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterInboxRequestProtocol.prototype.constructor = LDDeviceToClusterInboxRequestProtocol;
-var _=LDDeviceToClusterInboxRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterInboxRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -52,4 +52,4 @@ _.MessagePush=null;
 _.TerminatedPush=null;
 _.SetAppleBadgeCount=null;
 
-module.exports=LDDeviceToClusterInboxRequestProtocol;
+module.exports=O;

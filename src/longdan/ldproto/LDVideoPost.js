@@ -1,7 +1,7 @@
 var LDPost = require('./LDPost');
 var LDM3U8Info = require('./LDM3U8Info');
 
-function LDVideoPost(e){
+function O(e){
 	LDPost.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -20,9 +20,9 @@ function LDVideoPost(e){
 	$.Width=e['W'];
 	$.Duration=e['D'];
 }
-LDVideoPost.prototype=new LDPost();
-LDVideoPost.prototype.constructor = LDVideoPost;
-var _=LDVideoPost.prototype;
+O.prototype=new LDPost();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDVideoPost";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -55,4 +55,4 @@ _.Height=null;
 _.Width=null;
 _.Duration=null;
 
-module.exports=LDVideoPost;
+module.exports=O;

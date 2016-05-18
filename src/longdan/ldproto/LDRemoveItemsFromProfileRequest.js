@@ -2,7 +2,7 @@ var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDItemId = require('./LDItemId');
 
-function LDRemoveItemsFromProfileRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -13,9 +13,9 @@ function LDRemoveItemsFromProfileRequest(e){
 		for(var k=0; k<d.length;++k)$.Items.push(new LDItemId(d[k]));
 	}
 }
-LDRemoveItemsFromProfileRequest.prototype=new LDJSONLoggable();
-LDRemoveItemsFromProfileRequest.prototype.constructor = LDRemoveItemsFromProfileRequest;
-var _=LDRemoveItemsFromProfileRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDRemoveItemsFromProfileRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -32,7 +32,7 @@ _.encode=function(o){
 }
 _.ItemType=null;
 _.Items=null;
-LDRemoveItemsFromProfileRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"rip":o};o=t;
 	t={"#":id,"p":o};o=t;
@@ -40,4 +40,4 @@ LDRemoveItemsFromProfileRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDRemoveItemsFromProfileRequest;
+module.exports=O;

@@ -1,12 +1,12 @@
 var LDGenerateApiKeyResponse = require('./LDGenerateApiKeyResponse');
 var LDItemId = require('./LDItemId');
 
-function LDGenerateApiKeyRequest(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['id']!=null)$.ItemId=new LDItemId(e['id']);
 }
-var _=LDGenerateApiKeyRequest.prototype;
+var _=O.prototype;
 _.__type="LDGenerateApiKeyRequest";
 _.__rt=LDGenerateApiKeyResponse;
 _.encode=function(o){
@@ -16,7 +16,7 @@ _.encode=function(o){
 	return o;
 }
 _.ItemId=null;
-LDGenerateApiKeyRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"gk":o};o=t;
 	t={"#":id,"oas":o};o=t;
@@ -24,4 +24,4 @@ LDGenerateApiKeyRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGenerateApiKeyRequest;
+module.exports=O;

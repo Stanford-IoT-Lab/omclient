@@ -2,7 +2,7 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDIdentity = require('./LDIdentity');
 var LDFeed = require('./LDFeed');
 
-function LDSendDirectMessageResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -20,9 +20,9 @@ function LDSendDirectMessageResponse(e){
 		for(var k=0; k<d.length;++k)$.OptOutIdentities.push(new LDIdentity(d[k]));
 	}
 }
-LDSendDirectMessageResponse.prototype=new LDJSONLoggable();
-LDSendDirectMessageResponse.prototype.constructor = LDSendDirectMessageResponse;
-var _=LDSendDirectMessageResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDSendDirectMessageResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -49,4 +49,4 @@ _.Metadata=null;
 _.UnmappedIdentities=null;
 _.OptOutIdentities=null;
 
-module.exports=LDSendDirectMessageResponse;
+module.exports=O;

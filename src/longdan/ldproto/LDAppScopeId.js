@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDAppScopeId(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['a']!=null)$.AppId=new Buffer(e['a'],'base64');
 	$.PackageId=e['p'];
 }
-LDAppScopeId.prototype=new LDJSONLoggable();
-LDAppScopeId.prototype.constructor = LDAppScopeId;
-var _=LDAppScopeId.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDAppScopeId";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -22,4 +22,4 @@ _.encode=function(o){
 _.AppId=null;
 _.PackageId=null;
 
-module.exports=LDAppScopeId;
+module.exports=O;

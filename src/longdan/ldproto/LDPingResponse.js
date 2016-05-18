@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDPingResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.ObservedIp=e['i'];
 	$.UtcMillis=e['t'];
 }
-LDPingResponse.prototype=new LDJSONLoggable();
-LDPingResponse.prototype.constructor = LDPingResponse;
-var _=LDPingResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDPingResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -22,4 +22,4 @@ _.encode=function(o){
 _.ObservedIp=null;
 _.UtcMillis=null;
 
-module.exports=LDPingResponse;
+module.exports=O;

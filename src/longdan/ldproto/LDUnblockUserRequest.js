@@ -1,15 +1,15 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDUnblockUserRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.UserKey=e['k'];
 }
-LDUnblockUserRequest.prototype=new LDJSONLoggable();
-LDUnblockUserRequest.prototype.constructor = LDUnblockUserRequest;
-var _=LDUnblockUserRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDUnblockUserRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -20,7 +20,7 @@ _.encode=function(o){
 	return o;
 }
 _.UserKey=null;
-LDUnblockUserRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"u":o};o=t;
 	t={"#":id,"um":o};o=t;
@@ -28,4 +28,4 @@ LDUnblockUserRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDUnblockUserRequest;
+module.exports=O;

@@ -2,7 +2,7 @@ var LDScoreResponse = require('./LDScoreResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDItemId = require('./LDItemId');
 
-function LDGetHighScoreRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -17,9 +17,9 @@ function LDGetHighScoreRequest(e){
 	$.SimilarScoresGlobal=e['sg'];
 	$.SimilarScoresLocal=e['sl'];
 }
-LDGetHighScoreRequest.prototype=new LDJSONLoggable();
-LDGetHighScoreRequest.prototype.constructor = LDGetHighScoreRequest;
-var _=LDGetHighScoreRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetHighScoreRequest";
 _.__rt=LDScoreResponse;
 _.encode=function(o){
@@ -48,7 +48,7 @@ _.SimilarScoresInCountry=null;
 _.SimilarScoresInContinent=null;
 _.SimilarScoresGlobal=null;
 _.SimilarScoresLocal=null;
-LDGetHighScoreRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"hs":o};o=t;
 	t={"#":id,"h":o};o=t;
@@ -56,4 +56,4 @@ LDGetHighScoreRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetHighScoreRequest;
+module.exports=O;

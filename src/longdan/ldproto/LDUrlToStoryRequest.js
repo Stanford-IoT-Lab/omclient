@@ -1,15 +1,15 @@
 var LDUrlToStoryResponse = require('./LDUrlToStoryResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDUrlToStoryRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Url=e['l'];
 }
-LDUrlToStoryRequest.prototype=new LDJSONLoggable();
-LDUrlToStoryRequest.prototype.constructor = LDUrlToStoryRequest;
-var _=LDUrlToStoryRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDUrlToStoryRequest";
 _.__rt=LDUrlToStoryResponse;
 _.encode=function(o){
@@ -20,7 +20,7 @@ _.encode=function(o){
 	return o;
 }
 _.Url=null;
-LDUrlToStoryRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"wl":o};o=t;
 	t={"#":id,"M":o};o=t;
@@ -28,4 +28,4 @@ LDUrlToStoryRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDUrlToStoryRequest;
+module.exports=O;

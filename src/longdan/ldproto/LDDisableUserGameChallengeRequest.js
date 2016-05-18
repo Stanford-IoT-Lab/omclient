@@ -1,16 +1,16 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDDisableUserGameChallengeRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.AdminAccount=e['a'];
 	$.Account=e['A'];
 }
-LDDisableUserGameChallengeRequest.prototype=new LDJSONLoggable();
-LDDisableUserGameChallengeRequest.prototype.constructor = LDDisableUserGameChallengeRequest;
-var _=LDDisableUserGameChallengeRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDisableUserGameChallengeRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -23,7 +23,7 @@ _.encode=function(o){
 }
 _.AdminAccount=null;
 _.Account=null;
-LDDisableUserGameChallengeRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"g":o};o=t;
 	t={"#":id,"A":o};o=t;
@@ -31,4 +31,4 @@ LDDisableUserGameChallengeRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDDisableUserGameChallengeRequest;
+module.exports=O;

@@ -1,12 +1,12 @@
 var LDListItemsResponse = require('./LDListItemsResponse');
 
-function LDListAllItemsRequest(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.ItemType=e['it'];
 	if(e['c']!=null)$.ContinuationKey=new Buffer(e['c'],'base64');
 }
-var _=LDListAllItemsRequest.prototype;
+var _=O.prototype;
 _.__type="LDListAllItemsRequest";
 _.__rt=LDListItemsResponse;
 _.encode=function(o){
@@ -18,7 +18,7 @@ _.encode=function(o){
 }
 _.ItemType=null;
 _.ContinuationKey=null;
-LDListAllItemsRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"la":o};o=t;
 	t={"#":id,"oas":o};o=t;
@@ -26,4 +26,4 @@ LDListAllItemsRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDListAllItemsRequest;
+module.exports=O;

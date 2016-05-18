@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDDirtyFeed = require('./LDDirtyFeed');
 
-function LDDirtyFeedsResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -13,9 +13,9 @@ function LDDirtyFeedsResponse(e){
 	$.Partial=e['p'];
 	$.Window=e['w'];
 }
-LDDirtyFeedsResponse.prototype=new LDJSONLoggable();
-LDDirtyFeedsResponse.prototype.constructor = LDDirtyFeedsResponse;
-var _=LDDirtyFeedsResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDirtyFeedsResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -34,4 +34,4 @@ _.Dirty=null;
 _.Partial=null;
 _.Window=null;
 
-module.exports=LDDirtyFeedsResponse;
+module.exports=O;

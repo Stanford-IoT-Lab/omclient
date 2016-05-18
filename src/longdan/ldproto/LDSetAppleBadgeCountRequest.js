@@ -1,15 +1,15 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDSetAppleBadgeCountRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.BadgeCount=e['b'];
 }
-LDSetAppleBadgeCountRequest.prototype=new LDJSONLoggable();
-LDSetAppleBadgeCountRequest.prototype.constructor = LDSetAppleBadgeCountRequest;
-var _=LDSetAppleBadgeCountRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDSetAppleBadgeCountRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -20,7 +20,7 @@ _.encode=function(o){
 	return o;
 }
 _.BadgeCount=null;
-LDSetAppleBadgeCountRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"b":o};o=t;
 	t={"#":id,"i":o};o=t;
@@ -28,4 +28,4 @@ LDSetAppleBadgeCountRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDSetAppleBadgeCountRequest;
+module.exports=O;

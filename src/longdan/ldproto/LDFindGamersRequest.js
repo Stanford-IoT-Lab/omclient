@@ -2,7 +2,7 @@ var LDFindGamersResponse = require('./LDFindGamersResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDItemId = require('./LDItemId');
 
-function LDFindGamersRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDFindGamersRequest(e){
 	$.Latitude=e['x'];
 	$.Longitude=e['y'];
 }
-LDFindGamersRequest.prototype=new LDJSONLoggable();
-LDFindGamersRequest.prototype.constructor = LDFindGamersRequest;
-var _=LDFindGamersRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDFindGamersRequest";
 _.__rt=LDFindGamersResponse;
 _.encode=function(o){
@@ -27,7 +27,7 @@ _.encode=function(o){
 _.GameId=null;
 _.Latitude=null;
 _.Longitude=null;
-LDFindGamersRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"f":o};o=t;
 	t={"#":id,"g":o};o=t;
@@ -35,4 +35,4 @@ LDFindGamersRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDFindGamersRequest;
+module.exports=O;

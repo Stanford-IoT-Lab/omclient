@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDFeed = require('./LDFeed');
 
-function LDPublicChatMessageTerminatedPush(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['f']!=null)$.Feed=new LDFeed(e['f']);
 }
-LDPublicChatMessageTerminatedPush.prototype=new LDJSONLoggable();
-LDPublicChatMessageTerminatedPush.prototype.constructor = LDPublicChatMessageTerminatedPush;
-var _=LDPublicChatMessageTerminatedPush.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDPublicChatMessageTerminatedPush";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.Feed=null;
 
-module.exports=LDPublicChatMessageTerminatedPush;
+module.exports=O;

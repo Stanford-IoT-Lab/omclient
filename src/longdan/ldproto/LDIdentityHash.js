@@ -1,10 +1,10 @@
-function LDIdentityHash(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Type=e['t'];
 	if(e['h']!=null)$.Hash=new Buffer(e['h'],'base64');
 }
-var _=LDIdentityHash.prototype;
+var _=O.prototype;
 _.__type="LDIdentityHash";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 _.Type=null;
 _.Hash=null;
 
-module.exports=LDIdentityHash;
+module.exports=O;

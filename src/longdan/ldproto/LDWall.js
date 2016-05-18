@@ -1,6 +1,6 @@
 var LDPostContainer = require('./LDPostContainer');
 
-function LDWall(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['p']!=null){
@@ -10,7 +10,7 @@ function LDWall(e){
 	}
 	if(e['c']!=null)$.ContinuationKey=new Buffer(e['c'],'base64');
 }
-var _=LDWall.prototype;
+var _=O.prototype;
 _.__type="LDWall";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -26,4 +26,4 @@ _.encode=function(o){
 _.Posts=null;
 _.ContinuationKey=null;
 
-module.exports=LDWall;
+module.exports=O;

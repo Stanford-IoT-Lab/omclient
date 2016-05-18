@@ -1,11 +1,11 @@
 var LDMockReceipt = require('./LDMockReceipt');
 
-function LDReceiptContainer(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['m']!=null)$.MockReceipt=new LDMockReceipt(e['m']);
 }
-var _=LDReceiptContainer.prototype;
+var _=O.prototype;
 _.__type="LDReceiptContainer";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -15,4 +15,4 @@ _.encode=function(o){
 }
 _.MockReceipt=null;
 
-module.exports=LDReceiptContainer;
+module.exports=O;

@@ -5,7 +5,7 @@ var LDGetAppSigninLinkResponse = require('./LDGetAppSigninLinkResponse');
 var LDGetLinkedIdentitiesResponse = require('./LDGetLinkedIdentitiesResponse');
 var LDAccountDetailsResponse = require('./LDAccountDetailsResponse');
 
-function LDDeviceToIdpSignupResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -15,9 +15,9 @@ function LDDeviceToIdpSignupResponseProtocol(e){
 	if(e['S']!=null)$.GetSigninLinkResponse=new LDGetSigninLinkResponse(e['S']);
 	if(e['c']!=null)$.CheckSSOTokenResponse=new LDCheckSSOTokenResponse(e['c']);
 }
-LDDeviceToIdpSignupResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToIdpSignupResponseProtocol.prototype.constructor = LDDeviceToIdpSignupResponseProtocol;
-var _=LDDeviceToIdpSignupResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToIdpSignupResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -36,4 +36,4 @@ _.GetAppSigninLinkResponse=null;
 _.GetSigninLinkResponse=null;
 _.CheckSSOTokenResponse=null;
 
-module.exports=LDDeviceToIdpSignupResponseProtocol;
+module.exports=O;

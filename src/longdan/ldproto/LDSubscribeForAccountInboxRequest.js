@@ -1,13 +1,13 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDSubscribeForAccountInboxRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDSubscribeForAccountInboxRequest.prototype=new LDJSONLoggable();
-LDSubscribeForAccountInboxRequest.prototype.constructor = LDSubscribeForAccountInboxRequest;
-var _=LDSubscribeForAccountInboxRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDSubscribeForAccountInboxRequest";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -15,7 +15,7 @@ _.encode=function(o){
 	LDJSONLoggable.prototype.encode.call($,o);
 	return o;
 }
-LDSubscribeForAccountInboxRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"S":o};o=t;
 	t={"#":id,"i":o};o=t;
@@ -23,4 +23,4 @@ LDSubscribeForAccountInboxRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDSubscribeForAccountInboxRequest;
+module.exports=O;

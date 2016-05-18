@@ -1,6 +1,6 @@
 var LDFeed = require('./LDFeed');
 
-function LDRealtimeMessage(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Type=e['T'];
@@ -9,7 +9,7 @@ function LDRealtimeMessage(e){
 	if(e['b']!=null)$.Body=new Buffer(e['b'],'base64');
 	if(e['f']!=null)$.Feed=new LDFeed(e['f']);
 }
-var _=LDRealtimeMessage.prototype;
+var _=O.prototype;
 _.__type="LDRealtimeMessage";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -27,4 +27,4 @@ _.Sender=null;
 _.Body=null;
 _.Feed=null;
 
-module.exports=LDRealtimeMessage;
+module.exports=O;

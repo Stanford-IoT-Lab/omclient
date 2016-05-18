@@ -4,7 +4,7 @@ var LDPostTag = require('./LDPostTag');
 var LDComment = require('./LDComment');
 var LDPostId = require('./LDPostId');
 
-function LDPost(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -31,9 +31,9 @@ function LDPost(e){
 	$.AppName=e['an'];
 	$.AppIconBlobLink=e['ai'];
 }
-LDPost.prototype=new LDJSONLoggable();
-LDPost.prototype.constructor = LDPost;
-var _=LDPost.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDPost";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -78,4 +78,4 @@ _.YouLiked=null;
 _.AppName=null;
 _.AppIconBlobLink=null;
 
-module.exports=LDPost;
+module.exports=O;

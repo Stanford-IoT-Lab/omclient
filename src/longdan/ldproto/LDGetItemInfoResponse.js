@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDItemInfoContainer = require('./LDItemInfoContainer');
 
-function LDGetItemInfoResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['ii']!=null)$.ItemInfoContainer=new LDItemInfoContainer(e['ii']);
 }
-LDGetItemInfoResponse.prototype=new LDJSONLoggable();
-LDGetItemInfoResponse.prototype.constructor = LDGetItemInfoResponse;
-var _=LDGetItemInfoResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetItemInfoResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.ItemInfoContainer=null;
 
-module.exports=LDGetItemInfoResponse;
+module.exports=O;

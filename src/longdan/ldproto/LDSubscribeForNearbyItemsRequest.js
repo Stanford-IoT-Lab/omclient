@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDSubscribeForNearbyItemsRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDSubscribeForNearbyItemsRequest(e){
 	$.Longitude=e['g'];
 	$.Radius=e['r'];
 }
-LDSubscribeForNearbyItemsRequest.prototype=new LDJSONLoggable();
-LDSubscribeForNearbyItemsRequest.prototype.constructor = LDSubscribeForNearbyItemsRequest;
-var _=LDSubscribeForNearbyItemsRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDSubscribeForNearbyItemsRequest";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -30,7 +30,7 @@ _.Ttl=null;
 _.Latitude=null;
 _.Longitude=null;
 _.Radius=null;
-LDSubscribeForNearbyItemsRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"s":o};o=t;
 	t={"#":id,"n":o};o=t;
@@ -38,4 +38,4 @@ LDSubscribeForNearbyItemsRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDSubscribeForNearbyItemsRequest;
+module.exports=O;

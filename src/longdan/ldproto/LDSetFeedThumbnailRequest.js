@@ -2,7 +2,7 @@ var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDFeed = require('./LDFeed');
 
-function LDSetFeedThumbnailRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDSetFeedThumbnailRequest(e){
 	$.BlobLinkString=e['p'];
 	if(e['d']!=null)$.DecryptedHash=new Buffer(e['d'],'base64');
 }
-LDSetFeedThumbnailRequest.prototype=new LDJSONLoggable();
-LDSetFeedThumbnailRequest.prototype.constructor = LDSetFeedThumbnailRequest;
-var _=LDSetFeedThumbnailRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDSetFeedThumbnailRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -27,7 +27,7 @@ _.encode=function(o){
 _.Feed=null;
 _.BlobLinkString=null;
 _.DecryptedHash=null;
-LDSetFeedThumbnailRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"h":o};o=t;
 	t={"#":id,"m":o};o=t;
@@ -35,4 +35,4 @@ LDSetFeedThumbnailRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDSetFeedThumbnailRequest;
+module.exports=O;

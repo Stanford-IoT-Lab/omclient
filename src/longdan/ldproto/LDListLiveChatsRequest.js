@@ -1,7 +1,7 @@
 var LDListChatsResponse = require('./LDListChatsResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDListLiveChatsRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDListLiveChatsRequest(e){
 	$.Latitude=e['gp'];
 	$.ForwardingStage=e['f'];
 }
-LDListLiveChatsRequest.prototype=new LDJSONLoggable();
-LDListLiveChatsRequest.prototype.constructor = LDListLiveChatsRequest;
-var _=LDListLiveChatsRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDListLiveChatsRequest";
 _.__rt=LDListChatsResponse;
 _.encode=function(o){
@@ -32,7 +32,7 @@ _.PackageId=null;
 _.Longitude=null;
 _.Latitude=null;
 _.ForwardingStage=null;
-LDListLiveChatsRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"lc":o};o=t;
 	t={"#":id,"pc":o};o=t;
@@ -40,4 +40,4 @@ LDListLiveChatsRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDListLiveChatsRequest;
+module.exports=O;

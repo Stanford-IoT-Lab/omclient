@@ -1,14 +1,14 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDDisconnectCloudSyncRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDDisconnectCloudSyncRequest.prototype=new LDJSONLoggable();
-LDDisconnectCloudSyncRequest.prototype.constructor = LDDisconnectCloudSyncRequest;
-var _=LDDisconnectCloudSyncRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDisconnectCloudSyncRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -17,7 +17,7 @@ _.encode=function(o){
 	LDJSONLoggable.prototype.encode.call($,o);
 	return o;
 }
-LDDisconnectCloudSyncRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"d":o};o=t;
 	t={"#":id,"cs":o};o=t;
@@ -25,4 +25,4 @@ LDDisconnectCloudSyncRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDDisconnectCloudSyncRequest;
+module.exports=O;

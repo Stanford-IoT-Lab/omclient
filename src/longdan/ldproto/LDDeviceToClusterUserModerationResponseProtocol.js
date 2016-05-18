@@ -1,13 +1,13 @@
 var LDResponseProtocolBase = require('./LDResponseProtocolBase');
 
-function LDDeviceToClusterUserModerationResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDDeviceToClusterUserModerationResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterUserModerationResponseProtocol.prototype.constructor = LDDeviceToClusterUserModerationResponseProtocol;
-var _=LDDeviceToClusterUserModerationResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterUserModerationResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDDeviceToClusterUserModerationResponseProtocol;
+module.exports=O;

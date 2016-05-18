@@ -1,7 +1,7 @@
 var LDListFlaggedUsersResponse = require('./LDListFlaggedUsersResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDListFlaggedUsersRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDListFlaggedUsersRequest(e){
 	if(e['k']!=null)$.ContinuationKey=new Buffer(e['k'],'base64');
 	$.AdminAccount=e['a'];
 }
-LDListFlaggedUsersRequest.prototype=new LDJSONLoggable();
-LDListFlaggedUsersRequest.prototype.constructor = LDListFlaggedUsersRequest;
-var _=LDListFlaggedUsersRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDListFlaggedUsersRequest";
 _.__rt=LDListFlaggedUsersResponse;
 _.encode=function(o){
@@ -29,7 +29,7 @@ _.End=null;
 _.Start=null;
 _.ContinuationKey=null;
 _.AdminAccount=null;
-LDListFlaggedUsersRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"f":o};o=t;
 	t={"#":id,"A":o};o=t;
@@ -37,4 +37,4 @@ LDListFlaggedUsersRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDListFlaggedUsersRequest;
+module.exports=O;

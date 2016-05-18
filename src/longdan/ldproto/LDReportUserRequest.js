@@ -1,7 +1,7 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDContentIdBase = require('./LDContentIdBase');
 
-function LDReportUserRequest(e){
+function O(e){
 	LDContentIdBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDReportUserRequest(e){
 	$.Reason=e['rr'];
 	$.Details=e['d'];
 }
-LDReportUserRequest.prototype=new LDContentIdBase();
-LDReportUserRequest.prototype.constructor = LDReportUserRequest;
-var _=LDReportUserRequest.prototype;
+O.prototype=new LDContentIdBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDReportUserRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -29,7 +29,7 @@ _.Reporter=null;
 _.UserKey=null;
 _.Reason=null;
 _.Details=null;
-LDReportUserRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"r":o};o=t;
 	t={"#":id,"um":o};o=t;
@@ -37,4 +37,4 @@ LDReportUserRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDReportUserRequest;
+module.exports=O;

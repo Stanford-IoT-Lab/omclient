@@ -1,7 +1,7 @@
 var LDCloudConfig = require('./LDCloudConfig');
 var LDIdentity = require('./LDIdentity');
 
-function LDAccountDetails(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Account=e['a'];
@@ -16,7 +16,7 @@ function LDAccountDetails(e){
 	if(e['m']!=null)$.MigratedCloudConfig=new LDCloudConfig(e['m']);
 	$.CreationTime=e['s'];
 }
-var _=LDAccountDetails.prototype;
+var _=O.prototype;
 _.__type="LDAccountDetails";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -42,4 +42,4 @@ _.MigratedPictureLink=null;
 _.MigratedCloudConfig=null;
 _.CreationTime=null;
 
-module.exports=LDAccountDetails;
+module.exports=O;

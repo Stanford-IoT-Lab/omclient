@@ -1,15 +1,15 @@
 var LDResponseProtocolBase = require('./LDResponseProtocolBase');
 var LDFindGamersResponse = require('./LDFindGamersResponse');
 
-function LDDeviceToClusterGameChallengeResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['f']!=null)$.FindGamers=new LDFindGamersResponse(e['f']);
 }
-LDDeviceToClusterGameChallengeResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterGameChallengeResponseProtocol.prototype.constructor = LDDeviceToClusterGameChallengeResponseProtocol;
-var _=LDDeviceToClusterGameChallengeResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterGameChallengeResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.FindGamers=null;
 
-module.exports=LDDeviceToClusterGameChallengeResponseProtocol;
+module.exports=O;

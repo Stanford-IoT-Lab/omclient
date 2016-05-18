@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDUrlToStoryResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.ResponseType=e['t'];
 	if(e['d']!=null)$.ResponseData=new Buffer(e['d'],'base64');
 }
-LDUrlToStoryResponse.prototype=new LDJSONLoggable();
-LDUrlToStoryResponse.prototype.constructor = LDUrlToStoryResponse;
-var _=LDUrlToStoryResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDUrlToStoryResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -22,4 +22,4 @@ _.encode=function(o){
 _.ResponseType=null;
 _.ResponseData=null;
 
-module.exports=LDUrlToStoryResponse;
+module.exports=O;

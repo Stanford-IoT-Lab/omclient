@@ -1,16 +1,16 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDMutualAddContactByTokenRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Account=e['a'];
 	$.Token=e['t'];
 }
-LDMutualAddContactByTokenRequest.prototype=new LDJSONLoggable();
-LDMutualAddContactByTokenRequest.prototype.constructor = LDMutualAddContactByTokenRequest;
-var _=LDMutualAddContactByTokenRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDMutualAddContactByTokenRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -23,7 +23,7 @@ _.encode=function(o){
 }
 _.Account=null;
 _.Token=null;
-LDMutualAddContactByTokenRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"m":o};o=t;
 	t={"#":id,"a":o};o=t;
@@ -31,4 +31,4 @@ LDMutualAddContactByTokenRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDMutualAddContactByTokenRequest;
+module.exports=O;

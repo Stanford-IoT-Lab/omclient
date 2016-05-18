@@ -2,7 +2,7 @@ var LDGatherEventsByAppResponse = require('./LDGatherEventsByAppResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDItemId = require('./LDItemId');
 
-function LDGatherEventsByAppRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDGatherEventsByAppRequest(e){
 	$.End=e['e'];
 	$.Zoom=e['z'];
 }
-LDGatherEventsByAppRequest.prototype=new LDJSONLoggable();
-LDGatherEventsByAppRequest.prototype.constructor = LDGatherEventsByAppRequest;
-var _=LDGatherEventsByAppRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGatherEventsByAppRequest";
 _.__rt=LDGatherEventsByAppResponse;
 _.encode=function(o){
@@ -33,7 +33,7 @@ _.PackageId=null;
 _.Start=null;
 _.End=null;
 _.Zoom=null;
-LDGatherEventsByAppRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"ga":o};o=t;
 	t={"#":id,"es":o};o=t;
@@ -41,4 +41,4 @@ LDGatherEventsByAppRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGatherEventsByAppRequest;
+module.exports=O;

@@ -1,13 +1,13 @@
 var LDItemInfo = require('./LDItemInfo');
 
-function LDStickerPackInfo(e){
+function O(e){
 	LDItemInfo.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDStickerPackInfo.prototype=new LDItemInfo();
-LDStickerPackInfo.prototype.constructor = LDStickerPackInfo;
-var _=LDStickerPackInfo.prototype;
+O.prototype=new LDItemInfo();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDStickerPackInfo";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDStickerPackInfo;
+module.exports=O;

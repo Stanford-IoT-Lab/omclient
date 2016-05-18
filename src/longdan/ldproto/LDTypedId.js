@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDTypedId(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Type=e['t'];
 	if(e['i']!=null)$.Id=new Buffer(e['i'],'base64');
 }
-LDTypedId.prototype=new LDJSONLoggable();
-LDTypedId.prototype.constructor = LDTypedId;
-var _=LDTypedId.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDTypedId";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -22,4 +22,4 @@ _.encode=function(o){
 _.Type=null;
 _.Id=null;
 
-module.exports=LDTypedId;
+module.exports=O;

@@ -2,7 +2,7 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDItemId = require('./LDItemId');
 var LDFeed = require('./LDFeed');
 
-function LDCreatePlaygroundResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -14,9 +14,9 @@ function LDCreatePlaygroundResponse(e){
 	}
 	$.Message=e['m'];
 }
-LDCreatePlaygroundResponse.prototype=new LDJSONLoggable();
-LDCreatePlaygroundResponse.prototype.constructor = LDCreatePlaygroundResponse;
-var _=LDCreatePlaygroundResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDCreatePlaygroundResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -35,4 +35,4 @@ _.Feed=null;
 _.AddedItems=null;
 _.Message=null;
 
-module.exports=LDCreatePlaygroundResponse;
+module.exports=O;

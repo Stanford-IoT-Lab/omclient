@@ -1,15 +1,15 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDFailureReportRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Failure=e['t'];
 }
-LDFailureReportRequest.prototype=new LDJSONLoggable();
-LDFailureReportRequest.prototype.constructor = LDFailureReportRequest;
-var _=LDFailureReportRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDFailureReportRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -20,7 +20,7 @@ _.encode=function(o){
 	return o;
 }
 _.Failure=null;
-LDFailureReportRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"f":o};o=t;
 	t={"#":id,"M":o};o=t;
@@ -28,4 +28,4 @@ LDFailureReportRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDFailureReportRequest;
+module.exports=O;

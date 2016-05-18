@@ -1,13 +1,13 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDClusterPartitionableRpcRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDClusterPartitionableRpcRequest.prototype=new LDJSONLoggable();
-LDClusterPartitionableRpcRequest.prototype.constructor = LDClusterPartitionableRpcRequest;
-var _=LDClusterPartitionableRpcRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDClusterPartitionableRpcRequest";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDClusterPartitionableRpcRequest;
+module.exports=O;

@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDFeed = require('./LDFeed');
 
-function LDPublicChatInfo(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -13,9 +13,9 @@ function LDPublicChatInfo(e){
 	$.DisplayName=e['dn'];
 	$.Members=e['m'];
 }
-LDPublicChatInfo.prototype=new LDJSONLoggable();
-LDPublicChatInfo.prototype.constructor = LDPublicChatInfo;
-var _=LDPublicChatInfo.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDPublicChatInfo";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -38,4 +38,4 @@ _.Stripe=null;
 _.DisplayName=null;
 _.Members=null;
 
-module.exports=LDPublicChatInfo;
+module.exports=O;

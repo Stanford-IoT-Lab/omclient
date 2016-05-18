@@ -1,13 +1,13 @@
 var LDEnum = require('./LDEnum');
 
-function LDFeature(e){
+function O(e){
 	LDEnum.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDFeature.prototype=new LDEnum();
-LDFeature.prototype.constructor = LDFeature;
-var _=LDFeature.prototype;
+O.prototype=new LDEnum();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDFeature";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDFeature;
+module.exports=O;

@@ -1,9 +1,9 @@
-function LDSimpleResponse(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['v']!=null)$.Value=e['v'];
 }
-var _=LDSimpleResponse.prototype;
+var _=O.prototype;
 _.__type="LDSimpleResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -13,4 +13,4 @@ _.encode=function(o){
 }
 _.Value=null;
 
-module.exports=LDSimpleResponse;
+module.exports=O;

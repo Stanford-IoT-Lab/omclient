@@ -1,13 +1,13 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDInboxDeliveryTerminatedPush(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDInboxDeliveryTerminatedPush.prototype=new LDJSONLoggable();
-LDInboxDeliveryTerminatedPush.prototype.constructor = LDInboxDeliveryTerminatedPush;
-var _=LDInboxDeliveryTerminatedPush.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDInboxDeliveryTerminatedPush";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDInboxDeliveryTerminatedPush;
+module.exports=O;

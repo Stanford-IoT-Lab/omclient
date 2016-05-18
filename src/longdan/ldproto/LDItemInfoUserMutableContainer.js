@@ -1,13 +1,13 @@
 var LDStickerPackInfoUserMutable = require('./LDStickerPackInfoUserMutable');
 var LDAppInfoUserMutable = require('./LDAppInfoUserMutable');
 
-function LDItemInfoUserMutableContainer(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['ai']!=null)$.AppInfoUserMutable=new LDAppInfoUserMutable(e['ai']);
 	if(e['si']!=null)$.StickerPackInfoUserMutable=new LDStickerPackInfoUserMutable(e['si']);
 }
-var _=LDItemInfoUserMutableContainer.prototype;
+var _=O.prototype;
 _.__type="LDItemInfoUserMutableContainer";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -19,4 +19,4 @@ _.encode=function(o){
 _.AppInfoUserMutable=null;
 _.StickerPackInfoUserMutable=null;
 
-module.exports=LDItemInfoUserMutableContainer;
+module.exports=O;

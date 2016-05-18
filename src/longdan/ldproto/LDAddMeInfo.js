@@ -1,6 +1,6 @@
 var LDAppRestletDetails = require('./LDAppRestletDetails');
 
-function LDAddMeInfo(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Account=e['aa'];
@@ -12,7 +12,7 @@ function LDAddMeInfo(e){
 	if(e['ad']!=null)$.AppDetails=new LDAppRestletDetails(e['ad']);
 	$.MobileOS=e['mo'];
 }
-var _=LDAddMeInfo.prototype;
+var _=O.prototype;
 _.__type="LDAddMeInfo";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -36,4 +36,4 @@ _.AppId=null;
 _.AppDetails=null;
 _.MobileOS=null;
 
-module.exports=LDAddMeInfo;
+module.exports=O;

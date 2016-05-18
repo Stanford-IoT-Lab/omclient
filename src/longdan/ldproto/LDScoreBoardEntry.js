@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDScoreBoardEntry(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDScoreBoardEntry(e){
 	$.Rank=e['r'];
 	if(e['d']!=null)$.ProfileDecryptedHash=new Buffer(e['d'],'base64');
 }
-LDScoreBoardEntry.prototype=new LDJSONLoggable();
-LDScoreBoardEntry.prototype.constructor = LDScoreBoardEntry;
-var _=LDScoreBoardEntry.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDScoreBoardEntry";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -34,4 +34,4 @@ _.Score=null;
 _.Rank=null;
 _.ProfileDecryptedHash=null;
 
-module.exports=LDScoreBoardEntry;
+module.exports=O;

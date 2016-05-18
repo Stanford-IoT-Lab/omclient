@@ -1,7 +1,7 @@
 var LDFeed = require('./LDFeed');
 var LDTypedId = require('./LDTypedId');
 
-function LDMessage(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['i']!=null)$.Id=new LDTypedId(e['i']);
@@ -14,7 +14,7 @@ function LDMessage(e){
 	$.Deleted=e['d'];
 	if(e['di']!=null)$.DeviceId=new Buffer(e['di'],'base64');
 }
-var _=LDMessage.prototype;
+var _=O.prototype;
 _.__type="LDMessage";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -40,4 +40,4 @@ _.Feed=null;
 _.Deleted=null;
 _.DeviceId=null;
 
-module.exports=LDMessage;
+module.exports=O;

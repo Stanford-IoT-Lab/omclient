@@ -3,7 +3,7 @@ var LDSetSmsParticipationRequest = require('./LDSetSmsParticipationRequest');
 var LDSendDirectMessageRequest = require('./LDSendDirectMessageRequest');
 var LDGetDirectFeedRequest = require('./LDGetDirectFeedRequest');
 
-function LDDeviceToClusterDirectMessagingRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDDeviceToClusterDirectMessagingRequestProtocol(e){
 	if(e['sm']!=null)$.SendSmsMessageRequest=new LDSendDirectMessageRequest(e['sm']);
 	if(e['sp']!=null)$.SetSmsParticipationRequest=new LDSetSmsParticipationRequest(e['sp']);
 }
-LDDeviceToClusterDirectMessagingRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterDirectMessagingRequestProtocol.prototype.constructor = LDDeviceToClusterDirectMessagingRequestProtocol;
-var _=LDDeviceToClusterDirectMessagingRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterDirectMessagingRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -28,4 +28,4 @@ _.GetSmsFeedRequest=null;
 _.SendSmsMessageRequest=null;
 _.SetSmsParticipationRequest=null;
 
-module.exports=LDDeviceToClusterDirectMessagingRequestProtocol;
+module.exports=O;

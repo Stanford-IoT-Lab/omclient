@@ -1,4 +1,4 @@
-function LDSticker(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Id=e['i'];
@@ -17,7 +17,7 @@ function LDSticker(e){
 		for(var k=0;k<d.length;++k)$.Tags.push(d[k]);
 	}
 }
-var _=LDSticker.prototype;
+var _=O.prototype;
 _.__type="LDSticker";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -51,4 +51,4 @@ _.Name=null;
 _.Description=null;
 _.Tags=null;
 
-module.exports=LDSticker;
+module.exports=O;

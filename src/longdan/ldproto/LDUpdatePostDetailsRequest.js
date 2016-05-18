@@ -3,7 +3,7 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDPostTag = require('./LDPostTag');
 var LDPostId = require('./LDPostId');
 
-function LDUpdatePostDetailsRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -17,9 +17,9 @@ function LDUpdatePostDetailsRequest(e){
 		for(var k=0; k<d.length;++k)$.SecondaryTags.push(new LDPostTag(d[k]));
 	}
 }
-LDUpdatePostDetailsRequest.prototype=new LDJSONLoggable();
-LDUpdatePostDetailsRequest.prototype.constructor = LDUpdatePostDetailsRequest;
-var _=LDUpdatePostDetailsRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDUpdatePostDetailsRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -42,7 +42,7 @@ _.Title=null;
 _.Description=null;
 _.Message=null;
 _.SecondaryTags=null;
-LDUpdatePostDetailsRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"upd":o};o=t;
 	t={"#":id,"w":o};o=t;
@@ -50,4 +50,4 @@ LDUpdatePostDetailsRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDUpdatePostDetailsRequest;
+module.exports=O;

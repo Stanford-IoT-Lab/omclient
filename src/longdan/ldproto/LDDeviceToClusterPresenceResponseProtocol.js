@@ -1,15 +1,15 @@
 var LDResponseProtocolBase = require('./LDResponseProtocolBase');
 var LDGetPresencesResponse = require('./LDGetPresencesResponse');
 
-function LDDeviceToClusterPresenceResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['p']!=null)$.GetPresencesResponse=new LDGetPresencesResponse(e['p']);
 }
-LDDeviceToClusterPresenceResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterPresenceResponseProtocol.prototype.constructor = LDDeviceToClusterPresenceResponseProtocol;
-var _=LDDeviceToClusterPresenceResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterPresenceResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.GetPresencesResponse=null;
 
-module.exports=LDDeviceToClusterPresenceResponseProtocol;
+module.exports=O;

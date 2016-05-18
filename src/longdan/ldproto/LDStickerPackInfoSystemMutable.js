@@ -1,13 +1,13 @@
 var LDItemInfoSystemMutable = require('./LDItemInfoSystemMutable');
 
-function LDStickerPackInfoSystemMutable(e){
+function O(e){
 	LDItemInfoSystemMutable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDStickerPackInfoSystemMutable.prototype=new LDItemInfoSystemMutable();
-LDStickerPackInfoSystemMutable.prototype.constructor = LDStickerPackInfoSystemMutable;
-var _=LDStickerPackInfoSystemMutable.prototype;
+O.prototype=new LDItemInfoSystemMutable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDStickerPackInfoSystemMutable";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDStickerPackInfoSystemMutable;
+module.exports=O;

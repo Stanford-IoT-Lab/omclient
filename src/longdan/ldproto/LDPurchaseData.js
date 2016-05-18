@@ -1,13 +1,13 @@
 var LDBillingInfoContainer = require('./LDBillingInfoContainer');
 var LDReceiptContainer = require('./LDReceiptContainer');
 
-function LDPurchaseData(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['rc']!=null)$.ReceiptContainer=new LDReceiptContainer(e['rc']);
 	if(e['bic']!=null)$.BillingInfoContainer=new LDBillingInfoContainer(e['bic']);
 }
-var _=LDPurchaseData.prototype;
+var _=O.prototype;
 _.__type="LDPurchaseData";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -19,4 +19,4 @@ _.encode=function(o){
 _.ReceiptContainer=null;
 _.BillingInfoContainer=null;
 
-module.exports=LDPurchaseData;
+module.exports=O;

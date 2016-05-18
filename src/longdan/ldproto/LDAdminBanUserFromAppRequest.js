@@ -3,7 +3,7 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDItemId = require('./LDItemId');
 var LDAppScopeId = require('./LDAppScopeId');
 
-function LDAdminBanUserFromAppRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -16,9 +16,9 @@ function LDAdminBanUserFromAppRequest(e){
 	$.Pub=e['p'];
 	$.Cluster=e['c'];
 }
-LDAdminBanUserFromAppRequest.prototype=new LDJSONLoggable();
-LDAdminBanUserFromAppRequest.prototype.constructor = LDAdminBanUserFromAppRequest;
-var _=LDAdminBanUserFromAppRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDAdminBanUserFromAppRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -43,7 +43,7 @@ _.PackageId=null;
 _.Duration=null;
 _.Pub=null;
 _.Cluster=null;
-LDAdminBanUserFromAppRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"bua":o};o=t;
 	t={"#":id,"A":o};o=t;
@@ -51,4 +51,4 @@ LDAdminBanUserFromAppRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDAdminBanUserFromAppRequest;
+module.exports=O;

@@ -2,7 +2,7 @@ var LDItemInfoUserMutable = require('./LDItemInfoUserMutable');
 var LDAppStore = require('./LDAppStore');
 var LDAppScreenshot = require('./LDAppScreenshot');
 
-function LDAppInfoUserMutable(e){
+function O(e){
 	LDItemInfoUserMutable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -59,9 +59,9 @@ function LDAppInfoUserMutable(e){
 	$.UserCardIntroDescription=e['ucid'];
 	$.PortalBetaMetadata=e['pbmd'];
 }
-LDAppInfoUserMutable.prototype=new LDItemInfoUserMutable();
-LDAppInfoUserMutable.prototype.constructor = LDAppInfoUserMutable;
-var _=LDAppInfoUserMutable.prototype;
+O.prototype=new LDItemInfoUserMutable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDAppInfoUserMutable";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -166,4 +166,4 @@ _.UserCardIntroTitle=null;
 _.UserCardIntroDescription=null;
 _.PortalBetaMetadata=null;
 
-module.exports=LDAppInfoUserMutable;
+module.exports=O;

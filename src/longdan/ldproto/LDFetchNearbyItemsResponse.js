@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDNearbyItemContainer = require('./LDNearbyItemContainer');
 
-function LDFetchNearbyItemsResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDFetchNearbyItemsResponse(e){
 		for(var k=0; k<d.length;++k)$.Items.push(new LDNearbyItemContainer(d[k]));
 	}
 }
-LDFetchNearbyItemsResponse.prototype=new LDJSONLoggable();
-LDFetchNearbyItemsResponse.prototype.constructor = LDFetchNearbyItemsResponse;
-var _=LDFetchNearbyItemsResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDFetchNearbyItemsResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -28,4 +28,4 @@ _.encode=function(o){
 }
 _.Items=null;
 
-module.exports=LDFetchNearbyItemsResponse;
+module.exports=O;

@@ -18,7 +18,7 @@ var LDSystemUpdateItemInfoRequest = require('./LDSystemUpdateItemInfoRequest');
 var LDUserUpdateItemInfoRequest = require('./LDUserUpdateItemInfoRequest');
 var LDCreateItemInfoRequest = require('./LDCreateItemInfoRequest');
 
-function LDDeviceToClusterOmletItemStoreRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -41,9 +41,9 @@ function LDDeviceToClusterOmletItemStoreRequestProtocol(e){
 	if(e['dk']!=null)$.DeactivateApiKeyRequest=new LDDeactivateApiKeyRequest(e['dk']);
 	if(e['lk']!=null)$.ListApiKeysRequest=new LDListApiKeysRequest(e['lk']);
 }
-LDDeviceToClusterOmletItemStoreRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterOmletItemStoreRequestProtocol.prototype.constructor = LDDeviceToClusterOmletItemStoreRequestProtocol;
-var _=LDDeviceToClusterOmletItemStoreRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterOmletItemStoreRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -88,4 +88,4 @@ _.GenerateApiKeyRequest=null;
 _.DeactivateApiKeyRequest=null;
 _.ListApiKeysRequest=null;
 
-module.exports=LDDeviceToClusterOmletItemStoreRequestProtocol;
+module.exports=O;

@@ -1,13 +1,13 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDSynchronizedMessageBody(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDSynchronizedMessageBody.prototype=new LDJSONLoggable();
-LDSynchronizedMessageBody.prototype.constructor = LDSynchronizedMessageBody;
-var _=LDSynchronizedMessageBody.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDSynchronizedMessageBody";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDSynchronizedMessageBody;
+module.exports=O;

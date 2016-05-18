@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDIdentity = require('./LDIdentity');
 
-function LDUser(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDUser(e){
 	$.ProfilePictureLink=e['p'];
 	if(e['o']!=null)$.OmletId=new LDIdentity(e['o']);
 }
-LDUser.prototype=new LDJSONLoggable();
-LDUser.prototype.constructor = LDUser;
-var _=LDUser.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDUser";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -29,4 +29,4 @@ _.DisplayName=null;
 _.ProfilePictureLink=null;
 _.OmletId=null;
 
-module.exports=LDUser;
+module.exports=O;

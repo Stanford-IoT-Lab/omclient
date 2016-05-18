@@ -4,7 +4,7 @@ var LDGetAddMeLinkRequest = require('./LDGetAddMeLinkRequest');
 var LDGetContactProfileRequest = require('./LDGetContactProfileRequest');
 var LDUploadAddressBookEntriesRequest = require('./LDUploadAddressBookEntriesRequest');
 
-function LDDeviceToClusterAddressBookRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -13,9 +13,9 @@ function LDDeviceToClusterAddressBookRequestProtocol(e){
 	if(e['a']!=null)$.GetAddMeLinkRequest=new LDGetAddMeLinkRequest(e['a']);
 	if(e['m']!=null)$.MutualAddContact=new LDMutualAddContactByTokenRequest(e['m']);
 }
-LDDeviceToClusterAddressBookRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterAddressBookRequestProtocol.prototype.constructor = LDDeviceToClusterAddressBookRequestProtocol;
-var _=LDDeviceToClusterAddressBookRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterAddressBookRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -32,4 +32,4 @@ _.GetContactProfileRequest=null;
 _.GetAddMeLinkRequest=null;
 _.MutualAddContact=null;
 
-module.exports=LDDeviceToClusterAddressBookRequestProtocol;
+module.exports=O;

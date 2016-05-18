@@ -1,7 +1,7 @@
 var LDCompleteChallengeResponse = require('./LDCompleteChallengeResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDCompleteChallengeRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -19,9 +19,9 @@ function LDCompleteChallengeRequest(e){
 	$.PackageVersion=e['z'];
 	$.PushReceivedSinceLastConnection=e['pr'];
 }
-LDCompleteChallengeRequest.prototype=new LDJSONLoggable();
-LDCompleteChallengeRequest.prototype.constructor = LDCompleteChallengeRequest;
-var _=LDCompleteChallengeRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDCompleteChallengeRequest";
 _.__rt=LDCompleteChallengeResponse;
 _.encode=function(o){
@@ -56,17 +56,17 @@ _.PackageId=null;
 _.OmlibVersion=null;
 _.PackageVersion=null;
 _.PushReceivedSinceLastConnection=null;
-LDCompleteChallengeRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"#":id,"+":o};o=t;
 	t={"q":o};o=t;
 	return o;
 }
-LDCompleteChallengeRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"#":id,"+":o};o=t;
 	t={"q":o};o=t;
 	return o;
 }
 
-module.exports=LDCompleteChallengeRequest;
+module.exports=O;

@@ -2,7 +2,7 @@ var LDWallResponse = require('./LDWallResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDItemId = require('./LDItemId');
 
-function LDGetPackagePostsRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDGetPackagePostsRequest(e){
 	$.PackageId=e['p'];
 	if(e['c']!=null)$.ContinuationKey=new Buffer(e['c'],'base64');
 }
-LDGetPackagePostsRequest.prototype=new LDJSONLoggable();
-LDGetPackagePostsRequest.prototype.constructor = LDGetPackagePostsRequest;
-var _=LDGetPackagePostsRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetPackagePostsRequest";
 _.__rt=LDWallResponse;
 _.encode=function(o){
@@ -27,7 +27,7 @@ _.encode=function(o){
 _.ItemId=null;
 _.PackageId=null;
 _.ContinuationKey=null;
-LDGetPackagePostsRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"gpp":o};o=t;
 	t={"#":id,"w":o};o=t;
@@ -35,4 +35,4 @@ LDGetPackagePostsRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetPackagePostsRequest;
+module.exports=O;

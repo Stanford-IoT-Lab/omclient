@@ -2,16 +2,16 @@ var LDResponseProtocolBase = require('./LDResponseProtocolBase');
 var LDFetchNearbyItemsResponse = require('./LDFetchNearbyItemsResponse');
 var LDBroadcastItemResponse = require('./LDBroadcastItemResponse');
 
-function LDDeviceToClusterNearbyItemResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['b']!=null)$.BroadcastItemResponse=new LDBroadcastItemResponse(e['b']);
 	if(e['f']!=null)$.FetchNearbyItemsResponse=new LDFetchNearbyItemsResponse(e['f']);
 }
-LDDeviceToClusterNearbyItemResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterNearbyItemResponseProtocol.prototype.constructor = LDDeviceToClusterNearbyItemResponseProtocol;
-var _=LDDeviceToClusterNearbyItemResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterNearbyItemResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -24,4 +24,4 @@ _.encode=function(o){
 _.BroadcastItemResponse=null;
 _.FetchNearbyItemsResponse=null;
 
-module.exports=LDDeviceToClusterNearbyItemResponseProtocol;
+module.exports=O;

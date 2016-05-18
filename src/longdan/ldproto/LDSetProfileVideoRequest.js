@@ -1,16 +1,16 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDSetProfileVideoRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.BlobLinkString=e['p'];
 	if(e['d']!=null)$.DecryptedHash=new Buffer(e['d'],'base64');
 }
-LDSetProfileVideoRequest.prototype=new LDJSONLoggable();
-LDSetProfileVideoRequest.prototype.constructor = LDSetProfileVideoRequest;
-var _=LDSetProfileVideoRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDSetProfileVideoRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -23,7 +23,7 @@ _.encode=function(o){
 }
 _.BlobLinkString=null;
 _.DecryptedHash=null;
-LDSetProfileVideoRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"sv":o};o=t;
 	t={"#":id,"p":o};o=t;
@@ -31,4 +31,4 @@ LDSetProfileVideoRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDSetProfileVideoRequest;
+module.exports=O;

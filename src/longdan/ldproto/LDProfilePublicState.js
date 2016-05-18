@@ -1,6 +1,6 @@
 var LDFeatureSetting = require('./LDFeatureSetting');
 
-function LDProfilePublicState(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['f']!=null){
@@ -14,7 +14,7 @@ function LDProfilePublicState(e){
 		for(var k in d) $.Settings[k]=new LDFeatureSetting(d[k]);
 	}
 }
-var _=LDProfilePublicState.prototype;
+var _=O.prototype;
 _.__type="LDProfilePublicState";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -34,4 +34,4 @@ _.encode=function(o){
 _.Features=null;
 _.Settings=null;
 
-module.exports=LDProfilePublicState;
+module.exports=O;

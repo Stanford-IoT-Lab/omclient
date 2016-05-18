@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDMessage = require('./LDMessage');
 
-function LDGetMessagesWithContinuationResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDGetMessagesWithContinuationResponse(e){
 	}
 	if(e['c']!=null)$.ContinuationKey=new Buffer(e['c'],'base64');
 }
-LDGetMessagesWithContinuationResponse.prototype=new LDJSONLoggable();
-LDGetMessagesWithContinuationResponse.prototype.constructor = LDGetMessagesWithContinuationResponse;
-var _=LDGetMessagesWithContinuationResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetMessagesWithContinuationResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -31,4 +31,4 @@ _.encode=function(o){
 _.Messages=null;
 _.ContinuationKey=null;
 
-module.exports=LDGetMessagesWithContinuationResponse;
+module.exports=O;

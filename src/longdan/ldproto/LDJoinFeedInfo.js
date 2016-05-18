@@ -1,7 +1,7 @@
 var LDAppRestletDetails = require('./LDAppRestletDetails');
 var LDFeed = require('./LDFeed');
 
-function LDJoinFeedInfo(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['f']!=null)$.Feed=new LDFeed(e['f']);
@@ -15,7 +15,7 @@ function LDJoinFeedInfo(e){
 	if(e['ad']!=null)$.AppDetails=new LDAppRestletDetails(e['ad']);
 	$.MobileOS=e['mo'];
 }
-var _=LDJoinFeedInfo.prototype;
+var _=O.prototype;
 _.__type="LDJoinFeedInfo";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -43,4 +43,4 @@ _.AdderThumbnailLink=null;
 _.AppDetails=null;
 _.MobileOS=null;
 
-module.exports=LDJoinFeedInfo;
+module.exports=O;

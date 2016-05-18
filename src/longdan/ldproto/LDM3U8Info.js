@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDM3U8Info(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -21,9 +21,9 @@ function LDM3U8Info(e){
 		for(var k=0;k<d.length;++k)$.File.push(d[k]);
 	}
 }
-LDM3U8Info.prototype=new LDJSONLoggable();
-LDM3U8Info.prototype.constructor = LDM3U8Info;
-var _=LDM3U8Info.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDM3U8Info";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -52,4 +52,4 @@ _.Headers=null;
 _.Duration=null;
 _.File=null;
 
-module.exports=LDM3U8Info;
+module.exports=O;

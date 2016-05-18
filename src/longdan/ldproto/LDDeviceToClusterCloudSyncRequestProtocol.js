@@ -4,7 +4,7 @@ var LDRefreshCloudConfigRequest = require('./LDRefreshCloudConfigRequest');
 var LDSetCloudConfigRequest = require('./LDSetCloudConfigRequest');
 var LDGetCloudConfigRequest = require('./LDGetCloudConfigRequest');
 
-function LDDeviceToClusterCloudSyncRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -13,9 +13,9 @@ function LDDeviceToClusterCloudSyncRequestProtocol(e){
 	if(e['r']!=null)$.RefreshCloudConfigRequest=new LDRefreshCloudConfigRequest(e['r']);
 	if(e['d']!=null)$.DisconnectCloudSyncRequest=new LDDisconnectCloudSyncRequest(e['d']);
 }
-LDDeviceToClusterCloudSyncRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterCloudSyncRequestProtocol.prototype.constructor = LDDeviceToClusterCloudSyncRequestProtocol;
-var _=LDDeviceToClusterCloudSyncRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterCloudSyncRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -32,4 +32,4 @@ _.SetCloudConfigRequest=null;
 _.RefreshCloudConfigRequest=null;
 _.DisconnectCloudSyncRequest=null;
 
-module.exports=LDDeviceToClusterCloudSyncRequestProtocol;
+module.exports=O;

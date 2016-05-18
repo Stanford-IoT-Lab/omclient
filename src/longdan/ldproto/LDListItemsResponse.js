@@ -1,11 +1,11 @@
 var LDItemInfoListingContainer = require('./LDItemInfoListingContainer');
 
-function LDListItemsResponse(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['l']!=null)$.ItemInfoListingContainer=new LDItemInfoListingContainer(e['l']);
 }
-var _=LDListItemsResponse.prototype;
+var _=O.prototype;
 _.__type="LDListItemsResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -15,4 +15,4 @@ _.encode=function(o){
 }
 _.ItemInfoListingContainer=null;
 
-module.exports=LDListItemsResponse;
+module.exports=O;

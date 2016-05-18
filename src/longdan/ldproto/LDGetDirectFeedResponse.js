@@ -2,7 +2,7 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDFeed = require('./LDFeed');
 var LDIdentity = require('./LDIdentity');
 
-function LDGetDirectFeedResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -23,9 +23,9 @@ function LDGetDirectFeedResponse(e){
 	}
 	if(e['f']!=null)$.Feed=new LDFeed(e['f']);
 }
-LDGetDirectFeedResponse.prototype=new LDJSONLoggable();
-LDGetDirectFeedResponse.prototype.constructor = LDGetDirectFeedResponse;
-var _=LDGetDirectFeedResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetDirectFeedResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -54,4 +54,4 @@ _.OptOutIdentities=null;
 _.Accounts=null;
 _.Feed=null;
 
-module.exports=LDGetDirectFeedResponse;
+module.exports=O;

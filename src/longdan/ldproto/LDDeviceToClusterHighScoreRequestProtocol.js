@@ -3,7 +3,7 @@ var LDGetTopScoresRequest = require('./LDGetTopScoresRequest');
 var LDReportScoreRequest = require('./LDReportScoreRequest');
 var LDGetHighScoreRequest = require('./LDGetHighScoreRequest');
 
-function LDDeviceToClusterHighScoreRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -11,9 +11,9 @@ function LDDeviceToClusterHighScoreRequestProtocol(e){
 	if(e['rs']!=null)$.ReportScoreRequest=new LDReportScoreRequest(e['rs']);
 	if(e['ts']!=null)$.GetTopScoresRequest=new LDGetTopScoresRequest(e['ts']);
 }
-LDDeviceToClusterHighScoreRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterHighScoreRequestProtocol.prototype.constructor = LDDeviceToClusterHighScoreRequestProtocol;
-var _=LDDeviceToClusterHighScoreRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterHighScoreRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -28,4 +28,4 @@ _.GetHighScoreRequest=null;
 _.ReportScoreRequest=null;
 _.GetTopScoresRequest=null;
 
-module.exports=LDDeviceToClusterHighScoreRequestProtocol;
+module.exports=O;

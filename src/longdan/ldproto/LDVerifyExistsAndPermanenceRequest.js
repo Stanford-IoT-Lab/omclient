@@ -1,7 +1,7 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDVerifyExistsAndPermanenceRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -9,9 +9,9 @@ function LDVerifyExistsAndPermanenceRequest(e){
 	$.IsPermanent=e['p'];
 	if(e['prt']!=null)$.PermanenceRefTag=new Buffer(e['prt'],'base64');
 }
-LDVerifyExistsAndPermanenceRequest.prototype=new LDJSONLoggable();
-LDVerifyExistsAndPermanenceRequest.prototype.constructor = LDVerifyExistsAndPermanenceRequest;
-var _=LDVerifyExistsAndPermanenceRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDVerifyExistsAndPermanenceRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -26,7 +26,7 @@ _.encode=function(o){
 _.BlobLinkString=null;
 _.IsPermanent=null;
 _.PermanenceRefTag=null;
-LDVerifyExistsAndPermanenceRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"ve":o};o=t;
 	t={"#":id,"b":o};o=t;
@@ -34,4 +34,4 @@ LDVerifyExistsAndPermanenceRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDVerifyExistsAndPermanenceRequest;
+module.exports=O;

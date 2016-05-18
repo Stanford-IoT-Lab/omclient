@@ -1,4 +1,4 @@
-function LDBlobUploadTicket(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.UploadUrl=e['u'];
@@ -13,7 +13,7 @@ function LDBlobUploadTicket(e){
 	$.AlreadyUploaded=e['a'];
 	$.BlobLinkString=e['l'];
 }
-var _=LDBlobUploadTicket.prototype;
+var _=O.prototype;
 _.__type="LDBlobUploadTicket";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -39,4 +39,4 @@ _.PermanenceRefTag=null;
 _.AlreadyUploaded=null;
 _.BlobLinkString=null;
 
-module.exports=LDBlobUploadTicket;
+module.exports=O;

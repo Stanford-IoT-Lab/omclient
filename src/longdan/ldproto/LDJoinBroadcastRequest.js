@@ -2,16 +2,16 @@ var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDFeed = require('./LDFeed');
 
-function LDJoinBroadcastRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['f']!=null)$.Feed=new LDFeed(e['f']);
 	$.Pin=e['p'];
 }
-LDJoinBroadcastRequest.prototype=new LDJSONLoggable();
-LDJoinBroadcastRequest.prototype.constructor = LDJoinBroadcastRequest;
-var _=LDJoinBroadcastRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDJoinBroadcastRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -24,7 +24,7 @@ _.encode=function(o){
 }
 _.Feed=null;
 _.Pin=null;
-LDJoinBroadcastRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"B":o};o=t;
 	t={"#":id,"m":o};o=t;
@@ -32,4 +32,4 @@ LDJoinBroadcastRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDJoinBroadcastRequest;
+module.exports=O;

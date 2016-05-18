@@ -1,15 +1,15 @@
 var LDResponseProtocolBase = require('./LDResponseProtocolBase');
 var LDGatherEventsByAppResponse = require('./LDGatherEventsByAppResponse');
 
-function LDClusterOrDeviceToClusterEventSummaryResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['ga']!=null)$.GatherEventsByAppResponse=new LDGatherEventsByAppResponse(e['ga']);
 }
-LDClusterOrDeviceToClusterEventSummaryResponseProtocol.prototype=new LDResponseProtocolBase();
-LDClusterOrDeviceToClusterEventSummaryResponseProtocol.prototype.constructor = LDClusterOrDeviceToClusterEventSummaryResponseProtocol;
-var _=LDClusterOrDeviceToClusterEventSummaryResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDClusterOrDeviceToClusterEventSummaryResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.GatherEventsByAppResponse=null;
 
-module.exports=LDClusterOrDeviceToClusterEventSummaryResponseProtocol;
+module.exports=O;

@@ -1,15 +1,15 @@
 var LDCreatePlaygroundResponse = require('./LDCreatePlaygroundResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDCreatePlaygroundRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Type=e['t'];
 }
-LDCreatePlaygroundRequest.prototype=new LDJSONLoggable();
-LDCreatePlaygroundRequest.prototype.constructor = LDCreatePlaygroundRequest;
-var _=LDCreatePlaygroundRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDCreatePlaygroundRequest";
 _.__rt=LDCreatePlaygroundResponse;
 _.encode=function(o){
@@ -20,7 +20,7 @@ _.encode=function(o){
 	return o;
 }
 _.Type=null;
-LDCreatePlaygroundRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"p":o};o=t;
 	t={"#":id,"M":o};o=t;
@@ -28,4 +28,4 @@ LDCreatePlaygroundRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDCreatePlaygroundRequest;
+module.exports=O;

@@ -1,15 +1,15 @@
 var LDResponseProtocolBase = require('./LDResponseProtocolBase');
 var LDGetCloudConfigResponse = require('./LDGetCloudConfigResponse');
 
-function LDDeviceToClusterCloudSyncResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['g']!=null)$.GetClientCloudConfigResponse=new LDGetCloudConfigResponse(e['g']);
 }
-LDDeviceToClusterCloudSyncResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterCloudSyncResponseProtocol.prototype.constructor = LDDeviceToClusterCloudSyncResponseProtocol;
-var _=LDDeviceToClusterCloudSyncResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterCloudSyncResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.GetClientCloudConfigResponse=null;
 
-module.exports=LDDeviceToClusterCloudSyncResponseProtocol;
+module.exports=O;

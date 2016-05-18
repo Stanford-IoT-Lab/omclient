@@ -8,7 +8,7 @@ var LDUpdateChallengeLocationRequest = require('./LDUpdateChallengeLocationReque
 var LDFindGamersRequest = require('./LDFindGamersRequest');
 var LDOptInForAllGamesChallengesRequest = require('./LDOptInForAllGamesChallengesRequest');
 
-function LDDeviceToClusterGameChallengeRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -21,9 +21,9 @@ function LDDeviceToClusterGameChallengeRequestProtocol(e){
 	if(e['ogs']!=null)$.OptInForGSChallengesRequest=new LDOptInForGSChallengesRequest(e['ogs']);
 	if(e['fgs']!=null)$.FindGamersGSRequest=new LDFindGamersGSRequest(e['fgs']);
 }
-LDDeviceToClusterGameChallengeRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterGameChallengeRequestProtocol.prototype.constructor = LDDeviceToClusterGameChallengeRequestProtocol;
-var _=LDDeviceToClusterGameChallengeRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterGameChallengeRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -48,4 +48,4 @@ _.CheckAccountOptedIn=null;
 _.OptInForGSChallengesRequest=null;
 _.FindGamersGSRequest=null;
 
-module.exports=LDDeviceToClusterGameChallengeRequestProtocol;
+module.exports=O;

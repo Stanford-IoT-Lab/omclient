@@ -1,4 +1,4 @@
-function LDClientEvent(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.Key=e['k'];
@@ -9,7 +9,7 @@ function LDClientEvent(e){
 		for(var k in d) $.AuxiliaryData[k]=d[k];
 	}
 }
-var _=LDClientEvent.prototype;
+var _=O.prototype;
 _.__type="LDClientEvent";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -27,4 +27,4 @@ _.Key=null;
 _.UtcTimestamp=null;
 _.AuxiliaryData=null;
 
-module.exports=LDClientEvent;
+module.exports=O;

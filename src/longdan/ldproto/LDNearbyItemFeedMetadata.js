@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDNearbyItemFeedMetadata(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDNearbyItemFeedMetadata(e){
 	$.Longitude=e['g'];
 	$.BroadcasterAccount=e['b'];
 }
-LDNearbyItemFeedMetadata.prototype=new LDJSONLoggable();
-LDNearbyItemFeedMetadata.prototype.constructor = LDNearbyItemFeedMetadata;
-var _=LDNearbyItemFeedMetadata.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDNearbyItemFeedMetadata";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -37,4 +37,4 @@ _.Latitude=null;
 _.Longitude=null;
 _.BroadcasterAccount=null;
 
-module.exports=LDNearbyItemFeedMetadata;
+module.exports=O;

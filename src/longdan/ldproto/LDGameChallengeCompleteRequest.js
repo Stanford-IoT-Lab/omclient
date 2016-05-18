@@ -3,7 +3,7 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDGPSLocation = require('./LDGPSLocation');
 var LDGameChallengeId = require('./LDGameChallengeId');
 
-function LDGameChallengeCompleteRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDGameChallengeCompleteRequest(e){
 	$.ChallengeRejected=e['x'];
 	if(e['l']!=null)$.ChallengeeLocation=new LDGPSLocation(e['l']);
 }
-LDGameChallengeCompleteRequest.prototype=new LDJSONLoggable();
-LDGameChallengeCompleteRequest.prototype.constructor = LDGameChallengeCompleteRequest;
-var _=LDGameChallengeCompleteRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGameChallengeCompleteRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -31,7 +31,7 @@ _.Id=null;
 _.Score=null;
 _.ChallengeRejected=null;
 _.ChallengeeLocation=null;
-LDGameChallengeCompleteRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"d":o};o=t;
 	t={"#":id,"g":o};o=t;
@@ -39,4 +39,4 @@ LDGameChallengeCompleteRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGameChallengeCompleteRequest;
+module.exports=O;

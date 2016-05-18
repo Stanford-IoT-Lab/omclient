@@ -1,4 +1,4 @@
-function LDPublicKeys(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['ClusterEndpoints']!=null){
@@ -29,7 +29,7 @@ function LDPublicKeys(e){
 	}
 	if(e['ReadOnlyKey']!=null)$.ReadOnlyKey=new Buffer(e['ReadOnlyKey'],'base64');
 }
-var _=LDPublicKeys.prototype;
+var _=O.prototype;
 _.__type="LDPublicKeys";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -71,4 +71,4 @@ _.IdpKey=null;
 _.ReadOnlyEndpoints=null;
 _.ReadOnlyKey=null;
 
-module.exports=LDPublicKeys;
+module.exports=O;

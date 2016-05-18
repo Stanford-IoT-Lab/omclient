@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDProfileDetails = require('./LDProfileDetails');
 
-function LDGetProfileDetailsResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['p']!=null)$.ProfileDetails=new LDProfileDetails(e['p']);
 }
-LDGetProfileDetailsResponse.prototype=new LDJSONLoggable();
-LDGetProfileDetailsResponse.prototype.constructor = LDGetProfileDetailsResponse;
-var _=LDGetProfileDetailsResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetProfileDetailsResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.ProfileDetails=null;
 
-module.exports=LDGetProfileDetailsResponse;
+module.exports=O;

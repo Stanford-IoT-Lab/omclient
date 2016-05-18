@@ -1,13 +1,13 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDSubscriptionTerminatedPush(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDSubscriptionTerminatedPush.prototype=new LDJSONLoggable();
-LDSubscriptionTerminatedPush.prototype.constructor = LDSubscriptionTerminatedPush;
-var _=LDSubscriptionTerminatedPush.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDSubscriptionTerminatedPush";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDSubscriptionTerminatedPush;
+module.exports=O;

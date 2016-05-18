@@ -1,7 +1,7 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDChangeUserProfilePictureRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDChangeUserProfilePictureRequest(e){
 	$.BlobLinkString=e['p'];
 	if(e['d']!=null)$.DecryptedHash=new Buffer(e['d'],'base64');
 }
-LDChangeUserProfilePictureRequest.prototype=new LDJSONLoggable();
-LDChangeUserProfilePictureRequest.prototype.constructor = LDChangeUserProfilePictureRequest;
-var _=LDChangeUserProfilePictureRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDChangeUserProfilePictureRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -29,7 +29,7 @@ _.AdminAccount=null;
 _.Account=null;
 _.BlobLinkString=null;
 _.DecryptedHash=null;
-LDChangeUserProfilePictureRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"p":o};o=t;
 	t={"#":id,"A":o};o=t;
@@ -37,4 +37,4 @@ LDChangeUserProfilePictureRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDChangeUserProfilePictureRequest;
+module.exports=O;

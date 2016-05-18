@@ -1,14 +1,14 @@
 var LDGetExtraVersionsResponse = require('./LDGetExtraVersionsResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetExtraVersionsRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDGetExtraVersionsRequest.prototype=new LDJSONLoggable();
-LDGetExtraVersionsRequest.prototype.constructor = LDGetExtraVersionsRequest;
-var _=LDGetExtraVersionsRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetExtraVersionsRequest";
 _.__rt=LDGetExtraVersionsResponse;
 _.encode=function(o){
@@ -17,7 +17,7 @@ _.encode=function(o){
 	LDJSONLoggable.prototype.encode.call($,o);
 	return o;
 }
-LDGetExtraVersionsRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"e":o};o=t;
 	t={"#":id,"M":o};o=t;
@@ -25,4 +25,4 @@ LDGetExtraVersionsRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetExtraVersionsRequest;
+module.exports=O;

@@ -2,7 +2,7 @@ var LDAddPostResponse = require('./LDAddPostResponse');
 var LDPostBaseRequest = require('./LDPostBaseRequest');
 var LDPostTag = require('./LDPostTag');
 
-function LDPostVideoRequest(e){
+function O(e){
 	LDPostBaseRequest.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -21,9 +21,9 @@ function LDPostVideoRequest(e){
 		for(var k=0; k<d.length;++k)$.SecondaryTags.push(new LDPostTag(d[k]));
 	}
 }
-LDPostVideoRequest.prototype=new LDPostBaseRequest();
-LDPostVideoRequest.prototype.constructor = LDPostVideoRequest;
-var _=LDPostVideoRequest.prototype;
+O.prototype=new LDPostBaseRequest();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDPostVideoRequest";
 _.__rt=LDAddPostResponse;
 _.encode=function(o){
@@ -56,7 +56,7 @@ _.Height=null;
 _.Width=null;
 _.PrimaryTag=null;
 _.SecondaryTags=null;
-LDPostVideoRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"pv":o};o=t;
 	t={"#":id,"w":o};o=t;
@@ -64,4 +64,4 @@ LDPostVideoRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDPostVideoRequest;
+module.exports=O;

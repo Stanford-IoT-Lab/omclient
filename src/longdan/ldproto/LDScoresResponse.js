@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDScoreBoardEntry = require('./LDScoreBoardEntry');
 
-function LDScoresResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -13,9 +13,9 @@ function LDScoresResponse(e){
 		for(var k=0; k<d.length;++k)$.Scores.push(new LDScoreBoardEntry(d[k]));
 	}
 }
-LDScoresResponse.prototype=new LDJSONLoggable();
-LDScoresResponse.prototype.constructor = LDScoresResponse;
-var _=LDScoresResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDScoresResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -34,4 +34,4 @@ _.LocationType=null;
 _.LocationName=null;
 _.Scores=null;
 
-module.exports=LDScoresResponse;
+module.exports=O;

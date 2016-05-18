@@ -3,7 +3,7 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDTypedId = require('./LDTypedId');
 var LDFeed = require('./LDFeed');
 
-function LDApplyDocumentTransformRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDApplyDocumentTransformRequest(e){
 	$.Javascript=e['j'];
 	$.Parameters=e['p'];
 }
-LDApplyDocumentTransformRequest.prototype=new LDJSONLoggable();
-LDApplyDocumentTransformRequest.prototype.constructor = LDApplyDocumentTransformRequest;
-var _=LDApplyDocumentTransformRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDApplyDocumentTransformRequest";
 _.__rt=LDGetMessageResponse;
 _.encode=function(o){
@@ -31,7 +31,7 @@ _.Feed=null;
 _.Id=null;
 _.Javascript=null;
 _.Parameters=null;
-LDApplyDocumentTransformRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"D":o};o=t;
 	t={"#":id,"m":o};o=t;
@@ -39,4 +39,4 @@ LDApplyDocumentTransformRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDApplyDocumentTransformRequest;
+module.exports=O;

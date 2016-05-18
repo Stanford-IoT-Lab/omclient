@@ -2,14 +2,14 @@ var LDItemInfoUserMutableContainer = require('./LDItemInfoUserMutableContainer')
 var LDItemInfoSystemMutableContainer = require('./LDItemInfoSystemMutableContainer');
 var LDItemInfoImmutableContainer = require('./LDItemInfoImmutableContainer');
 
-function LDItemInfo(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['i']!=null)$.ImmutableContainer=new LDItemInfoImmutableContainer(e['i']);
 	if(e['s']!=null)$.SystemMutableContainer=new LDItemInfoSystemMutableContainer(e['s']);
 	if(e['u']!=null)$.UserMutableContainer=new LDItemInfoUserMutableContainer(e['u']);
 }
-var _=LDItemInfo.prototype;
+var _=O.prototype;
 _.__type="LDItemInfo";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -23,4 +23,4 @@ _.ImmutableContainer=null;
 _.SystemMutableContainer=null;
 _.UserMutableContainer=null;
 
-module.exports=LDItemInfo;
+module.exports=O;

@@ -1,8 +1,8 @@
-function LDURI(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 }
-var _=LDURI.prototype;
+var _=O.prototype;
 _.__type="LDURI";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -10,4 +10,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDURI;
+module.exports=O;

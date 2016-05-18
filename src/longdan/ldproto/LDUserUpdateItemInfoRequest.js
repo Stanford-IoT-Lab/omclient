@@ -1,7 +1,7 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDItemInfoUserMutableContainer = require('./LDItemInfoUserMutableContainer');
 
-function LDUserUpdateItemInfoRequest(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.ItemType=e['it'];
@@ -9,7 +9,7 @@ function LDUserUpdateItemInfoRequest(e){
 	$.ItemId=e['ai'];
 	if(e['u']!=null)$.ItemInfoUserMutableContainer=new LDItemInfoUserMutableContainer(e['u']);
 }
-var _=LDUserUpdateItemInfoRequest.prototype;
+var _=O.prototype;
 _.__type="LDUserUpdateItemInfoRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -25,7 +25,7 @@ _.ItemType=null;
 _.Account=null;
 _.ItemId=null;
 _.ItemInfoUserMutableContainer=null;
-LDUserUpdateItemInfoRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"uu":o};o=t;
 	t={"#":id,"oas":o};o=t;
@@ -33,4 +33,4 @@ LDUserUpdateItemInfoRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDUserUpdateItemInfoRequest;
+module.exports=O;

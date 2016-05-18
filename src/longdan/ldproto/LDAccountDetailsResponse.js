@@ -1,7 +1,7 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDAccountDetails = require('./LDAccountDetails');
 
-function LDAccountDetailsResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -14,9 +14,9 @@ function LDAccountDetailsResponse(e){
 		for(var k=0;k<d.length;++k)$.Scopes.push(d[k]);
 	}
 }
-LDAccountDetailsResponse.prototype=new LDJSONLoggable();
-LDAccountDetailsResponse.prototype.constructor = LDAccountDetailsResponse;
-var _=LDAccountDetailsResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDAccountDetailsResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -37,4 +37,4 @@ _.WasLegacy=null;
 _.AppId=null;
 _.Scopes=null;
 
-module.exports=LDAccountDetailsResponse;
+module.exports=O;

@@ -1,10 +1,10 @@
-function LDGenerateGrantForItemResponse(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	$.ShareLink=e['s'];
 	if(e['r']!=null)$.RawKey=new Buffer(e['r'],'base64');
 }
-var _=LDGenerateGrantForItemResponse.prototype;
+var _=O.prototype;
 _.__type="LDGenerateGrantForItemResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 _.ShareLink=null;
 _.RawKey=null;
 
-module.exports=LDGenerateGrantForItemResponse;
+module.exports=O;

@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetExtraVersionsResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -10,9 +10,9 @@ function LDGetExtraVersionsResponse(e){
 		for(var k in d) $.ExtraVersions[k]=d[k];
 	}
 }
-LDGetExtraVersionsResponse.prototype=new LDJSONLoggable();
-LDGetExtraVersionsResponse.prototype.constructor = LDGetExtraVersionsResponse;
-var _=LDGetExtraVersionsResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetExtraVersionsResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -27,4 +27,4 @@ _.encode=function(o){
 }
 _.ExtraVersions=null;
 
-module.exports=LDGetExtraVersionsResponse;
+module.exports=O;

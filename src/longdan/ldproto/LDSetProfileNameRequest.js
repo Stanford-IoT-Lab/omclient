@@ -1,15 +1,15 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDSetProfileNameRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Name=e['n'];
 }
-LDSetProfileNameRequest.prototype=new LDJSONLoggable();
-LDSetProfileNameRequest.prototype.constructor = LDSetProfileNameRequest;
-var _=LDSetProfileNameRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDSetProfileNameRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -20,7 +20,7 @@ _.encode=function(o){
 	return o;
 }
 _.Name=null;
-LDSetProfileNameRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"n":o};o=t;
 	t={"#":id,"p":o};o=t;
@@ -28,4 +28,4 @@ LDSetProfileNameRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDSetProfileNameRequest;
+module.exports=O;

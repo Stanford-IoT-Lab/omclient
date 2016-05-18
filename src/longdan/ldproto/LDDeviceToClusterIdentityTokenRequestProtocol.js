@@ -1,15 +1,15 @@
 var LDRequestProtocolBase = require('./LDRequestProtocolBase');
 var LDGetIdentityTokenRequest = require('./LDGetIdentityTokenRequest');
 
-function LDDeviceToClusterIdentityTokenRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['g']!=null)$.GetIdentityTokenRequest=new LDGetIdentityTokenRequest(e['g']);
 }
-LDDeviceToClusterIdentityTokenRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToClusterIdentityTokenRequestProtocol.prototype.constructor = LDDeviceToClusterIdentityTokenRequestProtocol;
-var _=LDDeviceToClusterIdentityTokenRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterIdentityTokenRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.GetIdentityTokenRequest=null;
 
-module.exports=LDDeviceToClusterIdentityTokenRequestProtocol;
+module.exports=O;

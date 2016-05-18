@@ -15,7 +15,7 @@ var LDRegisterWithOAuthRequest = require('./LDRegisterWithOAuthRequest');
 var LDConfirmTokenRequest = require('./LDConfirmTokenRequest');
 var LDRegisterWithTokenRequest = require('./LDRegisterWithTokenRequest');
 
-function LDDeviceToIdpSignupRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -35,9 +35,9 @@ function LDDeviceToIdpSignupRequestProtocol(e){
 	if(e['ao']!=null)$.ConfirmSSOTokenRequest=new LDConfirmSSOTokenRequest(e['ao']);
 	if(e['dp']!=null)$.DeviceRegistrationStateChangedPush=new LDDeviceRegistrationStateChangedPush(e['dp']);
 }
-LDDeviceToIdpSignupRequestProtocol.prototype=new LDRequestProtocolBase();
-LDDeviceToIdpSignupRequestProtocol.prototype.constructor = LDDeviceToIdpSignupRequestProtocol;
-var _=LDDeviceToIdpSignupRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToIdpSignupRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -76,4 +76,4 @@ _.CheckSSOTokenRequest=null;
 _.ConfirmSSOTokenRequest=null;
 _.DeviceRegistrationStateChangedPush=null;
 
-module.exports=LDDeviceToIdpSignupRequestProtocol;
+module.exports=O;

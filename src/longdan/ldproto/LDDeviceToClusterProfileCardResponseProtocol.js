@@ -1,13 +1,13 @@
 var LDResponseProtocolBase = require('./LDResponseProtocolBase');
 
-function LDDeviceToClusterProfileCardResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDDeviceToClusterProfileCardResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToClusterProfileCardResponseProtocol.prototype.constructor = LDDeviceToClusterProfileCardResponseProtocol;
-var _=LDDeviceToClusterProfileCardResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterProfileCardResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDDeviceToClusterProfileCardResponseProtocol;
+module.exports=O;

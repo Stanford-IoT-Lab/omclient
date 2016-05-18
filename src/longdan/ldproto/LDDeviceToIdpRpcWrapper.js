@@ -2,16 +2,16 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDDeviceToIdpResponseContainer = require('./LDDeviceToIdpResponseContainer');
 var LDDeviceToIdpRequestContainer = require('./LDDeviceToIdpRequestContainer');
 
-function LDDeviceToIdpRpcWrapper(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['q']!=null)$.Request=new LDDeviceToIdpRequestContainer(e['q']);
 	if(e['r']!=null)$.Response=new LDDeviceToIdpResponseContainer(e['r']);
 }
-LDDeviceToIdpRpcWrapper.prototype=new LDJSONLoggable();
-LDDeviceToIdpRpcWrapper.prototype.constructor = LDDeviceToIdpRpcWrapper;
-var _=LDDeviceToIdpRpcWrapper.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToIdpRpcWrapper";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -24,4 +24,4 @@ _.encode=function(o){
 _.Request=null;
 _.Response=null;
 
-module.exports=LDDeviceToIdpRpcWrapper;
+module.exports=O;

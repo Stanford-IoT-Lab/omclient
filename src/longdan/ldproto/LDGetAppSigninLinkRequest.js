@@ -1,7 +1,7 @@
 var LDGetAppSigninLinkResponse = require('./LDGetAppSigninLinkResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetAppSigninLinkRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -17,9 +17,9 @@ function LDGetAppSigninLinkRequest(e){
 	$.IpAddress=e['p'];
 	$.Partner=e['P'];
 }
-LDGetAppSigninLinkRequest.prototype=new LDJSONLoggable();
-LDGetAppSigninLinkRequest.prototype.constructor = LDGetAppSigninLinkRequest;
-var _=LDGetAppSigninLinkRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetAppSigninLinkRequest";
 _.__rt=LDGetAppSigninLinkResponse;
 _.encode=function(o){
@@ -46,7 +46,7 @@ _.LoginKey=null;
 _.Flow=null;
 _.IpAddress=null;
 _.Partner=null;
-LDGetAppSigninLinkRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"s":o};o=t;
 	t={"#":id,"a":o};o=t;
@@ -54,4 +54,4 @@ LDGetAppSigninLinkRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetAppSigninLinkRequest;
+module.exports=O;

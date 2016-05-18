@@ -2,16 +2,16 @@ var LDGetRecentMessagesResponse = require('./LDGetRecentMessagesResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDFeed = require('./LDFeed');
 
-function LDGetRecentMessagesRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['f']!=null)$.Feed=new LDFeed(e['f']);
 	$.Timestamp=e['t'];
 }
-LDGetRecentMessagesRequest.prototype=new LDJSONLoggable();
-LDGetRecentMessagesRequest.prototype.constructor = LDGetRecentMessagesRequest;
-var _=LDGetRecentMessagesRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetRecentMessagesRequest";
 _.__rt=LDGetRecentMessagesResponse;
 _.encode=function(o){
@@ -24,7 +24,7 @@ _.encode=function(o){
 }
 _.Feed=null;
 _.Timestamp=null;
-LDGetRecentMessagesRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"gr":o};o=t;
 	t={"#":id,"pc":o};o=t;
@@ -32,4 +32,4 @@ LDGetRecentMessagesRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetRecentMessagesRequest;
+module.exports=O;

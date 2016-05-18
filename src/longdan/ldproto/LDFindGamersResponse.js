@@ -1,6 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDFindGamersResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -12,9 +12,9 @@ function LDFindGamersResponse(e){
 	$.LocationType=e['lt'];
 	$.LocationName=e['ln'];
 }
-LDFindGamersResponse.prototype=new LDJSONLoggable();
-LDFindGamersResponse.prototype.constructor = LDFindGamersResponse;
-var _=LDFindGamersResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDFindGamersResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -33,4 +33,4 @@ _.Candidates=null;
 _.LocationType=null;
 _.LocationName=null;
 
-module.exports=LDFindGamersResponse;
+module.exports=O;

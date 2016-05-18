@@ -5,7 +5,7 @@ var LDListFlaggedUsersResponse = require('./LDListFlaggedUsersResponse');
 var LDGetIdentityRecordsResponse = require('./LDGetIdentityRecordsResponse');
 var LDAccountDetailsResponse = require('./LDAccountDetailsResponse');
 
-function LDDeviceToIdpAdministrativeResponseProtocol(e){
+function O(e){
 	LDResponseProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -15,9 +15,9 @@ function LDDeviceToIdpAdministrativeResponseProtocol(e){
 	if(e['d']!=null)$.GetDeviceRecords=new LDGetDeviceRecordsResponse(e['d']);
 	if(e['gp']!=null)$.GetPermissionsResponse=new LDGetPermissionsResponse(e['gp']);
 }
-LDDeviceToIdpAdministrativeResponseProtocol.prototype=new LDResponseProtocolBase();
-LDDeviceToIdpAdministrativeResponseProtocol.prototype.constructor = LDDeviceToIdpAdministrativeResponseProtocol;
-var _=LDDeviceToIdpAdministrativeResponseProtocol.prototype;
+O.prototype=new LDResponseProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToIdpAdministrativeResponseProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -36,4 +36,4 @@ _.ListFlaggedUsers=null;
 _.GetDeviceRecords=null;
 _.GetPermissionsResponse=null;
 
-module.exports=LDDeviceToIdpAdministrativeResponseProtocol;
+module.exports=O;

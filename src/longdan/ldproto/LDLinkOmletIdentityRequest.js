@@ -2,16 +2,16 @@ var LDAccountDetailsResponse = require('./LDAccountDetailsResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDIdentity = require('./LDIdentity');
 
-function LDLinkOmletIdentityRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['i']!=null)$.Identity=new LDIdentity(e['i']);
 	$.Account=e['a'];
 }
-LDLinkOmletIdentityRequest.prototype=new LDJSONLoggable();
-LDLinkOmletIdentityRequest.prototype.constructor = LDLinkOmletIdentityRequest;
-var _=LDLinkOmletIdentityRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDLinkOmletIdentityRequest";
 _.__rt=LDAccountDetailsResponse;
 _.encode=function(o){
@@ -24,7 +24,7 @@ _.encode=function(o){
 }
 _.Identity=null;
 _.Account=null;
-LDLinkOmletIdentityRequest.prototype.makeIdpRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"O":o};o=t;
 	t={"#":id,"a":o};o=t;
@@ -32,4 +32,4 @@ LDLinkOmletIdentityRequest.prototype.makeIdpRpc=function(id){
 	return o;
 }
 
-module.exports=LDLinkOmletIdentityRequest;
+module.exports=O;

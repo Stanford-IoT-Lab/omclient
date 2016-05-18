@@ -1,14 +1,14 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetAddMeLinkRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDGetAddMeLinkRequest.prototype=new LDJSONLoggable();
-LDGetAddMeLinkRequest.prototype.constructor = LDGetAddMeLinkRequest;
-var _=LDGetAddMeLinkRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetAddMeLinkRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -17,7 +17,7 @@ _.encode=function(o){
 	LDJSONLoggable.prototype.encode.call($,o);
 	return o;
 }
-LDGetAddMeLinkRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"a":o};o=t;
 	t={"#":id,"a":o};o=t;
@@ -25,4 +25,4 @@ LDGetAddMeLinkRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetAddMeLinkRequest;
+module.exports=O;

@@ -2,16 +2,16 @@ var LDRequestProtocolBase = require('./LDRequestProtocolBase');
 var LDGatherEventsByAppRequest = require('./LDGatherEventsByAppRequest');
 var LDReportSummaryEventsRequest = require('./LDReportSummaryEventsRequest');
 
-function LDClusterOrDeviceToClusterEventSummaryRequestProtocol(e){
+function O(e){
 	LDRequestProtocolBase.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['r']!=null)$.ReportSummaryEventsRequest=new LDReportSummaryEventsRequest(e['r']);
 	if(e['ga']!=null)$.GatherEventsByAppRequest=new LDGatherEventsByAppRequest(e['ga']);
 }
-LDClusterOrDeviceToClusterEventSummaryRequestProtocol.prototype=new LDRequestProtocolBase();
-LDClusterOrDeviceToClusterEventSummaryRequestProtocol.prototype.constructor = LDClusterOrDeviceToClusterEventSummaryRequestProtocol;
-var _=LDClusterOrDeviceToClusterEventSummaryRequestProtocol.prototype;
+O.prototype=new LDRequestProtocolBase();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDClusterOrDeviceToClusterEventSummaryRequestProtocol";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -24,4 +24,4 @@ _.encode=function(o){
 _.ReportSummaryEventsRequest=null;
 _.GatherEventsByAppRequest=null;
 
-module.exports=LDClusterOrDeviceToClusterEventSummaryRequestProtocol;
+module.exports=O;

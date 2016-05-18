@@ -2,16 +2,16 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDDeviceToClusterResponseContainer = require('./LDDeviceToClusterResponseContainer');
 var LDDeviceToClusterRequestContainer = require('./LDDeviceToClusterRequestContainer');
 
-function LDDeviceToClusterRpcWrapper(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['q']!=null)$.Request=new LDDeviceToClusterRequestContainer(e['q']);
 	if(e['r']!=null)$.Response=new LDDeviceToClusterResponseContainer(e['r']);
 }
-LDDeviceToClusterRpcWrapper.prototype=new LDJSONLoggable();
-LDDeviceToClusterRpcWrapper.prototype.constructor = LDDeviceToClusterRpcWrapper;
-var _=LDDeviceToClusterRpcWrapper.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDDeviceToClusterRpcWrapper";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -24,4 +24,4 @@ _.encode=function(o){
 _.Request=null;
 _.Response=null;
 
-module.exports=LDDeviceToClusterRpcWrapper;
+module.exports=O;

@@ -1,13 +1,13 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDResponseProtocolBase(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDResponseProtocolBase.prototype=new LDJSONLoggable();
-LDResponseProtocolBase.prototype.constructor = LDResponseProtocolBase;
-var _=LDResponseProtocolBase.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDResponseProtocolBase";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDResponseProtocolBase;
+module.exports=O;

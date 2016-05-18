@@ -1,12 +1,12 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDItemId = require('./LDItemId');
 
-function LDReviewItemRequest(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['i']!=null)$.ItemId=new LDItemId(e['i']);
 }
-var _=LDReviewItemRequest.prototype;
+var _=O.prototype;
 _.__type="LDReviewItemRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -16,7 +16,7 @@ _.encode=function(o){
 	return o;
 }
 _.ItemId=null;
-LDReviewItemRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"re":o};o=t;
 	t={"#":id,"oas":o};o=t;
@@ -24,4 +24,4 @@ LDReviewItemRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDReviewItemRequest;
+module.exports=O;

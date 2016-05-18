@@ -1,14 +1,14 @@
 var LDGetCloudConfigResponse = require('./LDGetCloudConfigResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetCloudConfigRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDGetCloudConfigRequest.prototype=new LDJSONLoggable();
-LDGetCloudConfigRequest.prototype.constructor = LDGetCloudConfigRequest;
-var _=LDGetCloudConfigRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetCloudConfigRequest";
 _.__rt=LDGetCloudConfigResponse;
 _.encode=function(o){
@@ -17,7 +17,7 @@ _.encode=function(o){
 	LDJSONLoggable.prototype.encode.call($,o);
 	return o;
 }
-LDGetCloudConfigRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"g":o};o=t;
 	t={"#":id,"cs":o};o=t;
@@ -25,4 +25,4 @@ LDGetCloudConfigRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetCloudConfigRequest;
+module.exports=O;

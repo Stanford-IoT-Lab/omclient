@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDBlobDownloadTicket = require('./LDBlobDownloadTicket');
 
-function LDGetDownloadTicketResponse(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['dt']!=null)$.BlobDownloadTicket=new LDBlobDownloadTicket(e['dt']);
 }
-LDGetDownloadTicketResponse.prototype=new LDJSONLoggable();
-LDGetDownloadTicketResponse.prototype.constructor = LDGetDownloadTicketResponse;
-var _=LDGetDownloadTicketResponse.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetDownloadTicketResponse";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -20,4 +20,4 @@ _.encode=function(o){
 }
 _.BlobDownloadTicket=null;
 
-module.exports=LDGetDownloadTicketResponse;
+module.exports=O;

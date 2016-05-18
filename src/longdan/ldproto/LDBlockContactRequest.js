@@ -1,15 +1,15 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDContactDetails = require('./LDContactDetails');
 
-function LDBlockContactRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['c']!=null)$.ContactDetails=new LDContactDetails(e['c']);
 }
-LDBlockContactRequest.prototype=new LDJSONLoggable();
-LDBlockContactRequest.prototype.constructor = LDBlockContactRequest;
-var _=LDBlockContactRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDBlockContactRequest";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -19,7 +19,7 @@ _.encode=function(o){
 	return o;
 }
 _.ContactDetails=null;
-LDBlockContactRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"b":o};o=t;
 	t={"#":id,"c":o};o=t;
@@ -27,4 +27,4 @@ LDBlockContactRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDBlockContactRequest;
+module.exports=O;

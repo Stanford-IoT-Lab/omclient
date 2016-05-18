@@ -1,11 +1,11 @@
 var LDItemId = require('./LDItemId');
 
-function LDItemInfoImmutable(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['id']!=null)$.ItemId=new LDItemId(e['id']);
 }
-var _=LDItemInfoImmutable.prototype;
+var _=O.prototype;
 _.__type="LDItemInfoImmutable";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -15,4 +15,4 @@ _.encode=function(o){
 }
 _.ItemId=null;
 
-module.exports=LDItemInfoImmutable;
+module.exports=O;

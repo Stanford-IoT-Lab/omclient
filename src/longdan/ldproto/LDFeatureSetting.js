@@ -1,14 +1,14 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDFeatureSetting(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.EnabledTime=e['t'];
 }
-LDFeatureSetting.prototype=new LDJSONLoggable();
-LDFeatureSetting.prototype.constructor = LDFeatureSetting;
-var _=LDFeatureSetting.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDFeatureSetting";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -19,4 +19,4 @@ _.encode=function(o){
 }
 _.EnabledTime=null;
 
-module.exports=LDFeatureSetting;
+module.exports=O;

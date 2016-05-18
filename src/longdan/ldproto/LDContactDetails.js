@@ -2,7 +2,7 @@ var LDJSONLoggable = require('./LDJSONLoggable');
 var LDIdentity = require('./LDIdentity');
 var LDIdentityHash = require('./LDIdentityHash');
 
-function LDContactDetails(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -28,9 +28,9 @@ function LDContactDetails(e){
 		for(var k=0; k<d.length;++k)$.Identities.push(new LDIdentity(d[k]));
 	}
 }
-LDContactDetails.prototype=new LDJSONLoggable();
-LDContactDetails.prototype.constructor = LDContactDetails;
-var _=LDContactDetails.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDContactDetails";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -73,4 +73,4 @@ _.HasAppTime=null;
 _.Hashidentities=null;
 _.Identities=null;
 
-module.exports=LDContactDetails;
+module.exports=O;

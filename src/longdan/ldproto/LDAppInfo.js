@@ -1,13 +1,13 @@
 var LDItemInfo = require('./LDItemInfo');
 
-function LDAppInfo(e){
+function O(e){
 	LDItemInfo.call(this,e);
 	if(!e)return;
 	var $=this;
 }
-LDAppInfo.prototype=new LDItemInfo();
-LDAppInfo.prototype.constructor = LDAppInfo;
-var _=LDAppInfo.prototype;
+O.prototype=new LDItemInfo();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDAppInfo";
 _.encode=function(o){
 	if(o===undefined)o={};
@@ -16,4 +16,4 @@ _.encode=function(o){
 	return o;
 }
 
-module.exports=LDAppInfo;
+module.exports=O;

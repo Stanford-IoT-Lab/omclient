@@ -1,13 +1,13 @@
 var LDGenerateGrantForItemResponse = require('./LDGenerateGrantForItemResponse');
 var LDItemId = require('./LDItemId');
 
-function LDGenerateGrantForItemRequest(e){
+function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['ii']!=null)$.ItemId=new LDItemId(e['ii']);
 	$.ExpirationTime=e['e'];
 }
-var _=LDGenerateGrantForItemRequest.prototype;
+var _=O.prototype;
 _.__type="LDGenerateGrantForItemRequest";
 _.__rt=LDGenerateGrantForItemResponse;
 _.encode=function(o){
@@ -19,7 +19,7 @@ _.encode=function(o){
 }
 _.ItemId=null;
 _.ExpirationTime=null;
-LDGenerateGrantForItemRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"gg":o};o=t;
 	t={"#":id,"oas":o};o=t;
@@ -27,4 +27,4 @@ LDGenerateGrantForItemRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGenerateGrantForItemRequest;
+module.exports=O;

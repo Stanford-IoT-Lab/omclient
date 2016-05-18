@@ -2,7 +2,7 @@ var LDBroadcastItemResponse = require('./LDBroadcastItemResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDNearbyItemContainer = require('./LDNearbyItemContainer');
 
-function LDBroadcastItemRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
@@ -14,9 +14,9 @@ function LDBroadcastItemRequest(e){
 	$.Radius=e['r'];
 	$.Country=e['c'];
 }
-LDBroadcastItemRequest.prototype=new LDJSONLoggable();
-LDBroadcastItemRequest.prototype.constructor = LDBroadcastItemRequest;
-var _=LDBroadcastItemRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDBroadcastItemRequest";
 _.__rt=LDBroadcastItemResponse;
 _.encode=function(o){
@@ -39,7 +39,7 @@ _.Latitude=null;
 _.Longitude=null;
 _.Radius=null;
 _.Country=null;
-LDBroadcastItemRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"b":o};o=t;
 	t={"#":id,"n":o};o=t;
@@ -47,4 +47,4 @@ LDBroadcastItemRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDBroadcastItemRequest;
+module.exports=O;

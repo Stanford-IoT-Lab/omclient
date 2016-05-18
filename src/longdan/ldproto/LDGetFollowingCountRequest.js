@@ -1,15 +1,15 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
 
-function LDGetFollowingCountRequest(e){
+function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	$.Account=e['a'];
 }
-LDGetFollowingCountRequest.prototype=new LDJSONLoggable();
-LDGetFollowingCountRequest.prototype.constructor = LDGetFollowingCountRequest;
-var _=LDGetFollowingCountRequest.prototype;
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
+var _=O.prototype;
 _.__type="LDGetFollowingCountRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
@@ -20,7 +20,7 @@ _.encode=function(o){
 	return o;
 }
 _.Account=null;
-LDGetFollowingCountRequest.prototype.makeClusterRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"gafc":o};o=t;
 	t={"#":id,"w":o};o=t;
@@ -28,4 +28,4 @@ LDGetFollowingCountRequest.prototype.makeClusterRpc=function(id){
 	return o;
 }
 
-module.exports=LDGetFollowingCountRequest;
+module.exports=O;
