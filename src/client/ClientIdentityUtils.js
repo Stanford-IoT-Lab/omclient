@@ -1,7 +1,8 @@
 var async = require("async");
-
-var proto = require("../longdan/ldproto");
 var RawIdentity = require("./model/RawIdentity");
+
+var LDSetProfileNameRequest = require('../longdan/ldproto/LDSetProfileNameRequest');
+var LDGetOmletContactProfileRequest = require('../longdan/ldproto/LDGetOmletContactProfileRequest');
 
 class IdentityUtils {
 
@@ -18,7 +19,7 @@ class IdentityUtils {
 	}
 
 	setUserDisplayName(name, cb) {
-		var req = new proto.LDSetProfileNameRequest();
+		var req = new LDSetProfileNameRequest();
 		req.Name = name;
 		this._client.msgCall(req, (e, resp, req) => {
 			if (typeof cb == 'function') {
@@ -28,7 +29,7 @@ class IdentityUtils {
 	}
 
 	lookupAccount(account, cb) {
-		var req = new proto.LDGetOmletContactProfileRequest();
+		var req = new LDGetOmletContactProfileRequest();
 		req.RequestedAccount = account;
 		this._client.msgCall(req, (err, resp, req) => {
 			if (err) {
@@ -144,7 +145,7 @@ class IdentityUtils {
 	}
 
 	_refreshAccountProfile(account) {
-		var req = new proto.LDGetOmletContactProfileRequest();
+		var req = new LDGetOmletContactProfileRequest();
 		req.RequestedAccount = account;
 		this._client.msgCall(req, (err, resp, req) => {
 			if (err) {

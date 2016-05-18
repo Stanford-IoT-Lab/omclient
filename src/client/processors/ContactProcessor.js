@@ -1,4 +1,4 @@
-var proto = require("../../longdan/ldproto");
+var LDContactDetails = require('../../longdan/ldproto/LDContactDetails');
 
 function ContactProcessor() {
 
@@ -6,7 +6,7 @@ function ContactProcessor() {
 
 ContactProcessor.prototype.processMessage = function(client, db, feed, sender, msg) {
 	// TODO: Protocol generator for ldobjects.
-	var contact = new proto.LDContactDetails(JSON.parse(msg.Body.toString("utf8")).c);
+	var contact = new LDContactDetails(JSON.parse(msg.Body.toString("utf8")).c);
 
 	if (contact.ProfilePictureLink) {
 		var hash = client.blob.hashFromLongdanUrl(contact.ProfilePictureLink);

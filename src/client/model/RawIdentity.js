@@ -1,5 +1,8 @@
-var proto = require("../../longdan/ldproto");
 var ourcrypto = require("../../util/crypto");
+
+var LDIdentity = require('../../longdan/ldproto/LDIdentity');
+var LDIdentityHash = require('../../longdan/ldproto/LDIdentityHash');
+
 
 function RawIdentity() {}
 
@@ -43,7 +46,7 @@ RawIdentity.normalizePhone = function(phone) {
 }
 
 RawIdentity.prototype.asLdIdentity = function() {
-	var id = new proto.LDIdentity();
+	var id = new LDIdentity();
 	id.Type = this.type;
 	id.Principal = this.principal;
 	return id;
@@ -52,7 +55,7 @@ RawIdentity.prototype.asLdIdentity = function() {
 RawIdentity.prototype.getEncodedHashedIdentity = function() {
 	var alg = ourcrypto.createMD5();
 	alg.update(this.principal);
-	var idHash = new proto.LDIdentityHash();
+	var idHash = new LDIdentityHash();
 	idHash.Type = this.type;
 	idHash.Hash = alg.digest('base64');
 	return JSON.stringify(idHash.encode());

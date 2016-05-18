@@ -1,6 +1,5 @@
 // -*- tab-width: 4 -*-
 
-var proto = require("../longdan/ldproto");
 var ldKeys = require("../longdan/ldkeys");
 var connection = require('../longdan/connection');
 var ourcrypto = require('../util/crypto');
@@ -21,6 +20,10 @@ var OmEvent = require('./OmEvent');
 var http = require('http');
 var https = require('https');
 var url = require('url');
+
+var LDAccountDetails = require('../longdan/ldproto/LDAccountDetails');
+var LDConfirmAuthCodeRequest = require('../longdan/ldproto/LDConfirmAuthCodeRequest');
+var LDCheckIdentityLinkedRequest = require('../longdan/ldproto/LDCheckIdentityLinkedRequest');
 
 class Client {
 
@@ -81,7 +84,7 @@ class Client {
 
 		this._details = this._storage.getItem(this._detailsItem);
 		if (this._details) {
-			this._details = new proto.LDAccountDetails(JSON.parse(this._details));
+			this._details = new LDAccountDetails(JSON.parse(this._details));
 			this.account = this._details.Account;
 		}
 
@@ -173,7 +176,7 @@ class Client {
 	}
 
 	signin(code, queryKey) {
-		var req = new proto.LDConfirmAuthCodeRequest();
+		var req = new LDConfirmAuthCodeRequest();
 		req.AuthCode = code;
 		req.QueryKey = queryKey;
 
@@ -198,7 +201,7 @@ class Client {
 
 	_pollSignin() {
 		this._signinTimer = undefined;
-		this._idp.call(new proto.LDCheckIdentityLinkedRequest(), (err, resp, req) => this._polledSignin(err, resp, req));
+		this._idp.call(new LDCheckIdentityLinkedRequest(), (err, resp, req) => this._polledSignin(err, resp, req));
 
 	}
 	

@@ -1,6 +1,9 @@
-var proto = require("../longdan/ldproto");
 var ObjTypes = require("./model/ObjTypes");
 var OverwriteMessageJob = require('./jobs/OverwriteMessageJob');
+
+var LDMessage = require('../longdan/ldproto/LDMessage');
+var LDTypedId = require('../longdan/ldproto/LDTypedId');
+var LDUrlToStoryRequest = require('../longdan/ldproto/LDUrlToStoryRequest');
 
 class MessagingUtils {
 
@@ -63,8 +66,8 @@ class MessagingUtils {
 
 	_referenceKeyForMessageId(msgId) {
 		var msgKey = JSON.parse(msgId);
-		var refKey = new proto.LDMessage();
-		refKey.Id = new proto.LDTypedId();
+		var refKey = new LDMessage();
+		refKey.Id = new LDTypedId();
 		refKey.Id.Type = msgKey.i.t;
 		refKey.Id.Id = new Buffer(msgKey.i.i, "base64");
 		refKey.Owner = this._client.account;
@@ -72,7 +75,7 @@ class MessagingUtils {
 	}
 
 	_urlToObj(url, cb) {
-		var req = new proto.LDUrlToStoryRequest();
+		var req = new LDUrlToStoryRequest();
 		req.Url = url;
 		this._client.msgCall(req, (err, resp, req) => {
 			if (err) {

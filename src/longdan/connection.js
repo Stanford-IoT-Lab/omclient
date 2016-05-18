@@ -1,7 +1,11 @@
 var async = require("async");
-var proto = require("./ldproto");
 var websocket = require('websocket');
 var ourcrypto = require('../util/crypto');
+
+var LDResponseContainerBase = require('./ldproto/LDResponseContainerBase');
+var LDHelloChallengeRequest = require('./ldproto/LDHelloChallengeRequest');
+var LDCompleteChallengeRequest = require('./ldproto/LDCompleteChallengeRequest');
+var LDPingRequest = require('./ldproto/LDPingRequest');
 
 var IDP_CLUSTER = "idp";
 var BASE_BACKOFF = 3 * 1000;
@@ -101,14 +105,10 @@ function Connection(cluster, target, configuration, privateKey, apiKey) {
 		this._serverPublicKey = this._configuration.IdpKey;
 		this._endpoint = makeWsPath(this._configuration.IdpEndpoints[rand(this._configuration.IdpEndpoints.length)], target);
 		this._requestWrapper = 'makeIdpRpc';
-		this._wrapperConstructor = proto.LDDeviceToIdpRpcWrapper;
-		this._responseConstructor = proto.LDDeviceToIdpResponseContainer;
 	} else {
 		if (cluster)
 			this._setCluster(cluster, target);
 		this._requestWrapper = 'makeClusterRpc';
-		this._wrapperConstructor = proto.LDDeviceToClusterRpcWrapper;
-		this._responseConstructor = proto.LDDeviceToClusterResponseContainer;
 	}
 
 	if (apiKey) {
@@ -262,24 +262,22 @@ Connection.prototype.disable = function() {
 };
 
 
-Connection.prototype._sendRequest = function(req) {
-	var wrapped = req[this._requestWrapper]();
-	wrapped.Request.SequenceNumber = this._nextRequestId++;
-	var body = JSON.stringify(wrapped.encode());
-	this._verbose(body);
-	this._client.send(body);
-	return wrapped;
-};
 Connection.prototype._sendResponse = function(wrapped) {
-	var body = JSON.stringify(wrapped.encode());
+	var body = JSON.stringify(wrapped);
 	this._verbose(body);
 	this._client.send(body);
 };
 
 Connection.prototype._call = function(req, callback) {
-	var wrapped = this._sendRequest(req);
+	var reqId = this._nextRequestId++;
+	var wrapped = req[this._requestWrapper](reqId);
+	
 	var rcb = new PendingRequest(wrapped, req, callback);
-	this._pending[wrapped.Request.SequenceNumber] = rcb;
+	this._pending[reqId] = rcb;
+
+	var body = JSON.stringify(wrapped);
+	this._verbose(body);
+	this._client.send(body);
 }
 
 Connection.prototype._enqueue = function(req, callback) {
@@ -297,7 +295,7 @@ Connection.prototype.call = function(req, callback) {
 }
 
 Connection.prototype._sendHello = function() {
-	var req = new proto.LDHelloChallengeRequest();
+	var req = new LDHelloChallengeRequest();
 	req.SourceKey = this._publicKey;
 	req.ApiKey = this._apiKey;
 	req.DestinationChallenge = this._challengeForServer = ourcrypto.createNonce();
@@ -346,7 +344,7 @@ Connection.prototype._ackHello = function(error, resp, req) {
 		sha.update(new Buffer(challenge));
 		appResponse = new Buffer(sha.digest('base64'), 'base64');
 	}
-	var req = new proto.LDCompleteChallengeRequest();
+	var req = new LDCompleteChallengeRequest();
 	req.Type = "JS-Omlib";
 	req.OmlibVersion = OMLIB_VERSION;
 	if (typeof window === 'undefined') {
@@ -365,7 +363,7 @@ Connection.prototype.sendPing = function(delay, lastRtt, cb) {
 		cb(new TemporaryFailure("NotConnected"));
 		return;
 	}
-	var req = new proto.LDPingRequest();
+	var req = new LDPingRequest();
 	req.NextPingDelayMs = delay;
 	req.LastRtt = lastRtt;
 	var start = new Date().getTime();
@@ -502,19 +500,19 @@ function firstNotNull(o, d) {
 	return null;
 }
 
-Connection.prototype._extractResponse = function(resp) {
-	if (resp.Response.HelloChallenge)
-		return resp.Response.HelloChallenge;
-	if (resp.Response.CompleteChallenge)
-		return resp.Response.CompleteChallenge;
-	if (resp.Response.Simple)
-		return resp.Response.Simple.Value;
-	if (resp.Response.Ping)
-		return resp.Response.Ping;
-	return firstNotNull(resp.Response, 2);
+Connection.prototype._extractResponse = function(resp, raw, cls) {
+	if (resp.HelloChallenge)
+		return resp.HelloChallenge;
+	if (resp.CompleteChallenge)
+		return resp.CompleteChallenge;
+	if (resp.Simple)
+		return resp.Simple.Value;
+	if (resp.Ping)
+		return resp.Ping;
+	return new cls(firstNotNull(raw, 2));
 }
-Connection.prototype._extractPush = function(resp) {
-	return firstNotNull(resp.Request, 2);
+Connection.prototype._extractPush = function(rawRequest) {
+	return firstNotNull(rawRequest, 3);
 }
 
 Connection.prototype._onmessage = function(e) {
@@ -523,26 +521,29 @@ Connection.prototype._onmessage = function(e) {
 		return;
 
 	this._verbose("Received: '" + e.data + "'");
-	var resp = new this._wrapperConstructor(JSON.parse(e.data));
-	if (resp.Response) {
-		var rcb = this._pending[resp.Response.SequenceNumber];
+	var jsonData = JSON.parse(e.data);
+	var rawResponse = jsonData['r'];
+	if (rawResponse) {
+		var resp = new LDResponseContainerBase(rawResponse);
+		var seqNum = resp.SequenceNumber;
+		var rcb = this._pending[seqNum];
 		if (!rcb) {
-			this._warn("unknown request id " + resp.Response.SequenceNumber);
+			this._warn("unknown request id " + seqNum);
 			this._verbose(resp);
 			this._backoff(new Abort());
 			return;
 		}
-		delete this._pending[resp.Response.SequenceNumber];
-		if (resp.Response.ErrorCode || resp.Response.ErrorDetail) {
+		delete this._pending[seqNum];
+		if (resp.ErrorCode || resp.ErrorDetail) {
 			if (!rcb.callback) {
 				this._warn("failure in callback for response " + e);
 				this._verbose(rcb.request);
 			} else {
 				try {
-					if (resp.Response.ErrorCode && resp.Response.ErrorCode != "UnknownError")
-						rcb.callback(new PermanentFailure(resp.Response.ErrorCode), undefined, rcb.request);
+					if (resp.ErrorCode && resp.ErrorCode != "UnknownError")
+						rcb.callback(new PermanentFailure(resp.ErrorCode), undefined, rcb.request);
 					else
-						rcb.callback(new TemporaryFailure(resp.Response.ErrorCode || resp.Response.ErrorDetail), undefined, rcb.request);
+						rcb.callback(new TemporaryFailure(resp.ErrorCode || resp.ErrorDetail), undefined, rcb.request);
 				} catch (e) {
 					this._warn("failure in callback for response " + e);
 					this._verbose(rcb.request);
@@ -553,7 +554,7 @@ Connection.prototype._onmessage = function(e) {
 		}
 
 		if (rcb.callback) {
-			var extracted = this._extractResponse(resp);
+			var extracted = this._extractResponse(resp, rawResponse, rcb.request.__rt);
 			try {
 				rcb.callback(undefined, extracted, rcb.request);
 			} catch (e) {
@@ -564,7 +565,7 @@ Connection.prototype._onmessage = function(e) {
 			}
 		}
 	} else {
-		var extracted = this._extractPush(resp);
+		var extracted = this._extractPush(jsonData);
 		if (!this.onPush) {
 			this._warn("unhandled push: " + e.data);
 		} else {
@@ -577,9 +578,11 @@ Connection.prototype._onmessage = function(e) {
 				throw e;
 			}
 		}
-		var wrapper = new this._wrapperConstructor();
-		wrapper.Response = new this._responseConstructor();
-		wrapper.Response.SequenceNumber = resp.Request.SequenceNumber;
+		var wrapper = {
+			'r': {
+				'#': jsonData['q']['#']
+			}
+		};
 		this._sendResponse(wrapper);
 	}
 };

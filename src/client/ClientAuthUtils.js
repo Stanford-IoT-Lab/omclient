@@ -1,4 +1,13 @@
-var proto = require("../longdan/ldproto");
+var LDGetSigninLinkRequest = require('../longdan/ldproto/LDGetSigninLinkRequest');
+var LDGetAppSigninLinkRequest = require('../longdan/ldproto/LDGetAppSigninLinkRequest');
+var LDRegisterWithTokenRequest = require('../longdan/ldproto/LDRegisterWithTokenRequest');
+var LDIdentity = require('../longdan/ldproto/LDIdentity');
+var LDIdentityType = require('../longdan/ldproto/LDIdentityType');
+var LDConfirmTokenRequest = require('../longdan/ldproto/LDConfirmTokenRequest');
+var LDRegisterWithOAuthRequest = require('../longdan/ldproto/LDRegisterWithOAuthRequest');
+var LDConfirmSigninCodeRequest = require('../longdan/ldproto/LDConfirmSigninCodeRequest');
+var LDConfirmAuthCodeRequest = require('../longdan/ldproto/LDConfirmAuthCodeRequest');
+var LDDeleteDeviceRequest = require('../longdan/ldproto/LDDeleteDeviceRequest');
 
 class AuthUtils {
 
@@ -14,7 +23,7 @@ class AuthUtils {
 			scopes = ["PublicProfile"];
 		}
 
-		var req = new proto.LDGetSigninLinkRequest();
+		var req = new LDGetSigninLinkRequest();
 		req.RedirectPage = redirectUrl;
 		req.Scopes = scopes;
 
@@ -32,7 +41,7 @@ class AuthUtils {
 	    scopes = ["PublicProfile"];
 	  }
 
-	  var req = new proto.LDGetAppSigninLinkRequest();
+	  var req = new LDGetAppSigninLinkRequest();
 	  req.RedirectPage = redirectUrl;
 	  req.Scopes = scopes;
 
@@ -43,41 +52,41 @@ class AuthUtils {
 	}
 
 	connectIdentity(identity) {
-		var req = new proto.LDRegisterWithTokenRequest();
+		var req = new DRegisterWithTokenRequest();
 		req.Identity = identity;
 		this._client.idpCall(req, function(e, resp) {});
 	}
 
 	connectEmail(email) {
-		var identity = new proto.LDIdentity();
-		identity.Type = proto.LDIdentityType.Email;
+		var identity = new LDIdentity();
+		identity.Type = LDIdentityType.Email;
 		identity.Principal = email;
 		this.connectIdentity(identity);
 	}
 
 	connectPhone(phone) {
-		var identity = new proto.LDIdentity();
-		identity.Type = proto.LDIdentityType.Phone;
+		var identity = new LDIdentity();
+		identity.Type = LDIdentityType.Phone;
 		identity.Principal = phone;
 		this.connectIdentity(identity);
 	}
 
 	confirmPinForIdentity(ldIdentity, pin, callback) {
-		var req = new proto.LDConfirmTokenRequest();
+		var req = new LDConfirmTokenRequest();
 		req.Identity = ldIdentity;
 		req.Token = pin;
 		this._client.idpCall(req, callback);
 	}
 
 	connectOAuth(serviceType, token) {
-		var req = new proto.LDRegisterWithOAuthRequest();
+		var req = new LDRegisterWithOAuthRequest();
 		req.ServiceType = serviceType;
 		req.Key = token;
 		this._client.idpCall(req, this._onAuthenticationComplete.bind(this));
 	}
 
 	confirmAuth(code, queryKey) {
-		var req = new proto.LDConfirmSigninCodeRequest();
+		var req = new LDConfirmSigninCodeRequest();
 		req.AuthCode = code;
 		req.QueryKey = queryKey;
 
@@ -85,7 +94,7 @@ class AuthUtils {
 	}
 
 	confirmLegacyAuth(code, queryKey){
-	  var req = new proto.LDConfirmAuthCodeRequest();
+	  var req = new LDConfirmAuthCodeRequest();
 	  req.AuthCode = code;
 	  req.QueryKey = queryKey;
 
@@ -108,7 +117,7 @@ class AuthUtils {
 	}
 
 	logout(cb) {
-		var req = new proto.LDDeleteDeviceRequest();
+		var req = new LDDeleteDeviceRequest();
 		req.PublicKey = this._client.publicKey;
 		this._client.msgCall(req, (err) => {
 			if (err) {

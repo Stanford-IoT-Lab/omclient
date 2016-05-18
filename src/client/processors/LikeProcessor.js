@@ -1,11 +1,12 @@
-var proto = require("../../longdan/ldproto");
+var LDMessage = require('../../longdan/ldproto/LDMessage');
+
 
 function LikeProcessor() {
 
 }
 
 LikeProcessor.prototype.processMessage = function(client, db, feed, sender, msg) {
-	var fake = new proto.LDMessage(JSON.parse(msg.Id.Id.toString()));
+	var fake = new LDMessage(JSON.parse(msg.Id.Id.toString()));
 	var ldId = fake.Id;
 	var referenceKey = client.messaging.makeUniqueMessageId(feed, ldId);
 	var like = JSON.parse(msg.Body);
@@ -13,7 +14,7 @@ LikeProcessor.prototype.processMessage = function(client, db, feed, sender, msg)
 }
 
 LikeProcessor.prototype.processDelete = function(client, db, feed, sender, msg) {
-	var fake = new proto.LDMessage(JSON.parse(msg.Id.Id.toString()));
+	var fake = new LDMessage(JSON.parse(msg.Id.Id.toString()));
 	var ldId = fake.Id;
 	var referenceKey = client.messaging.makeUniqueMessageId(feed, ldId);
 	var like = {

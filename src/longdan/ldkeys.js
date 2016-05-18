@@ -1,6 +1,6 @@
-var proto = require("./ldproto");
+var LDPublicKeys = require('./ldproto/LDPublicKeys');
 
-var TEST_KEYS = new proto.LDPublicKeys({
+var TEST_KEYS = new LDPublicKeys({
 	"ClusterEndpoints": {
 		"ONE": ["https://us.omlet.me"],
 		"TWO": ["https://sg.omlet.me"],
@@ -18,7 +18,7 @@ var TEST_KEYS = new proto.LDPublicKeys({
 	"IdpKey": "MIOC9PS8KIwXOXSHtplBZLSpIqcifns0jzExtkHXw1g="
 });
 
-var LOCAL_TEST_KEYS = new proto.LDPublicKeys({
+var LOCAL_TEST_KEYS = new LDPublicKeys({
 	"ClusterEndpoints": {
 		"ONE": ["http://127.0.0.1:3829"]
 	},
@@ -30,7 +30,7 @@ var LOCAL_TEST_KEYS = new proto.LDPublicKeys({
 	"IdpKey": "A2kW+bIHpCz0Xv2t7SVGPDjqXQbHPsBkFNtIhR3ruzk="
 });
 
-var DEV_KEYS = new proto.LDPublicKeys({
+var DEV_KEYS = new LDPublicKeys({
 	"ClusterEndpoints": {
 		"ONE": ["https://dev.omapi.net:3829"]
 	},

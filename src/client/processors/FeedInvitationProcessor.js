@@ -3,7 +3,7 @@ function FeedInvitationProcessor() {
 }
 
 FeedInvitationProcessor.prototype.processMessage = function(client, db, feed, sender, msg) {
-	//var ldHash = new proto.LDIdentityHash(JSON.parse(msg.Id.Id.toString("utf8")));
+	//var ldHash = new LDIdentityHash(JSON.parse(msg.Id.Id.toString("utf8")));
 	var ldHashString = msg.Id.Id.toString("utf8");
 
 	var feedId = client.store.getObjectId(feed);

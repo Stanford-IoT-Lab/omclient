@@ -1,4 +1,4 @@
-var proto = require("../../longdan/ldproto");
+var LDFeed = require('../../longdan/ldproto/LDFeed');
 
 function OMFeed(feed) {
 	this._feed = feed;
@@ -9,7 +9,7 @@ OMFeed.prototype.toRaw = function() {
 }
 
 OMFeed.prototype.getLdFeed = function() {
-	return new proto.LDFeed(JSON.parse(this._feed.identifier));
+	return new LDFeed(JSON.parse(this._feed.identifier));
 }
 
 OMFeed.MASK_NEWER = 1 << 0;
