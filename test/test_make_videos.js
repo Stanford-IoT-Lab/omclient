@@ -1,8 +1,8 @@
-om = require('../lib/om');
+var assert = require('assert')
+var omlib = (typeof window === 'undefined') ? require('../lib/omlib') : require('omlib');
 fs = require('fs');
 
-assert = om.assert;
-
+omlib.init();
 var res = fs.readdirSync("gamers");
 var gamers = [];
 for (var i in res) {
@@ -14,19 +14,19 @@ for (var i in res) {
 function Gamer(name, i) {
     this._name = name;
     this._profileData = fs.readFileSync("gamers/" + name + ".jpg");
-    this._client = new om.client.Client({ instance: i, keys:om.client.LocalConfiguration });
+    this._client = new omlib._ldClient;
     this._client.onInterrupted = abort;
     this._index = i;
 }
 
 Gamer.prototype.register = function()
 {
-    var register = new om.proto.LDRegisterWithOAuthRequest();
+    var register = new omlib._proto.LDRegisterWithOAuthRequest();
     register.ServiceType = "evil";
-    var key = new om.proto.LDGetLinkedIdentitiesResponse();
-    var identity = new om.proto.LDIdentity();
+    var key = new omlib._proto.LDGetLinkedIdentitiesResponse();
+    var identity = new omlib._proto.LDIdentity();
     identity.Principal = this._index + "@test.omlet.me";
-    identity.Type = om.proto.LDIdentityType.Email;
+    identity.Type = omlib._proto.LDIdentityType.Email;
     key.Identities = [identity];
     register.Key = JSON.stringify(key.encode());
     register.Scopes = ["Arcade"];
@@ -45,7 +45,7 @@ Gamer.prototype._onregister = function(e, resp) {
 }
 Gamer.prototype._onsignedup = function () {
     console.log("Signed up " + this._name);
-    var profile = new om.proto.LDSetProfileNameRequest();
+    var profile = new omlib._proto.LDSetProfileNameRequest();
     profile.Name = this._name;
     this._client.msgCall(profile, this._onsetname.bind(this));
 }
@@ -58,7 +58,7 @@ Gamer.prototype._onuploadpic = function (e, resp) {
     this._picLink = resp;
     console.log("Upload pic " + this._name);
     assert.ifError(e);
-    var profile = new om.proto.LDSetProfilePictureRequest();
+    var profile = new omlib._proto.LDSetProfilePictureRequest();
     profile.BlobLinkString = resp;
     this._client.msgCall(profile, this._onsetpic.bind(this));
 }
@@ -74,7 +74,7 @@ Gamer.prototype._onuploadedvid = function (e, resp) {
     console.log("uploaded vid " + this._name + " " + resp + " " + this._picLink);
     assert.ifError(e);
 
-    var vid = new om.proto.LDPostVideoRequest();
+    var vid = new omlib._proto.LDPostVideoRequest();
     vid.Title = this._name + "'s Video " + Math.random();
     vid.Description = "This is a test video that has simulated uploading";
     vid.BlobLinkString = resp;
@@ -82,8 +82,8 @@ Gamer.prototype._onuploadedvid = function (e, resp) {
     vid.Duration = 5;
     vid.Height = 720;
     vid.Width = 480;
-    vid.PrimaryTag = new om.proto.LDPostTag();
-    vid.PrimaryTag.TagType = om.proto.LDPostTagType.Game;
+    vid.PrimaryTag = new omlib._proto.LDPostTag();
+    vid.PrimaryTag.TagType = omlib._proto.LDPostTagType.Game;
     vid.PrimaryTag.Tag = "com.example.android.opengl";
     
     vid.SecondaryTags = [];
@@ -94,7 +94,7 @@ Gamer.prototype._onposted = function (e, resp) {
     console.log("posted " + this._name, resp);
     assert.ifError(e);
     this._postid = resp.PostId;
-    var get = new om.proto.LDGetPostRequest();
+    var get = new omlib._proto.LDGetPostRequest();
     get.PostId = this._postid;
     this._client.msgCall(get, this._ongetpost.bind(this));
 

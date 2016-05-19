@@ -1,18 +1,13 @@
-var om;
-if (typeof window === 'undefined') {
-    om = require('../lib/om');
-} else {
-    om = require('omclient');
-}
-
-assert = om.assert;
+var assert = require('assert')
+var omlib = (typeof window === 'undefined') ? require('../lib/omlib') : require('omlib');
 
 function abort(cause) {
     console.log("aborting because connection was severed");
     throw cause;
 }
 
-var client = new om.client.Client();
+omlib.init();
+var client = omlib._ldClient;
 assert.ok(client.account);
 client.onInterrupted = abort;
 

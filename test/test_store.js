@@ -1,25 +1,21 @@
-var om;
-if (typeof window === 'undefined') {
-    om = require('../lib/om');
-} else {
-    om = require('omclient');
-}
-
-assert = om.assert;
+var assert = require('assert')
+var omlib = (typeof window === 'undefined') ? require('../lib/omlib') : require('omlib');
 
 function abort(cause) {
     console.log("aborting because connection was severed");
     throw cause;
 }
 
-var client = new om.client.Client();
+omlib.init();
+var client = omlib._ldClient;
+
 assert.ok(client.account);
 client.onInterrupted = abort;
 client.enable();
 
 function createiteminfo() {
-    var req = new om.proto.LDCreateItemInfoRequest();
-    req.ItemType = om.proto.LDStoreItemType.App;
+    var req = new omlib._proto.LDCreateItemInfoRequest();
+    req.ItemType = omlib._proto.LDStoreItemType.App;
     req.Account = client.account;
     req.ItemId = "appId1";
     client.msgCall(req, oncreateiteminfo);
@@ -32,7 +28,7 @@ function oncreateiteminfo(error, resp, req) {
 }
 
 function listiteminfo() {
-    var req = new om.proto.LDListItemsForAccountRequest();
+    var req = new omlib._proto.LDListItemsForAccountRequest();
     req.ItemType = "App";
     req.Account = client.account;
     client.msgCall(req, onlistiteminfo);
@@ -49,8 +45,8 @@ function onlistiteminfo(error, resp, req) {
 }
 
 function deleteiteminfo(next, noassert) {
-    var req = new om.proto.LDDeleteItemRequest();
-    req.ItemType = om.proto.LDStoreItemType.App;
+    var req = new omlib._proto.LDDeleteItemRequest();
+    req.ItemType = omlib._proto.LDStoreItemType.App;
     req.Account = client.account;
     req.ItemId = "appId1";
     client.msgCall(req, ondeleteiteminfo.bind(undefined, next, noassert));

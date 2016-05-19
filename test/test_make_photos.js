@@ -1,7 +1,6 @@
-om = require('../lib/om');
+var assert = require('assert')
+var omlib = (typeof window === 'undefined') ? require('../lib/omlib') : require('omlib');
 fs = require('fs');
-
-assert = om.assert;
 
 var res = fs.readdirSync("gamers");
 var gamers = [];

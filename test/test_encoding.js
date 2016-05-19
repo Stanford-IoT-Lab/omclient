@@ -1,37 +1,37 @@
-var om;
-if (typeof window === 'undefined') {
-    om = require('../lib/om');
-} else {
-    om = require('omclient');
-}
+var assert = require('assert')
+var omlib = (typeof window === 'undefined') ? require('../lib/omlib') : require('omlib');
+var crypto = require ('../lib/util/crypto');
 
-assert = om.assert;
-
-var a = new om.proto.LDAccountDetails();
+var a = new omlib._proto.LDAccountDetails();
 a.Account = "acc";
 a.Cluster = "clu";
-a.Identities = [new om.proto.LDIdentity()];
+a.Identities = [new omlib._proto.LDIdentity()];
 a.Identities[0].Type = "email";
 a.Identities[0].Principal = "foo@bar.com";
-assert.equal(JSON.stringify(a), JSON.stringify(new om.proto.LDAccountDetails(a.encode())));
 
-var cc = { "ClusterEndpoints": { "ONE": ["http://127.0.0.1:3829"] }, "ClusterKeys": { "ONE": "80Qd+N2ml/Iahcd5kFfzLdT+3Kel7wS/2AwCybtGblA=" }, "DefaultCluster": "ONE", "IdpEndpoints": ["http://127.0.0.1:4001"], "IdpKey": "A2kW+bIHpCz0Xv2t7SVGPDjqXQbHPsBkFNtIhR3ruzk=" };
+assert.deepEqual(a, new omlib._proto.LDAccountDetails(a.encode()));
 
-var ccs = new om.proto.LDPublicKeys(cc);
-assert.equal(JSON.stringify(cc), JSON.stringify(ccs.encode()));
+var cc = { "ClusterEndpoints": { "ONE": ["http://127.0.0.1:3829"] },
+		   "ClusterKeys": { "ONE": "80Qd+N2ml/Iahcd5kFfzLdT+3Kel7wS/2AwCybtGblA=" },
+		   "DefaultCluster": "ONE",
+		   "IdpEndpoints": ["http://127.0.0.1:4001"],
+		   "IdpKey": "A2kW+bIHpCz0Xv2t7SVGPDjqXQbHPsBkFNtIhR3ruzk=" };
 
-var req = new om.proto.LDDeviceToClusterRequestContainer();
-req = new om.proto.LDDeviceAddPendingInvitationRequest();
-req.Feed = new om.proto.LDFeed();
+var ccs = new omlib._proto.LDPublicKeys(cc);
+assert.deepEqual(cc, ccs.encode());
+
+var req = new omlib._proto.LDDeviceToClusterRequestContainer();
+req = new omlib._proto.LDAddPendingInvitationRequest();
+req.Feed = new omlib._proto.LDFeed();
 req.Feed.Account = "someone";
-req.Feed.Key = om.createNonce();
-req.IdentityHash = new om.proto.LDIdentityHash();
-req.IdentityHash.Type = om.proto.LDIdentityType.Email;
-req.IdentityHash.Hash = om.createNonce(16);
+req.Feed.Key = crypto.createNonce();
+req.IdentityHash = new omlib._proto.LDIdentityHash();
+req.IdentityHash.Type = omlib._proto.LDIdentityType.Email;
+req.IdentityHash.Hash = crypto.createNonce(16);
 
-var wrapped = new om.proto.LDDeviceToClusterRpcWrapper();
-wrapped.Request = new om.proto.LDDeviceToClusterRequestContainer();
-wrapped.Request.Message = new om.proto.LDDeviceToClusterMessageRequestProtocol();
+var wrapped = new omlib._proto.LDDeviceToClusterRpcWrapper();
+wrapped.Request = new omlib._proto.LDDeviceToClusterRequestContainer();
+wrapped.Request.Message = new omlib._proto.LDDeviceToClusterMessageRequestProtocol();
 wrapped.Request.Message.AddPendingInvitation = req;
-assert.equal(JSON.stringify(wrapped), JSON.stringify(new om.proto.LDDeviceToClusterRpcWrapper(wrapped.encode())));
-assert.equal(JSON.stringify(req.makeClusterRpc()), JSON.stringify(new om.proto.LDDeviceToClusterRpcWrapper(wrapped.encode())));
+assert.deepEqual(wrapped, new omlib._proto.LDDeviceToClusterRpcWrapper(wrapped.encode()));
+assert.deepEqual(req.makeClusterRpc(), new omlib._proto.LDDeviceToClusterRpcWrapper(wrapped.encode()));

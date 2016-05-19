@@ -3,5 +3,5 @@ var browserify = require('browserify')
 
 var b = browserify();
 
-b.require('./lib/om.js', { expose: 'omclient' });
-b.bundle().pipe(fs.createWriteStream(__dirname + '/build/omclient.js'));
+b.require('./lib/omlib.js', { expose: 'omlib' });
+b.bundle().pipe(fs.createWriteStream(__dirname + '/build/omlib.js'));

@@ -1,13 +1,13 @@
-var om;
+var assert = require('assert')
+var omlib;
 if (typeof window === 'undefined') {
-    om = require('../lib/om');
+    omlib = require('../lib/omlib');
 } else {
-    om = require('omclient');
+    omlib = require('omlib');
 }
 
-assert = om.assert;
-
-var client = new om.client.Client();
+omlib.init();
+var client = omlib._ldClient;
 var remove1 = false;
 var remove2 = false;
 var remove3 = false;

@@ -1,7 +1,8 @@
-om = require('../lib/om');
+var assert = require('assert')
+var omlib = (typeof window === 'undefined') ? require('../lib/omlib') : require('omlib');
 fs = require('fs');
 
-assert = om.assert;
+omlib.init();
 
 var res = fs.readdirSync("gamers");
 var gamers = [];
@@ -14,19 +15,19 @@ for (var i in res) {
 function Gamer(name, i) {
     this._name = name;
     this._profileData = fs.readFileSync("gamers/" + name + ".jpg");
-    this._client = new om.client.Client({ instance: i, keys:om.client.LocalConfiguration });
+    this._client = omlib._ldClient;
     this._client.onInterrupted = abort;
     this._index = i;
 }
 
 Gamer.prototype.register = function()
 {
-    var register = new om.proto.LDRegisterWithOAuthRequest();
+    var register = new omlib._proto.LDRegisterWithOAuthRequest();
     register.ServiceType = "evil";
     var key = new om.proto.LDGetLinkedIdentitiesResponse();
-    var identity = new om.proto.LDIdentity();
+    var identity = new omlib._proto.LDIdentity();
     identity.Principal = this._index + "@test.omlet.me";
-    identity.Type = om.proto.LDIdentityType.Email;
+    identity.Type = omlib._proto.LDIdentityType.Email;
     key.Identities = [identity];
     register.Key = JSON.stringify(key.encode());
 
@@ -44,7 +45,7 @@ Gamer.prototype._onregister = function(e, resp) {
 }
 Gamer.prototype._onsignedup = function () {
     console.log("Signed up " + this._name);
-    var profile = new om.proto.LDSetProfileNameRequest();
+    var profile = new omlib._proto.LDSetProfileNameRequest();
     profile.Name = this._name;
     this._client.msgCall(profile, this._onsetname.bind(this));
 }

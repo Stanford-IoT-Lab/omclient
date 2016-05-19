@@ -4,5 +4,11 @@ Omlet is a chat application developed by Mobisocial Inc.
 
 This package contains the nodejs client module.
 
-Build using:
+Build the browser-friendly library using:
 `node make_browserify.js`
+
+Or build a node package as:
+`npm pack`
+
+Code cleanup:
+`js-beautify -r -t [file.js]`

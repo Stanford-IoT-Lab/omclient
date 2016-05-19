@@ -1,10 +1,9 @@
-var om = require('../lib/om');
-var ourcrypto = require('../lib/crypto')
-var connection = require('../lib/connection');
+var ourcrypto = require('../lib/util/crypto')
+var connection = require('../lib/longdan/connection');
 
-var assert = om.assert;
+var assert = require('assert')
 
-var private_key = ourcrypto.createPrivateKey();;
+var private_key = ourcrypto.createPrivateKey();
 var connection = new connection.Connection("THREE", "/device", om.client.DefaultConfiguration, private_key);
 connection._monitoring = true;
 connection.enable();

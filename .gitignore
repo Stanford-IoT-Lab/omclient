@@ -4,3 +4,4 @@ bower_components/
 js-client.njsproj
 js-client.sln
 scratch-localstorage
+build/
