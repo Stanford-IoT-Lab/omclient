@@ -254,6 +254,43 @@ class MessagingUtils {
 			});
 		});
 	}
+
+	_fileObjFromBytes(fileBytes, mimeType, cb) {
+		var body = {
+			_attachments: []
+		};
+
+		this._client.blob.uploadBlob(fileBytes, mimeType, (err, blobLink) => {
+			if (err) {
+				cb(err);
+			} else {
+				var hash = this._client.blob.hashFromLongdanUrl(blobLink);
+				body.fileHash = hash;
+				body._attachments.push({
+					hash: hash,
+					category: "file",
+					source: blobLink,
+					pushType: ObjTypes.FILE,
+					mimeType: mimeType
+				});
+
+				cb(undefined, ObjTypes.FILE, body);
+			}
+		});
+	}
+
+	_objFromFile(arrayBuffer, mimeType, cb) {
+		var buf = new Buffer(new Uint8Array(arrayBuffer));
+		if (mimeType.startsWith("image/")) {
+			if (mimeType == "image/gif") {
+				this._animatedGifObjFromBytes(buf, cb);
+			} else {
+				this._pictureObjFromBytes(buf, mimeType, cb);
+			}
+		} else {
+			this._fileObjFromBytes(buf, mimeType, cb);
+		}
+	}
 }
 
 module.exports = MessagingUtils;
