@@ -71,24 +71,40 @@ function OmTable(engine, name, key) {
 	this._client = engine._client;
 	this._name = name;
 	this._key = key;
-	this._persist = this._client._config.persist !== false;
+	var persist = this._client._config.persist !== false;
 	var instance = this._client._config.instance;
 
 	var path = name;
 	var lokiSettings = {};
-	if (this._persist) {
-		lokiSettings.autosave = true;
-		lokiSettings.autosaveInterval = 10000;
+	if (persist) {
 		if (typeof window === 'undefined') {
 			lokiSettings.persistenceMethod = "fs";
 			path = this._client._config.storagePath + "/" + instance + "_" + name;			
-		} else {
+		} else if (supportsIndexedDB()) {
 			lokiSettings.adapter = new lokiIndexed("omlibjs_" + instance);
+		} else {
+			persist = false;
 		}
+	}
+
+	this._persist = persist;
+	if (this._persist) {
+		lokiSettings.autosave = true;
+		lokiSettings.autosaveInterval = 10000;
 	} else {
-		lokiSettings.autosave = false;
+		lokiSettings.autosave = false;		
 	}
 	this._db = new loki(path, lokiSettings);
+}
+
+function supportsIndexedDB() {
+	if (typeof window.indexedDB === 'undefined') return false;
+	try {
+		var db = window.indexedDB.open('test');
+		return db != null;
+	} catch (e) {
+		return false;
+	}
 }
 
 OmTable.prototype._id = "$loki";
