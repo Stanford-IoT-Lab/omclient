@@ -57,13 +57,16 @@ class OmStore {
 			var twoWeeksAgo = (new Date().getTime() - TWO_WEEKS) * 1000;
 			return {
 				name: "",
+				thumbnailHash: null,
 				kind: undefined,
 				members: [],
 				invitations: [],
 				specifiedName: null,
 				specifiedThumbnailHash: null,
 				renderableTime: 0,
+				lastReadTime: 0,
 				messageCount: 0,
+				numUnread: 0,
 				_syncMask: OMFeed.MASK_DEFAULT,
 				newestFromService: twoWeeksAgo - 1
 			}

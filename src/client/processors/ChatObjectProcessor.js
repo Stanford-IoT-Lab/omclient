@@ -13,11 +13,17 @@ class ChatObjectProcessor {
 		var feedId = client.store.getObjectId(feed);
 
 		client.store.getFeedObjects(feedId, (objectsDb) => {
+			feed.messageCount++;
 			if (feed.renderableTime < t) {
 				feed.renderableTime = t;
 				feed.renderableObj = body;
 			}
-			feed.messageCount++;
+
+			if (feed.lastReadTime < t) {
+				if (!client.feed.isFeedActive(feed)) {
+					feed.numUnread++;
+				}
+			}
 
 			db.feeds.update(feed);
 			objectsDb.getObjectByKey(body.msgId, (existing) => {
