@@ -1,5 +1,7 @@
 var crypto = require("../util/crypto");
 
+var OMFeed = require('./model/OMFeed');
+var ObjTypes = require("./model/ObjTypes");
 var LDCreateFeedRequest = require('../longdan/ldproto/LDCreateFeedRequest');
 var LDFeed = require('../longdan/ldproto/LDFeed');
 var LDAddMemberRequest = require('../longdan/ldproto/LDAddMemberRequest');
@@ -10,6 +12,7 @@ class FeedUtils {
 
 	constructor(client) {
 		this._client = client;
+		this._activeFeeds = {};
 	}
 
 	_createFeed(feedKind, cb) {
@@ -286,6 +289,51 @@ class FeedUtils {
 				}
 			});
 		});
+	}
+
+	markFeedActive(feed) {
+		var feedId = this._client.store.getObjectId(feed);
+		this._activeFeeds[feedId] = true;
+		if (this._supportsReadReceipts(feed)) {
+			this.markFeedRead(feed);
+		}
+	}
+
+	markFeedInactive(feed) {
+		var feedId = this._client.store.getObjectId(feed);
+		delete this._activeFeeds[feedId];
+	}
+
+	isFeedActive(feed) {
+		var feedId = this._client.store.getObjectId(feed);
+		return this._activeFeeds[feedId] === true;
+	}
+
+	markFeedRead(feed) {
+		if (!this._supportsReadReceipts(feed)) {
+			return;
+		}
+		var feedId = this._client.store.getObjectId(feed);
+		this._client.store.getFeeds((feedsDb) => {
+			feedsDb.getObjectById(feedId, (feed) => {
+				var t = feed.renderableTime;
+				if (feed.lastReadTime < t) {
+					feed.lastReadTime = t;
+					feed.numUnread = 0;
+					feedsDb.update(feed);
+
+					var type = ObjTypes.LAST_READ;
+					var body = {
+						lastReadTime: t
+					};
+					this._client.messaging._sendObjToFeed(feed, type, body);
+				}
+			});
+		});
+	}
+
+	_supportsReadReceipts(feed) {
+		return OMFeed.KIND_PUBLIC != feed.kind;
 	}
 }
 
