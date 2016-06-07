@@ -1,55 +1,61 @@
 var Datastore = require("nedb");
 
-function OmStore(client) {
-	this._client = client;
+class OmStore {
 
-	this.feeds = new OmTable("feeds", "identifier");
+	constructor(client) {
+		this._client = client;
 
-	this._data = {};
-	this._data._sync = {
-		caughtUp: false,
-		feedSyncStart: 0,
-		feedSyncEnd: 0,
-		feedSyncSplit: 0,
-	};
-}
+		this.feeds = new OmTable("feeds", "identifier");
 
-function OmTable(name, key) {
-	var DEBUG = true;
-	this._name = name;
-	this._key = key;
-	this._data = new Datastore({
-		filename: "db/" + name + ".db",
-		inMemoryOnly: DEBUG
-	});
-	if (key) {
-		this._data.ensureIndex({
-			fieldName: key
-		});
+		this._data = {};
+		this._data._sync = {
+			caughtUp: false,
+			feedSyncStart: 0,
+			feedSyncEnd: 0,
+			feedSyncSplit: 0,
+		};
 	}
-	this._data.loadDatabase();
 }
 
-OmTable.prototype.insert = function(o, cb) {
-	this._data.insert(o, cb);
-}
+class OmTable {
 
-OmTable.prototype.update = function(o, cb) {
-	this._data.update({
-		_id: o._id
-	}, o, {}, cb);
-}
+	constructor(name, key) {
+		var DEBUG = true;
+		this._name = name;
+		this._key = key;
+		this._data = new Datastore({
+			filename: "db/" + name + ".db",
+			inMemoryOnly: DEBUG
+		});
+		if (key) {
+			this._data.ensureIndex({
+				fieldName: key
+			});
+		}
+		this._data.loadDatabase();
+	}
 
-OmTable.prototype.getObjectById = function(id, cb) {
-	return this._data.findOne({
-		_id: id
-	}, cb);
-}
+	insert(o, cb) {
+		this._data.insert(o, cb);
+	}
 
-OmTable.prototype.getObjectByKey = function(key, cb) {
-	var query = {};
-	query[this._key] = key;
-	this._data.findOne(query, cb)
+	update(o, cb) {
+		this._data.update({
+			_id: o._id
+		}, o, {}, cb);
+	}
+
+	getObjectById(id, cb) {
+		return this._data.findOne({
+			_id: id
+		}, cb);
+	}
+
+	getObjectByKey(key, cb) {
+		var query = {};
+		query[this._key] = key;
+		this._data.findOne(query, cb)
+	}
 }
 
 module.exports = OmStore;

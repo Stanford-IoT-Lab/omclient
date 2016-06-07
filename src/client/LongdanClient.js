@@ -45,11 +45,14 @@ class Client {
 		var storage;
 		if (config.storage) {
 			storage = config.storage;
-		} else if (typeof localStorage === 'undefined') {
+		} else if (typeof window === 'undefined') {
 			var LocalStorage = require('node-localstorage').LocalStorage;
 			storage = new LocalStorage(config.storagePath);
-		} else {
+		} else if (this.supportsLocalStorage()) {
 			storage = localStorage;
+		} else {
+			var CookieLocalStorage = require('./store/CookieLocalStorage');
+			storage = new CookieLocalStorage();
 		}
 		this._storage = storage;
 		
@@ -115,6 +118,18 @@ class Client {
 		if (this.account) {
 			// hack until our storage is combined
 			this._ensureOwnedAccount(this.account);
+		}
+	}
+
+	supportsLocalStorage() {
+		if (typeof localStorage === 'undefined') return false;
+		try {
+			var test = 'test';
+			localStorage.setItem(test, test);
+			localStorage.removeItem(test);
+			return true;
+		} catch (e) {
+			return false;
 		}
 	}
 
