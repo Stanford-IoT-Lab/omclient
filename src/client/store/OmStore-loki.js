@@ -88,7 +88,7 @@ class OmTable {
 			if (typeof window === 'undefined') {
 				lokiSettings.persistenceMethod = "fs";
 				path = this._client._config.storagePath + "/" + instance + "_" + name;			
-			} else if (_supportsIndexedDB()) {
+			} else if (this._supportsIndexedDB()) {
 				lokiSettings.adapter = new lokiIndexed("omlibjs_" + instance);
 			} else {
 				persist = false;
