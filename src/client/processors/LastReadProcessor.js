@@ -1,9 +1,7 @@
-function LastReadProcessor() {
+class LastReadProcessor {
 
+	processMessage(client, db, feed, sender, msg) {
+		//console.log("LastRead " + sender.name + " @ " + msg.Body.toString("utf8"));
+	}
 }
-
-LastReadProcessor.prototype.processMessage = function(client, db, feed, sender, msg) {
-	//console.log("LastRead " + JSON.parse(msg.Body.toString("utf8")));
-}
-
 module.exports = LastReadProcessor;
