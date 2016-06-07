@@ -31,105 +31,108 @@
 
 var OMFeed = require('../model/OMFeed');
 
-function OmStore(client) {
-	var OmStoreEngine;
-	if (client._config.mongo_url) {
-		OmStoreEngine = require("./OmStore-mongo");
-	} else {
-		OmStoreEngine = require("./OmStore-loki");
-	}
-	this._storeImpl = new OmStoreEngine(client);
-}
+class OmStore {
 
-OmStore.prototype.getObjectId = function(object) {
-	return this._storeImpl.getObjectId(object);
-}
-
-OmStore.prototype.clearData = function(cb) {
-	this._storeImpl.clearData(cb);
-}
-
-OmStore.prototype.getFeeds = function(cb) {
-	var defaultObject = function() {
-		var TWO_WEEKS = 2 * 7 * 24 * 60 * 60 * 1000;
-		var twoWeeksAgo = (new Date().getTime() - TWO_WEEKS) * 1000;
-		return {
-			name: "",
-			kind: undefined,
-			members: [],
-			invitations: [],
-			specifiedName: null,
-			specifiedThumbnailHash: null,
-			renderableTime: 0,
-			messageCount: 0,
-			_syncMask: OMFeed.MASK_DEFAULT,
-			newestFromService: twoWeeksAgo - 1
+	constructor(client) {
+		var OmStoreEngine;
+		if (client._config.mongo_url) {
+			OmStoreEngine = require("./OmStore-mongo");
+		} else {
+			OmStoreEngine = require("./OmStore-loki");
 		}
-	};
-	return this._storeImpl.openTable("feeds", "identifier", defaultObject, cb);
-}
+		this._storeImpl = new OmStoreEngine(client);
+	}
 
-OmStore.prototype.getAccounts = function(cb) {
-	var defaultObject = function() {
-		return {
-			name: "",
-			thumbnailHash: null,
-			feeds: [],
-			hasAppTime: null,
-			profileVersion: 0,
-			owned: false,
-			upToDate: false
+	getObjectId(object) {
+		return this._storeImpl.getObjectId(object);
+	}
+
+	clearData(cb) {
+		this._storeImpl.clearData(cb);
+	}
+
+	getFeeds(cb) {
+		var defaultObject = function() {
+			var TWO_WEEKS = 2 * 7 * 24 * 60 * 60 * 1000;
+			var twoWeeksAgo = (new Date().getTime() - TWO_WEEKS) * 1000;
+			return {
+				name: "",
+				kind: undefined,
+				members: [],
+				invitations: [],
+				specifiedName: null,
+				specifiedThumbnailHash: null,
+				renderableTime: 0,
+				messageCount: 0,
+				_syncMask: OMFeed.MASK_DEFAULT,
+				newestFromService: twoWeeksAgo - 1
+			}
 		};
-	};
-	return this._storeImpl.openTable("accounts", "account", defaultObject, cb);
-}
+		return this._storeImpl.openTable("feeds", "identifier", defaultObject, cb);
+	}
 
-OmStore.prototype.getIdentityHashes = function(cb) {
-	var defaultObject = function() {
-		return {
-			accountId: null,
-			identityHash: null,
-
+	getAccounts(cb) {
+		var defaultObject = function() {
+			return {
+				name: "",
+				thumbnailHash: null,
+				feeds: [],
+				hasAppTime: null,
+				profileVersion: 0,
+				owned: false,
+				upToDate: false
+			};
 		};
-	};
-	return this._storeImpl.openTable("identity-hashes", "identityHash", defaultObject, cb);
-}
+		return this._storeImpl.openTable("accounts", "account", defaultObject, cb);
+	}
 
-OmStore.prototype.getBlobs = function(cb) {
-	var defaultObject = function() {
-		return {
-			sources: []
+	getIdentityHashes(cb) {
+		var defaultObject = function() {
+			return {
+				accountId: null,
+				identityHash: null,
+
+			};
 		};
-	};
-	return this._storeImpl.openTable("blobs", "hash", defaultObject, cb);
-}
+		return this._storeImpl.openTable("identity-hashes", "identityHash", defaultObject, cb);
+	}
 
-OmStore.prototype.getSettings = function(cb) {
-	var defaultObject = function() {
-		return {};
-	};
-	return this._storeImpl.openTable("settings", "key", defaultObject, cb);
-}
-
-OmStore.prototype.getMessageReceipts = function(cb) {
-	var defaultObject = function() {
-		return {};
-	};
-	return this._storeImpl.openTable("messages", "key", defaultObject, cb);
-}
-
-OmStore.prototype.getFeedObjects = function(feedId, cb) {
-	var defaultObject = function() {
-		return {
-			likes: {},
-			likeCount: 0,
-			selfLikeCount: 0,
-			aggregateLikes: {},
-			aggregateLikeCount: 0,
-			aggregateSelfLikeCount: 0
+	getBlobs(cb) {
+		var defaultObject = function() {
+			return {
+				sources: []
+			};
 		};
-	};
-	return this._storeImpl.openTable("feed-object-" + feedId, "msgId", defaultObject, cb);
+		return this._storeImpl.openTable("blobs", "hash", defaultObject, cb);
+	}
+
+	getSettings(cb) {
+		var defaultObject = function() {
+			return {};
+		};
+		return this._storeImpl.openTable("settings", "key", defaultObject, cb);
+	}
+
+	getMessageReceipts(cb) {
+		var defaultObject = function() {
+			return {};
+		};
+		return this._storeImpl.openTable("messages", "key", defaultObject, cb);
+	}
+
+	getFeedObjects(feedId, cb) {
+		var defaultObject = function() {
+			return {
+				likes: {},
+				likeCount: 0,
+				selfLikeCount: 0,
+				aggregateLikes: {},
+				aggregateLikeCount: 0,
+				aggregateSelfLikeCount: 0
+			};
+		};
+		return this._storeImpl.openTable("feed-object-" + feedId, "msgId", defaultObject, cb);
+	}
 }
 
 module.exports = OmStore;
