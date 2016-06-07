@@ -12,7 +12,7 @@ class ChatObjectProcessor {
 		body.msgId = client.store.getObjectId(receipt);
 		var feedId = client.store.getObjectId(feed);
 
-		client.store.getFeedObjects(feedId, function(objectsDb) {
+		client.store.getFeedObjects(feedId, (objectsDb) => {
 			if (feed.renderableTime < t) {
 				feed.renderableTime = t;
 				feed.renderableObj = body;
@@ -20,19 +20,19 @@ class ChatObjectProcessor {
 			feed.messageCount++;
 
 			db.feeds.update(feed);
-			objectsDb.getObjectByKey(body.msgId, function(existing) {
+			objectsDb.getObjectByKey(body.msgId, (existing) => {
 				if (existing) {
 					existing.serverTimestamp = t;
-					objectsDb.update(existing, function() {
+					objectsDb.update(existing, () => {
 						tcs.setResult(true);
-					}.bind(this));
+					});
 				} else {
-					objectsDb.insert(body, function() {
+					objectsDb.insert(body, () => {
 						tcs.setResult(true);
 					});
 				}
-			}.bind(this));
-		}.bind(this));
+			});
+		});
 
 		return tcs.task;
 	}

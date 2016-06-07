@@ -11,7 +11,7 @@ class ContactProcessor {
 			client.blob.ensureBlobSource(hash, contact.ProfilePictureLink);
 		}
 
-		var idHashes = contact.Hashidentities.map(function(h) {
+		var idHashes = contact.Hashidentities.map((h) => {
 			return JSON.stringify(h.encode());
 		});
 
