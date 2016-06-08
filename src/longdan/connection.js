@@ -72,10 +72,10 @@ function firstNotNull(o, d) {
 }
 
 class SessionListener {
-	onSessionEstablished() {
+	onSessionEstablished(conn) {
 	}
 
-	onSessionDisconnected() {
+	onSessionDisconnected(conn) {
 	}
 }
 
@@ -177,6 +177,11 @@ class Connection {
 		this._pending = {}; // reqId:RequestWithCallback dictionary};
 	}
 
+	incrementInterest() {
+	}
+
+	decrementInterest() {
+	}
 
 	_setCluster(cluster, target) {
 		if (!(cluster in this._configuration.ClusterKeys))

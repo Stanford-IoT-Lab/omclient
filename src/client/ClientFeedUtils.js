@@ -7,12 +7,15 @@ var LDFeed = require('../longdan/ldproto/LDFeed');
 var LDAddMemberRequest = require('../longdan/ldproto/LDAddMemberRequest');
 var LDAddPendingInvitationRequest = require('../longdan/ldproto/LDAddPendingInvitationRequest');
 var LDIdentityHash = require('../longdan/ldproto/LDIdentityHash');
+var LDJoinPublicChatRequest = require('../longdan/ldproto/LDJoinPublicChatRequest');
+var LDLeavePublicChatRequest = require('../longdan/ldproto/LDLeavePublicChatRequest');
 
 class FeedUtils {
 
 	constructor(client) {
 		this._client = client;
 		this._activeFeeds = {};
+		this._publicChatSubscriptions = {};
 	}
 
 	_createFeed(feedKind, cb) {
@@ -297,6 +300,10 @@ class FeedUtils {
 		if (this._supportsReadReceipts(feed)) {
 			this.markFeedRead(feed);
 		}
+
+		if (feed.kind == OMFeed.Kind.KIND_PUBLIC) {
+			this.joinPublicChat(feed);
+		}
 	}
 
 	markFeedInactive(feed) {
@@ -334,6 +341,63 @@ class FeedUtils {
 
 	_supportsReadReceipts(feed) {
 		return OMFeed.KIND_PUBLIC != feed.kind;
+	}
+
+	joinPublicChat(feed) {
+		var feedId = this._client.store.getObjectId(feed);
+		if (this._publicChatSubscriptions[feedId] == null) {
+			var pcs = new PublicChatSubscriber(this._client, feed);
+			this._client._msg.incrementInterest();
+			var rm = this._client._msg.addSessionListener(pcs);
+			this._publicChatSubscriptions[feedId] = rm;
+		}
+	}
+
+	leavePublicChat(feed) {
+		var feedId = this._client.store.getObjectId(feed);
+		var rm = this._publicChatSubscriptions[feedId];
+		if (rm != null) {
+			rm();
+			this._client._msg.decrementInterest();
+			delete this._publicChatSubscriptions[feedId];
+		}
+	}
+}
+
+class PublicChatSubscriber {
+
+	constructor(client, feed) {
+		this.client = client;
+		this.feed = feed;
+		this.connected = false;
+	}
+
+	onSessionEstablished(conn) {
+		var displayName;
+		if (this.client.account) {
+			displayName = "myUniqueOmletId";
+		} else {
+			displayName = "Anonymous";
+		}
+
+		var req = new LDJoinPublicChatRequest();
+		req.Feed = this.client.feed.getLDFeed(feed);
+		req.DisplayName = displayName;
+		this._client.msgCall(req, (err, resp, req) => {
+			this.connected = (err == undefined);
+			this.notifyFeedJoinStatus(this.connected);
+		});
+	}
+
+	onSessionDisconnected(conn) {
+		if (this.connected) {
+			this.connected = false;
+			this.notifyFeedJoinStatus(this.connected);
+		}
+	}
+
+	notifyFeedJoinStatus(joined) {
+		// TODO: look up feed realtime callback and notify
 	}
 }
 
