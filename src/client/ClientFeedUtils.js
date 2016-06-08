@@ -9,6 +9,7 @@ var LDAddPendingInvitationRequest = require('../longdan/ldproto/LDAddPendingInvi
 var LDIdentityHash = require('../longdan/ldproto/LDIdentityHash');
 var LDJoinPublicChatRequest = require('../longdan/ldproto/LDJoinPublicChatRequest');
 var LDLeavePublicChatRequest = require('../longdan/ldproto/LDLeavePublicChatRequest');
+var LDGetPublicChatRequest = require('../longdan/ldproto/LDGetPublicChatRequest');
 
 class FeedUtils {
 
@@ -341,6 +342,22 @@ class FeedUtils {
 
 	_supportsReadReceipts(feed) {
 		return OMFeed.KIND_PUBLIC != feed.kind;
+	}
+
+	getPublicChat(name, stripe, cb) {
+		var req = new LDGetPublicChatRequest();
+		req.LobbyName = name;
+		req.Stripe = stripe;
+		this._client.msgCall(req, (err, resp, req) => {
+			if (err) {
+				cb(err);
+			} else {
+				var ldFeed = resp.Feed;
+				this._client.store.getFeeds((feedDb) => {
+					this._ensureFeed(feedDb, JSON.stringify(ldFeed.encode()), (feed) => cb(undefined, feed));
+				});
+			}
+		});
 	}
 
 	joinPublicChat(feed) {
