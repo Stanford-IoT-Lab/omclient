@@ -296,13 +296,14 @@ class FeedUtils {
 	}
 
 	markFeedActive(feed) {
+		console.log(feed);
 		var feedId = this._client.store.getObjectId(feed);
 		this._activeFeeds[feedId] = true;
 		if (this._supportsReadReceipts(feed)) {
 			this.markFeedRead(feed);
 		}
 
-		if (feed.kind == OMFeed.Kind.KIND_PUBLIC) {
+		if (feed.kind == OMFeed.KIND_PUBLIC) {
 			this.joinPublicChat(feed);
 		}
 	}
@@ -388,21 +389,21 @@ class FeedUtils {
 class PublicChatSubscriber {
 
 	constructor(client, feed) {
-		this.client = client;
+		this._client = client;
 		this.feed = feed;
 		this.connected = false;
 	}
 
 	onSessionEstablished(conn) {
 		var displayName;
-		if (this.client.account) {
+		if (this._client.account) {
 			displayName = "myUniqueOmletId";
 		} else {
 			displayName = "Anonymous";
 		}
 
 		var req = new LDJoinPublicChatRequest();
-		req.Feed = this.client.feed.getLDFeed(feed);
+		req.Feed = this._client.feed.getLDFeed(this.feed);
 		req.DisplayName = displayName;
 		this._client.msgCall(req, (err, resp, req) => {
 			this.connected = (err == undefined);

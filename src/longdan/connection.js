@@ -557,7 +557,11 @@ class Connection {
 		this._sessionListeners[id] = listener;
 
 		if (this.connected) {
-			async.nextTick(listener.onSessionEstablished, this);
+			if (typeof listener.onSessionEstablished == 'function') {
+				async.nextTick(() => {
+					listener.onSessionEstablished(this);
+				});
+			}
 		}
 
 		return function() {
