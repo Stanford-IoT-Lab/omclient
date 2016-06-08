@@ -57,10 +57,10 @@ class LongdanMessageConsumer {
 	_initConnection() {
 		var conn = this._client._msg;
 		conn.onPush = this._onPush.bind(this);
-		conn.addSessionListener({ onSessionEstablished: this._onSessionEstablished.bind(this)});
+		conn.addSessionListener(this);
 	}
 
-	_onSessionEstablished() {
+	onSessionEstablished() {
 		this.caughtUp = false;
 		this._client.msgCall(new LDSubscribeForAccountInboxRequest(), this._onSubscribe.bind(this));
 	}

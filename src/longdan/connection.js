@@ -71,6 +71,14 @@ function firstNotNull(o, d) {
 	return null;
 }
 
+class SessionListener {
+	onSessionEstablished() {
+	}
+
+	onSessionDisconnected() {
+	}
+}
+
 class WaitingRequest {
 
 	constructor(req, cb) {
@@ -491,7 +499,9 @@ class Connection {
 		for (var k in this._sessionListeners) {
 			var l = this._sessionListeners[k];
 			if (typeof l.onSessionEstablished == 'function') {
-				async.nextTick(l.onSessionEstablished, this);
+				async.nextTick(() => {
+					l.onSessionEstablished(this);
+				});
 			}
 		}
 	};
@@ -503,7 +513,9 @@ class Connection {
 		for (var k in this._sessionListeners) {
 			var l = this._sessionListeners[k];
 			if (typeof l.onSessionDisconnected == 'function') {
-				async.nextTick(l.onSessionDisconnected, this);
+				async.nextTick(() => {
+					l.onSessionDisconnected(this);
+				});
 			}
 		}
 
@@ -615,9 +627,10 @@ class Connection {
 
 
 module.exports = {
-	IDP_CLUSTER: IDP_CLUSTER,
-	Connection: Connection,
-	PermanentFailure: PermanentFailure,
-	TemporaryFailure: TemporaryFailure
+	IDP_CLUSTER,
+	Connection,
+	PermanentFailure,
+	TemporaryFailure,
+	SessionListener
 };
 Object.freeze(module.exports);
