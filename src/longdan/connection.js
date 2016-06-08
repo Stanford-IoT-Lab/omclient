@@ -15,6 +15,16 @@ var KEEPALIVE_MS = 56 * 1000;
 var OMLIB_VERSION = 0;
 var DEBUG = false;
 
+
+var LDInboxDeliveryMessagePush = require('./ldproto/LDInboxDeliveryMessagePush');
+var LDMessageDeliveryPush = require('./ldproto/LDMessageDeliveryPush');
+var LDPublicChatMessageDeliveryPush = require('./ldproto/LDPublicChatMessageDeliveryPush');
+var LDRealtimeMessageDeliveryPush = require('./ldproto/LDRealtimeMessageDeliveryPush');
+var LDInboxDeliveryTerminatedPush = require('./ldproto/LDInboxDeliveryTerminatedPush');
+var LDDeviceRegistrationStateChangedPush = require('./ldproto/LDDeviceRegistrationStateChangedPush');
+
+var PushProtocols = require('./ldproto/PushProtocols');
+
 function fixPort(cond, u) {
 	if (u.indexOf(cond) != 0)
 		return u;
@@ -69,6 +79,20 @@ function firstNotNull(o, d) {
 		}
 	}
 	return null;
+}
+
+function extractProtocol(o, d, p) {
+	if (d == 0) return { path: p, data: o };
+	if (p === undefined) p = '';
+
+	for (var k in o) {
+		var s = o[k];
+		if (s === null || s === undefined)
+			continue;
+		if (typeof(s) == "object") {
+			return extractProtocol(s, d - 1, p.length == 0 ? k : `${p}.${k}`);
+		}
+	}
 }
 
 class SessionListener {
@@ -554,7 +578,14 @@ class Connection {
 	}
 	
 	_extractPush(rawRequest) {
-		return firstNotNull(rawRequest, 3);
+		var p = extractProtocol(rawRequest, 2);
+		var cls = PushProtocols[p.path];
+		if (cls) {
+			return new cls(p.data);
+		} else {
+			console.warn("Missing push path '" + p.path + "'");
+			return null;
+		}
 	}
 
 	_onmessage(e) {
@@ -607,17 +638,20 @@ class Connection {
 				}
 			}
 		} else {
-			var extracted = this._extractPush(jsonData);
-			if (!this.onPush) {
-				this._warn("unhandled push: " + e.data);
-			} else {
-				try {
-					this.onPush(extracted);
-				} catch (e) {
-					this._warn("failure in callback for push " + e, e);
-					this._verbose(resp);
-					this._verbose(extracted);
-					throw e;
+			var rawRequest = jsonData['q'];
+			var extracted = this._extractPush(rawRequest);
+			if (extracted != null) {
+				if (!this.onPush) {
+					this._warn("unhandled push: " + e.data);
+				} else {
+					try {
+						this.onPush(extracted);
+					} catch (e) {
+						this._warn("failure in callback for push " + e, e);
+						this._verbose(resp);
+						this._verbose(extracted);
+						throw e;
+					}
 				}
 			}
 			var wrapper = {
