@@ -2,6 +2,7 @@ if (typeof window === 'undefined') {
 	var codependency = require('codependency');
 	var requirePeer = codependency.register(module);
 }
+if (typeof Promise === 'undefined') require('es6-promise').polyfill();
 
 var OMFeed = require('./client/model/OMFeed');
 var LongdanClient = require('./client/LongdanClient');
