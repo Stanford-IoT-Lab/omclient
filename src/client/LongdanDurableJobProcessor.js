@@ -34,7 +34,6 @@ class LongdanDurableJobProcessor {
 			job.requestAboutToBeScheduled(this._client);
 
 		job.perform(this._client, (err, result) => {
-			console.log("DONE " + err);
 			if (!err) {
 				if (typeof job.requestCommitted == 'function') {
 					job.requestCommitted(this._client);
