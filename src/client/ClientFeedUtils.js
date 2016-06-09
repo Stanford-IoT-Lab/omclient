@@ -1,15 +1,22 @@
 var crypto = require("../util/crypto");
 
+var OMFeed = require('./model/OMFeed');
+var ObjTypes = require("./model/ObjTypes");
 var LDCreateFeedRequest = require('../longdan/ldproto/LDCreateFeedRequest');
 var LDFeed = require('../longdan/ldproto/LDFeed');
 var LDAddMemberRequest = require('../longdan/ldproto/LDAddMemberRequest');
 var LDAddPendingInvitationRequest = require('../longdan/ldproto/LDAddPendingInvitationRequest');
 var LDIdentityHash = require('../longdan/ldproto/LDIdentityHash');
+var LDJoinPublicChatRequest = require('../longdan/ldproto/LDJoinPublicChatRequest');
+var LDLeavePublicChatRequest = require('../longdan/ldproto/LDLeavePublicChatRequest');
+var LDGetPublicChatRequest = require('../longdan/ldproto/LDGetPublicChatRequest');
 
 class FeedUtils {
 
 	constructor(client) {
 		this._client = client;
+		this._activeFeeds = {};
+		this._publicChatSubscriptions = {};
 	}
 
 	_createFeed(feedKind, cb) {
@@ -286,6 +293,132 @@ class FeedUtils {
 				}
 			});
 		});
+	}
+
+	markFeedActive(feed) {
+		var feedId = this._client.store.getObjectId(feed);
+		this._activeFeeds[feedId] = true;
+		if (this._supportsReadReceipts(feed)) {
+			this.markFeedRead(feed);
+		}
+
+		if (feed.kind == OMFeed.KIND_PUBLIC) {
+			this.joinPublicChat(feed);
+		}
+	}
+
+	markFeedInactive(feed) {
+		var feedId = this._client.store.getObjectId(feed);
+		delete this._activeFeeds[feedId];
+	}
+
+	isFeedActive(feed) {
+		var feedId = this._client.store.getObjectId(feed);
+		return this._activeFeeds[feedId] === true;
+	}
+
+	markFeedRead(feed) {
+		if (!this._supportsReadReceipts(feed)) {
+			return;
+		}
+		var feedId = this._client.store.getObjectId(feed);
+		this._client.store.getFeeds((feedsDb) => {
+			feedsDb.getObjectById(feedId, (feed) => {
+				var t = feed.renderableTime;
+				if (feed.lastReadTime < t) {
+					feed.lastReadTime = t;
+					feed.numUnread = 0;
+					feedsDb.update(feed);
+
+					var type = ObjTypes.LAST_READ;
+					var body = {
+						lastReadTime: t
+					};
+					this._client.messaging._sendObjToFeed(feed, type, body);
+				}
+			});
+		});
+	}
+
+	_supportsReadReceipts(feed) {
+		return OMFeed.KIND_PUBLIC != feed.kind;
+	}
+
+	getPublicChat(name, stripe) {
+		return new Promise((resolve, reject) => {
+			var req = new LDGetPublicChatRequest();
+			req.LobbyName = name;
+			req.Stripe = stripe;
+			this._client.msgCall(req, (err, resp, req) => {
+				if (err) {
+					reject(err);
+				} else {
+					var ldFeed = resp.Feed;
+					this._client.store.getFeeds((feedDb) => {
+						this._ensureFeed(feedDb, JSON.stringify(ldFeed.encode()), (feed) => {
+							resolve(feed);
+						});
+					});
+				}
+			});
+		});
+	}
+
+	joinPublicChat(feed) {
+		var feedId = this._client.store.getObjectId(feed);
+		if (this._publicChatSubscriptions[feedId] == null) {
+			var pcs = new PublicChatSubscriber(this._client, feed);
+			this._client._msg.incrementInterest();
+			var rm = this._client._msg.addSessionListener(pcs);
+			this._publicChatSubscriptions[feedId] = rm;
+		}
+	}
+
+	leavePublicChat(feed) {
+		var feedId = this._client.store.getObjectId(feed);
+		var rm = this._publicChatSubscriptions[feedId];
+		if (rm != null) {
+			rm();
+			this._client._msg.decrementInterest();
+			delete this._publicChatSubscriptions[feedId];
+		}
+	}
+}
+
+class PublicChatSubscriber {
+
+	constructor(client, feed) {
+		this._client = client;
+		this.feed = feed;
+		this.connected = false;
+	}
+
+	onSessionEstablished(conn) {
+		var displayName;
+		if (this._client.account) {
+			displayName = "myUniqueOmletId";
+		} else {
+			displayName = "Anonymous";
+		}
+
+		var req = new LDJoinPublicChatRequest();
+		req.Feed = this._client.feed.getLDFeed(this.feed);
+		req.DisplayName = displayName;
+		this._client.msgCall(req, (err, resp, req) => {
+			this.connected = (err == undefined);
+			this.notifyFeedJoinStatus(this.connected);
+		});
+	}
+
+	onSessionDisconnected(conn) {
+		if (this.connected) {
+			this.connected = false;
+			this.notifyFeedJoinStatus(this.connected);
+		}
+	}
+
+	notifyFeedJoinStatus(joined) {
+		// TODO: look up feed realtime callback and notify
 	}
 }
 

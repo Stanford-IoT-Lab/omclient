@@ -2,8 +2,8 @@ if (typeof window === 'undefined') {
 	var codependency = require('codependency');
 	var requirePeer = codependency.register(module);
 }
+if (typeof Promise === 'undefined') require('es6-promise').polyfill();
 
-var OMFeed = require('./client/model/OMFeed');
 var LongdanClient = require('./client/LongdanClient');
 var OmlibAuthApi = require('./api/auth');
 var OmlibMessagingApi = require('./api/messaging');
@@ -55,55 +55,9 @@ function init(instance, config) {
 	instance.connect = function() {
 		instance._ldClient.enable();
 	}
-
-	var startSync = function() {
-		if (config.sync) {
-			instance.connect();
-		}
+	if (config.sync) {
+		instance.connect();
 	}
-
-	instance.store.getSettings(function(settings) {
-		settings.getObjectByKey('sync', function(sync) {
-			if (!sync) {
-				var now = new Date().getTime();
-				var TWO_WEEKS = 2 * 7 * 24 * 60 * 60 * 1000;
-				var twoWeeksAgoMicros = (now - TWO_WEEKS) * 1000;
-				var nowMicros = now * 1000;
-
-				var syncBegin, syncEnd, syncSplit;
-				switch (config.history) {
-					case "full":
-						syncBegin = 0;
-						syncEnd = twoWeeksAgoMicros;
-						syncSplit = twoWeeksAgoMicros;
-						break;
-					case "none":
-						syncBegin = nowMicros;
-						syncEnd = nowMicros;
-						syncSplit = nowMicros;
-						break;
-					case "recent":
-					default:
-						syncBegin = twoWeeksAgoMicros;
-						syncEnd = twoWeeksAgoMicros;
-						syncSplit = twoWeeksAgoMicros;
-						break;
-				}
-				
-				var defaultSync = {
-					key: 'sync',
-					caughtUp: false,
-					feedSyncStart: syncBegin,
-					feedSyncEnd: syncEnd,
-					feedSyncSplit: syncSplit,
-					defaultFeedSyncMask: OMFeed.MASK_STATE | OMFeed.MASK_DETAILS | OMFeed.MASK_LAST_READ | OMFeed.MASK_MEMBERS
-				};
-				settings.insert(defaultSync, startSync);
-			} else {
-				startSync();
-			}
-		}.bind(instance));
-	}.bind(instance));
 }
 
 module.exports = Omlib;

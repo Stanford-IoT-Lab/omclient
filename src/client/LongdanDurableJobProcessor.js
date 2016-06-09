@@ -10,7 +10,6 @@ class LongdanDurableJobProcessor {
 		this._client = client;
 		this._queues = {};
 		this._startupQueue = [];
-		this.DEBUG = true;
 	}
 
 	start() {
@@ -35,6 +34,7 @@ class LongdanDurableJobProcessor {
 			job.requestAboutToBeScheduled(this._client);
 
 		job.perform(this._client, (err, result) => {
+			console.log("DONE " + err);
 			if (!err) {
 				if (typeof job.requestCommitted == 'function') {
 					job.requestCommitted(this._client);

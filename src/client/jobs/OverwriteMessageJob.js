@@ -7,6 +7,7 @@ var LDFeed = require('../../longdan/ldproto/LDFeed');
 var LDTypedId = require('../../longdan/ldproto/LDTypedId');
 var LDMessage = require('../../longdan/ldproto/LDMessage');
 var LDOverwriteMessageRequest = require('../../longdan/ldproto/LDOverwriteMessageRequest');
+var LDWriteToPublicChatRequest = require('../../longdan/ldproto/LDWriteToPublicChatRequest');
 
 class OverwriteMessageJob {
 
@@ -54,6 +55,7 @@ class OverwriteMessageJob {
 		ldId.Type = request.type;
 		ldId.Id = new Buffer(request._messageId, "base64");
 		this._messageRequest = this._makeRequest(ldId, request.body);
+		this._msgId = ldId;
 	}
 
 	requestAboutToBeScheduled(client) {
@@ -62,7 +64,7 @@ class OverwriteMessageJob {
 
 	requestCommitted(client) {
 		var message = new LDMessage();
-		message.Id = this._messageRequest.Id;
+		message.Id = this._msgId;
 		message.Body = this._messageRequest.Body;
 		message.Feed = this._messageRequest.Feed;
 		message.Owner = client.account;
@@ -72,20 +74,29 @@ class OverwriteMessageJob {
 	}
 
 	_makeRequest(msgId, msgBody) {
-		var req = new LDOverwriteMessageRequest();
-		req.Owner = this.request.account;
-		req.Id = msgId;
-		req.Body = new Buffer(JSON.stringify(msgBody));
-		req.Feed = new LDFeed(JSON.parse(this.request.feed));
-		req.AnyMemberWritable = false;
-		req.Version = 0;
-		req.Deleted = false;
+		var feed = new LDFeed(JSON.parse(this.request.feed));
+
+		var req;
+		if (feed.Kind == OMFeed.KIND_PUBLIC) {
+			req = new LDWriteToPublicChatRequest();
+			req.Feed = feed;
+			req.Body = new Buffer(JSON.stringify(msgBody));
+			req.TypedId = msgId;
+		} else {
+			req = new LDOverwriteMessageRequest();
+			req.Owner = this.request.account;
+			req.Id = msgId;
+			req.Body = new Buffer(JSON.stringify(msgBody));
+			req.Feed = feed;
+			req.AnyMemberWritable = false;
+			req.Version = 0;
+			req.Deleted = false;
+		}
 		return req;
 	};
 
 	perform(client, jobCallback) {
-		this._client = client; // eh..
-		this._sendObjInternal(this.request.type, this.request._messageId, this.request.body, jobCallback);
+		this._sendObjInternal(client, this.request.type, this.request._messageId, this.request.body, jobCallback);
 	}
 
 	requestComplete(client, err, resp) {
@@ -97,7 +108,7 @@ class OverwriteMessageJob {
 		}
 	}
 
-	_sendObjInternal(type, msgKey, body, jobCallback) {
+	_sendObjInternal(client, type, msgKey, body, jobCallback) {
 		var attachments = undefined;
 		if (this.request._attachments !== undefined && this.request._attachments.length != 0) {
 			attachments = this.request._attachments;
@@ -107,8 +118,7 @@ class OverwriteMessageJob {
 			msgId.Type = type;
 			msgId.Id = new Buffer(msgKey, "base64");
 			var req = this._makeRequest(msgId, body);
-
-			this._client.msgCall(req, (err, resp, req) => {
+			client.msgCall(req, (err, resp, req) => {
 				jobCallback(err, resp);
 			});
 		}

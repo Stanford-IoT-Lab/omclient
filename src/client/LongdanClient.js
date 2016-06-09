@@ -3,6 +3,7 @@
 var ldKeys = require("../longdan/ldkeys");
 var connection = require('../longdan/connection');
 var ourcrypto = require('../util/crypto');
+var OMFeed = require('./model/OMFeed');
 
 var LongdanMessageProcessor = require('./LongdanMessageProcessor');
 var LongdanMessageConsumer = require('./LongdanMessageConsumer');
@@ -30,7 +31,6 @@ class Client {
 	constructor(config) {
 		if (!config) config = {};
 		this._enabled = false;
-		this._sync = false;
 		this._config = config;
 		this._crypto = ourcrypto;
 
@@ -63,10 +63,6 @@ class Client {
 			this._apiKey = config.apiKey;
 		}
 
-		if (config.sync) {
-			this._sync = true;
-		}
-		
 		this._keyItem = this._instance + ":" + this._keys.IdpKey.toString("hex") + ":" + this._keys.IdpEndpoints[0] + ":key";
 		this._detailsItem = this._instance + ":" + this._keys.IdpKey.toString("hex") + ":" + this._keys.IdpEndpoints[0] + ":details";
 
@@ -247,6 +243,57 @@ class Client {
 		if (this._enabled)
 			return;
 		this._enabled = true;
+		this._loadSettings().then(() => this._enableServices());
+	}
+
+	_loadSettings() {
+		return new Promise((resolve, reject) => {
+			this.store.getSettings((settings) => {
+				settings.getObjectByKey('sync', (sync) => {
+					if (!sync) {
+						var now = new Date().getTime();
+						var TWO_WEEKS = 2 * 7 * 24 * 60 * 60 * 1000;
+						var twoWeeksAgoMicros = (now - TWO_WEEKS) * 1000;
+						var nowMicros = now * 1000;
+
+						var syncBegin, syncEnd, syncSplit;
+						switch (this._config.history) {
+							case "full":
+								syncBegin = 0;
+								syncEnd = twoWeeksAgoMicros;
+								syncSplit = twoWeeksAgoMicros;
+								break;
+							case "none":
+								syncBegin = nowMicros;
+								syncEnd = nowMicros;
+								syncSplit = nowMicros;
+								break;
+							case "recent":
+							default:
+								syncBegin = twoWeeksAgoMicros;
+								syncEnd = twoWeeksAgoMicros;
+								syncSplit = twoWeeksAgoMicros;
+								break;
+						}
+						
+						var defaultSync = {
+							key: 'sync',
+							caughtUp: false,
+							feedSyncStart: syncBegin,
+							feedSyncEnd: syncEnd,
+							feedSyncSplit: syncSplit,
+							defaultFeedSyncMask: OMFeed.MASK_STATE | OMFeed.MASK_DETAILS | OMFeed.MASK_LAST_READ | OMFeed.MASK_MEMBERS
+						};
+						settings.insert(defaultSync, resolve);
+					} else {
+						resolve();
+					}
+				});
+			});
+		});
+	}
+
+	_enableServices() {
 		this.longdanDurableJobProcessor.start();
 		this.longdanMessageConsumer.start();
 

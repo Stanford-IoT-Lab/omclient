@@ -101,8 +101,8 @@ class LongdanMessageProcessor {
 							}
 							
 							receipt.type = message.Id.Type;
-							if (task && task.continueWith !== undefined) {
-								task.continueWith(() => {
+							if (task && typeof task.then === 'function') {
+								task.then(() => {
 									db.receipts.update(receipt);
 								});
 							} else {

@@ -13,12 +13,13 @@ var LDGetMessageByIdRequest = require('../longdan/ldproto/LDGetMessageByIdReques
 var LDFeed = require('../longdan/ldproto/LDFeed');
 
 var CONCURRENT_FETCHES = 4;
+var DEBUG = false;
 
 class LongdanMessageConsumer {
 
 	constructor (client) {
 		this._client = client;
-		this.DEBUG = true;
+		this.DEBUG = DEBUG;
 
 		this._feedFetchQueue = [];
 		this._idleFeedFetchWorkers = [];
@@ -57,17 +58,19 @@ class LongdanMessageConsumer {
 	_initConnection() {
 		var conn = this._client._msg;
 		conn.onPush = this._onPush.bind(this);
-		conn.addSessionListener({ onSessionEstablished: this._onSessionEstablished.bind(this)});
+		conn.addSessionListener(this);
 	}
 
-	_onSessionEstablished() {
+	onSessionEstablished() {
 		this.caughtUp = false;
 		this._client.msgCall(new LDSubscribeForAccountInboxRequest(), this._onSubscribe.bind(this));
 	}
 
 	_onPush(push) {
-		this.debug("Consumer got push:");
-		this.debug(push.Message);
+		if (this.DEBUG) {
+			this.debug("Consumer got push:");
+			this.debug(push.Message);
+		}
 		switch (push.__type) {
 			case "LDInboxDeliveryMessagePush":
 			case "LDMessageDeliveryPush":
