@@ -10,7 +10,6 @@ class LongdanDurableJobProcessor {
 		this._client = client;
 		this._queues = {};
 		this._startupQueue = [];
-		this.DEBUG = true;
 	}
 
 	start() {
