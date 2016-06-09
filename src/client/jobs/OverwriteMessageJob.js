@@ -118,7 +118,6 @@ class OverwriteMessageJob {
 			msgId.Type = type;
 			msgId.Id = new Buffer(msgKey, "base64");
 			var req = this._makeRequest(msgId, body);
-
 			client.msgCall(req, (err, resp, req) => {
 				jobCallback(err, resp);
 			});

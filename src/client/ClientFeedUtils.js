@@ -296,7 +296,6 @@ class FeedUtils {
 	}
 
 	markFeedActive(feed) {
-		console.log(feed);
 		var feedId = this._client.store.getObjectId(feed);
 		this._activeFeeds[feedId] = true;
 		if (this._supportsReadReceipts(feed)) {
