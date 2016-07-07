@@ -1,6 +1,7 @@
 var LDPostType = {
 	"Video": "Video",
 	"Message": "Message",
-	"ScreenShot": "ScreenShot"
+	"ScreenShot": "ScreenShot",
+	"Miniclip": "Miniclip"
 };
 module.exports=LDPostType;

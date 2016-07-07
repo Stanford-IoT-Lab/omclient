@@ -1,4 +1,5 @@
 var LDRequestProtocolBase = require('./LDRequestProtocolBase');
+var LDGetCarouselCommunitiesRequest = require('./LDGetCarouselCommunitiesRequest');
 var LDGetExtraVersionsRequest = require('./LDGetExtraVersionsRequest');
 var LDGetFeedbackAccountRequest = require('./LDGetFeedbackAccountRequest');
 var LDCreatePlaygroundRequest = require('./LDCreatePlaygroundRequest');
@@ -20,6 +21,7 @@ function O(e){
 	if(e['p']!=null)$.CreatePlaygroundRequest=new LDCreatePlaygroundRequest(e['p']);
 	if(e['gf']!=null)$.GetFeedbackAccount=new LDGetFeedbackAccountRequest(e['gf']);
 	if(e['e']!=null)$.GetExtraVersions=new LDGetExtraVersionsRequest(e['e']);
+	if(e['cc']!=null)$.GetCarouselCommunitiesRequest=new LDGetCarouselCommunitiesRequest(e['cc']);
 }
 O.prototype=new LDRequestProtocolBase();
 O.prototype.constructor = O;
@@ -37,6 +39,7 @@ _.encode=function(o){
 	if($.CreatePlaygroundRequest!=null)o['p']=$.CreatePlaygroundRequest.encode();
 	if($.GetFeedbackAccount!=null)o['gf']=$.GetFeedbackAccount.encode();
 	if($.GetExtraVersions!=null)o['e']=$.GetExtraVersions.encode();
+	if($.GetCarouselCommunitiesRequest!=null)o['cc']=$.GetCarouselCommunitiesRequest.encode();
 	return o;
 }
 _.UrlToStoryRequest=null;
@@ -47,5 +50,6 @@ _.FlagUser=null;
 _.CreatePlaygroundRequest=null;
 _.GetFeedbackAccount=null;
 _.GetExtraVersions=null;
+_.GetCarouselCommunitiesRequest=null;
 
 module.exports=O;

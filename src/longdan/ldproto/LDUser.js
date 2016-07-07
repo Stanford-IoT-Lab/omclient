@@ -8,6 +8,7 @@ function O(e){
 	$.Account=e['a'];
 	$.DisplayName=e['n'];
 	$.ProfilePictureLink=e['p'];
+	$.ProfileVideoLink=e['pv'];
 	if(e['o']!=null)$.OmletId=new LDIdentity(e['o']);
 }
 O.prototype=new LDJSONLoggable();
@@ -21,12 +22,14 @@ _.encode=function(o){
 	if($.Account!=null)o['a']=$.Account;
 	if($.DisplayName!=null)o['n']=$.DisplayName;
 	if($.ProfilePictureLink!=null)o['p']=$.ProfilePictureLink;
+	if($.ProfileVideoLink!=null)o['pv']=$.ProfileVideoLink;
 	if($.OmletId!=null)o['o']=$.OmletId.encode();
 	return o;
 }
 _.Account=null;
 _.DisplayName=null;
 _.ProfilePictureLink=null;
+_.ProfileVideoLink=null;
 _.OmletId=null;
 
 module.exports=O;

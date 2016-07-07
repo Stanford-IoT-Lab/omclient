@@ -1,4 +1,10 @@
 var LDRequestProtocolBase = require('./LDRequestProtocolBase');
+var LDGetAppDetailsRequest = require('./LDGetAppDetailsRequest');
+var LDDeleteCommentRequest = require('./LDDeleteCommentRequest');
+var LDGetCommentsRequest = require('./LDGetCommentsRequest');
+var LDAddCommentRequest = require('./LDAddCommentRequest');
+var LDGetRecentPostsRequest = require('./LDGetRecentPostsRequest');
+var LDListAppsByPopularityRequest = require('./LDListAppsByPopularityRequest');
 var LDSendRealtimeMessageToAllFollowersRequest = require('./LDSendRealtimeMessageToAllFollowersRequest');
 var LDGetRecommendedWallRequest = require('./LDGetRecommendedWallRequest');
 var LDGetPackagesRequest = require('./LDGetPackagesRequest');
@@ -20,6 +26,7 @@ var LDGetUserWallRequest = require('./LDGetUserWallRequest');
 var LDFollowUserRequest = require('./LDFollowUserRequest');
 var LDAddViewRequest = require('./LDAddViewRequest');
 var LDLikePostRequest = require('./LDLikePostRequest');
+var LDPostMiniclipRequest = require('./LDPostMiniclipRequest');
 var LDPostScreenShotRequest = require('./LDPostScreenShotRequest');
 var LDPostMessageRequest = require('./LDPostMessageRequest');
 var LDPostVideoRequest = require('./LDPostVideoRequest');
@@ -31,6 +38,7 @@ function O(e){
 	if(e['pv']!=null)$.PostVideo=new LDPostVideoRequest(e['pv']);
 	if(e['pm']!=null)$.PostMessage=new LDPostMessageRequest(e['pm']);
 	if(e['ps']!=null)$.PostScreenShot=new LDPostScreenShotRequest(e['ps']);
+	if(e['pmc']!=null)$.PostMiniclip=new LDPostMiniclipRequest(e['pmc']);
 	if(e['l']!=null)$.LikePost=new LDLikePostRequest(e['l']);
 	if(e['v']!=null)$.AddVideoView=new LDAddViewRequest(e['v']);
 	if(e['f']!=null)$.FollowUser=new LDFollowUserRequest(e['f']);
@@ -52,6 +60,12 @@ function O(e){
 	if(e['gppi']!=null)$.GetPackagesRequest=new LDGetPackagesRequest(e['gppi']);
 	if(e['grw']!=null)$.GetRecommendedWallRequest=new LDGetRecommendedWallRequest(e['grw']);
 	if(e['sr']!=null)$.SendRealtimeMessageToAllFollowersRequest=new LDSendRealtimeMessageToAllFollowersRequest(e['sr']);
+	if(e['la']!=null)$.ListAppsByPopularityRequest=new LDListAppsByPopularityRequest(e['la']);
+	if(e['grp']!=null)$.GetRecentPostsRequest=new LDGetRecentPostsRequest(e['grp']);
+	if(e['ac']!=null)$.AddCommentRequest=new LDAddCommentRequest(e['ac']);
+	if(e['gc']!=null)$.GetCommentsRequest=new LDGetCommentsRequest(e['gc']);
+	if(e['dc']!=null)$.DeleteCommentRequest=new LDDeleteCommentRequest(e['dc']);
+	if(e['gad']!=null)$.GetAppDetailsRequest=new LDGetAppDetailsRequest(e['gad']);
 }
 O.prototype=new LDRequestProtocolBase();
 O.prototype.constructor = O;
@@ -64,6 +78,7 @@ _.encode=function(o){
 	if($.PostVideo!=null)o['pv']=$.PostVideo.encode();
 	if($.PostMessage!=null)o['pm']=$.PostMessage.encode();
 	if($.PostScreenShot!=null)o['ps']=$.PostScreenShot.encode();
+	if($.PostMiniclip!=null)o['pmc']=$.PostMiniclip.encode();
 	if($.LikePost!=null)o['l']=$.LikePost.encode();
 	if($.AddVideoView!=null)o['v']=$.AddVideoView.encode();
 	if($.FollowUser!=null)o['f']=$.FollowUser.encode();
@@ -85,11 +100,18 @@ _.encode=function(o){
 	if($.GetPackagesRequest!=null)o['gppi']=$.GetPackagesRequest.encode();
 	if($.GetRecommendedWallRequest!=null)o['grw']=$.GetRecommendedWallRequest.encode();
 	if($.SendRealtimeMessageToAllFollowersRequest!=null)o['sr']=$.SendRealtimeMessageToAllFollowersRequest.encode();
+	if($.ListAppsByPopularityRequest!=null)o['la']=$.ListAppsByPopularityRequest.encode();
+	if($.GetRecentPostsRequest!=null)o['grp']=$.GetRecentPostsRequest.encode();
+	if($.AddCommentRequest!=null)o['ac']=$.AddCommentRequest.encode();
+	if($.GetCommentsRequest!=null)o['gc']=$.GetCommentsRequest.encode();
+	if($.DeleteCommentRequest!=null)o['dc']=$.DeleteCommentRequest.encode();
+	if($.GetAppDetailsRequest!=null)o['gad']=$.GetAppDetailsRequest.encode();
 	return o;
 }
 _.PostVideo=null;
 _.PostMessage=null;
 _.PostScreenShot=null;
+_.PostMiniclip=null;
 _.LikePost=null;
 _.AddVideoView=null;
 _.FollowUser=null;
@@ -111,5 +133,11 @@ _.UpdatePostDetailsRequest=null;
 _.GetPackagesRequest=null;
 _.GetRecommendedWallRequest=null;
 _.SendRealtimeMessageToAllFollowersRequest=null;
+_.ListAppsByPopularityRequest=null;
+_.GetRecentPostsRequest=null;
+_.AddCommentRequest=null;
+_.GetCommentsRequest=null;
+_.DeleteCommentRequest=null;
+_.GetAppDetailsRequest=null;
 
 module.exports=O;

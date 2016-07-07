@@ -1,7 +1,9 @@
+var LDJSONLoggable = require('./LDJSONLoggable');
 var LDFeed = require('./LDFeed');
 var LDTypedId = require('./LDTypedId');
 
 function O(e){
+	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
 	if(e['i']!=null)$.Id=new LDTypedId(e['i']);
@@ -14,11 +16,14 @@ function O(e){
 	$.Deleted=e['d'];
 	if(e['di']!=null)$.DeviceId=new Buffer(e['di'],'base64');
 }
+O.prototype=new LDJSONLoggable();
+O.prototype.constructor = O;
 var _=O.prototype;
 _.__type="LDMessage";
 _.encode=function(o){
 	if(o===undefined)o={};
 	var $=this;
+	LDJSONLoggable.prototype.encode.call($,o);
 	if($.Id!=null)o['i']=$.Id.encode();
 	if($.Timestamp!=null)o['t']=$.Timestamp;
 	if($.Owner!=null)o['s']=$.Owner;

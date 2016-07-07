@@ -27,6 +27,7 @@ function O(e){
 		var d = e['i'];
 		for(var k=0; k<d.length;++k)$.Identities.push(new LDIdentity(d[k]));
 	}
+	$.IsMutualFriend=e['m'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -57,6 +58,7 @@ _.encode=function(o){
 		var d=$.Identities;
 		for(var k=0;k<d.length;++k) o['i'].push(d[k].encode());
 	}
+	if($.IsMutualFriend!=null)o['m']=$.IsMutualFriend;
 	return o;
 }
 _.Account=null;
@@ -72,5 +74,6 @@ _.WasContact=null;
 _.HasAppTime=null;
 _.Hashidentities=null;
 _.Identities=null;
+_.IsMutualFriend=null;
 
 module.exports=O;

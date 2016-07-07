@@ -1,4 +1,7 @@
 var LDResponseProtocolBase = require('./LDResponseProtocolBase');
+var LDGetAppDetailsResponse = require('./LDGetAppDetailsResponse');
+var LDGetCommentsResponse = require('./LDGetCommentsResponse');
+var LDListAppsByPopularityResponse = require('./LDListAppsByPopularityResponse');
 var LDGetPackagesResponse = require('./LDGetPackagesResponse');
 var LDGetExternalShareLinkResponse = require('./LDGetExternalShareLinkResponse');
 var LDGetFollowersResponse = require('./LDGetFollowersResponse');
@@ -22,6 +25,9 @@ function O(e){
 	if(e['gf']!=null)$.GetFollowersResponse=new LDGetFollowersResponse(e['gf']);
 	if(e['ges']!=null)$.GetExternalShareLink=new LDGetExternalShareLinkResponse(e['ges']);
 	if(e['gppi']!=null)$.GetPackagesResponse=new LDGetPackagesResponse(e['gppi']);
+	if(e['la']!=null)$.ListAppsByPopularityResponse=new LDListAppsByPopularityResponse(e['la']);
+	if(e['gc']!=null)$.GetCommentsResponse=new LDGetCommentsResponse(e['gc']);
+	if(e['gad']!=null)$.GetAppDetailsResponse=new LDGetAppDetailsResponse(e['gad']);
 }
 O.prototype=new LDResponseProtocolBase();
 O.prototype.constructor = O;
@@ -40,6 +46,9 @@ _.encode=function(o){
 	if($.GetFollowersResponse!=null)o['gf']=$.GetFollowersResponse.encode();
 	if($.GetExternalShareLink!=null)o['ges']=$.GetExternalShareLink.encode();
 	if($.GetPackagesResponse!=null)o['gppi']=$.GetPackagesResponse.encode();
+	if($.ListAppsByPopularityResponse!=null)o['la']=$.ListAppsByPopularityResponse.encode();
+	if($.GetCommentsResponse!=null)o['gc']=$.GetCommentsResponse.encode();
+	if($.GetAppDetailsResponse!=null)o['gad']=$.GetAppDetailsResponse.encode();
 	return o;
 }
 _.WallResponse=null;
@@ -51,5 +60,8 @@ _.GetStandardPostTagsResponse=null;
 _.GetFollowersResponse=null;
 _.GetExternalShareLink=null;
 _.GetPackagesResponse=null;
+_.ListAppsByPopularityResponse=null;
+_.GetCommentsResponse=null;
+_.GetAppDetailsResponse=null;
 
 module.exports=O;

@@ -11,6 +11,7 @@ function O(e){
 	if(e['tid']!=null)$.TypedId=new LDTypedId(e['tid']);
 	if(e['b']!=null)$.Body=new Buffer(e['b'],'base64');
 	$.Delete=e['d'];
+	$.DisplayName=e['dn'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -25,12 +26,14 @@ _.encode=function(o){
 	if($.TypedId!=null)o['tid']=$.TypedId.encode();
 	if($.Body!=null)o['b']=$.Body.toString('base64');
 	if($.Delete!=null)o['d']=$.Delete;
+	if($.DisplayName!=null)o['dn']=$.DisplayName;
 	return o;
 }
 _.Feed=null;
 _.TypedId=null;
 _.Body=null;
 _.Delete=null;
+_.DisplayName=null;
 O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"w":o};o=t;
