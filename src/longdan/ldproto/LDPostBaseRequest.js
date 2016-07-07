@@ -6,6 +6,7 @@ function O(e){
 	var $=this;
 	$.AppName=e['ap'];
 	$.AppIconBlobLink=e['ab'];
+	$.UserLocale=e['lc'];
 	if(e['rm']!=null){
 		$.ReportMeta = {};
 		var d = e['rm'];
@@ -22,6 +23,7 @@ _.encode=function(o){
 	LDJSONLoggable.prototype.encode.call($,o);
 	if($.AppName!=null)o['ap']=$.AppName;
 	if($.AppIconBlobLink!=null)o['ab']=$.AppIconBlobLink;
+	if($.UserLocale!=null)o['lc']=$.UserLocale;
 	if($.ReportMeta!=null){
 		o['rm']={};
 		var d=$.ReportMeta;
@@ -31,6 +33,7 @@ _.encode=function(o){
 }
 _.AppName=null;
 _.AppIconBlobLink=null;
+_.UserLocale=null;
 _.ReportMeta=null;
 
 module.exports=O;

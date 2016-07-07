@@ -15,6 +15,8 @@ function O(e){
 	$.MigratedPictureLink=e['p'];
 	if(e['m']!=null)$.MigratedCloudConfig=new LDCloudConfig(e['m']);
 	$.CreationTime=e['s'];
+	$.Mode=e['d'];
+	$.HasPassword=e['h'];
 }
 var _=O.prototype;
 _.__type="LDAccountDetails";
@@ -32,6 +34,8 @@ _.encode=function(o){
 	if($.MigratedPictureLink!=null)o['p']=$.MigratedPictureLink;
 	if($.MigratedCloudConfig!=null)o['m']=$.MigratedCloudConfig.encode();
 	if($.CreationTime!=null)o['s']=$.CreationTime;
+	if($.Mode!=null)o['d']=$.Mode;
+	if($.HasPassword!=null)o['h']=$.HasPassword;
 	return o;
 }
 _.Account=null;
@@ -41,5 +45,7 @@ _.MigratedName=null;
 _.MigratedPictureLink=null;
 _.MigratedCloudConfig=null;
 _.CreationTime=null;
+_.Mode=null;
+_.HasPassword=null;
 
 module.exports=O;

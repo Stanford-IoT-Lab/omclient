@@ -1,7 +1,6 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDIdentity = require('./LDIdentity');
 var LDPostTag = require('./LDPostTag');
-var LDComment = require('./LDComment');
 var LDPostId = require('./LDPostId');
 
 function O(e){
@@ -13,11 +12,7 @@ function O(e){
 	$.Title=e['t'];
 	$.Views=e['v'];
 	$.Likes=e['l'];
-	if(e['c']!=null){
-		$.Comments=[];
-		var d = e['c'];
-		for(var k=0; k<d.length;++k)$.Comments.push(new LDComment(d[k]));
-	}
+	$.Comments=e['cc'];
 	$.Score=e['s'];
 	if(e['g']!=null){
 		$.PostTags=[];
@@ -26,10 +21,12 @@ function O(e){
 	}
 	$.PosterName=e['un'];
 	$.PosterProfilePictureLink=e['up'];
+	$.PosterProfileVideoLink=e['upv'];
 	if(e['oi']!=null)$.OmletId=new LDIdentity(e['oi']);
 	$.YouLiked=e['yl'];
 	$.AppName=e['an'];
 	$.AppIconBlobLink=e['ai'];
+	$.UserLocale=e['lc'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -44,11 +41,7 @@ _.encode=function(o){
 	if($.Title!=null)o['t']=$.Title;
 	if($.Views!=null)o['v']=$.Views;
 	if($.Likes!=null)o['l']=$.Likes;
-	if($.Comments!=null) {
-		o['c']=[];
-		var d=$.Comments;
-		for(var k=0;k<d.length;++k) o['c'].push(d[k].encode());
-	}
+	if($.Comments!=null)o['cc']=$.Comments;
 	if($.Score!=null)o['s']=$.Score;
 	if($.PostTags!=null) {
 		o['g']=[];
@@ -57,10 +50,12 @@ _.encode=function(o){
 	}
 	if($.PosterName!=null)o['un']=$.PosterName;
 	if($.PosterProfilePictureLink!=null)o['up']=$.PosterProfilePictureLink;
+	if($.PosterProfileVideoLink!=null)o['upv']=$.PosterProfileVideoLink;
 	if($.OmletId!=null)o['oi']=$.OmletId.encode();
 	if($.YouLiked!=null)o['yl']=$.YouLiked;
 	if($.AppName!=null)o['an']=$.AppName;
 	if($.AppIconBlobLink!=null)o['ai']=$.AppIconBlobLink;
+	if($.UserLocale!=null)o['lc']=$.UserLocale;
 	return o;
 }
 _.PostId=null;
@@ -73,9 +68,11 @@ _.Score=null;
 _.PostTags=null;
 _.PosterName=null;
 _.PosterProfilePictureLink=null;
+_.PosterProfileVideoLink=null;
 _.OmletId=null;
 _.YouLiked=null;
 _.AppName=null;
 _.AppIconBlobLink=null;
+_.UserLocale=null;
 
 module.exports=O;

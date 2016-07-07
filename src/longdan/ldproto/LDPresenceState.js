@@ -12,6 +12,7 @@ function O(e){
 	$.LastOnline=e['t'];
 	$.StreamingLink=e['s'];
 	$.LastStream=e['S'];
+	$.ExternalViewingLink=e['ev'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -29,6 +30,7 @@ _.encode=function(o){
 	if($.LastOnline!=null)o['t']=$.LastOnline;
 	if($.StreamingLink!=null)o['s']=$.StreamingLink;
 	if($.LastStream!=null)o['S']=$.LastStream;
+	if($.ExternalViewingLink!=null)o['ev']=$.ExternalViewingLink;
 	return o;
 }
 _.Account=null;
@@ -39,5 +41,6 @@ _.Online=null;
 _.LastOnline=null;
 _.StreamingLink=null;
 _.LastStream=null;
+_.ExternalViewingLink=null;
 
 module.exports=O;

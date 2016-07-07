@@ -19,6 +19,8 @@ function O(e){
 		for(var k=0;k<d.length;++k)$.Scopes.push(d[k]);
 	}
 	$.PackageId=e['P'];
+	$.CampaignId=e['ci'];
+	$.FromHttp=e['h'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -43,6 +45,8 @@ _.encode=function(o){
 		for(var k=0;k<d.length;++k) o['S'].push(d[k]);
 	}
 	if($.PackageId!=null)o['P']=$.PackageId;
+	if($.CampaignId!=null)o['ci']=$.CampaignId;
+	if($.FromHttp!=null)o['h']=$.FromHttp;
 	return o;
 }
 _.DeviceId=null;
@@ -56,5 +60,7 @@ _.RootIpAddress=null;
 _.AppId=null;
 _.Scopes=null;
 _.PackageId=null;
+_.CampaignId=null;
+_.FromHttp=null;
 
 module.exports=O;

@@ -9,6 +9,11 @@ function O(e){
 		var d = e['id'];
 		for(var k=0;k<d.length;++k)$.Ids.push(d[k]);
 	}
+	if(e['ac']!=null){
+		$.Accounts=[];
+		var d = e['ac'];
+		for(var k=0;k<d.length;++k)$.Accounts.push(d[k]);
+	}
 	if(e['dn']!=null){
 		$.DisplayNames=[];
 		var d = e['dn'];
@@ -28,6 +33,11 @@ _.encode=function(o){
 		var d=$.Ids;
 		for(var k=0;k<d.length;++k) o['id'].push(d[k]);
 	}
+	if($.Accounts!=null) {
+		o['ac']=[];
+		var d=$.Accounts;
+		for(var k=0;k<d.length;++k) o['ac'].push(d[k]);
+	}
 	if($.DisplayNames!=null) {
 		o['dn']=[];
 		var d=$.DisplayNames;
@@ -36,6 +46,7 @@ _.encode=function(o){
 	return o;
 }
 _.Ids=null;
+_.Accounts=null;
 _.DisplayNames=null;
 
 module.exports=O;

@@ -1,4 +1,5 @@
 var LDResponseContainerBase = require('./LDResponseContainerBase');
+var LDDeviceToClusterAppNotificationResponseProtocol = require('./LDDeviceToClusterAppNotificationResponseProtocol');
 var LDDeviceToClusterPresenceResponseProtocol = require('./LDDeviceToClusterPresenceResponseProtocol');
 var LDDeviceToClusterUserModerationResponseProtocol = require('./LDDeviceToClusterUserModerationResponseProtocol');
 var LDClusterOrDeviceToClusterEventSummaryResponseProtocol = require('./LDClusterOrDeviceToClusterEventSummaryResponseProtocol');
@@ -48,6 +49,7 @@ function O(e){
 	if(e['es']!=null)$.EventSummary=new LDClusterOrDeviceToClusterEventSummaryResponseProtocol(e['es']);
 	if(e['um']!=null)$.UserModeration=new LDDeviceToClusterUserModerationResponseProtocol(e['um']);
 	if(e['ps']!=null)$.Presence=new LDDeviceToClusterPresenceResponseProtocol(e['ps']);
+	if(e['nf']!=null)$.Notification=new LDDeviceToClusterAppNotificationResponseProtocol(e['nf']);
 }
 O.prototype=new LDResponseContainerBase();
 O.prototype.constructor = O;
@@ -79,6 +81,7 @@ _.encode=function(o){
 	if($.EventSummary!=null)o['es']=$.EventSummary.encode();
 	if($.UserModeration!=null)o['um']=$.UserModeration.encode();
 	if($.Presence!=null)o['ps']=$.Presence.encode();
+	if($.Notification!=null)o['nf']=$.Notification.encode();
 	return o;
 }
 _.Message=null;
@@ -103,5 +106,6 @@ _.ProfileCardViewed=null;
 _.EventSummary=null;
 _.UserModeration=null;
 _.Presence=null;
+_.Notification=null;
 
 module.exports=O;

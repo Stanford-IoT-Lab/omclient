@@ -50,6 +50,7 @@ var LDDeviceToClusterProfileCardRequestProtocol = require('./LDDeviceToClusterPr
 var LDClusterOrDeviceToClusterEventSummaryRequestProtocol = require('./LDClusterOrDeviceToClusterEventSummaryRequestProtocol');
 var LDDeviceToClusterUserModerationRequestProtocol = require('./LDDeviceToClusterUserModerationRequestProtocol');
 var LDDeviceToClusterPresenceRequestProtocol = require('./LDDeviceToClusterPresenceRequestProtocol');
+var LDDeviceToClusterAppNotificationRequestProtocol = require('./LDDeviceToClusterAppNotificationRequestProtocol');
 var LDDeviceToClusterMessageResponseProtocol = require('./LDDeviceToClusterMessageResponseProtocol');
 var LDDeviceToClusterInboxResponseProtocol = require('./LDDeviceToClusterInboxResponseProtocol');
 var LDClusterOrDeviceToClusterBlobResponseProtocol = require('./LDClusterOrDeviceToClusterBlobResponseProtocol');
@@ -72,6 +73,7 @@ var LDDeviceToClusterProfileCardResponseProtocol = require('./LDDeviceToClusterP
 var LDClusterOrDeviceToClusterEventSummaryResponseProtocol = require('./LDClusterOrDeviceToClusterEventSummaryResponseProtocol');
 var LDDeviceToClusterUserModerationResponseProtocol = require('./LDDeviceToClusterUserModerationResponseProtocol');
 var LDDeviceToClusterPresenceResponseProtocol = require('./LDDeviceToClusterPresenceResponseProtocol');
+var LDDeviceToClusterAppNotificationResponseProtocol = require('./LDDeviceToClusterAppNotificationResponseProtocol');
 var LDURI = require('./LDURI');
 var LDAppRestletDetails = require('./LDAppRestletDetails');
 var LDFeed = require('./LDFeed');
@@ -91,6 +93,8 @@ var LDConfirmSigninCodeRequest = require('./LDConfirmSigninCodeRequest');
 var LDGetSSOTokenRequest = require('./LDGetSSOTokenRequest');
 var LDCheckSSOTokenRequest = require('./LDCheckSSOTokenRequest');
 var LDConfirmSSOTokenRequest = require('./LDConfirmSSOTokenRequest');
+var LDSigninOrCreateGuestAccountRequest = require('./LDSigninOrCreateGuestAccountRequest');
+var LDGetSigninLinkForGuestRequest = require('./LDGetSigninLinkForGuestRequest');
 var LDDeviceRegistrationStateChangedPush = require('./LDDeviceRegistrationStateChangedPush');
 var LDUnblockIdentityRequest = require('./LDUnblockIdentityRequest');
 var LDGetEmailLoginLinkRequest = require('./LDGetEmailLoginLinkRequest');
@@ -116,6 +120,7 @@ var LDGetLinkedIdentitiesResponse = require('./LDGetLinkedIdentitiesResponse');
 var LDGetAppSigninLinkResponse = require('./LDGetAppSigninLinkResponse');
 var LDGetSigninLinkResponse = require('./LDGetSigninLinkResponse');
 var LDCheckSSOTokenResponse = require('./LDCheckSSOTokenResponse');
+var LDSigninOrCreateGuestAccountResponse = require('./LDSigninOrCreateGuestAccountResponse');
 var LDGetIdentityRecordsResponse = require('./LDGetIdentityRecordsResponse');
 var LDListFlaggedUsersResponse = require('./LDListFlaggedUsersResponse');
 var LDGetDeviceRecordsResponse = require('./LDGetDeviceRecordsResponse');
@@ -206,6 +211,7 @@ var LDListApiKeysRequest = require('./LDListApiKeysRequest');
 var LDDeleteDeviceRequest = require('./LDDeleteDeviceRequest');
 var LDAddDeviceRequest = require('./LDAddDeviceRequest');
 var LDSetDingTimeoutRequest = require('./LDSetDingTimeoutRequest');
+var LDSetCampaignIdRequest = require('./LDSetCampaignIdRequest');
 var LDGetCloudConfigRequest = require('./LDGetCloudConfigRequest');
 var LDSetCloudConfigRequest = require('./LDSetCloudConfigRequest');
 var LDRefreshCloudConfigRequest = require('./LDRefreshCloudConfigRequest');
@@ -237,13 +243,16 @@ var LDFlagUserRequest = require('./LDFlagUserRequest');
 var LDCreatePlaygroundRequest = require('./LDCreatePlaygroundRequest');
 var LDGetFeedbackAccountRequest = require('./LDGetFeedbackAccountRequest');
 var LDGetExtraVersionsRequest = require('./LDGetExtraVersionsRequest');
+var LDGetCarouselCommunitiesRequest = require('./LDGetCarouselCommunitiesRequest');
 var LDGetDirectFeedRequest = require('./LDGetDirectFeedRequest');
 var LDSendDirectMessageRequest = require('./LDSendDirectMessageRequest');
 var LDSetSmsParticipationRequest = require('./LDSetSmsParticipationRequest');
 var LDPostBaseRequest = require('./LDPostBaseRequest');
+var LDPostVideoBaseRequest = require('./LDPostVideoBaseRequest');
 var LDPostVideoRequest = require('./LDPostVideoRequest');
 var LDPostMessageRequest = require('./LDPostMessageRequest');
 var LDPostScreenShotRequest = require('./LDPostScreenShotRequest');
+var LDPostMiniclipRequest = require('./LDPostMiniclipRequest');
 var LDLikePostRequest = require('./LDLikePostRequest');
 var LDAddViewRequest = require('./LDAddViewRequest');
 var LDFollowUserRequest = require('./LDFollowUserRequest');
@@ -265,6 +274,12 @@ var LDUpdatePostDetailsRequest = require('./LDUpdatePostDetailsRequest');
 var LDGetPackagesRequest = require('./LDGetPackagesRequest');
 var LDGetRecommendedWallRequest = require('./LDGetRecommendedWallRequest');
 var LDSendRealtimeMessageToAllFollowersRequest = require('./LDSendRealtimeMessageToAllFollowersRequest');
+var LDListAppsByPopularityRequest = require('./LDListAppsByPopularityRequest');
+var LDGetRecentPostsRequest = require('./LDGetRecentPostsRequest');
+var LDAddCommentRequest = require('./LDAddCommentRequest');
+var LDGetCommentsRequest = require('./LDGetCommentsRequest');
+var LDDeleteCommentRequest = require('./LDDeleteCommentRequest');
+var LDGetAppDetailsRequest = require('./LDGetAppDetailsRequest');
 var LDGetIdentityTokenRequest = require('./LDGetIdentityTokenRequest');
 var LDGetPublicChatRequest = require('./LDGetPublicChatRequest');
 var LDJoinPublicChatRequest = require('./LDJoinPublicChatRequest');
@@ -286,6 +301,9 @@ var LDReportUserRequest = require('./LDReportUserRequest');
 var LDGetPresencesRequest = require('./LDGetPresencesRequest');
 var LDSetOnlineStatusRequest = require('./LDSetOnlineStatusRequest');
 var LDGetStreamingLinkRequest = require('./LDGetStreamingLinkRequest');
+var LDSetStreamingStatusRequest = require('./LDSetStreamingStatusRequest');
+var LDListStreamLinksRequest = require('./LDListStreamLinksRequest');
+var LDDeleteNotificationRequest = require('./LDDeleteNotificationRequest');
 var LDGetMessageResponse = require('./LDGetMessageResponse');
 var LDGetMessagesResponse = require('./LDGetMessagesResponse');
 var LDGetMessagesWithContinuationResponse = require('./LDGetMessagesWithContinuationResponse');
@@ -318,6 +336,7 @@ var LDUrlToStoryResponse = require('./LDUrlToStoryResponse');
 var LDImageSearchResponse = require('./LDImageSearchResponse');
 var LDCreatePlaygroundResponse = require('./LDCreatePlaygroundResponse');
 var LDGetExtraVersionsResponse = require('./LDGetExtraVersionsResponse');
+var LDGetCarouselCommunitiesResponse = require('./LDGetCarouselCommunitiesResponse');
 var LDGetDirectFeedResponse = require('./LDGetDirectFeedResponse');
 var LDSendDirectMessageResponse = require('./LDSendDirectMessageResponse');
 var LDWallResponse = require('./LDWallResponse');
@@ -329,6 +348,9 @@ var LDGetStandardPostTagsResponse = require('./LDGetStandardPostTagsResponse');
 var LDGetFollowersResponse = require('./LDGetFollowersResponse');
 var LDGetExternalShareLinkResponse = require('./LDGetExternalShareLinkResponse');
 var LDGetPackagesResponse = require('./LDGetPackagesResponse');
+var LDListAppsByPopularityResponse = require('./LDListAppsByPopularityResponse');
+var LDGetCommentsResponse = require('./LDGetCommentsResponse');
+var LDGetAppDetailsResponse = require('./LDGetAppDetailsResponse');
 var LDGetIdentityTokenResponse = require('./LDGetIdentityTokenResponse');
 var LDGetPublicChatResponse = require('./LDGetPublicChatResponse');
 var LDGetPublicChatMembersResponse = require('./LDGetPublicChatMembersResponse');
@@ -336,6 +358,7 @@ var LDGetRecentMessagesResponse = require('./LDGetRecentMessagesResponse');
 var LDListChatsResponse = require('./LDListChatsResponse');
 var LDGatherEventsByAppResponse = require('./LDGatherEventsByAppResponse');
 var LDGetPresencesResponse = require('./LDGetPresencesResponse');
+var LDListStreamLinksResponse = require('./LDListStreamLinksResponse');
 var LDString = require('./LDString');
 var LDIdentity = require('./LDIdentity');
 var LDAppScopeId = require('./LDAppScopeId');
@@ -374,13 +397,17 @@ var LDItemInfoListingContainer = require('./LDItemInfoListingContainer');
 var LDApiKey = require('./LDApiKey');
 var LDScoreBoardEntry = require('./LDScoreBoardEntry');
 var LDImageSearchResult = require('./LDImageSearchResult');
+var LDCarouselItem = require('./LDCarouselItem');
 var LDWall = require('./LDWall');
 var LDPostContainer = require('./LDPostContainer');
 var LDUser = require('./LDUser');
 var LDPostTagWithLocalization = require('./LDPostTagWithLocalization');
 var LDPackageInfo = require('./LDPackageInfo');
+var LDAppDetails = require('./LDAppDetails');
+var LDComment = require('./LDComment');
 var LDPublicChatInfo = require('./LDPublicChatInfo');
 var LDPresenceState = require('./LDPresenceState');
+var LDStreamState = require('./LDStreamState');
 var LDFlaggedRecord = require('./LDFlaggedRecord');
 var LDReceiptContainer = require('./LDReceiptContainer');
 var LDBillingInfoContainer = require('./LDBillingInfoContainer');
@@ -398,9 +425,11 @@ var LDStickerPackInfo = require('./LDStickerPackInfo');
 var LDAppInfoListingWrapper = require('./LDAppInfoListingWrapper');
 var LDStickerPackInfoListingWrapper = require('./LDStickerPackInfoListingWrapper');
 var LDPost = require('./LDPost');
+var LDVideoBasePost = require('./LDVideoBasePost');
 var LDVideoPost = require('./LDVideoPost');
 var LDMessagePost = require('./LDMessagePost');
 var LDScreenShotPost = require('./LDScreenShotPost');
+var LDMiniclipPost = require('./LDMiniclipPost');
 var LDMockReceipt = require('./LDMockReceipt');
 var LDMockBillingInfo = require('./LDMockBillingInfo');
 var LDAppScreenshot = require('./LDAppScreenshot');
@@ -408,7 +437,6 @@ var LDAppStore = require('./LDAppStore');
 var LDSticker = require('./LDSticker');
 var LDPrice = require('./LDPrice');
 var LDItemInfoImmutableContainer = require('./LDItemInfoImmutableContainer');
-var LDComment = require('./LDComment');
 var LDM3U8Info = require('./LDM3U8Info');
 var LDItemInfoImmutable = require('./LDItemInfoImmutable');
 var LDAppInfoImmutable = require('./LDAppInfoImmutable');
@@ -467,6 +495,7 @@ module.exports={
 	LDClusterOrDeviceToClusterEventSummaryRequestProtocol:LDClusterOrDeviceToClusterEventSummaryRequestProtocol,
 	LDDeviceToClusterUserModerationRequestProtocol:LDDeviceToClusterUserModerationRequestProtocol,
 	LDDeviceToClusterPresenceRequestProtocol:LDDeviceToClusterPresenceRequestProtocol,
+	LDDeviceToClusterAppNotificationRequestProtocol:LDDeviceToClusterAppNotificationRequestProtocol,
 	LDDeviceToClusterMessageResponseProtocol:LDDeviceToClusterMessageResponseProtocol,
 	LDDeviceToClusterInboxResponseProtocol:LDDeviceToClusterInboxResponseProtocol,
 	LDClusterOrDeviceToClusterBlobResponseProtocol:LDClusterOrDeviceToClusterBlobResponseProtocol,
@@ -489,6 +518,7 @@ module.exports={
 	LDClusterOrDeviceToClusterEventSummaryResponseProtocol:LDClusterOrDeviceToClusterEventSummaryResponseProtocol,
 	LDDeviceToClusterUserModerationResponseProtocol:LDDeviceToClusterUserModerationResponseProtocol,
 	LDDeviceToClusterPresenceResponseProtocol:LDDeviceToClusterPresenceResponseProtocol,
+	LDDeviceToClusterAppNotificationResponseProtocol:LDDeviceToClusterAppNotificationResponseProtocol,
 	LDURI:LDURI,
 	LDAppRestletDetails:LDAppRestletDetails,
 	LDFeed:LDFeed,
@@ -508,6 +538,8 @@ module.exports={
 	LDGetSSOTokenRequest:LDGetSSOTokenRequest,
 	LDCheckSSOTokenRequest:LDCheckSSOTokenRequest,
 	LDConfirmSSOTokenRequest:LDConfirmSSOTokenRequest,
+	LDSigninOrCreateGuestAccountRequest:LDSigninOrCreateGuestAccountRequest,
+	LDGetSigninLinkForGuestRequest:LDGetSigninLinkForGuestRequest,
 	LDDeviceRegistrationStateChangedPush:LDDeviceRegistrationStateChangedPush,
 	LDUnblockIdentityRequest:LDUnblockIdentityRequest,
 	LDGetEmailLoginLinkRequest:LDGetEmailLoginLinkRequest,
@@ -533,6 +565,7 @@ module.exports={
 	LDGetAppSigninLinkResponse:LDGetAppSigninLinkResponse,
 	LDGetSigninLinkResponse:LDGetSigninLinkResponse,
 	LDCheckSSOTokenResponse:LDCheckSSOTokenResponse,
+	LDSigninOrCreateGuestAccountResponse:LDSigninOrCreateGuestAccountResponse,
 	LDGetIdentityRecordsResponse:LDGetIdentityRecordsResponse,
 	LDListFlaggedUsersResponse:LDListFlaggedUsersResponse,
 	LDGetDeviceRecordsResponse:LDGetDeviceRecordsResponse,
@@ -623,6 +656,7 @@ module.exports={
 	LDDeleteDeviceRequest:LDDeleteDeviceRequest,
 	LDAddDeviceRequest:LDAddDeviceRequest,
 	LDSetDingTimeoutRequest:LDSetDingTimeoutRequest,
+	LDSetCampaignIdRequest:LDSetCampaignIdRequest,
 	LDGetCloudConfigRequest:LDGetCloudConfigRequest,
 	LDSetCloudConfigRequest:LDSetCloudConfigRequest,
 	LDRefreshCloudConfigRequest:LDRefreshCloudConfigRequest,
@@ -654,13 +688,16 @@ module.exports={
 	LDCreatePlaygroundRequest:LDCreatePlaygroundRequest,
 	LDGetFeedbackAccountRequest:LDGetFeedbackAccountRequest,
 	LDGetExtraVersionsRequest:LDGetExtraVersionsRequest,
+	LDGetCarouselCommunitiesRequest:LDGetCarouselCommunitiesRequest,
 	LDGetDirectFeedRequest:LDGetDirectFeedRequest,
 	LDSendDirectMessageRequest:LDSendDirectMessageRequest,
 	LDSetSmsParticipationRequest:LDSetSmsParticipationRequest,
 	LDPostBaseRequest:LDPostBaseRequest,
+	LDPostVideoBaseRequest:LDPostVideoBaseRequest,
 	LDPostVideoRequest:LDPostVideoRequest,
 	LDPostMessageRequest:LDPostMessageRequest,
 	LDPostScreenShotRequest:LDPostScreenShotRequest,
+	LDPostMiniclipRequest:LDPostMiniclipRequest,
 	LDLikePostRequest:LDLikePostRequest,
 	LDAddViewRequest:LDAddViewRequest,
 	LDFollowUserRequest:LDFollowUserRequest,
@@ -682,6 +719,12 @@ module.exports={
 	LDGetPackagesRequest:LDGetPackagesRequest,
 	LDGetRecommendedWallRequest:LDGetRecommendedWallRequest,
 	LDSendRealtimeMessageToAllFollowersRequest:LDSendRealtimeMessageToAllFollowersRequest,
+	LDListAppsByPopularityRequest:LDListAppsByPopularityRequest,
+	LDGetRecentPostsRequest:LDGetRecentPostsRequest,
+	LDAddCommentRequest:LDAddCommentRequest,
+	LDGetCommentsRequest:LDGetCommentsRequest,
+	LDDeleteCommentRequest:LDDeleteCommentRequest,
+	LDGetAppDetailsRequest:LDGetAppDetailsRequest,
 	LDGetIdentityTokenRequest:LDGetIdentityTokenRequest,
 	LDGetPublicChatRequest:LDGetPublicChatRequest,
 	LDJoinPublicChatRequest:LDJoinPublicChatRequest,
@@ -703,6 +746,9 @@ module.exports={
 	LDGetPresencesRequest:LDGetPresencesRequest,
 	LDSetOnlineStatusRequest:LDSetOnlineStatusRequest,
 	LDGetStreamingLinkRequest:LDGetStreamingLinkRequest,
+	LDSetStreamingStatusRequest:LDSetStreamingStatusRequest,
+	LDListStreamLinksRequest:LDListStreamLinksRequest,
+	LDDeleteNotificationRequest:LDDeleteNotificationRequest,
 	LDGetMessageResponse:LDGetMessageResponse,
 	LDGetMessagesResponse:LDGetMessagesResponse,
 	LDGetMessagesWithContinuationResponse:LDGetMessagesWithContinuationResponse,
@@ -735,6 +781,7 @@ module.exports={
 	LDImageSearchResponse:LDImageSearchResponse,
 	LDCreatePlaygroundResponse:LDCreatePlaygroundResponse,
 	LDGetExtraVersionsResponse:LDGetExtraVersionsResponse,
+	LDGetCarouselCommunitiesResponse:LDGetCarouselCommunitiesResponse,
 	LDGetDirectFeedResponse:LDGetDirectFeedResponse,
 	LDSendDirectMessageResponse:LDSendDirectMessageResponse,
 	LDWallResponse:LDWallResponse,
@@ -746,6 +793,9 @@ module.exports={
 	LDGetFollowersResponse:LDGetFollowersResponse,
 	LDGetExternalShareLinkResponse:LDGetExternalShareLinkResponse,
 	LDGetPackagesResponse:LDGetPackagesResponse,
+	LDListAppsByPopularityResponse:LDListAppsByPopularityResponse,
+	LDGetCommentsResponse:LDGetCommentsResponse,
+	LDGetAppDetailsResponse:LDGetAppDetailsResponse,
 	LDGetIdentityTokenResponse:LDGetIdentityTokenResponse,
 	LDGetPublicChatResponse:LDGetPublicChatResponse,
 	LDGetPublicChatMembersResponse:LDGetPublicChatMembersResponse,
@@ -753,6 +803,7 @@ module.exports={
 	LDListChatsResponse:LDListChatsResponse,
 	LDGatherEventsByAppResponse:LDGatherEventsByAppResponse,
 	LDGetPresencesResponse:LDGetPresencesResponse,
+	LDListStreamLinksResponse:LDListStreamLinksResponse,
 	LDString:LDString,
 	LDIdentity:LDIdentity,
 	LDAppScopeId:LDAppScopeId,
@@ -791,13 +842,17 @@ module.exports={
 	LDApiKey:LDApiKey,
 	LDScoreBoardEntry:LDScoreBoardEntry,
 	LDImageSearchResult:LDImageSearchResult,
+	LDCarouselItem:LDCarouselItem,
 	LDWall:LDWall,
 	LDPostContainer:LDPostContainer,
 	LDUser:LDUser,
 	LDPostTagWithLocalization:LDPostTagWithLocalization,
 	LDPackageInfo:LDPackageInfo,
+	LDAppDetails:LDAppDetails,
+	LDComment:LDComment,
 	LDPublicChatInfo:LDPublicChatInfo,
 	LDPresenceState:LDPresenceState,
+	LDStreamState:LDStreamState,
 	LDFlaggedRecord:LDFlaggedRecord,
 	LDReceiptContainer:LDReceiptContainer,
 	LDBillingInfoContainer:LDBillingInfoContainer,
@@ -815,9 +870,11 @@ module.exports={
 	LDAppInfoListingWrapper:LDAppInfoListingWrapper,
 	LDStickerPackInfoListingWrapper:LDStickerPackInfoListingWrapper,
 	LDPost:LDPost,
+	LDVideoBasePost:LDVideoBasePost,
 	LDVideoPost:LDVideoPost,
 	LDMessagePost:LDMessagePost,
 	LDScreenShotPost:LDScreenShotPost,
+	LDMiniclipPost:LDMiniclipPost,
 	LDMockReceipt:LDMockReceipt,
 	LDMockBillingInfo:LDMockBillingInfo,
 	LDAppScreenshot:LDAppScreenshot,
@@ -825,7 +882,6 @@ module.exports={
 	LDSticker:LDSticker,
 	LDPrice:LDPrice,
 	LDItemInfoImmutableContainer:LDItemInfoImmutableContainer,
-	LDComment:LDComment,
 	LDM3U8Info:LDM3U8Info,
 	LDItemInfoImmutable:LDItemInfoImmutable,
 	LDAppInfoImmutable:LDAppInfoImmutable,

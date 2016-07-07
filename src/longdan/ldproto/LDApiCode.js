@@ -123,6 +123,7 @@ var LDApiCode = {
 	"InvalidVideoCodecFound": "InvalidVideoCodecFound",
 	"WallPostNotFound": "WallPostNotFound",
 	"WallPost_AlreadyPosted": "WallPost_AlreadyPosted",
+	"CommentNotFound": "CommentNotFound",
 	"OmletIdNotFound": "OmletIdNotFound",
 	"OmletIdAuthMismatch": "OmletIdAuthMismatch",
 	"OmletIDExist": "OmletIDExist",
@@ -160,6 +161,7 @@ var LDApiCode = {
 	"PasswordIncorrect": "PasswordIncorrect",
 	"ReservedDomain": "ReservedDomain",
 	"InvalidJwt": "InvalidJwt",
-	"BadJwt": "BadJwt"
+	"BadJwt": "BadJwt",
+	"AccountAlreadySetup": "AccountAlreadySetup"
 };
 module.exports=LDApiCode;

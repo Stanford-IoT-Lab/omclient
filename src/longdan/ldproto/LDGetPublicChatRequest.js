@@ -12,6 +12,7 @@ function O(e){
 	$.Stripe=e['s'];
 	$.Longitude=e['gt'];
 	$.Latitude=e['gp'];
+	$.PersonalStreamAccount=e['psa'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -29,6 +30,7 @@ _.encode=function(o){
 	if($.Stripe!=null)o['s']=$.Stripe;
 	if($.Longitude!=null)o['gt']=$.Longitude;
 	if($.Latitude!=null)o['gp']=$.Latitude;
+	if($.PersonalStreamAccount!=null)o['psa']=$.PersonalStreamAccount;
 	return o;
 }
 _.AppId=null;
@@ -38,6 +40,7 @@ _.Cluster=null;
 _.Stripe=null;
 _.Longitude=null;
 _.Latitude=null;
+_.PersonalStreamAccount=null;
 O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"g":o};o=t;

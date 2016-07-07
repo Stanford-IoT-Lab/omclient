@@ -1,5 +1,7 @@
 var LDRequestProtocolBase = require('./LDRequestProtocolBase');
 var LDDeviceRegistrationStateChangedPush = require('./LDDeviceRegistrationStateChangedPush');
+var LDGetSigninLinkForGuestRequest = require('./LDGetSigninLinkForGuestRequest');
+var LDSigninOrCreateGuestAccountRequest = require('./LDSigninOrCreateGuestAccountRequest');
 var LDConfirmSSOTokenRequest = require('./LDConfirmSSOTokenRequest');
 var LDCheckSSOTokenRequest = require('./LDCheckSSOTokenRequest');
 var LDGetSSOTokenRequest = require('./LDGetSSOTokenRequest');
@@ -33,6 +35,8 @@ function O(e){
 	if(e['so']!=null)$.GetSSOTokenRequest=new LDGetSSOTokenRequest(e['so']);
 	if(e['cs']!=null)$.CheckSSOTokenRequest=new LDCheckSSOTokenRequest(e['cs']);
 	if(e['ao']!=null)$.ConfirmSSOTokenRequest=new LDConfirmSSOTokenRequest(e['ao']);
+	if(e['sc']!=null)$.SigninOrCreateGuestAccountRequest=new LDSigninOrCreateGuestAccountRequest(e['sc']);
+	if(e['gs']!=null)$.GetSigninLinkForGuestRequest=new LDGetSigninLinkForGuestRequest(e['gs']);
 	if(e['dp']!=null)$.DeviceRegistrationStateChangedPush=new LDDeviceRegistrationStateChangedPush(e['dp']);
 }
 O.prototype=new LDRequestProtocolBase();
@@ -57,6 +61,8 @@ _.encode=function(o){
 	if($.GetSSOTokenRequest!=null)o['so']=$.GetSSOTokenRequest.encode();
 	if($.CheckSSOTokenRequest!=null)o['cs']=$.CheckSSOTokenRequest.encode();
 	if($.ConfirmSSOTokenRequest!=null)o['ao']=$.ConfirmSSOTokenRequest.encode();
+	if($.SigninOrCreateGuestAccountRequest!=null)o['sc']=$.SigninOrCreateGuestAccountRequest.encode();
+	if($.GetSigninLinkForGuestRequest!=null)o['gs']=$.GetSigninLinkForGuestRequest.encode();
 	if($.DeviceRegistrationStateChangedPush!=null)o['dp']=$.DeviceRegistrationStateChangedPush.encode();
 	return o;
 }
@@ -74,6 +80,8 @@ _.ConfirmSigninCodeRequest=null;
 _.GetSSOTokenRequest=null;
 _.CheckSSOTokenRequest=null;
 _.ConfirmSSOTokenRequest=null;
+_.SigninOrCreateGuestAccountRequest=null;
+_.GetSigninLinkForGuestRequest=null;
 _.DeviceRegistrationStateChangedPush=null;
 
 module.exports=O;
