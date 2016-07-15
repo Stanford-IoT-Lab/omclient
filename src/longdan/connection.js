@@ -223,7 +223,7 @@ class Connection {
 		if (this.debug)
 			console.log(m);
 	};
-	
+
 	_warn(m, o) {
 		console.log("warn: " + m);
 		if (o) {
@@ -277,7 +277,7 @@ class Connection {
 		this._lastFailure = undefined;
 		this._nextReschedule = undefined;
 	}
-	
+
 	_backoff(reason) {
 		var interrupted = false;
 		if (this._client) {
@@ -317,7 +317,7 @@ class Connection {
 			this.onInterrupted(reason);
 		}
 	};
-	
+
 	_retry(reason) {
 		this._backoffTimer = undefined;
 		if (this._enabled)
@@ -348,7 +348,7 @@ class Connection {
 	_call(req, callback) {
 		var reqId = this._nextRequestId++;
 		var wrapped = req[this._requestWrapper](reqId);
-		
+
 		var rcb = new PendingRequest(wrapped, req, callback);
 		this._pending[reqId] = rcb;
 
@@ -396,7 +396,7 @@ class Connection {
 		var response = resp.DestinationResponse;
 		var challenge = resp.SourceChallenge;
 
-		var shared = ourcrypto.computeShared(this._privateKey, this._serverPublicKey);
+		var shared = ourcrypto.computeShared(this._privateKey, Buffer.from(this._serverPublicKey, 'base64'));
 
 		var sha = ourcrypto.createSHA256();
 		sha.update(new Buffer([1]));
@@ -580,7 +580,7 @@ class Connection {
 			return resp.Ping;
 		return new cls(firstNotNull(raw, 2));
 	}
-	
+
 	_extractPush(rawRequest) {
 		var p = extractProtocol(rawRequest, 2);
 		var cls = PushProtocols[p.path];
