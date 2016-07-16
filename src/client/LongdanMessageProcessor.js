@@ -49,6 +49,18 @@ class LongdanMessageProcessor {
 		this._durableMessageProcessors["removal_notice"] = noop;
 	}
 
+	getProcessorForType(type) {
+		console.log('asd');
+		var processor = this._durableMessageProcessors[type];
+		if (processor)
+			return processor;
+		if (type.startsWith("+")) {
+			processor = new ChatObjectProcessor();
+			return processor;
+		}
+		return null;
+	}
+
 	processDurableMessage(message, options) {
 		if (this._db) {
 			this._processDurableMessage.call(this, message, options);
@@ -73,7 +85,7 @@ class LongdanMessageProcessor {
 
 	_processDurableMessage(message, options) {
 		var db = this._db;
-		var proc = this._durableMessageProcessors[message.Id.Type];
+		var proc = this.getProcessorForType(message.Id.Type);
 		if (typeof(proc) != 'undefined') {
 			try {
 				var client = this._client;
@@ -127,6 +139,10 @@ class LongdanMessageProcessor {
 		if (options != undefined && options.pushed) {
 			this._client.events._notifyMessagePushed(message);
 		}
+	}
+	
+	addDurableMessageProcessor(objType, processor) {
+		this._durableMessageProcessors[objType] = processor;
 	}
 
 	processDurableMessages(messages) {
