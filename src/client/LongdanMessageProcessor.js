@@ -50,7 +50,6 @@ class LongdanMessageProcessor {
 	}
 
 	getProcessorForType(type) {
-		console.log('asd');
 		var processor = this._durableMessageProcessors[type];
 		if (processor)
 			return processor;
