@@ -61,10 +61,12 @@ class LongdanMessageConsumer {
 		conn.addSessionListener(this);
 	}
 
-	onSessionEstablished() {
-		this.caughtUp = false;
-		this._client.msgCall(new LDSubscribeForAccountInboxRequest(), this._onSubscribe.bind(this));
-	}
+    onSessionEstablished() {
+        this.caughtUp = false;
+        if (this._client.account) {
+            this._client.msgCall(new LDSubscribeForAccountInboxRequest(), this._onSubscribe.bind(this));
+        }
+    }
 
 	_onPush(push) {
 		if (this.DEBUG) {
@@ -229,7 +231,7 @@ class FeedFetchWorker {
 			typedId.Id = [];
 			tasks.push(this._syncMessages.bind(this, feed, typedId, OMFeed.MASK_DETAILS));
 		}
-		if ((feed._syncMask & OMFeed.MASK_LAST_READ) != 0) {
+		if ((feed._syncMask & OMFeed.MASK_LAST_READ) != 0 && this._consumer._client.account) {
 			var typedId = new LDTypedId();
 			typedId.Type = ObjTypes.LAST_READ;
 			typedId.Id = new Buffer(this._consumer._client.account);

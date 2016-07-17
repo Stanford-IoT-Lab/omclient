@@ -38,7 +38,7 @@ class LongdanMessageProcessor {
 		this._durableMessageProcessors[ObjTypes.CONTACT] = new ContactProcessor();
 		this._durableMessageProcessors[ObjTypes.BLOB_REFERENCE] = new BlobRefProcessor();
 		this._durableMessageProcessors[ObjTypes.EBLOB_REFERENCE] = new BlobRefProcessor();
-		
+
 		this._durableMessageProcessors["notificationRead"] = noop;
 		this._durableMessageProcessors["history"] = noop;
 		this._durableMessageProcessors["delete"] = noop;
@@ -99,7 +99,7 @@ class LongdanMessageProcessor {
 							} catch (e) {
 								console.log("Error processing message of type " + message.Id.Type, e);
 							}
-							
+
 							receipt.type = message.Id.Type;
 							if (task && typeof task.then === 'function') {
 								task.then(() => {
@@ -122,6 +122,9 @@ class LongdanMessageProcessor {
 			}
 		} else {
 			console.log("Not processing message of type " + message.Id.Type);
+            if (message.Id.Type.substr("+pokemon.") == "+pokemon.") {
+                this._client.events._notify('messages');
+            }
 		}
 
 		if (options != undefined && options.pushed) {
