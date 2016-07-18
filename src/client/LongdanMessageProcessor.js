@@ -140,10 +140,6 @@ class LongdanMessageProcessor {
 		}
 	}
 	
-	addDurableMessageProcessor(objType, processor) {
-		this._durableMessageProcessors[objType] = processor;
-	}
-
 	processDurableMessages(messages) {
 		// Run all messages immediately
 		/*
