@@ -139,7 +139,7 @@ class LongdanMessageProcessor {
 			this._client.events._notifyMessagePushed(message);
 		}
 	}
-	
+
 	processDurableMessages(messages) {
 		// Run all messages immediately
 		/*
