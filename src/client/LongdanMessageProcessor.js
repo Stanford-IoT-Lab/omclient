@@ -53,8 +53,9 @@ class LongdanMessageProcessor {
 
 	getProcessorForType(type) {
 		var processor = this._durableMessageProcessors[type];
-		if (processor)
+		if (processor) {
 			return processor;
+		}
 		if (type.startsWith("+")) {
 			return this._chatObjectProcessor;
 		}
