@@ -17,6 +17,8 @@ class LongdanMessageProcessor {
 
 		var noop = new NoopProcessor();
 		var cop = new ChatObjectProcessor();
+		this._chatObjectProcessor = cop;
+		
 		this._durableMessageProcessors = {};
 		this._durableMessageProcessors[ObjTypes.TEXT] = cop;
 		this._durableMessageProcessors[ObjTypes.ANIMATED_GIF] = cop;
@@ -49,6 +51,17 @@ class LongdanMessageProcessor {
 		this._durableMessageProcessors["removal_notice"] = noop;
 	}
 
+	getProcessorForType(type) {
+		var processor = this._durableMessageProcessors[type];
+		if (processor) {
+			return processor;
+		}
+		if (type.startsWith("+")) {
+			return this._chatObjectProcessor;
+		}
+		return null;
+	}
+
 	processDurableMessage(message, options) {
 		if (this._db) {
 			this._processDurableMessage.call(this, message, options);
@@ -73,7 +86,7 @@ class LongdanMessageProcessor {
 
 	_processDurableMessage(message, options) {
 		var db = this._db;
-		var proc = this._durableMessageProcessors[message.Id.Type];
+		var proc = this.getProcessorForType(message.Id.Type);
 		if (typeof(proc) != 'undefined') {
 			try {
 				var client = this._client;
