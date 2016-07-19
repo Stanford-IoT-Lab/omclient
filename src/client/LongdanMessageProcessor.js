@@ -17,6 +17,8 @@ class LongdanMessageProcessor {
 
 		var noop = new NoopProcessor();
 		var cop = new ChatObjectProcessor();
+		this._chatObjectProcessor = cop;
+		
 		this._durableMessageProcessors = {};
 		this._durableMessageProcessors[ObjTypes.TEXT] = cop;
 		this._durableMessageProcessors[ObjTypes.ANIMATED_GIF] = cop;
@@ -54,8 +56,7 @@ class LongdanMessageProcessor {
 		if (processor)
 			return processor;
 		if (type.startsWith("+")) {
-			processor = new ChatObjectProcessor();
-			return processor;
+			return this._chatObjectProcessor;
 		}
 		return null;
 	}
