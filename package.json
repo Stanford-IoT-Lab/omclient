@@ -1,6 +1,6 @@
 {
   "name": "omlib",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "description": "Javascript client for Omlet messaging service",
   "private": true,
   "main": "./lib/omlib.js",

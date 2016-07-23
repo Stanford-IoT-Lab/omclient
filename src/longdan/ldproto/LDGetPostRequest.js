@@ -7,6 +7,7 @@ function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['id']!=null)$.PostId=new LDPostId(e['id']);
+	$.AllowStale=e['s'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -18,9 +19,11 @@ _.encode=function(o){
 	var $=this;
 	LDJSONLoggable.prototype.encode.call($,o);
 	if($.PostId!=null)o['id']=$.PostId.encode();
+	if($.AllowStale!=null)o['s']=$.AllowStale;
 	return o;
 }
 _.PostId=null;
+_.AllowStale=null;
 O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"gp":o};o=t;

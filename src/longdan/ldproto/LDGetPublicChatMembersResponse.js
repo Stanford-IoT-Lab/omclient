@@ -19,6 +19,11 @@ function O(e){
 		var d = e['dn'];
 		for(var k=0;k<d.length;++k)$.DisplayNames.push(d[k]);
 	}
+	if(e['pr']!=null){
+		$.ProfilePictureLinks=[];
+		var d = e['pr'];
+		for(var k=0;k<d.length;++k)$.ProfilePictureLinks.push(d[k]);
+	}
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -43,10 +48,16 @@ _.encode=function(o){
 		var d=$.DisplayNames;
 		for(var k=0;k<d.length;++k) o['dn'].push(d[k]);
 	}
+	if($.ProfilePictureLinks!=null) {
+		o['pr']=[];
+		var d=$.ProfilePictureLinks;
+		for(var k=0;k<d.length;++k) o['pr'].push(d[k]);
+	}
 	return o;
 }
 _.Ids=null;
 _.Accounts=null;
 _.DisplayNames=null;
+_.ProfilePictureLinks=null;
 
 module.exports=O;

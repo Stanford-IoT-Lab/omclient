@@ -1,5 +1,5 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
-var LDAppDetails = require('./LDAppDetails');
+var LDAppDetailsFromStore = require('./LDAppDetailsFromStore');
 
 function O(e){
 	LDJSONLoggable.call(this,e);
@@ -8,7 +8,7 @@ function O(e){
 	if(e['d']!=null){
 		$.Details=[];
 		var d = e['d'];
-		for(var k=0; k<d.length;++k)$.Details.push(new LDAppDetails(d[k]));
+		for(var k=0; k<d.length;++k)$.Details.push(new LDAppDetailsFromStore(d[k]));
 	}
 }
 O.prototype=new LDJSONLoggable();

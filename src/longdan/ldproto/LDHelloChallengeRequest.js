@@ -29,13 +29,13 @@ _.EphmeralKey=null;
 _.SourceKey=null;
 _.DestinationChallenge=null;
 _.ApiKey=null;
-O.prototype.makeClusterRpc=function(id){
+O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"#":id,"*":o};o=t;
 	t={"q":o};o=t;
 	return o;
 }
-O.prototype.makeIdpRpc=function(id){
+O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"#":id,"*":o};o=t;
 	t={"q":o};o=t;

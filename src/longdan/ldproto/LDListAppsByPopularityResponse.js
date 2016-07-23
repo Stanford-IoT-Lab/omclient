@@ -1,5 +1,5 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
-var LDAppDetails = require('./LDAppDetails');
+var LDAppDetailsFromStore = require('./LDAppDetailsFromStore');
 
 function O(e){
 	LDJSONLoggable.call(this,e);
@@ -8,7 +8,7 @@ function O(e){
 	if(e['l']!=null){
 		$.List=[];
 		var d = e['l'];
-		for(var k=0; k<d.length;++k)$.List.push(new LDAppDetails(d[k]));
+		for(var k=0; k<d.length;++k)$.List.push(new LDAppDetailsFromStore(d[k]));
 	}
 	if(e['c']!=null)$.ContinuationKey=new Buffer(e['c'],'base64');
 }

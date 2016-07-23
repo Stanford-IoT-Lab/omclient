@@ -10,8 +10,8 @@ function O(e){
 	$.LobbyName=e['n'];
 	$.Cluster=e['c'];
 	$.Stripe=e['s'];
-	$.Longitude=e['gt'];
 	$.Latitude=e['gp'];
+	$.Longitude=e['gt'];
 	$.PersonalStreamAccount=e['psa'];
 }
 O.prototype=new LDJSONLoggable();
@@ -28,8 +28,8 @@ _.encode=function(o){
 	if($.LobbyName!=null)o['n']=$.LobbyName;
 	if($.Cluster!=null)o['c']=$.Cluster;
 	if($.Stripe!=null)o['s']=$.Stripe;
-	if($.Longitude!=null)o['gt']=$.Longitude;
 	if($.Latitude!=null)o['gp']=$.Latitude;
+	if($.Longitude!=null)o['gt']=$.Longitude;
 	if($.PersonalStreamAccount!=null)o['psa']=$.PersonalStreamAccount;
 	return o;
 }
@@ -38,8 +38,8 @@ _.PackageId=null;
 _.LobbyName=null;
 _.Cluster=null;
 _.Stripe=null;
-_.Longitude=null;
 _.Latitude=null;
+_.Longitude=null;
 _.PersonalStreamAccount=null;
 O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;

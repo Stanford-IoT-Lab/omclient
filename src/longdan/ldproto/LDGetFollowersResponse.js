@@ -1,5 +1,5 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
-var LDUser = require('./LDUser');
+var LDUserWithFollowingStatus = require('./LDUserWithFollowingStatus');
 
 function O(e){
 	LDJSONLoggable.call(this,e);
@@ -8,7 +8,7 @@ function O(e){
 	if(e['f']!=null){
 		$.Followers=[];
 		var d = e['f'];
-		for(var k=0; k<d.length;++k)$.Followers.push(new LDUser(d[k]));
+		for(var k=0; k<d.length;++k)$.Followers.push(new LDUserWithFollowingStatus(d[k]));
 	}
 	if(e['c']!=null)$.ContinuationKey=new Buffer(e['c'],'base64');
 }

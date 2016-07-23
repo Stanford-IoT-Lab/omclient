@@ -10,6 +10,7 @@ function O(e){
 	if(e['t']!=null)$.SecondTag=new LDPostTag(e['t']);
 	if(e['c']!=null)$.ContinuationKey=new Buffer(e['c'],'base64');
 	$.PostsToGet=e['n'];
+	$.UserLocale=e['lc'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -24,12 +25,14 @@ _.encode=function(o){
 	if($.SecondTag!=null)o['t']=$.SecondTag.encode();
 	if($.ContinuationKey!=null)o['c']=$.ContinuationKey.toString('base64');
 	if($.PostsToGet!=null)o['n']=$.PostsToGet;
+	if($.UserLocale!=null)o['lc']=$.UserLocale;
 	return o;
 }
 _.GameTag=null;
 _.SecondTag=null;
 _.ContinuationKey=null;
 _.PostsToGet=null;
+_.UserLocale=null;
 O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"ggw":o};o=t;

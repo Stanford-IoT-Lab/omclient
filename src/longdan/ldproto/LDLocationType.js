@@ -1,5 +1,6 @@
 var LDLocationType = {
 	"CITY": "CITY",
+	"COUNTY": "COUNTY",
 	"COUNTRY": "COUNTRY",
 	"CONTINENT": "CONTINENT",
 	"GLOBAL": "GLOBAL",
