@@ -396,7 +396,14 @@ class Connection {
 		var response = resp.DestinationResponse;
 		var challenge = resp.SourceChallenge;
 
-		var shared = ourcrypto.computeShared(this._privateKey, Buffer.from(this._serverPublicKey, 'base64'));
+		var shared;
+		try {
+			shared = ourcrypto.computeShared(this._privateKey, Buffer.from(this._serverPublicKey, 'base64'));
+		} catch(err) {
+			// the version of Buffer module transfered from node.js to browser by webpack is older,
+			// so we need a roll back to keep it working
+			shared = ourcrypto.computeShared(this._privateKey, new Buffer(this._serverPublicKey, 'base64'));
+		}
 
 		var sha = ourcrypto.createSHA256();
 		sha.update(new Buffer([1]));
