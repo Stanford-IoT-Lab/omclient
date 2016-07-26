@@ -8,6 +8,8 @@ var LDItemBroadcastStateChangedPush = require('./LDItemBroadcastStateChangedPush
 var LDSubscriptionTerminatedPush = require('./LDSubscriptionTerminatedPush');
 var LDPublicChatMessageDeliveryPush = require('./LDPublicChatMessageDeliveryPush');
 var LDPublicChatMessageTerminatedPush = require('./LDPublicChatMessageTerminatedPush');
+var LDStreamDeliveryMessagePush = require('./LDStreamDeliveryMessagePush');
+var LDStreamDeliveryTerminatedPush = require('./LDStreamDeliveryTerminatedPush');
 
 module.exports={
 	'a.dp':LDDeviceRegistrationStateChangedPush,
@@ -19,5 +21,7 @@ module.exports={
 	'n.bp':LDItemBroadcastStateChangedPush,
 	'n.st':LDSubscriptionTerminatedPush,
 	'pc.p':LDPublicChatMessageDeliveryPush,
-	'pc.t':LDPublicChatMessageTerminatedPush
+	'pc.t':LDPublicChatMessageTerminatedPush,
+	'ps.p':LDStreamDeliveryMessagePush,
+	'ps.d':LDStreamDeliveryTerminatedPush
 };

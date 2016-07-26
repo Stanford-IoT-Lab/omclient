@@ -10,6 +10,7 @@ function O(e){
 	if(e['id']!=null)$.PostId=new LDPostId(e['id']);
 	$.CreationDate=e['ct'];
 	$.Title=e['t'];
+	$.Description=e['d'];
 	$.Views=e['v'];
 	$.Likes=e['l'];
 	$.Comments=e['cc'];
@@ -27,6 +28,7 @@ function O(e){
 	$.AppName=e['an'];
 	$.AppIconBlobLink=e['ai'];
 	$.UserLocale=e['lc'];
+	$.LinkUrl=e['u'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -39,6 +41,7 @@ _.encode=function(o){
 	if($.PostId!=null)o['id']=$.PostId.encode();
 	if($.CreationDate!=null)o['ct']=$.CreationDate;
 	if($.Title!=null)o['t']=$.Title;
+	if($.Description!=null)o['d']=$.Description;
 	if($.Views!=null)o['v']=$.Views;
 	if($.Likes!=null)o['l']=$.Likes;
 	if($.Comments!=null)o['cc']=$.Comments;
@@ -56,11 +59,13 @@ _.encode=function(o){
 	if($.AppName!=null)o['an']=$.AppName;
 	if($.AppIconBlobLink!=null)o['ai']=$.AppIconBlobLink;
 	if($.UserLocale!=null)o['lc']=$.UserLocale;
+	if($.LinkUrl!=null)o['u']=$.LinkUrl;
 	return o;
 }
 _.PostId=null;
 _.CreationDate=null;
 _.Title=null;
+_.Description=null;
 _.Views=null;
 _.Likes=null;
 _.Comments=null;
@@ -74,5 +79,6 @@ _.YouLiked=null;
 _.AppName=null;
 _.AppIconBlobLink=null;
 _.UserLocale=null;
+_.LinkUrl=null;
 
 module.exports=O;

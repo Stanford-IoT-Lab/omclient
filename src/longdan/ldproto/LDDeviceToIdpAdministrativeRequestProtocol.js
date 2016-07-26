@@ -1,4 +1,7 @@
 var LDRequestProtocolBase = require('./LDRequestProtocolBase');
+var LDListUnverifiedCommunitiesRequest = require('./LDListUnverifiedCommunitiesRequest');
+var LDSetCommunityInfoSettableValuesRequest = require('./LDSetCommunityInfoSettableValuesRequest');
+var LDRemapCommunityIdRequest = require('./LDRemapCommunityIdRequest');
 var LDGetPermissionsRequest = require('./LDGetPermissionsRequest');
 var LDAdminBlockUserRequest = require('./LDAdminBlockUserRequest');
 var LDAdminUnbanUserFromAppRequest = require('./LDAdminUnbanUserFromAppRequest');
@@ -42,6 +45,9 @@ function O(e){
 	if(e['uua']!=null)$.UnbanUserFromAppRequest=new LDAdminUnbanUserFromAppRequest(e['uua']);
 	if(e['blu']!=null)$.BlockUserRequest=new LDAdminBlockUserRequest(e['blu']);
 	if(e['gp']!=null)$.GetPermissionsRequest=new LDGetPermissionsRequest(e['gp']);
+	if(e['rci']!=null)$.RemapCommunityIdRequest=new LDRemapCommunityIdRequest(e['rci']);
+	if(e['scisv']!=null)$.SetCommunityInfoSettableValuesRequest=new LDSetCommunityInfoSettableValuesRequest(e['scisv']);
+	if(e['luc']!=null)$.ListUnverifiedCommunitiesRequest=new LDListUnverifiedCommunitiesRequest(e['luc']);
 }
 O.prototype=new LDRequestProtocolBase();
 O.prototype.constructor = O;
@@ -70,6 +76,9 @@ _.encode=function(o){
 	if($.UnbanUserFromAppRequest!=null)o['uua']=$.UnbanUserFromAppRequest.encode();
 	if($.BlockUserRequest!=null)o['blu']=$.BlockUserRequest.encode();
 	if($.GetPermissionsRequest!=null)o['gp']=$.GetPermissionsRequest.encode();
+	if($.RemapCommunityIdRequest!=null)o['rci']=$.RemapCommunityIdRequest.encode();
+	if($.SetCommunityInfoSettableValuesRequest!=null)o['scisv']=$.SetCommunityInfoSettableValuesRequest.encode();
+	if($.ListUnverifiedCommunitiesRequest!=null)o['luc']=$.ListUnverifiedCommunitiesRequest.encode();
 	return o;
 }
 _.UnblockIdentity=null;
@@ -91,5 +100,8 @@ _.BanUserFromAppRequest=null;
 _.UnbanUserFromAppRequest=null;
 _.BlockUserRequest=null;
 _.GetPermissionsRequest=null;
+_.RemapCommunityIdRequest=null;
+_.SetCommunityInfoSettableValuesRequest=null;
+_.ListUnverifiedCommunitiesRequest=null;
 
 module.exports=O;

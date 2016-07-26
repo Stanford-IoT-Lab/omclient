@@ -9,6 +9,7 @@ function O(e){
 	if(e['p']!=null)$.PrimaryTag=new LDPostTag(e['p']);
 	if(e['ck']!=null)$.ContinuationKey=new Buffer(e['ck'],'base64');
 	$.CrossFirewall=e['xg'];
+	$.UserLocale=e['lc'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -22,11 +23,13 @@ _.encode=function(o){
 	if($.PrimaryTag!=null)o['p']=$.PrimaryTag.encode();
 	if($.ContinuationKey!=null)o['ck']=$.ContinuationKey.toString('base64');
 	if($.CrossFirewall!=null)o['xg']=$.CrossFirewall;
+	if($.UserLocale!=null)o['lc']=$.UserLocale;
 	return o;
 }
 _.PrimaryTag=null;
 _.ContinuationKey=null;
 _.CrossFirewall=null;
+_.UserLocale=null;
 O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"grp":o};o=t;

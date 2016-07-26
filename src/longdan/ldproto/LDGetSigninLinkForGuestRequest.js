@@ -15,6 +15,7 @@ function O(e){
 	$.Jwt=e['j'];
 	$.Account=e['a'];
 	if(e['i']!=null)$.Identity=new LDIdentity(e['i']);
+	$.State=e['t'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -34,6 +35,7 @@ _.encode=function(o){
 	if($.Jwt!=null)o['j']=$.Jwt;
 	if($.Account!=null)o['a']=$.Account;
 	if($.Identity!=null)o['i']=$.Identity.encode();
+	if($.State!=null)o['t']=$.State;
 	return o;
 }
 _.RedirectPage=null;
@@ -41,6 +43,7 @@ _.Scopes=null;
 _.Jwt=null;
 _.Account=null;
 _.Identity=null;
+_.State=null;
 O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"gs":o};o=t;

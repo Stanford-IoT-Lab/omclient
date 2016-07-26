@@ -115,6 +115,9 @@ var LDAdminBanUserFromAppRequest = require('./LDAdminBanUserFromAppRequest');
 var LDAdminUnbanUserFromAppRequest = require('./LDAdminUnbanUserFromAppRequest');
 var LDAdminBlockUserRequest = require('./LDAdminBlockUserRequest');
 var LDGetPermissionsRequest = require('./LDGetPermissionsRequest');
+var LDRemapCommunityIdRequest = require('./LDRemapCommunityIdRequest');
+var LDSetCommunityInfoSettableValuesRequest = require('./LDSetCommunityInfoSettableValuesRequest');
+var LDListUnverifiedCommunitiesRequest = require('./LDListUnverifiedCommunitiesRequest');
 var LDAccountDetailsResponse = require('./LDAccountDetailsResponse');
 var LDGetLinkedIdentitiesResponse = require('./LDGetLinkedIdentitiesResponse');
 var LDGetAppSigninLinkResponse = require('./LDGetAppSigninLinkResponse');
@@ -125,6 +128,7 @@ var LDGetIdentityRecordsResponse = require('./LDGetIdentityRecordsResponse');
 var LDListFlaggedUsersResponse = require('./LDListFlaggedUsersResponse');
 var LDGetDeviceRecordsResponse = require('./LDGetDeviceRecordsResponse');
 var LDGetPermissionsResponse = require('./LDGetPermissionsResponse');
+var LDListUnverifiedCommunitiesResponse = require('./LDListUnverifiedCommunitiesResponse');
 var LDCreateFeedRequest = require('./LDCreateFeedRequest');
 var LDGetMessagesSinceRequest = require('./LDGetMessagesSinceRequest');
 var LDGetMessagesBeforeRequest = require('./LDGetMessagesBeforeRequest');
@@ -271,15 +275,30 @@ var LDGetFollowingCountRequest = require('./LDGetFollowingCountRequest');
 var LDGetUserWallPostCountRequest = require('./LDGetUserWallPostCountRequest');
 var LDGetPackagePostsRequest = require('./LDGetPackagePostsRequest');
 var LDUpdatePostDetailsRequest = require('./LDUpdatePostDetailsRequest');
-var LDGetPackagesRequest = require('./LDGetPackagesRequest');
+var LDGetAllCommunitiesRequest = require('./LDGetAllCommunitiesRequest');
 var LDGetRecommendedWallRequest = require('./LDGetRecommendedWallRequest');
 var LDSendRealtimeMessageToAllFollowersRequest = require('./LDSendRealtimeMessageToAllFollowersRequest');
 var LDListAppsByPopularityRequest = require('./LDListAppsByPopularityRequest');
 var LDGetRecentPostsRequest = require('./LDGetRecentPostsRequest');
+var LDGetTrendingPostsRequest = require('./LDGetTrendingPostsRequest');
+var LDUploadCommunityDetailsRequest = require('./LDUploadCommunityDetailsRequest');
+var LDJoinCommunityRequest = require('./LDJoinCommunityRequest');
+var LDLeaveCommunityRequest = require('./LDLeaveCommunityRequest');
+var LDGetCommunitiesRequest = require('./LDGetCommunitiesRequest');
+var LDResolveCanonicalCommunityIdsRequest = require('./LDResolveCanonicalCommunityIdsRequest');
 var LDAddCommentRequest = require('./LDAddCommentRequest');
 var LDGetCommentsRequest = require('./LDGetCommentsRequest');
+var LDGetUserCommentsRequest = require('./LDGetUserCommentsRequest');
 var LDDeleteCommentRequest = require('./LDDeleteCommentRequest');
 var LDGetAppDetailsRequest = require('./LDGetAppDetailsRequest');
+var LDGetCommunityInfosRequest = require('./LDGetCommunityInfosRequest');
+var LDGetTrendingCommunitiesRequest = require('./LDGetTrendingCommunitiesRequest');
+var LDGetHistoryRequest = require('./LDGetHistoryRequest');
+var LDGetSuggestedCommunitiesRequest = require('./LDGetSuggestedCommunitiesRequest');
+var LDGetNonfeaturedPackagesRequest = require('./LDGetNonfeaturedPackagesRequest');
+var LDGetClippedVideosForPackageRequest = require('./LDGetClippedVideosForPackageRequest');
+var LDSetFeaturedVideoRequest = require('./LDSetFeaturedVideoRequest');
+var LDGetFeaturedVideosRequest = require('./LDGetFeaturedVideosRequest');
 var LDGetIdentityTokenRequest = require('./LDGetIdentityTokenRequest');
 var LDGetPublicChatRequest = require('./LDGetPublicChatRequest');
 var LDJoinPublicChatRequest = require('./LDJoinPublicChatRequest');
@@ -303,6 +322,12 @@ var LDSetOnlineStatusRequest = require('./LDSetOnlineStatusRequest');
 var LDGetStreamingLinkRequest = require('./LDGetStreamingLinkRequest');
 var LDSetStreamingStatusRequest = require('./LDSetStreamingStatusRequest');
 var LDListStreamLinksRequest = require('./LDListStreamLinksRequest');
+var LDStartRtmpTransformRequest = require('./LDStartRtmpTransformRequest');
+var LDStopRtmpTransformRequest = require('./LDStopRtmpTransformRequest');
+var LDSubscribeForStreamRequest = require('./LDSubscribeForStreamRequest');
+var LDUnsubscribeForStreamRequest = require('./LDUnsubscribeForStreamRequest');
+var LDStreamDeliveryMessagePush = require('./LDStreamDeliveryMessagePush');
+var LDStreamDeliveryTerminatedPush = require('./LDStreamDeliveryTerminatedPush');
 var LDDeleteNotificationRequest = require('./LDDeleteNotificationRequest');
 var LDGetMessageResponse = require('./LDGetMessageResponse');
 var LDGetMessagesResponse = require('./LDGetMessagesResponse');
@@ -347,10 +372,19 @@ var LDGetAccountsFollowedResponse = require('./LDGetAccountsFollowedResponse');
 var LDGetStandardPostTagsResponse = require('./LDGetStandardPostTagsResponse');
 var LDGetFollowersResponse = require('./LDGetFollowersResponse');
 var LDGetExternalShareLinkResponse = require('./LDGetExternalShareLinkResponse');
-var LDGetPackagesResponse = require('./LDGetPackagesResponse');
+var LDGetAllCommunitiesResponse = require('./LDGetAllCommunitiesResponse');
 var LDListAppsByPopularityResponse = require('./LDListAppsByPopularityResponse');
+var LDGetCommunitiesResponse = require('./LDGetCommunitiesResponse');
+var LDResolveCanonicalCommunityIdsResponse = require('./LDResolveCanonicalCommunityIdsResponse');
 var LDGetCommentsResponse = require('./LDGetCommentsResponse');
 var LDGetAppDetailsResponse = require('./LDGetAppDetailsResponse');
+var LDGetCommunityInfosResponse = require('./LDGetCommunityInfosResponse');
+var LDGetTrendingCommunitiesResponse = require('./LDGetTrendingCommunitiesResponse');
+var LDGetHistoryResponse = require('./LDGetHistoryResponse');
+var LDGetSuggestedCommunitiesResponse = require('./LDGetSuggestedCommunitiesResponse');
+var LDGetNonfeaturedPackagesResponse = require('./LDGetNonfeaturedPackagesResponse');
+var LDGetClippedVideosForPackageResponse = require('./LDGetClippedVideosForPackageResponse');
+var LDGetFeaturedVideosResponse = require('./LDGetFeaturedVideosResponse');
 var LDGetIdentityTokenResponse = require('./LDGetIdentityTokenResponse');
 var LDGetPublicChatResponse = require('./LDGetPublicChatResponse');
 var LDGetPublicChatMembersResponse = require('./LDGetPublicChatMembersResponse');
@@ -363,9 +397,13 @@ var LDString = require('./LDString');
 var LDIdentity = require('./LDIdentity');
 var LDAppScopeId = require('./LDAppScopeId');
 var LDItemId = require('./LDItemId');
+var LDCommunityIdKey = require('./LDCommunityIdKey');
+var LDCommunityInfoContainer = require('./LDCommunityInfoContainer');
+var LDSettableValues = require('./LDSettableValues');
 var LDAccountDetails = require('./LDAccountDetails');
 var LDFlaggedDetails = require('./LDFlaggedDetails');
 var LDPrettyPermissions = require('./LDPrettyPermissions');
+var LDCommunityInfoContainerCommunityId = require('./LDCommunityInfoContainerCommunityId');
 var LDTypedId = require('./LDTypedId');
 var LDAcl = require('./LDAcl');
 var LDIdentityHash = require('./LDIdentityHash');
@@ -384,8 +422,13 @@ var LDGameChallengeId = require('./LDGameChallengeId');
 var LDGPSLocation = require('./LDGPSLocation');
 var LDNearbyItemContainer = require('./LDNearbyItemContainer');
 var LDClientEvent = require('./LDClientEvent');
+var LDCommunityId = require('./LDCommunityId');
 var LDPostTag = require('./LDPostTag');
 var LDPostId = require('./LDPostId');
+var LDUserCustomCommunityInfoContainer = require('./LDUserCustomCommunityInfoContainer');
+var LDPackageIdLocale = require('./LDPackageIdLocale');
+var LDFeaturedVideoClip = require('./LDFeaturedVideoClip');
+var LDStreamState = require('./LDStreamState');
 var LDJoinFeedLink = require('./LDJoinFeedLink');
 var LDDirtyFeed = require('./LDDirtyFeed');
 var LDBlobDownloadTicket = require('./LDBlobDownloadTicket');
@@ -400,14 +443,17 @@ var LDImageSearchResult = require('./LDImageSearchResult');
 var LDCarouselItem = require('./LDCarouselItem');
 var LDWall = require('./LDWall');
 var LDPostContainer = require('./LDPostContainer');
-var LDUser = require('./LDUser');
+var LDUserWithFollowingStatus = require('./LDUserWithFollowingStatus');
 var LDPostTagWithLocalization = require('./LDPostTagWithLocalization');
 var LDPackageInfo = require('./LDPackageInfo');
-var LDAppDetails = require('./LDAppDetails');
+var LDAppDetailsFromStore = require('./LDAppDetailsFromStore');
+var LDCommunityDetailsForUser = require('./LDCommunityDetailsForUser');
 var LDComment = require('./LDComment');
+var LDHistoryItemContainer = require('./LDHistoryItemContainer');
 var LDPublicChatInfo = require('./LDPublicChatInfo');
 var LDPresenceState = require('./LDPresenceState');
-var LDStreamState = require('./LDStreamState');
+var LDCommunityInfo = require('./LDCommunityInfo');
+var LDAppCommunityInfo = require('./LDAppCommunityInfo');
 var LDFlaggedRecord = require('./LDFlaggedRecord');
 var LDReceiptContainer = require('./LDReceiptContainer');
 var LDBillingInfoContainer = require('./LDBillingInfoContainer');
@@ -418,6 +464,9 @@ var LDItemInfoSystemMutable = require('./LDItemInfoSystemMutable');
 var LDAppInfoSystemMutable = require('./LDAppInfoSystemMutable');
 var LDStickerPackInfoSystemMutable = require('./LDStickerPackInfoSystemMutable');
 var LDNearbyItemFeedMetadata = require('./LDNearbyItemFeedMetadata');
+var LDUserCustomCommunityInfo = require('./LDUserCustomCommunityInfo');
+var LDUserCustomAppCommunityInfo = require('./LDUserCustomAppCommunityInfo');
+var LDUser = require('./LDUser');
 var LDProfileIdentitySetting = require('./LDProfileIdentitySetting');
 var LDItemInfo = require('./LDItemInfo');
 var LDAppInfo = require('./LDAppInfo');
@@ -430,6 +479,10 @@ var LDVideoPost = require('./LDVideoPost');
 var LDMessagePost = require('./LDMessagePost');
 var LDScreenShotPost = require('./LDScreenShotPost');
 var LDMiniclipPost = require('./LDMiniclipPost');
+var LDCommentItem = require('./LDCommentItem');
+var LDLikeItem = require('./LDLikeItem');
+var LDFollowItem = require('./LDFollowItem');
+var LDJoinCommunityItem = require('./LDJoinCommunityItem');
 var LDMockReceipt = require('./LDMockReceipt');
 var LDMockBillingInfo = require('./LDMockBillingInfo');
 var LDAppScreenshot = require('./LDAppScreenshot');
@@ -560,6 +613,9 @@ module.exports={
 	LDAdminUnbanUserFromAppRequest:LDAdminUnbanUserFromAppRequest,
 	LDAdminBlockUserRequest:LDAdminBlockUserRequest,
 	LDGetPermissionsRequest:LDGetPermissionsRequest,
+	LDRemapCommunityIdRequest:LDRemapCommunityIdRequest,
+	LDSetCommunityInfoSettableValuesRequest:LDSetCommunityInfoSettableValuesRequest,
+	LDListUnverifiedCommunitiesRequest:LDListUnverifiedCommunitiesRequest,
 	LDAccountDetailsResponse:LDAccountDetailsResponse,
 	LDGetLinkedIdentitiesResponse:LDGetLinkedIdentitiesResponse,
 	LDGetAppSigninLinkResponse:LDGetAppSigninLinkResponse,
@@ -570,6 +626,7 @@ module.exports={
 	LDListFlaggedUsersResponse:LDListFlaggedUsersResponse,
 	LDGetDeviceRecordsResponse:LDGetDeviceRecordsResponse,
 	LDGetPermissionsResponse:LDGetPermissionsResponse,
+	LDListUnverifiedCommunitiesResponse:LDListUnverifiedCommunitiesResponse,
 	LDCreateFeedRequest:LDCreateFeedRequest,
 	LDGetMessagesSinceRequest:LDGetMessagesSinceRequest,
 	LDGetMessagesBeforeRequest:LDGetMessagesBeforeRequest,
@@ -716,15 +773,30 @@ module.exports={
 	LDGetUserWallPostCountRequest:LDGetUserWallPostCountRequest,
 	LDGetPackagePostsRequest:LDGetPackagePostsRequest,
 	LDUpdatePostDetailsRequest:LDUpdatePostDetailsRequest,
-	LDGetPackagesRequest:LDGetPackagesRequest,
+	LDGetAllCommunitiesRequest:LDGetAllCommunitiesRequest,
 	LDGetRecommendedWallRequest:LDGetRecommendedWallRequest,
 	LDSendRealtimeMessageToAllFollowersRequest:LDSendRealtimeMessageToAllFollowersRequest,
 	LDListAppsByPopularityRequest:LDListAppsByPopularityRequest,
 	LDGetRecentPostsRequest:LDGetRecentPostsRequest,
+	LDGetTrendingPostsRequest:LDGetTrendingPostsRequest,
+	LDUploadCommunityDetailsRequest:LDUploadCommunityDetailsRequest,
+	LDJoinCommunityRequest:LDJoinCommunityRequest,
+	LDLeaveCommunityRequest:LDLeaveCommunityRequest,
+	LDGetCommunitiesRequest:LDGetCommunitiesRequest,
+	LDResolveCanonicalCommunityIdsRequest:LDResolveCanonicalCommunityIdsRequest,
 	LDAddCommentRequest:LDAddCommentRequest,
 	LDGetCommentsRequest:LDGetCommentsRequest,
+	LDGetUserCommentsRequest:LDGetUserCommentsRequest,
 	LDDeleteCommentRequest:LDDeleteCommentRequest,
 	LDGetAppDetailsRequest:LDGetAppDetailsRequest,
+	LDGetCommunityInfosRequest:LDGetCommunityInfosRequest,
+	LDGetTrendingCommunitiesRequest:LDGetTrendingCommunitiesRequest,
+	LDGetHistoryRequest:LDGetHistoryRequest,
+	LDGetSuggestedCommunitiesRequest:LDGetSuggestedCommunitiesRequest,
+	LDGetNonfeaturedPackagesRequest:LDGetNonfeaturedPackagesRequest,
+	LDGetClippedVideosForPackageRequest:LDGetClippedVideosForPackageRequest,
+	LDSetFeaturedVideoRequest:LDSetFeaturedVideoRequest,
+	LDGetFeaturedVideosRequest:LDGetFeaturedVideosRequest,
 	LDGetIdentityTokenRequest:LDGetIdentityTokenRequest,
 	LDGetPublicChatRequest:LDGetPublicChatRequest,
 	LDJoinPublicChatRequest:LDJoinPublicChatRequest,
@@ -748,6 +820,12 @@ module.exports={
 	LDGetStreamingLinkRequest:LDGetStreamingLinkRequest,
 	LDSetStreamingStatusRequest:LDSetStreamingStatusRequest,
 	LDListStreamLinksRequest:LDListStreamLinksRequest,
+	LDStartRtmpTransformRequest:LDStartRtmpTransformRequest,
+	LDStopRtmpTransformRequest:LDStopRtmpTransformRequest,
+	LDSubscribeForStreamRequest:LDSubscribeForStreamRequest,
+	LDUnsubscribeForStreamRequest:LDUnsubscribeForStreamRequest,
+	LDStreamDeliveryMessagePush:LDStreamDeliveryMessagePush,
+	LDStreamDeliveryTerminatedPush:LDStreamDeliveryTerminatedPush,
 	LDDeleteNotificationRequest:LDDeleteNotificationRequest,
 	LDGetMessageResponse:LDGetMessageResponse,
 	LDGetMessagesResponse:LDGetMessagesResponse,
@@ -792,10 +870,19 @@ module.exports={
 	LDGetStandardPostTagsResponse:LDGetStandardPostTagsResponse,
 	LDGetFollowersResponse:LDGetFollowersResponse,
 	LDGetExternalShareLinkResponse:LDGetExternalShareLinkResponse,
-	LDGetPackagesResponse:LDGetPackagesResponse,
+	LDGetAllCommunitiesResponse:LDGetAllCommunitiesResponse,
 	LDListAppsByPopularityResponse:LDListAppsByPopularityResponse,
+	LDGetCommunitiesResponse:LDGetCommunitiesResponse,
+	LDResolveCanonicalCommunityIdsResponse:LDResolveCanonicalCommunityIdsResponse,
 	LDGetCommentsResponse:LDGetCommentsResponse,
 	LDGetAppDetailsResponse:LDGetAppDetailsResponse,
+	LDGetCommunityInfosResponse:LDGetCommunityInfosResponse,
+	LDGetTrendingCommunitiesResponse:LDGetTrendingCommunitiesResponse,
+	LDGetHistoryResponse:LDGetHistoryResponse,
+	LDGetSuggestedCommunitiesResponse:LDGetSuggestedCommunitiesResponse,
+	LDGetNonfeaturedPackagesResponse:LDGetNonfeaturedPackagesResponse,
+	LDGetClippedVideosForPackageResponse:LDGetClippedVideosForPackageResponse,
+	LDGetFeaturedVideosResponse:LDGetFeaturedVideosResponse,
 	LDGetIdentityTokenResponse:LDGetIdentityTokenResponse,
 	LDGetPublicChatResponse:LDGetPublicChatResponse,
 	LDGetPublicChatMembersResponse:LDGetPublicChatMembersResponse,
@@ -808,9 +895,13 @@ module.exports={
 	LDIdentity:LDIdentity,
 	LDAppScopeId:LDAppScopeId,
 	LDItemId:LDItemId,
+	LDCommunityIdKey:LDCommunityIdKey,
+	LDCommunityInfoContainer:LDCommunityInfoContainer,
+	LDSettableValues:LDSettableValues,
 	LDAccountDetails:LDAccountDetails,
 	LDFlaggedDetails:LDFlaggedDetails,
 	LDPrettyPermissions:LDPrettyPermissions,
+	LDCommunityInfoContainerCommunityId:LDCommunityInfoContainerCommunityId,
 	LDTypedId:LDTypedId,
 	LDAcl:LDAcl,
 	LDIdentityHash:LDIdentityHash,
@@ -829,8 +920,13 @@ module.exports={
 	LDGPSLocation:LDGPSLocation,
 	LDNearbyItemContainer:LDNearbyItemContainer,
 	LDClientEvent:LDClientEvent,
+	LDCommunityId:LDCommunityId,
 	LDPostTag:LDPostTag,
 	LDPostId:LDPostId,
+	LDUserCustomCommunityInfoContainer:LDUserCustomCommunityInfoContainer,
+	LDPackageIdLocale:LDPackageIdLocale,
+	LDFeaturedVideoClip:LDFeaturedVideoClip,
+	LDStreamState:LDStreamState,
 	LDJoinFeedLink:LDJoinFeedLink,
 	LDDirtyFeed:LDDirtyFeed,
 	LDBlobDownloadTicket:LDBlobDownloadTicket,
@@ -845,14 +941,17 @@ module.exports={
 	LDCarouselItem:LDCarouselItem,
 	LDWall:LDWall,
 	LDPostContainer:LDPostContainer,
-	LDUser:LDUser,
+	LDUserWithFollowingStatus:LDUserWithFollowingStatus,
 	LDPostTagWithLocalization:LDPostTagWithLocalization,
 	LDPackageInfo:LDPackageInfo,
-	LDAppDetails:LDAppDetails,
+	LDAppDetailsFromStore:LDAppDetailsFromStore,
+	LDCommunityDetailsForUser:LDCommunityDetailsForUser,
 	LDComment:LDComment,
+	LDHistoryItemContainer:LDHistoryItemContainer,
 	LDPublicChatInfo:LDPublicChatInfo,
 	LDPresenceState:LDPresenceState,
-	LDStreamState:LDStreamState,
+	LDCommunityInfo:LDCommunityInfo,
+	LDAppCommunityInfo:LDAppCommunityInfo,
 	LDFlaggedRecord:LDFlaggedRecord,
 	LDReceiptContainer:LDReceiptContainer,
 	LDBillingInfoContainer:LDBillingInfoContainer,
@@ -863,6 +962,9 @@ module.exports={
 	LDAppInfoSystemMutable:LDAppInfoSystemMutable,
 	LDStickerPackInfoSystemMutable:LDStickerPackInfoSystemMutable,
 	LDNearbyItemFeedMetadata:LDNearbyItemFeedMetadata,
+	LDUserCustomCommunityInfo:LDUserCustomCommunityInfo,
+	LDUserCustomAppCommunityInfo:LDUserCustomAppCommunityInfo,
+	LDUser:LDUser,
 	LDProfileIdentitySetting:LDProfileIdentitySetting,
 	LDItemInfo:LDItemInfo,
 	LDAppInfo:LDAppInfo,
@@ -875,6 +977,10 @@ module.exports={
 	LDMessagePost:LDMessagePost,
 	LDScreenShotPost:LDScreenShotPost,
 	LDMiniclipPost:LDMiniclipPost,
+	LDCommentItem:LDCommentItem,
+	LDLikeItem:LDLikeItem,
+	LDFollowItem:LDFollowItem,
+	LDJoinCommunityItem:LDJoinCommunityItem,
 	LDMockReceipt:LDMockReceipt,
 	LDMockBillingInfo:LDMockBillingInfo,
 	LDAppScreenshot:LDAppScreenshot,

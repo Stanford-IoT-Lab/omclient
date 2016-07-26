@@ -1,4 +1,10 @@
 var LDRequestProtocolBase = require('./LDRequestProtocolBase');
+var LDStreamDeliveryTerminatedPush = require('./LDStreamDeliveryTerminatedPush');
+var LDStreamDeliveryMessagePush = require('./LDStreamDeliveryMessagePush');
+var LDUnsubscribeForStreamRequest = require('./LDUnsubscribeForStreamRequest');
+var LDSubscribeForStreamRequest = require('./LDSubscribeForStreamRequest');
+var LDStopRtmpTransformRequest = require('./LDStopRtmpTransformRequest');
+var LDStartRtmpTransformRequest = require('./LDStartRtmpTransformRequest');
 var LDListStreamLinksRequest = require('./LDListStreamLinksRequest');
 var LDSetStreamingStatusRequest = require('./LDSetStreamingStatusRequest');
 var LDGetStreamingLinkRequest = require('./LDGetStreamingLinkRequest');
@@ -14,6 +20,12 @@ function O(e){
 	if(e['s']!=null)$.GetStreamingLinkRequest=new LDGetStreamingLinkRequest(e['s']);
 	if(e['ss']!=null)$.SetStreamingStatusRequest=new LDSetStreamingStatusRequest(e['ss']);
 	if(e['l']!=null)$.GetStreamsRequest=new LDListStreamLinksRequest(e['l']);
+	if(e['r']!=null)$.StartRtmpTransformRequest=new LDStartRtmpTransformRequest(e['r']);
+	if(e['t']!=null)$.StopRtmpTransformRequest=new LDStopRtmpTransformRequest(e['t']);
+	if(e['a']!=null)$.SubscribeForStreamRequest=new LDSubscribeForStreamRequest(e['a']);
+	if(e['u']!=null)$.UnsubscribeForStreamRequest=new LDUnsubscribeForStreamRequest(e['u']);
+	if(e['p']!=null)$.StreamPush=new LDStreamDeliveryMessagePush(e['p']);
+	if(e['d']!=null)$.TerminatedPush=new LDStreamDeliveryTerminatedPush(e['d']);
 }
 O.prototype=new LDRequestProtocolBase();
 O.prototype.constructor = O;
@@ -28,6 +40,12 @@ _.encode=function(o){
 	if($.GetStreamingLinkRequest!=null)o['s']=$.GetStreamingLinkRequest.encode();
 	if($.SetStreamingStatusRequest!=null)o['ss']=$.SetStreamingStatusRequest.encode();
 	if($.GetStreamsRequest!=null)o['l']=$.GetStreamsRequest.encode();
+	if($.StartRtmpTransformRequest!=null)o['r']=$.StartRtmpTransformRequest.encode();
+	if($.StopRtmpTransformRequest!=null)o['t']=$.StopRtmpTransformRequest.encode();
+	if($.SubscribeForStreamRequest!=null)o['a']=$.SubscribeForStreamRequest.encode();
+	if($.UnsubscribeForStreamRequest!=null)o['u']=$.UnsubscribeForStreamRequest.encode();
+	if($.StreamPush!=null)o['p']=$.StreamPush.encode();
+	if($.TerminatedPush!=null)o['d']=$.TerminatedPush.encode();
 	return o;
 }
 _.GetPresencesRequest=null;
@@ -35,5 +53,11 @@ _.SetOnlineStatusRequest=null;
 _.GetStreamingLinkRequest=null;
 _.SetStreamingStatusRequest=null;
 _.GetStreamsRequest=null;
+_.StartRtmpTransformRequest=null;
+_.StopRtmpTransformRequest=null;
+_.SubscribeForStreamRequest=null;
+_.UnsubscribeForStreamRequest=null;
+_.StreamPush=null;
+_.TerminatedPush=null;
 
 module.exports=O;

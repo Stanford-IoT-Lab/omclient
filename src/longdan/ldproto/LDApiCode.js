@@ -124,6 +124,10 @@ var LDApiCode = {
 	"WallPostNotFound": "WallPostNotFound",
 	"WallPost_AlreadyPosted": "WallPost_AlreadyPosted",
 	"CommentNotFound": "CommentNotFound",
+	"WallPost_UnknownCommunity": "WallPost_UnknownCommunity",
+	"WallPost_AlreadyJoinedCommunity": "WallPost_AlreadyJoinedCommunity",
+	"WallPost_NotMemberOfCommunity": "WallPost_NotMemberOfCommunity",
+	"WallPost_AlreadyMapped": "WallPost_AlreadyMapped",
 	"OmletIdNotFound": "OmletIdNotFound",
 	"OmletIdAuthMismatch": "OmletIdAuthMismatch",
 	"OmletIDExist": "OmletIDExist",
@@ -162,6 +166,15 @@ var LDApiCode = {
 	"ReservedDomain": "ReservedDomain",
 	"InvalidJwt": "InvalidJwt",
 	"BadJwt": "BadJwt",
-	"AccountAlreadySetup": "AccountAlreadySetup"
+	"AccountAlreadySetup": "AccountAlreadySetup",
+	"MissingLocale": "MissingLocale",
+	"NotACanonicalCommunity": "NotACanonicalCommunity",
+	"CantRemapToNonCanonicalId": "CantRemapToNonCanonicalId",
+	"TooManyIds": "TooManyIds",
+	"MissingPlatformType": "MissingPlatformType",
+	"UnableToCreateCommunity": "UnableToCreateCommunity",
+	"VideoTooShort": "VideoTooShort",
+	"CorruptVideo": "CorruptVideo",
+	"CantJoinACanonicalCommunity": "CantJoinACanonicalCommunity"
 };
 module.exports=LDApiCode;

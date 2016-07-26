@@ -7,8 +7,8 @@ function O(e){
 	var $=this;
 	if(e['a']!=null)$.AppId=new Buffer(e['a'],'base64');
 	$.PackageId=e['p'];
-	$.Longitude=e['gt'];
 	$.Latitude=e['gp'];
+	$.Longitude=e['gt'];
 	$.ForwardingStage=e['f'];
 	$.ForAppScopeId=e['fa'];
 	$.ForCountry=e['fc'];
@@ -25,8 +25,8 @@ _.encode=function(o){
 	LDJSONLoggable.prototype.encode.call($,o);
 	if($.AppId!=null)o['a']=$.AppId.toString('base64');
 	if($.PackageId!=null)o['p']=$.PackageId;
-	if($.Longitude!=null)o['gt']=$.Longitude;
 	if($.Latitude!=null)o['gp']=$.Latitude;
+	if($.Longitude!=null)o['gt']=$.Longitude;
 	if($.ForwardingStage!=null)o['f']=$.ForwardingStage;
 	if($.ForAppScopeId!=null)o['fa']=$.ForAppScopeId;
 	if($.ForCountry!=null)o['fc']=$.ForCountry;
@@ -35,8 +35,8 @@ _.encode=function(o){
 }
 _.AppId=null;
 _.PackageId=null;
-_.Longitude=null;
 _.Latitude=null;
+_.Longitude=null;
 _.ForwardingStage=null;
 _.ForAppScopeId=null;
 _.ForCountry=null;

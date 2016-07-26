@@ -14,6 +14,7 @@ function O(e){
 	$.IpAddress=e['p'];
 	$.RequestedCluster=e['c'];
 	$.Jwt=e['j'];
+	$.State=e['t'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -33,6 +34,7 @@ _.encode=function(o){
 	if($.IpAddress!=null)o['p']=$.IpAddress;
 	if($.RequestedCluster!=null)o['c']=$.RequestedCluster;
 	if($.Jwt!=null)o['j']=$.Jwt;
+	if($.State!=null)o['t']=$.State;
 	return o;
 }
 _.RedirectPage=null;
@@ -40,6 +42,7 @@ _.Scopes=null;
 _.IpAddress=null;
 _.RequestedCluster=null;
 _.Jwt=null;
+_.State=null;
 O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"S":o};o=t;
