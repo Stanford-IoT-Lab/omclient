@@ -13,6 +13,7 @@ var BASE_BACKOFF = 3 * 1000;
 var MAX_BACKOFF = 5 * 60 * 1000;
 var KEEPALIVE_MS = 56 * 1000;
 var OMLIB_VERSION = 0;
+var CLIENT_VERSION = "-";
 var DEBUG = false;
 
 
@@ -431,6 +432,7 @@ class Connection {
 		var req = new LDCompleteChallengeRequest();
 		req.Type = "JS-Omlib";
 		req.OmlibVersion = OMLIB_VERSION;
+		req.ClientVersion = CLIENT_VERSION;
 		if (typeof window === 'undefined') {
 			req.OsVersion = "Node";
 		} else {
