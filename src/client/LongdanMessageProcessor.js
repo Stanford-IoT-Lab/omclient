@@ -87,7 +87,7 @@ class LongdanMessageProcessor {
 	_processDurableMessage(message, options) {
 		var db = this._db;
 		var proc = this.getProcessorForType(message.Id.Type);
-		if (typeof(proc) != 'undefined') {
+		if (typeof(proc) != 'undefined' && proc !== null) {
 			try {
 				var client = this._client;
 				var feedIdentifier = JSON.stringify(message.Feed.encode());

@@ -10,6 +10,12 @@ var LDIdentityHash = require('../longdan/ldproto/LDIdentityHash');
 var LDJoinPublicChatRequest = require('../longdan/ldproto/LDJoinPublicChatRequest');
 var LDLeavePublicChatRequest = require('../longdan/ldproto/LDLeavePublicChatRequest');
 var LDGetPublicChatRequest = require('../longdan/ldproto/LDGetPublicChatRequest');
+var LDListGeneralPublicChatsRequest = require('../longdan/ldproto/LDListGeneralPublicChatsRequest');
+var LDListCommunityDefinedChatsRequest = require('../longdan/ldproto/LDListCommunityDefinedChatsRequest');
+var LDListLocalChatsRequest = require('../longdan/ldproto/LDListLocalChatsRequest');
+var LDListInterestingChatsRequest = require('../longdan/ldproto/LDListInterestingChatsRequest');
+var LDCommunityId = require('../longdan/ldproto/LDCommunityId');
+
 
 class FeedUtils {
 
@@ -382,6 +388,20 @@ class FeedUtils {
 			this._client._msg.decrementInterest();
 			delete this._publicChatSubscriptions[feedId];
 		}
+	}
+
+	listInterstingChats(packageName) {
+		return new Promise((resolve, reject) => {
+			var req = new LDListInterestingChatsRequest();
+			req.PackageId = packageName;
+			this._client.msgCall(req, (err, resp, req) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(resp);
+				}
+			});
+		});
 	}
 }
 
