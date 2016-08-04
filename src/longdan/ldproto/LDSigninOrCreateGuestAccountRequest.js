@@ -16,6 +16,7 @@ function O(e){
 	$.RequestedCluster=e['c'];
 	$.IpAddress=e['p'];
 	$.State=e['t'];
+	$.ErrorWhenUserConfirm=e['eu'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -37,6 +38,7 @@ _.encode=function(o){
 	if($.RequestedCluster!=null)o['c']=$.RequestedCluster;
 	if($.IpAddress!=null)o['p']=$.IpAddress;
 	if($.State!=null)o['t']=$.State;
+	if($.ErrorWhenUserConfirm!=null)o['eu']=$.ErrorWhenUserConfirm;
 	return o;
 }
 _.RedirectPage=null;
@@ -46,6 +48,7 @@ _.SuggestId=null;
 _.RequestedCluster=null;
 _.IpAddress=null;
 _.State=null;
+_.ErrorWhenUserConfirm=null;
 O.prototype.makeIdpRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"sc":o};o=t;

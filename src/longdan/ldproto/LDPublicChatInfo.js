@@ -1,4 +1,5 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
+var LDCommunityId = require('./LDCommunityId');
 var LDFeed = require('./LDFeed');
 
 function O(e){
@@ -6,8 +7,7 @@ function O(e){
 	if(!e)return;
 	var $=this;
 	if(e['f']!=null)$.Feed=new LDFeed(e['f']);
-	if(e['id']!=null)$.AppId=new Buffer(e['id'],'base64');
-	$.PackageId=e['pid'];
+	if(e['cid']!=null)$.CommunityId=new LDCommunityId(e['cid']);
 	$.LobbyName=e['n'];
 	$.Stripe=e['s'];
 	$.DisplayName=e['dn'];
@@ -22,8 +22,7 @@ _.encode=function(o){
 	var $=this;
 	LDJSONLoggable.prototype.encode.call($,o);
 	if($.Feed!=null)o['f']=$.Feed.encode();
-	if($.AppId!=null)o['id']=$.AppId.toString('base64');
-	if($.PackageId!=null)o['pid']=$.PackageId;
+	if($.CommunityId!=null)o['cid']=$.CommunityId.encode();
 	if($.LobbyName!=null)o['n']=$.LobbyName;
 	if($.Stripe!=null)o['s']=$.Stripe;
 	if($.DisplayName!=null)o['dn']=$.DisplayName;
@@ -31,8 +30,7 @@ _.encode=function(o){
 	return o;
 }
 _.Feed=null;
-_.AppId=null;
-_.PackageId=null;
+_.CommunityId=null;
 _.LobbyName=null;
 _.Stripe=null;
 _.DisplayName=null;

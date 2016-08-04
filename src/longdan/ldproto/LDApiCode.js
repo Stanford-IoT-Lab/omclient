@@ -175,6 +175,7 @@ var LDApiCode = {
 	"UnableToCreateCommunity": "UnableToCreateCommunity",
 	"VideoTooShort": "VideoTooShort",
 	"CorruptVideo": "CorruptVideo",
-	"CantJoinACanonicalCommunity": "CantJoinACanonicalCommunity"
+	"CantJoinACanonicalCommunity": "CantJoinACanonicalCommunity",
+	"UnsupportedJwtAlg": "UnsupportedJwtAlg"
 };
 module.exports=LDApiCode;

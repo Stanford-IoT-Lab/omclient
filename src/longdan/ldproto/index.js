@@ -89,6 +89,7 @@ var LDLinkOmletIdentityRequest = require('./LDLinkOmletIdentityRequest');
 var LDGetAppSigninLinkRequest = require('./LDGetAppSigninLinkRequest');
 var LDConfirmAuthCodeRequest = require('./LDConfirmAuthCodeRequest');
 var LDGetSigninLinkRequest = require('./LDGetSigninLinkRequest');
+var LDGetCheckSigninLinkRequest = require('./LDGetCheckSigninLinkRequest');
 var LDConfirmSigninCodeRequest = require('./LDConfirmSigninCodeRequest');
 var LDGetSSOTokenRequest = require('./LDGetSSOTokenRequest');
 var LDCheckSSOTokenRequest = require('./LDCheckSSOTokenRequest');
@@ -122,6 +123,7 @@ var LDAccountDetailsResponse = require('./LDAccountDetailsResponse');
 var LDGetLinkedIdentitiesResponse = require('./LDGetLinkedIdentitiesResponse');
 var LDGetAppSigninLinkResponse = require('./LDGetAppSigninLinkResponse');
 var LDGetSigninLinkResponse = require('./LDGetSigninLinkResponse');
+var LDGetCheckSigninLinkResponse = require('./LDGetCheckSigninLinkResponse');
 var LDCheckSSOTokenResponse = require('./LDCheckSSOTokenResponse');
 var LDSigninOrCreateGuestAccountResponse = require('./LDSigninOrCreateGuestAccountResponse');
 var LDGetIdentityRecordsResponse = require('./LDGetIdentityRecordsResponse');
@@ -248,6 +250,7 @@ var LDCreatePlaygroundRequest = require('./LDCreatePlaygroundRequest');
 var LDGetFeedbackAccountRequest = require('./LDGetFeedbackAccountRequest');
 var LDGetExtraVersionsRequest = require('./LDGetExtraVersionsRequest');
 var LDGetCarouselCommunitiesRequest = require('./LDGetCarouselCommunitiesRequest');
+var LDGetPokemonMapRequest = require('./LDGetPokemonMapRequest');
 var LDGetDirectFeedRequest = require('./LDGetDirectFeedRequest');
 var LDSendDirectMessageRequest = require('./LDSendDirectMessageRequest');
 var LDSetSmsParticipationRequest = require('./LDSetSmsParticipationRequest');
@@ -308,6 +311,9 @@ var LDGetPublicChatMembersRequest = require('./LDGetPublicChatMembersRequest');
 var LDGetRecentMessagesRequest = require('./LDGetRecentMessagesRequest');
 var LDListLiveChatsRequest = require('./LDListLiveChatsRequest');
 var LDListInterestingChatsRequest = require('./LDListInterestingChatsRequest');
+var LDListLocalChatsRequest = require('./LDListLocalChatsRequest');
+var LDListCommunityDefinedChatsRequest = require('./LDListCommunityDefinedChatsRequest');
+var LDListGeneralPublicChatsRequest = require('./LDListGeneralPublicChatsRequest');
 var LDPublicChatMessageDeliveryPush = require('./LDPublicChatMessageDeliveryPush');
 var LDPublicChatMessageTerminatedPush = require('./LDPublicChatMessageTerminatedPush');
 var LDReportSummaryEventsRequest = require('./LDReportSummaryEventsRequest');
@@ -362,6 +368,7 @@ var LDImageSearchResponse = require('./LDImageSearchResponse');
 var LDCreatePlaygroundResponse = require('./LDCreatePlaygroundResponse');
 var LDGetExtraVersionsResponse = require('./LDGetExtraVersionsResponse');
 var LDGetCarouselCommunitiesResponse = require('./LDGetCarouselCommunitiesResponse');
+var LDGetPokemonMapResponse = require('./LDGetPokemonMapResponse');
 var LDGetDirectFeedResponse = require('./LDGetDirectFeedResponse');
 var LDSendDirectMessageResponse = require('./LDSendDirectMessageResponse');
 var LDWallResponse = require('./LDWallResponse');
@@ -587,6 +594,7 @@ module.exports={
 	LDGetAppSigninLinkRequest:LDGetAppSigninLinkRequest,
 	LDConfirmAuthCodeRequest:LDConfirmAuthCodeRequest,
 	LDGetSigninLinkRequest:LDGetSigninLinkRequest,
+	LDGetCheckSigninLinkRequest:LDGetCheckSigninLinkRequest,
 	LDConfirmSigninCodeRequest:LDConfirmSigninCodeRequest,
 	LDGetSSOTokenRequest:LDGetSSOTokenRequest,
 	LDCheckSSOTokenRequest:LDCheckSSOTokenRequest,
@@ -620,6 +628,7 @@ module.exports={
 	LDGetLinkedIdentitiesResponse:LDGetLinkedIdentitiesResponse,
 	LDGetAppSigninLinkResponse:LDGetAppSigninLinkResponse,
 	LDGetSigninLinkResponse:LDGetSigninLinkResponse,
+	LDGetCheckSigninLinkResponse:LDGetCheckSigninLinkResponse,
 	LDCheckSSOTokenResponse:LDCheckSSOTokenResponse,
 	LDSigninOrCreateGuestAccountResponse:LDSigninOrCreateGuestAccountResponse,
 	LDGetIdentityRecordsResponse:LDGetIdentityRecordsResponse,
@@ -746,6 +755,7 @@ module.exports={
 	LDGetFeedbackAccountRequest:LDGetFeedbackAccountRequest,
 	LDGetExtraVersionsRequest:LDGetExtraVersionsRequest,
 	LDGetCarouselCommunitiesRequest:LDGetCarouselCommunitiesRequest,
+	LDGetPokemonMapRequest:LDGetPokemonMapRequest,
 	LDGetDirectFeedRequest:LDGetDirectFeedRequest,
 	LDSendDirectMessageRequest:LDSendDirectMessageRequest,
 	LDSetSmsParticipationRequest:LDSetSmsParticipationRequest,
@@ -806,6 +816,9 @@ module.exports={
 	LDGetRecentMessagesRequest:LDGetRecentMessagesRequest,
 	LDListLiveChatsRequest:LDListLiveChatsRequest,
 	LDListInterestingChatsRequest:LDListInterestingChatsRequest,
+	LDListLocalChatsRequest:LDListLocalChatsRequest,
+	LDListCommunityDefinedChatsRequest:LDListCommunityDefinedChatsRequest,
+	LDListGeneralPublicChatsRequest:LDListGeneralPublicChatsRequest,
 	LDPublicChatMessageDeliveryPush:LDPublicChatMessageDeliveryPush,
 	LDPublicChatMessageTerminatedPush:LDPublicChatMessageTerminatedPush,
 	LDReportSummaryEventsRequest:LDReportSummaryEventsRequest,
@@ -860,6 +873,7 @@ module.exports={
 	LDCreatePlaygroundResponse:LDCreatePlaygroundResponse,
 	LDGetExtraVersionsResponse:LDGetExtraVersionsResponse,
 	LDGetCarouselCommunitiesResponse:LDGetCarouselCommunitiesResponse,
+	LDGetPokemonMapResponse:LDGetPokemonMapResponse,
 	LDGetDirectFeedResponse:LDGetDirectFeedResponse,
 	LDSendDirectMessageResponse:LDSendDirectMessageResponse,
 	LDWallResponse:LDWallResponse,
