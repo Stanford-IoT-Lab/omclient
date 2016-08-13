@@ -14,6 +14,7 @@ var LDListGeneralPublicChatsRequest = require('../longdan/ldproto/LDListGeneralP
 var LDListCommunityDefinedChatsRequest = require('../longdan/ldproto/LDListCommunityDefinedChatsRequest');
 var LDListLocalChatsRequest = require('../longdan/ldproto/LDListLocalChatsRequest');
 var LDListInterestingChatsRequest = require('../longdan/ldproto/LDListInterestingChatsRequest');
+var LDGetRecentMessagesRequest = require('../longdan/ldproto/LDGetRecentMessagesRequest');
 var LDCommunityId = require('../longdan/ldproto/LDCommunityId');
 
 
@@ -371,13 +372,16 @@ class FeedUtils {
 	}
 
 	joinPublicChat(feed) {
-		var feedId = this._client.store.getObjectId(feed);
-		if (this._publicChatSubscriptions[feedId] == null) {
-			var pcs = new PublicChatSubscriber(this._client, feed);
-			this._client._msg.incrementInterest();
-			var rm = this._client._msg.addSessionListener(pcs);
-			this._publicChatSubscriptions[feedId] = rm;
-		}
+		return new Promise((resolve, reject) => {
+			var feedId = this._client.store.getObjectId(feed);
+			if (this._publicChatSubscriptions[feedId] == null) {
+				var pcs = new PublicChatSubscriber(this._client, feed);
+				this._client._msg.incrementInterest();
+				var rm = this._client._msg.addSessionListener(pcs);
+				this._publicChatSubscriptions[feedId] = rm;
+			}
+			resolve();
+		});
 	}
 
 	leavePublicChat(feed) {
@@ -390,15 +394,48 @@ class FeedUtils {
 		}
 	}
 
-	listInterstingChats(packageName) {
+	getRecentMessages(feed) {
 		return new Promise((resolve, reject) => {
-			var req = new LDListInterestingChatsRequest();
-			req.PackageId = packageName;
+			var req = new LDGetRecentMessagesRequest();
+			req.Feed = feed;
+
 			this._client.msgCall(req, (err, resp, req) => {
 				if (err) {
 					reject(err);
 				} else {
-					resolve(resp);
+					this._client.longdanMessageProcessor.processDurableMessages(resp.Messages);
+					res(resp);
+				}
+			});
+		});
+	}
+
+	listInterstingChats(packageName, longtitude, latitude) {
+		return new Promise((resolve, reject) => {
+			var req = new LDListInterestingChatsRequest();
+			req.PackageId = packageName;
+			req.Lontitude = longtitude;
+			req.Latitude = latitude;
+			this._client.msgCall(req, (err, resp, req) => {
+				if (err) {
+					reject(err);
+				} else {
+					var all = [];
+					resp.Chats.forEach((value, i) => {
+						all.push(new Promise((res, rej) => {
+							var ldFeed = value.Feed;
+							this._client.store.getFeeds((feedDb) => {
+								this._ensureFeed(feedDb, JSON.stringify(ldFeed.encode()), (feed) => {
+									value.feed = feed;
+									value.feedId = this._client.store.getObjectId(feed);
+									res(feed);
+								});
+							});
+						}));
+					});
+					Promise.all(all).then(() => {
+						resolve(resp);
+					});
 				}
 			});
 		});
