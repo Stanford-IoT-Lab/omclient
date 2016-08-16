@@ -404,7 +404,7 @@ class FeedUtils {
 					reject(err);
 				} else {
 					this._client.longdanMessageProcessor.processDurableMessages(resp.Messages);
-					res(resp);
+					resolve(resp);
 				}
 			});
 		});
