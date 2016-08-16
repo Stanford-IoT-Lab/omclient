@@ -8,6 +8,11 @@ class ChatObjectProcessor {
 			body.senderId = client.store.getObjectId(sender);
 			body.serverTimestamp = t;
 			body.msgId = client.store.getObjectId(receipt);
+			body.msgMeta = '';
+
+	  	for (var i=0; i< msg.Metadata.byteLength; i++) {
+				body.msgMeta += String.fromCharCode(msg.Metadata[i]);
+			}
 			var feedId = client.store.getObjectId(feed);
 
 			client.store.getFeedObjects(feedId, (objectsDb) => {

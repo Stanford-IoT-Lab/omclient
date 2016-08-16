@@ -421,20 +421,24 @@ class FeedUtils {
 					reject(err);
 				} else {
 					var all = [];
-					resp.Chats.forEach((value, i) => {
+					var result = [];
+					resp.Chats.forEach((chat, i) => {
 						all.push(new Promise((res, rej) => {
-							var ldFeed = value.Feed;
+							var ldFeed = chat.Feed;
 							this._client.store.getFeeds((feedDb) => {
 								this._ensureFeed(feedDb, JSON.stringify(ldFeed.encode()), (feed) => {
-									value.feed = feed;
-									value.feedId = this._client.store.getObjectId(feed);
-									res(feed);
+									result.push({
+										feed,
+										feedId: this._client.store.getObjectId(feed),
+										chat,
+									});
+									res();
 								});
 							});
 						}));
 					});
 					Promise.all(all).then(() => {
-						resolve(resp);
+						resolve(result);
 					});
 				}
 			});
