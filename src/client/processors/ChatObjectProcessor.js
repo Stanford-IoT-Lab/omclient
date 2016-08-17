@@ -8,6 +8,7 @@ class ChatObjectProcessor {
 			body.senderId = client.store.getObjectId(sender);
 			body.serverTimestamp = t;
 			body.msgId = client.store.getObjectId(receipt);
+			body.receipt = receipt;
 			body.msgMeta = '';
 
 			if(msg.Metadata){
@@ -35,6 +36,7 @@ class ChatObjectProcessor {
 				objectsDb.getObjectByKey(body.msgId, (existing) => {
 					if (existing) {
 						existing.serverTimestamp = t;
+						existing.msgMeta = body.msgMeta;
 						objectsDb.update(existing, () => {
 							resolve(true);
 						});

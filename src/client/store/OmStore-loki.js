@@ -87,7 +87,7 @@ class OmTable {
 		if (persist) {
 			if (typeof window === 'undefined') {
 				lokiSettings.persistenceMethod = "fs";
-				path = this._client._config.storagePath + "/" + instance + "_" + name;			
+				path = this._client._config.storagePath + "/" + instance + "_" + name;
 			} else if (this._supportsIndexedDB()) {
 				lokiSettings.adapter = new lokiIndexed("omlibjs_" + instance);
 			} else {
@@ -100,7 +100,7 @@ class OmTable {
 			lokiSettings.autosave = true;
 			lokiSettings.autosaveInterval = 10000;
 		} else {
-			lokiSettings.autosave = false;		
+			lokiSettings.autosave = false;
 		}
 		this._db = new loki(path, lokiSettings);
 	}
@@ -189,9 +189,9 @@ class OmTable {
 		var query = {};
 		query[this._key] = key;
 		var r = this._data.findOne(query);
-		async.nextTick(() => {
+		//async.nextTick(() => {
 			cb(r);
-		});
+		//});
 	}
 
 	getOrCreateObject(key, cb, details) {
