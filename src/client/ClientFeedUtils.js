@@ -457,18 +457,23 @@ class PublicChatSubscriber {
 	onSessionEstablished(conn) {
 		var displayName;
 		if (this._client.account) {
-			displayName = "myUniqueOmletId";
-		} else {
-			displayName = "Anonymous";
-		}
+			var id = null;
+			this._client.identity.lookupAccount(this._client.account, (err, resp, req) => {
+					if (resp && resp.Identities && resp.Identities.length > 0) {
+						displayName = resp.Identities[0].Principal;
+					} else {
+						displayName = "Anonymous";
+					}
 
-		var req = new LDJoinPublicChatRequest();
-		req.Feed = this._client.feed.getLDFeed(this.feed);
-		req.DisplayName = displayName;
-		this._client.msgCall(req, (err, resp, req) => {
-			this.connected = (err == undefined);
-			this.notifyFeedJoinStatus(this.connected);
-		});
+					var req = new LDJoinPublicChatRequest();
+					req.Feed = this._client.feed.getLDFeed(this.feed);
+					req.DisplayName = displayName;
+					this._client.msgCall(req, (err, resp, req) => {
+						this.connected = (err == undefined);
+						this.notifyFeedJoinStatus(this.connected);
+					});
+		  });
+	  }
 	}
 
 	onSessionDisconnected(conn) {
