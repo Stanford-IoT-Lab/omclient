@@ -575,7 +575,7 @@ class Connection {
 
 		return function() {
 			delete this._sessionListeners[id];
-		}
+		}.bind(this);
 	}
 
 	_extractResponse(resp, raw, cls) {
