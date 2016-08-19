@@ -410,12 +410,12 @@ class FeedUtils {
 		});
 	}
 
-	listInterstingChats(packageName, longtitude, latitude) {
+	listInterstingChats(packageName, latitude, longtitude) {
 		return new Promise((resolve, reject) => {
 			var req = new LDListInterestingChatsRequest();
 			req.PackageId = packageName;
-			req.Lontitude = longtitude;
 			req.Latitude = latitude;
+			req.Lontitude = longtitude;
 			this._client.msgCall(req, (err, resp, req) => {
 				if (err) {
 					reject(err);
