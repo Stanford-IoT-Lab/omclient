@@ -331,6 +331,9 @@ class FeedUtils {
 		var feedId = this._client.store.getObjectId(feed);
 		this._client.store.getFeeds((feedsDb) => {
 			feedsDb.getObjectById(feedId, (feed) => {
+				if (!feed) {
+					return;
+				}
 				var t = feed.renderableTime;
 				if (feed.lastReadTime < t) {
 					feed.lastReadTime = t;
