@@ -1,41 +1,37 @@
 var LDSimpleResponse = require('./LDSimpleResponse');
 var LDJSONLoggable = require('./LDJSONLoggable');
+var LDPostContainer = require('./LDPostContainer');
+var LDPostId = require('./LDPostId');
 
 function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
-	$.Online=e['o'];
-	$.AppName=e['n'];
-	$.AppIconBlobLink=e['b'];
-	$.PackageId=e['p'];
-	$.Locale=e['lc'];
+	if(e['i']!=null)$.PostId=new LDPostId(e['i']);
+	$.Promoted=e['p'];
+	if(e['d']!=null)$.Container=new LDPostContainer(e['d']);
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
 var _=O.prototype;
-_.__type="LDSetOnlineStatusRequest";
+_.__type="LDPromotePostRequest";
 _.__rt=LDSimpleResponse;
 _.encode=function(o){
 	if(o===undefined)o={};
 	var $=this;
 	LDJSONLoggable.prototype.encode.call($,o);
-	if($.Online!=null)o['o']=$.Online;
-	if($.AppName!=null)o['n']=$.AppName;
-	if($.AppIconBlobLink!=null)o['b']=$.AppIconBlobLink;
-	if($.PackageId!=null)o['p']=$.PackageId;
-	if($.Locale!=null)o['lc']=$.Locale;
+	if($.PostId!=null)o['i']=$.PostId.encode();
+	if($.Promoted!=null)o['p']=$.Promoted;
+	if($.Container!=null)o['d']=$.Container.encode();
 	return o;
 }
-_.Online=null;
-_.AppName=null;
-_.AppIconBlobLink=null;
-_.PackageId=null;
-_.Locale=null;
+_.PostId=null;
+_.Promoted=null;
+_.Container=null;
 O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
-	t={"o":o};o=t;
-	t={"#":id,"ps":o};o=t;
+	t={"pp":o};o=t;
+	t={"#":id,"w":o};o=t;
 	t={"q":o};o=t;
 	return o;
 }

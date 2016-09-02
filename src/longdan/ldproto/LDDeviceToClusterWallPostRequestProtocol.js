@@ -1,4 +1,5 @@
 var LDRequestProtocolBase = require('./LDRequestProtocolBase');
+var LDPromotePostRequest = require('./LDPromotePostRequest');
 var LDGetFeaturedVideosRequest = require('./LDGetFeaturedVideosRequest');
 var LDSetFeaturedVideoRequest = require('./LDSetFeaturedVideoRequest');
 var LDGetClippedVideosForPackageRequest = require('./LDGetClippedVideosForPackageRequest');
@@ -28,6 +29,7 @@ var LDGetPackagePostsRequest = require('./LDGetPackagePostsRequest');
 var LDGetUserWallPostCountRequest = require('./LDGetUserWallPostCountRequest');
 var LDGetFollowingCountRequest = require('./LDGetFollowingCountRequest');
 var LDGetFollowerCountRequest = require('./LDGetFollowerCountRequest');
+var LDCheckFollowingMeRequest = require('./LDCheckFollowingMeRequest');
 var LDCheckFollowingRequest = require('./LDCheckFollowingRequest');
 var LDGetExternalShareLinkRequest = require('./LDGetExternalShareLinkRequest');
 var LDDeletePostRequest = require('./LDDeletePostRequest');
@@ -67,6 +69,7 @@ function O(e){
 	if(e['dp']!=null)$.DeletePostRequest=new LDDeletePostRequest(e['dp']);
 	if(e['ges']!=null)$.GetExternalShareLink=new LDGetExternalShareLinkRequest(e['ges']);
 	if(e['cf']!=null)$.CheckFollowing=new LDCheckFollowingRequest(e['cf']);
+	if(e['cfm']!=null)$.CheckFollowingMe=new LDCheckFollowingMeRequest(e['cfm']);
 	if(e['gfc']!=null)$.GetFollowerCount=new LDGetFollowerCountRequest(e['gfc']);
 	if(e['gafc']!=null)$.GetFollowingCount=new LDGetFollowingCountRequest(e['gafc']);
 	if(e['guwc']!=null)$.GetUserWallPostCount=new LDGetUserWallPostCountRequest(e['guwc']);
@@ -96,6 +99,7 @@ function O(e){
 	if(e['gcv']!=null)$.GetClippedVideosForPackageRequest=new LDGetClippedVideosForPackageRequest(e['gcv']);
 	if(e['sfv']!=null)$.SetFeaturedVideoRequest=new LDSetFeaturedVideoRequest(e['sfv']);
 	if(e['gfv']!=null)$.GetFeaturedVideosRequest=new LDGetFeaturedVideosRequest(e['gfv']);
+	if(e['pp']!=null)$.PromotePostRequest=new LDPromotePostRequest(e['pp']);
 }
 O.prototype=new LDRequestProtocolBase();
 O.prototype.constructor = O;
@@ -122,6 +126,7 @@ _.encode=function(o){
 	if($.DeletePostRequest!=null)o['dp']=$.DeletePostRequest.encode();
 	if($.GetExternalShareLink!=null)o['ges']=$.GetExternalShareLink.encode();
 	if($.CheckFollowing!=null)o['cf']=$.CheckFollowing.encode();
+	if($.CheckFollowingMe!=null)o['cfm']=$.CheckFollowingMe.encode();
 	if($.GetFollowerCount!=null)o['gfc']=$.GetFollowerCount.encode();
 	if($.GetFollowingCount!=null)o['gafc']=$.GetFollowingCount.encode();
 	if($.GetUserWallPostCount!=null)o['guwc']=$.GetUserWallPostCount.encode();
@@ -151,6 +156,7 @@ _.encode=function(o){
 	if($.GetClippedVideosForPackageRequest!=null)o['gcv']=$.GetClippedVideosForPackageRequest.encode();
 	if($.SetFeaturedVideoRequest!=null)o['sfv']=$.SetFeaturedVideoRequest.encode();
 	if($.GetFeaturedVideosRequest!=null)o['gfv']=$.GetFeaturedVideosRequest.encode();
+	if($.PromotePostRequest!=null)o['pp']=$.PromotePostRequest.encode();
 	return o;
 }
 _.PostVideo=null;
@@ -170,6 +176,7 @@ _.GetAccountsFollowedRequest=null;
 _.DeletePostRequest=null;
 _.GetExternalShareLink=null;
 _.CheckFollowing=null;
+_.CheckFollowingMe=null;
 _.GetFollowerCount=null;
 _.GetFollowingCount=null;
 _.GetUserWallPostCount=null;
@@ -199,5 +206,6 @@ _.GetNonfeaturedPackagesRequest=null;
 _.GetClippedVideosForPackageRequest=null;
 _.SetFeaturedVideoRequest=null;
 _.GetFeaturedVideosRequest=null;
+_.PromotePostRequest=null;
 
 module.exports=O;

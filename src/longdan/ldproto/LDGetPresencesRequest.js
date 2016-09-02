@@ -10,6 +10,7 @@ function O(e){
 		var d = e['A'];
 		for(var k=0;k<d.length;++k)$.Accounts.push(d[k]);
 	}
+	$.AccessScope=e['s'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -25,9 +26,11 @@ _.encode=function(o){
 		var d=$.Accounts;
 		for(var k=0;k<d.length;++k) o['A'].push(d[k]);
 	}
+	if($.AccessScope!=null)o['s']=$.AccessScope;
 	return o;
 }
 _.Accounts=null;
+_.AccessScope=null;
 O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"g":o};o=t;

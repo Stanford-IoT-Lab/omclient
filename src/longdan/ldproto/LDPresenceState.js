@@ -5,6 +5,7 @@ function O(e){
 	if(!e)return;
 	var $=this;
 	$.Account=e['a'];
+	$.Locale=e['l'];
 	$.LastAppName=e['n'];
 	$.LastAppIconBlobLink=e['b'];
 	$.LastPackageName=e['p'];
@@ -23,6 +24,7 @@ _.encode=function(o){
 	var $=this;
 	LDJSONLoggable.prototype.encode.call($,o);
 	if($.Account!=null)o['a']=$.Account;
+	if($.Locale!=null)o['l']=$.Locale;
 	if($.LastAppName!=null)o['n']=$.LastAppName;
 	if($.LastAppIconBlobLink!=null)o['b']=$.LastAppIconBlobLink;
 	if($.LastPackageName!=null)o['p']=$.LastPackageName;
@@ -34,6 +36,7 @@ _.encode=function(o){
 	return o;
 }
 _.Account=null;
+_.Locale=null;
 _.LastAppName=null;
 _.LastAppIconBlobLink=null;
 _.LastPackageName=null;

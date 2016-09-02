@@ -1,6 +1,7 @@
 var LDRequestProtocolBase = require('./LDRequestProtocolBase');
 var LDPublicChatMessageTerminatedPush = require('./LDPublicChatMessageTerminatedPush');
 var LDPublicChatMessageDeliveryPush = require('./LDPublicChatMessageDeliveryPush');
+var LDJoinLocalChatsRequest = require('./LDJoinLocalChatsRequest');
 var LDListGeneralPublicChatsRequest = require('./LDListGeneralPublicChatsRequest');
 var LDListCommunityDefinedChatsRequest = require('./LDListCommunityDefinedChatsRequest');
 var LDListLocalChatsRequest = require('./LDListLocalChatsRequest');
@@ -28,6 +29,7 @@ function O(e){
 	if(e['llc']!=null)$.ListLocalChatsRequest=new LDListLocalChatsRequest(e['llc']);
 	if(e['lad']!=null)$.ListAppDefinedChatsRequest=new LDListCommunityDefinedChatsRequest(e['lad']);
 	if(e['lgp']!=null)$.ListGeneralPublicChatsRequest=new LDListGeneralPublicChatsRequest(e['lgp']);
+	if(e['jlc']!=null)$.JoinLocalChatsRequest=new LDJoinLocalChatsRequest(e['jlc']);
 	if(e['p']!=null)$.PublicChatMessageDeliveryPush=new LDPublicChatMessageDeliveryPush(e['p']);
 	if(e['t']!=null)$.PublicChatTerminatedPush=new LDPublicChatMessageTerminatedPush(e['t']);
 }
@@ -50,6 +52,7 @@ _.encode=function(o){
 	if($.ListLocalChatsRequest!=null)o['llc']=$.ListLocalChatsRequest.encode();
 	if($.ListAppDefinedChatsRequest!=null)o['lad']=$.ListAppDefinedChatsRequest.encode();
 	if($.ListGeneralPublicChatsRequest!=null)o['lgp']=$.ListGeneralPublicChatsRequest.encode();
+	if($.JoinLocalChatsRequest!=null)o['jlc']=$.JoinLocalChatsRequest.encode();
 	if($.PublicChatMessageDeliveryPush!=null)o['p']=$.PublicChatMessageDeliveryPush.encode();
 	if($.PublicChatTerminatedPush!=null)o['t']=$.PublicChatTerminatedPush.encode();
 	return o;
@@ -65,6 +68,7 @@ _.ListInterestingChatsRequest=null;
 _.ListLocalChatsRequest=null;
 _.ListAppDefinedChatsRequest=null;
 _.ListGeneralPublicChatsRequest=null;
+_.JoinLocalChatsRequest=null;
 _.PublicChatMessageDeliveryPush=null;
 _.PublicChatTerminatedPush=null;
 
