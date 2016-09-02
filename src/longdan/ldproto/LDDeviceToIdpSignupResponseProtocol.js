@@ -1,6 +1,7 @@
 var LDResponseProtocolBase = require('./LDResponseProtocolBase');
 var LDSigninOrCreateGuestAccountResponse = require('./LDSigninOrCreateGuestAccountResponse');
 var LDCheckSSOTokenResponse = require('./LDCheckSSOTokenResponse');
+var LDGetCheckSigninLinkResponse = require('./LDGetCheckSigninLinkResponse');
 var LDGetSigninLinkResponse = require('./LDGetSigninLinkResponse');
 var LDGetAppSigninLinkResponse = require('./LDGetAppSigninLinkResponse');
 var LDGetLinkedIdentitiesResponse = require('./LDGetLinkedIdentitiesResponse');
@@ -14,6 +15,7 @@ function O(e){
 	if(e['i']!=null)$.GetLinkedIdentitiesResponse=new LDGetLinkedIdentitiesResponse(e['i']);
 	if(e['s']!=null)$.GetAppSigninLinkResponse=new LDGetAppSigninLinkResponse(e['s']);
 	if(e['S']!=null)$.GetSigninLinkResponse=new LDGetSigninLinkResponse(e['S']);
+	if(e['csl']!=null)$.GetCheckSigninLinkResponse=new LDGetCheckSigninLinkResponse(e['csl']);
 	if(e['c']!=null)$.CheckSSOTokenResponse=new LDCheckSSOTokenResponse(e['c']);
 	if(e['sc']!=null)$.SigninOrCreateGuestAccountResponse=new LDSigninOrCreateGuestAccountResponse(e['sc']);
 }
@@ -29,6 +31,7 @@ _.encode=function(o){
 	if($.GetLinkedIdentitiesResponse!=null)o['i']=$.GetLinkedIdentitiesResponse.encode();
 	if($.GetAppSigninLinkResponse!=null)o['s']=$.GetAppSigninLinkResponse.encode();
 	if($.GetSigninLinkResponse!=null)o['S']=$.GetSigninLinkResponse.encode();
+	if($.GetCheckSigninLinkResponse!=null)o['csl']=$.GetCheckSigninLinkResponse.encode();
 	if($.CheckSSOTokenResponse!=null)o['c']=$.CheckSSOTokenResponse.encode();
 	if($.SigninOrCreateGuestAccountResponse!=null)o['sc']=$.SigninOrCreateGuestAccountResponse.encode();
 	return o;
@@ -37,6 +40,7 @@ _.AccountDetailsResponse=null;
 _.GetLinkedIdentitiesResponse=null;
 _.GetAppSigninLinkResponse=null;
 _.GetSigninLinkResponse=null;
+_.GetCheckSigninLinkResponse=null;
 _.CheckSSOTokenResponse=null;
 _.SigninOrCreateGuestAccountResponse=null;
 

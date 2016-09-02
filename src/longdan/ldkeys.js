@@ -15,7 +15,9 @@ var TEST_KEYS = new LDPublicKeys({
 	},
 	"DefaultCluster": "ONE",
 	"IdpEndpoints": ["https://idp.omlet.me"],
-	"IdpKey": "MIOC9PS8KIwXOXSHtplBZLSpIqcifns0jzExtkHXw1g="
+	"IdpKey": "MIOC9PS8KIwXOXSHtplBZLSpIqcifns0jzExtkHXw1g=",
+	"ReadOnlyEndpoints":["http://auto.omlet.me"],
+	"ReadOnlyKey":"QKxHfdLVgbn+VYpnUiCFLMq/hhUpkpx7occEY3Z0Wnk="
 });
 
 var LOCAL_TEST_KEYS = new LDPublicKeys({

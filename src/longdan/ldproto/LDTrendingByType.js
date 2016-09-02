@@ -1,5 +1,6 @@
 var LDTrendingByType = {
 	"POST": "POST",
-	"ACTIVITY": "ACTIVITY"
+	"ACTIVITY": "ACTIVITY",
+	"FEATURED": "FEATURED"
 };
 module.exports=LDTrendingByType;

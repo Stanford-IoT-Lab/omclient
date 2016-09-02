@@ -1,39 +1,39 @@
 var LDJSONLoggable = require('./LDJSONLoggable');
 var LDCommunityId = require('./LDCommunityId');
-var LDFeed = require('./LDFeed');
 
 function O(e){
 	LDJSONLoggable.call(this,e);
 	if(!e)return;
 	var $=this;
-	if(e['f']!=null)$.Feed=new LDFeed(e['f']);
+	$.DisplayName=e['n'];
 	if(e['cid']!=null)$.CommunityId=new LDCommunityId(e['cid']);
-	$.LobbyName=e['n'];
-	$.Stripe=e['s'];
-	$.DisplayName=e['dn'];
-	$.Members=e['m'];
+	$.Latitude=e['gp'];
+	$.Longitude=e['gt'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
 var _=O.prototype;
-_.__type="LDPublicChatInfo";
+_.__type="LDJoinLocalChatsRequest";
 _.encode=function(o){
 	if(o===undefined)o={};
 	var $=this;
 	LDJSONLoggable.prototype.encode.call($,o);
-	if($.Feed!=null)o['f']=$.Feed.encode();
+	if($.DisplayName!=null)o['n']=$.DisplayName;
 	if($.CommunityId!=null)o['cid']=$.CommunityId.encode();
-	if($.LobbyName!=null)o['n']=$.LobbyName;
-	if($.Stripe!=null)o['s']=$.Stripe;
-	if($.DisplayName!=null)o['dn']=$.DisplayName;
-	if($.Members!=null)o['m']=$.Members;
+	if($.Latitude!=null)o['gp']=$.Latitude;
+	if($.Longitude!=null)o['gt']=$.Longitude;
 	return o;
 }
-_.Feed=null;
-_.CommunityId=null;
-_.LobbyName=null;
-_.Stripe=null;
 _.DisplayName=null;
-_.Members=null;
+_.CommunityId=null;
+_.Latitude=null;
+_.Longitude=null;
+O.prototype.makeClusterRpc=function(id){
+	var o=this.encode(),t=null;
+	t={"jlc":o};o=t;
+	t={"#":id,"pc":o};o=t;
+	t={"q":o};o=t;
+	return o;
+}
 
 module.exports=O;

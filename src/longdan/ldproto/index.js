@@ -89,6 +89,7 @@ var LDLinkOmletIdentityRequest = require('./LDLinkOmletIdentityRequest');
 var LDGetAppSigninLinkRequest = require('./LDGetAppSigninLinkRequest');
 var LDConfirmAuthCodeRequest = require('./LDConfirmAuthCodeRequest');
 var LDGetSigninLinkRequest = require('./LDGetSigninLinkRequest');
+var LDGetCheckSigninLinkRequest = require('./LDGetCheckSigninLinkRequest');
 var LDConfirmSigninCodeRequest = require('./LDConfirmSigninCodeRequest');
 var LDGetSSOTokenRequest = require('./LDGetSSOTokenRequest');
 var LDCheckSSOTokenRequest = require('./LDCheckSSOTokenRequest');
@@ -122,6 +123,7 @@ var LDAccountDetailsResponse = require('./LDAccountDetailsResponse');
 var LDGetLinkedIdentitiesResponse = require('./LDGetLinkedIdentitiesResponse');
 var LDGetAppSigninLinkResponse = require('./LDGetAppSigninLinkResponse');
 var LDGetSigninLinkResponse = require('./LDGetSigninLinkResponse');
+var LDGetCheckSigninLinkResponse = require('./LDGetCheckSigninLinkResponse');
 var LDCheckSSOTokenResponse = require('./LDCheckSSOTokenResponse');
 var LDSigninOrCreateGuestAccountResponse = require('./LDSigninOrCreateGuestAccountResponse');
 var LDGetIdentityRecordsResponse = require('./LDGetIdentityRecordsResponse');
@@ -248,6 +250,7 @@ var LDCreatePlaygroundRequest = require('./LDCreatePlaygroundRequest');
 var LDGetFeedbackAccountRequest = require('./LDGetFeedbackAccountRequest');
 var LDGetExtraVersionsRequest = require('./LDGetExtraVersionsRequest');
 var LDGetCarouselCommunitiesRequest = require('./LDGetCarouselCommunitiesRequest');
+var LDGetPokemonMapRequest = require('./LDGetPokemonMapRequest');
 var LDGetDirectFeedRequest = require('./LDGetDirectFeedRequest');
 var LDSendDirectMessageRequest = require('./LDSendDirectMessageRequest');
 var LDSetSmsParticipationRequest = require('./LDSetSmsParticipationRequest');
@@ -270,6 +273,7 @@ var LDGetAccountsFollowedRequest = require('./LDGetAccountsFollowedRequest');
 var LDDeletePostRequest = require('./LDDeletePostRequest');
 var LDGetExternalShareLinkRequest = require('./LDGetExternalShareLinkRequest');
 var LDCheckFollowingRequest = require('./LDCheckFollowingRequest');
+var LDCheckFollowingMeRequest = require('./LDCheckFollowingMeRequest');
 var LDGetFollowerCountRequest = require('./LDGetFollowerCountRequest');
 var LDGetFollowingCountRequest = require('./LDGetFollowingCountRequest');
 var LDGetUserWallPostCountRequest = require('./LDGetUserWallPostCountRequest');
@@ -299,6 +303,7 @@ var LDGetNonfeaturedPackagesRequest = require('./LDGetNonfeaturedPackagesRequest
 var LDGetClippedVideosForPackageRequest = require('./LDGetClippedVideosForPackageRequest');
 var LDSetFeaturedVideoRequest = require('./LDSetFeaturedVideoRequest');
 var LDGetFeaturedVideosRequest = require('./LDGetFeaturedVideosRequest');
+var LDPromotePostRequest = require('./LDPromotePostRequest');
 var LDGetIdentityTokenRequest = require('./LDGetIdentityTokenRequest');
 var LDGetPublicChatRequest = require('./LDGetPublicChatRequest');
 var LDJoinPublicChatRequest = require('./LDJoinPublicChatRequest');
@@ -308,6 +313,10 @@ var LDGetPublicChatMembersRequest = require('./LDGetPublicChatMembersRequest');
 var LDGetRecentMessagesRequest = require('./LDGetRecentMessagesRequest');
 var LDListLiveChatsRequest = require('./LDListLiveChatsRequest');
 var LDListInterestingChatsRequest = require('./LDListInterestingChatsRequest');
+var LDListLocalChatsRequest = require('./LDListLocalChatsRequest');
+var LDListCommunityDefinedChatsRequest = require('./LDListCommunityDefinedChatsRequest');
+var LDListGeneralPublicChatsRequest = require('./LDListGeneralPublicChatsRequest');
+var LDJoinLocalChatsRequest = require('./LDJoinLocalChatsRequest');
 var LDPublicChatMessageDeliveryPush = require('./LDPublicChatMessageDeliveryPush');
 var LDPublicChatMessageTerminatedPush = require('./LDPublicChatMessageTerminatedPush');
 var LDReportSummaryEventsRequest = require('./LDReportSummaryEventsRequest');
@@ -362,6 +371,7 @@ var LDImageSearchResponse = require('./LDImageSearchResponse');
 var LDCreatePlaygroundResponse = require('./LDCreatePlaygroundResponse');
 var LDGetExtraVersionsResponse = require('./LDGetExtraVersionsResponse');
 var LDGetCarouselCommunitiesResponse = require('./LDGetCarouselCommunitiesResponse');
+var LDGetPokemonMapResponse = require('./LDGetPokemonMapResponse');
 var LDGetDirectFeedResponse = require('./LDGetDirectFeedResponse');
 var LDSendDirectMessageResponse = require('./LDSendDirectMessageResponse');
 var LDWallResponse = require('./LDWallResponse');
@@ -428,6 +438,7 @@ var LDPostId = require('./LDPostId');
 var LDUserCustomCommunityInfoContainer = require('./LDUserCustomCommunityInfoContainer');
 var LDPackageIdLocale = require('./LDPackageIdLocale');
 var LDFeaturedVideoClip = require('./LDFeaturedVideoClip');
+var LDPostContainer = require('./LDPostContainer');
 var LDStreamState = require('./LDStreamState');
 var LDJoinFeedLink = require('./LDJoinFeedLink');
 var LDDirtyFeed = require('./LDDirtyFeed');
@@ -442,7 +453,6 @@ var LDScoreBoardEntry = require('./LDScoreBoardEntry');
 var LDImageSearchResult = require('./LDImageSearchResult');
 var LDCarouselItem = require('./LDCarouselItem');
 var LDWall = require('./LDWall');
-var LDPostContainer = require('./LDPostContainer');
 var LDUserWithFollowingStatus = require('./LDUserWithFollowingStatus');
 var LDPostTagWithLocalization = require('./LDPostTagWithLocalization');
 var LDPackageInfo = require('./LDPackageInfo');
@@ -466,6 +476,12 @@ var LDStickerPackInfoSystemMutable = require('./LDStickerPackInfoSystemMutable')
 var LDNearbyItemFeedMetadata = require('./LDNearbyItemFeedMetadata');
 var LDUserCustomCommunityInfo = require('./LDUserCustomCommunityInfo');
 var LDUserCustomAppCommunityInfo = require('./LDUserCustomAppCommunityInfo');
+var LDPost = require('./LDPost');
+var LDVideoBasePost = require('./LDVideoBasePost');
+var LDVideoPost = require('./LDVideoPost');
+var LDMessagePost = require('./LDMessagePost');
+var LDScreenShotPost = require('./LDScreenShotPost');
+var LDMiniclipPost = require('./LDMiniclipPost');
 var LDUser = require('./LDUser');
 var LDProfileIdentitySetting = require('./LDProfileIdentitySetting');
 var LDItemInfo = require('./LDItemInfo');
@@ -473,12 +489,6 @@ var LDAppInfo = require('./LDAppInfo');
 var LDStickerPackInfo = require('./LDStickerPackInfo');
 var LDAppInfoListingWrapper = require('./LDAppInfoListingWrapper');
 var LDStickerPackInfoListingWrapper = require('./LDStickerPackInfoListingWrapper');
-var LDPost = require('./LDPost');
-var LDVideoBasePost = require('./LDVideoBasePost');
-var LDVideoPost = require('./LDVideoPost');
-var LDMessagePost = require('./LDMessagePost');
-var LDScreenShotPost = require('./LDScreenShotPost');
-var LDMiniclipPost = require('./LDMiniclipPost');
 var LDCommentItem = require('./LDCommentItem');
 var LDLikeItem = require('./LDLikeItem');
 var LDFollowItem = require('./LDFollowItem');
@@ -489,8 +499,8 @@ var LDAppScreenshot = require('./LDAppScreenshot');
 var LDAppStore = require('./LDAppStore');
 var LDSticker = require('./LDSticker');
 var LDPrice = require('./LDPrice');
-var LDItemInfoImmutableContainer = require('./LDItemInfoImmutableContainer');
 var LDM3U8Info = require('./LDM3U8Info');
+var LDItemInfoImmutableContainer = require('./LDItemInfoImmutableContainer');
 var LDItemInfoImmutable = require('./LDItemInfoImmutable');
 var LDAppInfoImmutable = require('./LDAppInfoImmutable');
 var LDStickerPackInfoImmutable = require('./LDStickerPackInfoImmutable');
@@ -587,6 +597,7 @@ module.exports={
 	LDGetAppSigninLinkRequest:LDGetAppSigninLinkRequest,
 	LDConfirmAuthCodeRequest:LDConfirmAuthCodeRequest,
 	LDGetSigninLinkRequest:LDGetSigninLinkRequest,
+	LDGetCheckSigninLinkRequest:LDGetCheckSigninLinkRequest,
 	LDConfirmSigninCodeRequest:LDConfirmSigninCodeRequest,
 	LDGetSSOTokenRequest:LDGetSSOTokenRequest,
 	LDCheckSSOTokenRequest:LDCheckSSOTokenRequest,
@@ -620,6 +631,7 @@ module.exports={
 	LDGetLinkedIdentitiesResponse:LDGetLinkedIdentitiesResponse,
 	LDGetAppSigninLinkResponse:LDGetAppSigninLinkResponse,
 	LDGetSigninLinkResponse:LDGetSigninLinkResponse,
+	LDGetCheckSigninLinkResponse:LDGetCheckSigninLinkResponse,
 	LDCheckSSOTokenResponse:LDCheckSSOTokenResponse,
 	LDSigninOrCreateGuestAccountResponse:LDSigninOrCreateGuestAccountResponse,
 	LDGetIdentityRecordsResponse:LDGetIdentityRecordsResponse,
@@ -746,6 +758,7 @@ module.exports={
 	LDGetFeedbackAccountRequest:LDGetFeedbackAccountRequest,
 	LDGetExtraVersionsRequest:LDGetExtraVersionsRequest,
 	LDGetCarouselCommunitiesRequest:LDGetCarouselCommunitiesRequest,
+	LDGetPokemonMapRequest:LDGetPokemonMapRequest,
 	LDGetDirectFeedRequest:LDGetDirectFeedRequest,
 	LDSendDirectMessageRequest:LDSendDirectMessageRequest,
 	LDSetSmsParticipationRequest:LDSetSmsParticipationRequest,
@@ -768,6 +781,7 @@ module.exports={
 	LDDeletePostRequest:LDDeletePostRequest,
 	LDGetExternalShareLinkRequest:LDGetExternalShareLinkRequest,
 	LDCheckFollowingRequest:LDCheckFollowingRequest,
+	LDCheckFollowingMeRequest:LDCheckFollowingMeRequest,
 	LDGetFollowerCountRequest:LDGetFollowerCountRequest,
 	LDGetFollowingCountRequest:LDGetFollowingCountRequest,
 	LDGetUserWallPostCountRequest:LDGetUserWallPostCountRequest,
@@ -797,6 +811,7 @@ module.exports={
 	LDGetClippedVideosForPackageRequest:LDGetClippedVideosForPackageRequest,
 	LDSetFeaturedVideoRequest:LDSetFeaturedVideoRequest,
 	LDGetFeaturedVideosRequest:LDGetFeaturedVideosRequest,
+	LDPromotePostRequest:LDPromotePostRequest,
 	LDGetIdentityTokenRequest:LDGetIdentityTokenRequest,
 	LDGetPublicChatRequest:LDGetPublicChatRequest,
 	LDJoinPublicChatRequest:LDJoinPublicChatRequest,
@@ -806,6 +821,10 @@ module.exports={
 	LDGetRecentMessagesRequest:LDGetRecentMessagesRequest,
 	LDListLiveChatsRequest:LDListLiveChatsRequest,
 	LDListInterestingChatsRequest:LDListInterestingChatsRequest,
+	LDListLocalChatsRequest:LDListLocalChatsRequest,
+	LDListCommunityDefinedChatsRequest:LDListCommunityDefinedChatsRequest,
+	LDListGeneralPublicChatsRequest:LDListGeneralPublicChatsRequest,
+	LDJoinLocalChatsRequest:LDJoinLocalChatsRequest,
 	LDPublicChatMessageDeliveryPush:LDPublicChatMessageDeliveryPush,
 	LDPublicChatMessageTerminatedPush:LDPublicChatMessageTerminatedPush,
 	LDReportSummaryEventsRequest:LDReportSummaryEventsRequest,
@@ -860,6 +879,7 @@ module.exports={
 	LDCreatePlaygroundResponse:LDCreatePlaygroundResponse,
 	LDGetExtraVersionsResponse:LDGetExtraVersionsResponse,
 	LDGetCarouselCommunitiesResponse:LDGetCarouselCommunitiesResponse,
+	LDGetPokemonMapResponse:LDGetPokemonMapResponse,
 	LDGetDirectFeedResponse:LDGetDirectFeedResponse,
 	LDSendDirectMessageResponse:LDSendDirectMessageResponse,
 	LDWallResponse:LDWallResponse,
@@ -926,6 +946,7 @@ module.exports={
 	LDUserCustomCommunityInfoContainer:LDUserCustomCommunityInfoContainer,
 	LDPackageIdLocale:LDPackageIdLocale,
 	LDFeaturedVideoClip:LDFeaturedVideoClip,
+	LDPostContainer:LDPostContainer,
 	LDStreamState:LDStreamState,
 	LDJoinFeedLink:LDJoinFeedLink,
 	LDDirtyFeed:LDDirtyFeed,
@@ -940,7 +961,6 @@ module.exports={
 	LDImageSearchResult:LDImageSearchResult,
 	LDCarouselItem:LDCarouselItem,
 	LDWall:LDWall,
-	LDPostContainer:LDPostContainer,
 	LDUserWithFollowingStatus:LDUserWithFollowingStatus,
 	LDPostTagWithLocalization:LDPostTagWithLocalization,
 	LDPackageInfo:LDPackageInfo,
@@ -964,6 +984,12 @@ module.exports={
 	LDNearbyItemFeedMetadata:LDNearbyItemFeedMetadata,
 	LDUserCustomCommunityInfo:LDUserCustomCommunityInfo,
 	LDUserCustomAppCommunityInfo:LDUserCustomAppCommunityInfo,
+	LDPost:LDPost,
+	LDVideoBasePost:LDVideoBasePost,
+	LDVideoPost:LDVideoPost,
+	LDMessagePost:LDMessagePost,
+	LDScreenShotPost:LDScreenShotPost,
+	LDMiniclipPost:LDMiniclipPost,
 	LDUser:LDUser,
 	LDProfileIdentitySetting:LDProfileIdentitySetting,
 	LDItemInfo:LDItemInfo,
@@ -971,12 +997,6 @@ module.exports={
 	LDStickerPackInfo:LDStickerPackInfo,
 	LDAppInfoListingWrapper:LDAppInfoListingWrapper,
 	LDStickerPackInfoListingWrapper:LDStickerPackInfoListingWrapper,
-	LDPost:LDPost,
-	LDVideoBasePost:LDVideoBasePost,
-	LDVideoPost:LDVideoPost,
-	LDMessagePost:LDMessagePost,
-	LDScreenShotPost:LDScreenShotPost,
-	LDMiniclipPost:LDMiniclipPost,
 	LDCommentItem:LDCommentItem,
 	LDLikeItem:LDLikeItem,
 	LDFollowItem:LDFollowItem,
@@ -987,8 +1007,8 @@ module.exports={
 	LDAppStore:LDAppStore,
 	LDSticker:LDSticker,
 	LDPrice:LDPrice,
-	LDItemInfoImmutableContainer:LDItemInfoImmutableContainer,
 	LDM3U8Info:LDM3U8Info,
+	LDItemInfoImmutableContainer:LDItemInfoImmutableContainer,
 	LDItemInfoImmutable:LDItemInfoImmutable,
 	LDAppInfoImmutable:LDAppInfoImmutable,
 	LDStickerPackInfoImmutable:LDStickerPackInfoImmutable

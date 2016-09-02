@@ -9,6 +9,7 @@ function O(e){
 	$.TrendingByType=e['tbt'];
 	$.TrendingPeriod=e['tp'];
 	if(e['ck']!=null)$.ContinuationKey=new Buffer(e['ck'],'base64');
+	$.IncludeNonGame=e['ng'];
 }
 O.prototype=new LDJSONLoggable();
 O.prototype.constructor = O;
@@ -23,12 +24,14 @@ _.encode=function(o){
 	if($.TrendingByType!=null)o['tbt']=$.TrendingByType;
 	if($.TrendingPeriod!=null)o['tp']=$.TrendingPeriod;
 	if($.ContinuationKey!=null)o['ck']=$.ContinuationKey.toString('base64');
+	if($.IncludeNonGame!=null)o['ng']=$.IncludeNonGame;
 	return o;
 }
 _.Locale=null;
 _.TrendingByType=null;
 _.TrendingPeriod=null;
 _.ContinuationKey=null;
+_.IncludeNonGame=null;
 O.prototype.makeClusterRpc=function(id){
 	var o=this.encode(),t=null;
 	t={"gtc":o};o=t;

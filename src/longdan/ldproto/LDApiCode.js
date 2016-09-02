@@ -140,6 +140,7 @@ var LDApiCode = {
 	"ScheduledJobService_FailToSchedule_WrongNode": "ScheduledJobService_FailToSchedule_WrongNode",
 	"PublicChatService_NotJoined": "PublicChatService_NotJoined",
 	"InvalidFeedKind": "InvalidFeedKind",
+	"PublicChatService_TooManyMessages": "PublicChatService_TooManyMessages",
 	"InvalidEventRange": "InvalidEventRange",
 	"InvalidZoom": "InvalidZoom",
 	"KeyAlreadyExists": "KeyAlreadyExists",
@@ -175,6 +176,7 @@ var LDApiCode = {
 	"UnableToCreateCommunity": "UnableToCreateCommunity",
 	"VideoTooShort": "VideoTooShort",
 	"CorruptVideo": "CorruptVideo",
-	"CantJoinACanonicalCommunity": "CantJoinACanonicalCommunity"
+	"CantJoinACanonicalCommunity": "CantJoinACanonicalCommunity",
+	"UnsupportedJwtAlg": "UnsupportedJwtAlg"
 };
 module.exports=LDApiCode;

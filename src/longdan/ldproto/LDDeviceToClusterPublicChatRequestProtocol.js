@@ -1,6 +1,10 @@
 var LDRequestProtocolBase = require('./LDRequestProtocolBase');
 var LDPublicChatMessageTerminatedPush = require('./LDPublicChatMessageTerminatedPush');
 var LDPublicChatMessageDeliveryPush = require('./LDPublicChatMessageDeliveryPush');
+var LDJoinLocalChatsRequest = require('./LDJoinLocalChatsRequest');
+var LDListGeneralPublicChatsRequest = require('./LDListGeneralPublicChatsRequest');
+var LDListCommunityDefinedChatsRequest = require('./LDListCommunityDefinedChatsRequest');
+var LDListLocalChatsRequest = require('./LDListLocalChatsRequest');
 var LDListInterestingChatsRequest = require('./LDListInterestingChatsRequest');
 var LDListLiveChatsRequest = require('./LDListLiveChatsRequest');
 var LDGetRecentMessagesRequest = require('./LDGetRecentMessagesRequest');
@@ -22,6 +26,10 @@ function O(e){
 	if(e['gr']!=null)$.GetRecentMessagesRequest=new LDGetRecentMessagesRequest(e['gr']);
 	if(e['lc']!=null)$.ListLiveChatsRequest=new LDListLiveChatsRequest(e['lc']);
 	if(e['li']!=null)$.ListInterestingChatsRequest=new LDListInterestingChatsRequest(e['li']);
+	if(e['llc']!=null)$.ListLocalChatsRequest=new LDListLocalChatsRequest(e['llc']);
+	if(e['lad']!=null)$.ListAppDefinedChatsRequest=new LDListCommunityDefinedChatsRequest(e['lad']);
+	if(e['lgp']!=null)$.ListGeneralPublicChatsRequest=new LDListGeneralPublicChatsRequest(e['lgp']);
+	if(e['jlc']!=null)$.JoinLocalChatsRequest=new LDJoinLocalChatsRequest(e['jlc']);
 	if(e['p']!=null)$.PublicChatMessageDeliveryPush=new LDPublicChatMessageDeliveryPush(e['p']);
 	if(e['t']!=null)$.PublicChatTerminatedPush=new LDPublicChatMessageTerminatedPush(e['t']);
 }
@@ -41,6 +49,10 @@ _.encode=function(o){
 	if($.GetRecentMessagesRequest!=null)o['gr']=$.GetRecentMessagesRequest.encode();
 	if($.ListLiveChatsRequest!=null)o['lc']=$.ListLiveChatsRequest.encode();
 	if($.ListInterestingChatsRequest!=null)o['li']=$.ListInterestingChatsRequest.encode();
+	if($.ListLocalChatsRequest!=null)o['llc']=$.ListLocalChatsRequest.encode();
+	if($.ListAppDefinedChatsRequest!=null)o['lad']=$.ListAppDefinedChatsRequest.encode();
+	if($.ListGeneralPublicChatsRequest!=null)o['lgp']=$.ListGeneralPublicChatsRequest.encode();
+	if($.JoinLocalChatsRequest!=null)o['jlc']=$.JoinLocalChatsRequest.encode();
 	if($.PublicChatMessageDeliveryPush!=null)o['p']=$.PublicChatMessageDeliveryPush.encode();
 	if($.PublicChatTerminatedPush!=null)o['t']=$.PublicChatTerminatedPush.encode();
 	return o;
@@ -53,6 +65,10 @@ _.GetPublicChatMembersRequest=null;
 _.GetRecentMessagesRequest=null;
 _.ListLiveChatsRequest=null;
 _.ListInterestingChatsRequest=null;
+_.ListLocalChatsRequest=null;
+_.ListAppDefinedChatsRequest=null;
+_.ListGeneralPublicChatsRequest=null;
+_.JoinLocalChatsRequest=null;
 _.PublicChatMessageDeliveryPush=null;
 _.PublicChatTerminatedPush=null;
 

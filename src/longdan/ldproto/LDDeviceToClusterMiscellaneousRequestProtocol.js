@@ -1,4 +1,5 @@
 var LDRequestProtocolBase = require('./LDRequestProtocolBase');
+var LDGetPokemonMapRequest = require('./LDGetPokemonMapRequest');
 var LDGetCarouselCommunitiesRequest = require('./LDGetCarouselCommunitiesRequest');
 var LDGetExtraVersionsRequest = require('./LDGetExtraVersionsRequest');
 var LDGetFeedbackAccountRequest = require('./LDGetFeedbackAccountRequest');
@@ -22,6 +23,7 @@ function O(e){
 	if(e['gf']!=null)$.GetFeedbackAccount=new LDGetFeedbackAccountRequest(e['gf']);
 	if(e['e']!=null)$.GetExtraVersions=new LDGetExtraVersionsRequest(e['e']);
 	if(e['cc']!=null)$.GetCarouselCommunitiesRequest=new LDGetCarouselCommunitiesRequest(e['cc']);
+	if(e['pm']!=null)$.PokemonMapRequest=new LDGetPokemonMapRequest(e['pm']);
 }
 O.prototype=new LDRequestProtocolBase();
 O.prototype.constructor = O;
@@ -40,6 +42,7 @@ _.encode=function(o){
 	if($.GetFeedbackAccount!=null)o['gf']=$.GetFeedbackAccount.encode();
 	if($.GetExtraVersions!=null)o['e']=$.GetExtraVersions.encode();
 	if($.GetCarouselCommunitiesRequest!=null)o['cc']=$.GetCarouselCommunitiesRequest.encode();
+	if($.PokemonMapRequest!=null)o['pm']=$.PokemonMapRequest.encode();
 	return o;
 }
 _.UrlToStoryRequest=null;
@@ -51,5 +54,6 @@ _.CreatePlaygroundRequest=null;
 _.GetFeedbackAccount=null;
 _.GetExtraVersions=null;
 _.GetCarouselCommunitiesRequest=null;
+_.PokemonMapRequest=null;
 
 module.exports=O;
