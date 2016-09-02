@@ -1,5 +1,5 @@
 /**
- * OmStoreEngine -- 
+ * OmStoreEngine --
       getObjectId(object)
         returns the id of a given object.
 
@@ -135,6 +135,20 @@ class OmStore {
 			};
 		};
 		return this._storeImpl.openTable("feed-object-" + feedId, "msgId", defaultObject, cb);
+	}
+
+	getStickers(cb) {
+		var defaultObject = function() {
+			return {
+				itemId: undefined,
+				thumbnailHash: undefined,
+				info: undefined,
+				json: undefined,
+				chattable: false,
+				placeable: false
+			};
+		};
+		return this._storeImpl.openTable("sticker", "itemId", defaultObject, cb);
 	}
 }
 

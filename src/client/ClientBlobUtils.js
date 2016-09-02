@@ -37,6 +37,17 @@ class BlobUtils {
 		return hash;
 	}
 
+	ensurePermanentBlobSource(decryptedHash, source, callback) {
+		var hash = this.hashFromLongdanUrl(source);
+		var timestamp = new Date().getTime();
+		if (decryptedHash) {
+			this.ensureBlobSource(hash, source, timestamp, null, callback);
+		} else {
+			this.ensureBlobSource(hash, source, timestamp, null, callback);
+		}
+		return hash;
+	}
+
 	hashFromLongdanUrl(url) {
 		var parser = Url.parse(url);
 
