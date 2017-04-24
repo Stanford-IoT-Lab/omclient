@@ -12,27 +12,53 @@ var NoopProcessor = require('./processors/NoopProcessor');
 
 class LongdanMessageProcessor {
 
-	constructor(client) {
+	constructor(client, options) {
 		this._client = client;
+		options = options || {};
 
 		var noop = new NoopProcessor();
-		var cop = new ChatObjectProcessor();
+
+		if (options.chatObjectProcessor)
+		    var cop = options.chatObjectProcessor;
+		else
+		    var cop = new ChatObjectProcessor();
+		if (!options.enabledProcessors) {
+		    options.enabledProcessors = [ObjTypes.TEXT, ObjTypes.ANIMATED_GIF, ObjTypes.PICTURE, ObjTypes.CANVAS,
+		                                 ObjTypes.STICKER, ObjTypes.ILBC, ObjTypes.RDL, ObjTypes.RDL,
+		                                 ObjTypes.LOCATION, ObjTypes.FILE, ObjTypes.VIDEO, ObjTypes.COMMENT,
+		                                 ObjTypes.LIKE];
+		}
 		this._chatObjectProcessor = cop;
-		
+
 		this._durableMessageProcessors = {};
-		this._durableMessageProcessors[ObjTypes.TEXT] = cop;
-		this._durableMessageProcessors[ObjTypes.ANIMATED_GIF] = cop;
-		this._durableMessageProcessors[ObjTypes.PICTURE] = cop;
-		this._durableMessageProcessors[ObjTypes.CANVAS] = cop;
-		this._durableMessageProcessors[ObjTypes.STICKER] = cop;
-		this._durableMessageProcessors[ObjTypes.ILBC] = cop;
-		this._durableMessageProcessors[ObjTypes.RDL] = cop;
-		this._durableMessageProcessors[ObjTypes.APP] = cop;
-		this._durableMessageProcessors[ObjTypes.LOCATION] = cop;
-		this._durableMessageProcessors[ObjTypes.FILE] = cop;
-		this._durableMessageProcessors[ObjTypes.VIDEO] = cop;
-		this._durableMessageProcessors[ObjTypes.COMMENT] = cop;
-		this._durableMessageProcessors[ObjTypes.LIKE] = new LikeProcessor();
+
+		if (options.enabledProcessors.indexOf(ObjTypes.TEXT) >= 0)
+		    this._durableMessageProcessors[ObjTypes.TEXT] = cop;
+		if (options.enabledProcessors.indexOf(ObjTypes.ANIMATED_GIF) >= 0)
+		    this._durableMessageProcessors[ObjTypes.ANIMATED_GIF] = cop;
+		if (options.enabledProcessors.indexOf(ObjTypes.PICTURE) >= 0)
+		    this._durableMessageProcessors[ObjTypes.PICTURE] = cop;
+		if (options.enabledProcessors.indexOf(ObjTypes.CANVAS) >= 0)
+		    this._durableMessageProcessors[ObjTypes.CANVAS] = cop;
+		if (options.enabledProcessors.indexOf(ObjTypes.STICKER) >= 0)
+		    this._durableMessageProcessors[ObjTypes.STICKER] = cop;
+		if (options.enabledProcessors.indexOf(ObjTypes.ILBC) >= 0)
+		    this._durableMessageProcessors[ObjTypes.ILBC] = cop;
+		if (options.enabledProcessors.indexOf(ObjTypes.APP) >= 0)
+		    this._durableMessageProcessors[ObjTypes.APP] = cop;
+		if (options.enabledProcessors.indexOf(ObjTypes.RDL) >= 0)
+		    this._durableMessageProcessors[ObjTypes.RDL] = cop;
+		if (options.enabledProcessors.indexOf(ObjTypes.LOCATION) >= 0)
+		    this._durableMessageProcessors[ObjTypes.LOCATION] = cop;
+		if (options.enabledProcessors.indexOf(ObjTypes.FILE) >= 0)
+	        this._durableMessageProcessors[ObjTypes.FILE] = cop;
+		if (options.enabledProcessors.indexOf(ObjTypes.VIDEO) >= 0)
+		    this._durableMessageProcessors[ObjTypes.VIDEO] = cop;
+		if (options.enabledProcessors.indexOf(ObjTypes.COMMENT) >= 0)
+		    this._durableMessageProcessors[ObjTypes.COMMENT] = cop;
+	    if (options.enabledProcessors.indexOf(ObjTypes.LIKE) >= 0)
+		    this._durableMessageProcessors[ObjTypes.LIKE] = new LikeProcessor();
+
 		this._durableMessageProcessors[ObjTypes.LAST_READ] = new LastReadProcessor();
 		this._durableMessageProcessors[ObjTypes.FEED_DETAILS] = new FeedDetailsProcessor();
 		this._durableMessageProcessors[ObjTypes.FEED_MEMBERSHIP] = new MembershipProcessor();

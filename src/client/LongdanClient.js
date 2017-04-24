@@ -100,7 +100,7 @@ class Client {
 		this._msg.onDeviceInvalid = this._onDeviceInvalid.bind(this);
 
 		this.longdanMessageConsumer = new LongdanMessageConsumer(this);
-		this.longdanMessageProcessor = new LongdanMessageProcessor(this);
+		this.longdanMessageProcessor = new LongdanMessageProcessor(this, config.processorOptions);
 		this.longdanDurableJobProcessor = new LongdanDurableJobProcessor(this);
 
 		this.auth = new AuthUtils(this);
