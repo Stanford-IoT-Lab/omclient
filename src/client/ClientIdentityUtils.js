@@ -3,6 +3,8 @@ var RawIdentity = require("./model/RawIdentity");
 
 var LDSetProfileNameRequest = require('../longdan/ldproto/LDSetProfileNameRequest');
 var LDGetOmletContactProfileRequest = require('../longdan/ldproto/LDGetOmletContactProfileRequest');
+var LDGetContactProfileRequest = require('../longdan/ldproto/LDGetContactProfileRequest');
+var LDIdentityHash = require('../longdan/ldproto/LDIdentityHash');
 
 class IdentityUtils {
 
@@ -100,8 +102,35 @@ class IdentityUtils {
 						}
 					});
 				} else {
-					misses.push(hash);
-					this._getAccountsForIdentityHashesInternal(idDb, accountsDb, hashes, matches, misses, cb);
+					var req = new LDGetContactProfileRequest();
+					req.IdentityHash = new LDIdentityHash(JSON.parse(hash));
+
+					this._client.msgCall(req, (err, resp, req) => {
+						if (err) {
+							console.warn("error while getting contact profile: " +err);
+							misses.push(hash);
+							this._getAccountsForIdentityHashesInternal(idDb, accountsDb, hashes, matches, misses, cb);
+						}
+
+						console.log('resolved identity ' + hash + ' to ' + resp.Account);
+						accountsDb.getOrCreateObject(resp.Account, (account) => {
+							idDb.getOrCreateObject(hash, () => {
+								matches.push(account.account);
+								this._getAccountsForIdentityHashesInternal(idDb, accountsDb, hashes, matches, misses, cb);
+								return;
+							}, { accountId: this._client.store.getObjectId(account) });
+
+							if (account.hashidentities) {
+								if (account.hashidentities.indexOf(hash) >= 0) {
+									return;
+								}
+								account.hashidentities.push(hash);
+							} else {
+								account.hashidentities = [hash];
+							}
+							accountsDb.update(account);
+						}, { account: resp.Account });
+					});
 				}
 			});
 		}

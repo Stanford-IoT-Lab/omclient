@@ -88,10 +88,10 @@ class FeedUtils {
 			accounts.unshift(myAccount);
 		}
 
-		this._client.identity.getAccountsForIdentityHashes(identityHashes, (matchedAccounts, identityHashes) => {
+		this._client.identity.getAccountsForIdentityHashes(identityHashes, (matchedAccounts, identityMisses) => {
 			matchedAccounts.forEach((account) => {
-				if (accountsToAdd.indexOf(account) == -1) {
-					accountsToAdd.push(account);
+				if (accounts.indexOf(account) == -1) {
+					accounts.push(account);
 				}
 			});
 
@@ -109,7 +109,7 @@ class FeedUtils {
 					var matched = undefined;
 					var feeds = feedsDb.query();
 					feeds.forEach((feed) => {
-						if (feed.members.length != accountIds.length || feed.invitations.length != identityHashes.length) {
+						if (feed.members.length != accountIds.length || feed.invitations.length != identityMisses.length) {
 							return;
 						}
 						var ldFeed = this.getLDFeed(feed);
@@ -126,7 +126,7 @@ class FeedUtils {
 							}
 						});
 
-						identityHashes.forEach((identity) => {
+						identityMisses.forEach((identity) => {
 							if (feed.invitations.indexOf(identity) == -1) {
 								candidate = false;
 								return false;
@@ -147,7 +147,7 @@ class FeedUtils {
 					if (matched) {
 						cb(undefined, matched, true);
 					} else {
-						this._createFeedWithMembers(feedKind, accountsToAdd, identityHashes, cb);
+						this._createFeedWithMembers(feedKind, accountsToAdd, identityMisses, cb);
 					}
 				});
 			});
@@ -155,7 +155,7 @@ class FeedUtils {
 	}
 
 	_createFeedWithMembers(feedKind, accounts, identityHashes, cb) {
-		this._createFeed((feedKind, err, feed) => {
+		this._createFeed(null, (err, feed) => {
 			if (err) {
 				if (typeof cb == 'function')
 					cb(err);
