@@ -117,7 +117,7 @@ class OmTable {
 
 	load(cb) {
 		if (this._persist) {
-			this._db.loadDatabase(this._name, () => {
+			this._db.loadDatabase({}, () => {
 				console.log("loaded " + this._name);
 				this._data = this._db.getCollection("data")
 				if (!this._data) {
