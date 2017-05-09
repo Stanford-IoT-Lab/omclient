@@ -109,7 +109,12 @@ class IdentityUtils {
 						if (err) {
 							console.warn("error while getting contact profile: " +err);
 							misses.push(hash);
-							this._getAccountsForIdentityHashesInternal(idDb, accountsDb, hashes, matches, misses, cb);
+							return this._getAccountsForIdentityHashesInternal(idDb, accountsDb, hashes, matches, misses, cb);
+						}
+						if (!resp.Account) {
+							console.log('found no account for identity ' + hash);
+							misses.push(hash);
+							return this._getAccountsForIdentityHashesInternal(idDb, accountsDb, hashes, matches, misses, cb);
 						}
 
 						console.log('resolved identity ' + hash + ' to ' + resp.Account);
