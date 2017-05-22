@@ -45,9 +45,6 @@ class Client {
 		var storage;
 		if (config.storage) {
 			storage = config.storage;
-		} else if (typeof window === 'undefined') {
-			var LocalStorage = require('node-localstorage').LocalStorage;
-			storage = new LocalStorage(config.storagePath);
 		} else if (this.supportsLocalStorage()) {
 			storage = localStorage;
 		} else {
@@ -55,7 +52,7 @@ class Client {
 			storage = new CookieLocalStorage();
 		}
 		this._storage = storage;
-		
+
 		this._keys = (config.keys) ? config.keys : ldKeys.prod;
 		this._instance = config.instance;
 
@@ -166,7 +163,7 @@ class Client {
 		if (this.onInterrupted)
 			this.onInterrupted(cause);
 	}
-	
+
 	_onDeviceInvalid() {
 		this.erasePrivateKey();
 		this.disable();
@@ -215,7 +212,7 @@ class Client {
 		this._idp.call(new LDCheckIdentityLinkedRequest(), (err, resp, req) => this._polledSignin(err, resp, req));
 
 	}
-	
+
 	_polledSignin(err, resp, req) {
 		if (!this._enabled)
 			return;
@@ -275,7 +272,7 @@ class Client {
 								syncSplit = twoWeeksAgoMicros;
 								break;
 						}
-						
+
 						var defaultSync = {
 							key: 'sync',
 							caughtUp: false,

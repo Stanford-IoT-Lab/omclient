@@ -1,9 +1,3 @@
-if (typeof window === 'undefined') {
-	var codependency = require('codependency');
-	var requirePeer = codependency.register(module);
-}
-if (typeof Promise === 'undefined') require('es6-promise').polyfill();
-
 var LongdanClient = require('./client/LongdanClient');
 var OmlibAuthApi = require('./api/auth');
 var OmlibMessagingApi = require('./api/messaging');
