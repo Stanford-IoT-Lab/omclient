@@ -209,6 +209,8 @@ class Client {
 
 	_pollSignin() {
 		this._signinTimer = undefined;
+		if (!this._enabled)
+			return;
 		this._idp.call(new LDCheckIdentityLinkedRequest(), (err, resp, req) => this._polledSignin(err, resp, req));
 
 	}
