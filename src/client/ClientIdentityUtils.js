@@ -134,6 +134,7 @@ class IdentityUtils {
 								account.hashidentities = [hash];
 							}
 							accountsDb.update(account);
+							this._refreshAccountProfile(resp.Account);
 						}, { account: resp.Account });
 					});
 				}
