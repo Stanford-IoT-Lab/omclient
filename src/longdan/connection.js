@@ -6,7 +6,6 @@ var LDResponseContainerBase = require('./ldproto/LDResponseContainerBase');
 var LDHelloChallengeRequest = require('./ldproto/LDHelloChallengeRequest');
 var LDCompleteChallengeRequest = require('./ldproto/LDCompleteChallengeRequest');
 var LDPingRequest = require('./ldproto/LDPingRequest');
-var ExtendableError = require('es6-error');
 
 var IDP_CLUSTER = "idp";
 var BASE_BACKOFF = 3 * 1000;
@@ -121,7 +120,7 @@ class PendingRequest {
 	}
 }
 
-class PermanentFailure extends ExtendableError {
+class PermanentFailure extends Error {
 
 	constructor(e) {
 		super(e);
@@ -134,7 +133,7 @@ class PermanentFailure extends ExtendableError {
 	}
 }
 
-class TemporaryFailure extends ExtendableError {
+class TemporaryFailure extends Error {
 
 	constructor(e) {
 		super(e);
@@ -147,7 +146,7 @@ class TemporaryFailure extends ExtendableError {
 	}
 }
 
-class Abort extends ExtendableError {
+class Abort extends Error {
 
 	constructor() {
 		super("Aborting");
